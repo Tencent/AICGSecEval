@@ -447,5 +447,637 @@
         "poc_cmd": "./poc.sh",
         "other_vuln_files": [],
         "patch_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba"
-    }
+    },
+  {
+    "instance_id": "Choser_CVE-2016-10504",
+    "repo": "uclouvain/openjpeg",
+    "base_commit": "397f62c0a838e15d667ef50e27d5d011d2c79c04^",
+    "patch_commit": "397f62c0a838e15d667ef50e27d5d011d2c79c04",
+    "vuln_file": "openjpeg/src/lib/openjp2/tcd.c",
+    "vuln_lines": [
+      1184,
+      1188
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2016-10504",
+    "cwe_id": "CWE-119",
+    "vuln_type": "Memory Buffer Overflow",
+    "severity": "medium",
+    "image": "choser/openjpeg_cve-2016-10504:latest",
+    "image_name": "openjpeg-cve-2016-10504",
+    "image_inner_path": "/workspace/openjpeg",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "",
+        "vuln_lines": []
+      }
+    ]
+  },
+  {
+    "instance_id": "Choser_CVE-2016-7445",
+    "repo": "uclouvain/openjpeg",
+    "base_commit": "f053508f6fc26aa95839f747bc7cbf257bd43996^",
+    "patch_commit": "f053508f6fc26aa95839f747bc7cbf257bd43996",
+    "vuln_file": "openjpeg/src/bin/jp2/convert.c",
+    "vuln_lines": [
+      1330,
+      1539
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2016-7445",
+    "cwe_id": "CWE-476",
+    "vuln_type": "NULL Pointer Dereference",
+    "severity": "high",
+    "image": "choser/openjpeg_cve-2016-7445:latest",
+    "image_name": "openjpeg-cve-2016-7445",
+    "image_inner_path": "/workspace/openjpeg",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "",
+        "vuln_lines": []
+      }
+    ]
+  },
+  {
+    "instance_id": "Choser_CVE-2016-9118",
+    "repo": "uclouvain/openjpeg",
+    "base_commit": "c22cbd8bdf8ff2ae372f94391a4be2d322b36b41^",
+    "patch_commit": "c22cbd8bdf8ff2ae372f94391a4be2d322b36b41",
+    "vuln_file": "openjpeg/src/bin/jp2/convert.c",
+    "vuln_lines": [
+      1733,
+      1744
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2016-9118",
+    "cwe_id": "CWE-119",
+    "vuln_type": "Memory Buffer Overflow",
+    "severity": "medium",
+    "image": "choser/openjpeg_cve-2016-9118:latest",
+    "image_name": "openjpeg-cve-2016-9118",
+    "image_inner_path": "/workspace/openjpeg",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "openjpeg/src/lib/openjp2/image.c",
+        "vuln_lines": [
+          70,
+          78
+        ]
+      }
+    ]
+  },
+  {
+    "instance_id": "Choser_CVE-2017-14164",
+    "repo": "uclouvain/openjpeg",
+    "base_commit": "dcac91b8c72f743bda7dbfa9032356bc8110098a^",
+    "patch_commit": "dcac91b8c72f743bda7dbfa9032356bc8110098a",
+    "vuln_file": "openjpeg/src/lib/openjp2/j2k.c",
+    "vuln_lines": [
+      4203,
+      4226
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2017-14164",
+    "cwe_id": "CWE-787",
+    "vuln_type": "Out-of-bounds Write",
+    "severity": "high",
+    "image": "choser/openjpeg_cve-2017-14164:latest",
+    "image_name": "openjpeg-cve-2017-14164",
+    "image_inner_path": "/workspace/openjpeg",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "openjpeg/src/lib/openjp2/j2k.c",
+        "vuln_lines": [
+          11482,
+          11589
+        ]
+      }
+    ]
+  },
+  {
+    "instance_id": "Choser_CVE-2018-11813",
+    "repo": "libjpeg-turbo/libjpeg-turbo",
+    "base_commit": "909a8cfc7bca9b2e6707425bdb74da997e8fa499^",
+    "patch_commit": "909a8cfc7bca9b2e6707425bdb74da997e8fa499",
+    "vuln_file": "rdtarga.c",
+    "vuln_lines": [
+      128,
+      163
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2018-11813",
+    "cwe_id": "CWE-834",
+    "vuln_type": "Excessive Iteration",
+    "severity": "high",
+    "image": "choser/libjpeg-cve-2018-11813:latest",
+    "image_name": "libjpeg-cve-2018-11813",
+    "image_inner_path": "/workspace/libjpeg-turbo",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2018-14498",
+    "repo": "libjpeg-turbo/libjpeg-turbo",
+    "base_commit": "9c78a04df4e44ef6487eee99c4258397f4fdca55^",
+    "patch_commit": "9c78a04df4e44ef6487eee99c4258397f4fdca55",
+    "vuln_file": "rdbmp.c",
+    "vuln_lines": [
+      158,
+      218
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2018-14498",
+    "cwe_id": "CWE-125",
+    "vuln_type": "Out-of-bounds Read",
+    "severity": "high",
+    "image": "choser/libjpeg-cve-2018-14498:latest",
+    "image_name": "libjpeg-cve-2018-14498",
+    "image_inner_path": "/workspace/libjpeg-turbo",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2018-18088",
+    "repo": "uclouvain/openjpeg",
+    "base_commit": "cab352e249ed3372dd9355c85e837613fff98fa2^",
+    "patch_commit": "cab352e249ed3372dd9355c85e837613fff98fa2",
+    "vuln_file": "openjpeg/src/bin/jp2/convert.c",
+    "vuln_lines": [
+      2235,
+      2241
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2018-18088",
+    "cwe_id": "CWE-476",
+    "vuln_type": "NULL Pointer Dereference",
+    "severity": "medium",
+    "image": "choser/openjpeg_cve-2018-18088:latest",
+    "image_name": "openjpeg-cve-2018-18088",
+    "image_inner_path": "/workspace/openjpeg",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "",
+        "vuln_lines": []
+      }
+    ]
+  },
+  {
+    "instance_id": "Choser_CVE-2018-19664",
+    "repo": "libjpeg-turbo/libjpeg-turbo",
+    "base_commit": "f8cca819a4fb42aafa5f70df43c45e8c416d716f^",
+    "patch_commit": "f8cca819a4fb42aafa5f70df43c45e8c416d716f",
+    "vuln_file": "wrbmp.c",
+    "vuln_lines": [
+      505,
+      507
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2018-19664",
+    "cwe_id": "CWE-125",
+    "vuln_type": "Out-of-bounds Read",
+    "severity": "medium",
+    "image": "choser/libjpeg-cve-2018-19664:latest",
+    "image_name": "libjpeg-cve-2018-19664",
+    "image_inner_path": "/workspace/libjpeg-turbo",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2018-20330",
+    "repo": "libjpeg-turbo/libjpeg-turbo",
+    "base_commit": "3d9c64e9f8aa1ee954d1d0bb3390fc894bb84da3^",
+    "patch_commit": "3d9c64e9f8aa1ee954d1d0bb3390fc894bb84da3",
+    "vuln_file": "turbojpeg.c",
+    "vuln_lines": [
+      1963,
+      2019
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2018-20330",
+    "cwe_id": "CWE-190",
+    "vuln_type": "Integer Overflow",
+    "severity": "high",
+    "image": "choser/libjpeg-cve-2018-20330:latest",
+    "image_name": "libjpeg-cve-2018-20330",
+    "image_inner_path": "/workspace/libjpeg-turbo",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2018-5727",
+    "repo": "uclouvain/openjpeg",
+    "base_commit": "a1d32a596a94280178c44a55d7e7f1acd992ed5d^",
+    "patch_commit": "a1d32a596a94280178c44a55d7e7f1acd992ed5d",
+    "vuln_file": "openjpeg/src/lib/openjp2/t1.c",
+    "vuln_lines": [
+      2170,
+      2183
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2018-5727",
+    "cwe_id": "CWE-190",
+    "vuln_type": "Integer Overflow",
+    "severity": "medium",
+    "image": "choser/openjpeg_cve-2018-5727:latest",
+    "image_name": "openjpeg-cve-2018-5727",
+    "image_inner_path": "/workspace/openjpeg",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "",
+        "vuln_lines": []
+      }
+    ]
+  },
+  {
+    "instance_id": "Choser_CVE-2018-5785",
+    "repo": "uclouvain/openjpeg",
+    "base_commit": "ca16fe55014c57090dd97369256c7657aeb25975^",
+    "patch_commit": "ca16fe55014c57090dd97369256c7657aeb25975",
+    "vuln_file": "openjpeg/src/bin/jp2/convertbmp.c",
+    "vuln_lines": [
+      437,
+      463
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2018-5785",
+    "cwe_id": "CWE-119",
+    "vuln_type": "Memory Buffer Overflow",
+    "severity": "medium",
+    "image": "choser/openjpeg_cve-2018-5785:latest",
+    "image_name": "openjpeg-cve-2018-5785",
+    "image_inner_path": "/workspace/openjpeg",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "openjpeg/src/bin/jp2/convertbmp.c",
+        "vuln_lines": [
+          833,
+          855
+        ]
+      }
+    ]
+  },
+  {
+    "instance_id": "Choser_CVE-2018-6616",
+    "repo": "uclouvain/openjpeg",
+    "base_commit": "8ee335227bbcaf1614124046aa25e53d67b11ec3^",
+    "patch_commit": "8ee335227bbcaf1614124046aa25e53d67b11ec3",
+    "vuln_file": "openjpeg/src/bin/jp2/convertbmp.c",
+    "vuln_lines": [
+      536,
+      619
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2018-6616",
+    "cwe_id": "CWE-400",
+    "vuln_type": "Uncontrolled Resource Consumption",
+    "severity": "medium",
+    "image": "choser/openjpeg_cve-2018-6616:latest",
+    "image_name": "openjpeg-cve-2018-6616",
+    "image_inner_path": "/workspace/openjpeg",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "",
+        "vuln_lines": []
+      }
+    ]
+  },
+  {
+    "instance_id": "Choser_CVE-2019-2201",
+    "repo": "libjpeg-turbo/libjpeg-turbo",
+    "base_commit": "c30b1e72dac76343ef9029833d1561de07d29bad^",
+    "patch_commit": "c30b1e72dac76343ef9029833d1561de07d29bad",
+    "vuln_file": "tjbench.c",
+    "vuln_lines": [
+      174,
+      196
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2019-2201",
+    "cwe_id": "CWE-787",
+    "vuln_type": "Out-of-bounds Write",
+    "severity": "high",
+    "image": "choser/libjpeg-cve-2019-2201:latest",
+    "image_name": "libjpeg-cve-2019-2201",
+    "image_inner_path": "/workspace/libjpeg-turbo",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2020-13790",
+    "repo": "libjpeg-turbo/libjpeg-turbo",
+    "base_commit": "3de15e0c344d11d4b90f4a47136467053eb2d09a^",
+    "patch_commit": "3de15e0c344d11d4b90f4a47136467053eb2d09a",
+    "vuln_file": "libjpeg-turbo/src/rdppm.c",
+    "vuln_lines": [
+      722,
+      724
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2020-13790",
+    "cwe_id": "CWE-125",
+    "vuln_type": "Out-of-bounds Read",
+    "severity": "high",
+    "image": "choser/libjpeg_cve-2020-13790:latest",
+    "image_name": "cve-2020-13790",
+    "image_inner_path": "/workspace/libjpeg-turbo",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2020-24829",
+    "repo": "gpac/gpac",
+    "base_commit": "8c5e847185d74462d674ee7d28fb46c29dae6dd2^",
+    "patch_commit": "8c5e847185d74462d674ee7d28fb46c29dae6dd2",
+    "vuln_file": "gpac/gpac/applications/mp4box/main.c",
+    "vuln_lines": [
+      4650,
+      4709
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2020-24829",
+    "cwe_id": "CWE-787",
+    "vuln_type": "Out-of-bounds Write",
+    "severity": "medium",
+    "image": "choser/gpac_cve-2020-24829:latest",
+    "image_name": "gpac-cve-2020-24829",
+    "image_inner_path": "/workspace/gpac",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "gpac/gpac/src/isomedia/isom_write.c",
+        "vuln_lines": [
+          674,
+          678
+        ]
+      },
+      {
+        "vuln_file": "gpac/gpac/src/media_tools/av_parsers.c",
+        "vuln_lines": [
+          4309,
+          4311
+        ]
+      },
+      {
+        "vuln_file": "gpac/gpac/src/media_tools/mpegts.c",
+        "vuln_lines": [
+          541,
+          1275
+        ]
+      },
+      {
+        "vuln_file": "gpac/gpac/src/odf/odf_code.c",
+        "vuln_lines": [
+          508,
+          1035
+        ]
+      }
+    ]
+  },
+  {
+    "instance_id": "Choser_CVE-2020-27814",
+    "repo": "uclouvain/openjpeg",
+    "base_commit": "eaa098b59b346cb88e4d10d505061f669d7134fc^",
+    "patch_commit": "eaa098b59b346cb88e4d10d505061f669d7134fc",
+    "vuln_file": "openjpeg/src/lib/openjp2/tcd.c",
+    "vuln_lines": [
+      1245,
+      1251
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2020-27814",
+    "cwe_id": "CWE-122",
+    "vuln_type": "Heap-based Buffer Overflow",
+    "severity": "high",
+    "image": "choser/openjpeg_cve-2020-27814:latest",
+    "image_name": "openjpeg-cve-2020-27814",
+    "image_inner_path": "/workspace/openjpeg",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "",
+        "vuln_lines": []
+      }
+    ]
+  },
+  {
+    "instance_id": "Choser_CVE-2021-20205",
+    "repo": "libjpeg-turbo/libjpeg-turbo",
+    "base_commit": "1719d12e51641cce5c77e259516649ba5ef6303c^",
+    "patch_commit": "1719d12e51641cce5c77e259516649ba5ef6303c",
+    "vuln_file": "libjpeg-turbo/rdgif.c",
+    "vuln_lines": [
+      406,
+      449
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2021-20205",
+    "cwe_id": "CWE-369",
+    "vuln_type": "Divide By Zero",
+    "severity": "high",
+    "image": "choser/libjpeg_cve-2021-20205:latest",
+    "image_name": "cve-2021-20205",
+    "image_inner_path": "/workspace/libjpeg-turbo",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2021-29279",
+    "repo": "gpac/gpac",
+    "base_commit": "da69ad1f970a7e17c865eaec9af98cc84df10d5b^",
+    "patch_commit": "da69ad1f970a7e17c865eaec9af98cc84df10d5b",
+    "vuln_file": "gpac/gpac/src/filters/reframe_flac.c",
+    "vuln_lines": [
+      390,
+      545
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2021-29279",
+    "cwe_id": "CWE-787",
+    "vuln_type": "Out-of-bounds Write",
+    "severity": "high",
+    "image": "choser/gpac_cve-2021-29279:latest",
+    "image_name": "gpac-cve-2021-29279",
+    "image_inner_path": "/workspace/gpac",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2021-37972",
+    "repo": "libjpeg-turbo/libjpeg-turbo",
+    "base_commit": "2849d86aaae168fcac2e1b6c373c249781a41c5c^",
+    "patch_commit": "2849d86aaae168fcac2e1b6c373c249781a41c5c",
+    "vuln_file": "libjpeg-turbo/simd/x86_64/jchuff-sse2.asm",
+    "vuln_lines": [
+      85,
+      86
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2021-37972",
+    "cwe_id": "CWE-125",
+    "vuln_type": "Out-of-bounds Read",
+    "severity": "high",
+    "image": "choser/libjpeg_cve-2021-37972:latest",
+    "image_name": "cve-2021-37972",
+    "image_inner_path": "/workspace/libjpeg-turbo",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2023-0770",
+    "repo": "gpac/gpac",
+    "base_commit": "c31941822ee275a35bc148382bafef1c53ec1c26^",
+    "patch_commit": "c31941822ee275a35bc148382bafef1c53ec1c26",
+    "vuln_file": "gpac/gpac/src/scenegraph/vrml_proto.c",
+    "vuln_lines": [
+      1294,
+      1299
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2023-0770",
+    "cwe_id": "CWE-787",
+    "vuln_type": "Out-of-bounds Write",
+    "severity": "high",
+    "image": "choser/gpac_cve-2023-0770:latest",
+    "image_name": "gpac-cve-2023-0770",
+    "image_inner_path": "/workspace/gpac",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2023-4754",
+    "repo": "gpac/gpac",
+    "base_commit": "7e2e92feb1b30fac1d659f6620d743b5a188ffe0^",
+    "patch_commit": "7e2e92feb1b30fac1d659f6620d743b5a188ffe0",
+    "vuln_file": "gpac/gpac/src/scene_manager/swf_parse.c",
+    "vuln_lines": [
+      1428,
+      1430
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2023-4754",
+    "cwe_id": "CWE-787",
+    "vuln_type": "Out-of-bounds Write",
+    "severity": "medium",
+    "image": "choser/gpac_cve-2023-4754:latest",
+    "image_name": "gpac-cve-2023-4754",
+    "image_inner_path": "/workspace/gpac",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2023-4756",
+    "repo": "gpac/gpac",
+    "base_commit": "6914d016e2b540bac2c471c4aea156ddef8e8e01^",
+    "patch_commit": "6914d016e2b540bac2c471c4aea156ddef8e8e01",
+    "vuln_file": "gpac/gpac/src/scene_manager/loader_bt.c",
+    "vuln_lines": [
+      136,
+      162
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2023-4756",
+    "cwe_id": "CWE-787",
+    "vuln_type": "Out-of-bounds Write",
+    "severity": "medium",
+    "image": "choser/gpac_cve-2023-4756:latest",
+    "image_name": "gpac-cve-2023-4756",
+    "image_inner_path": "/workspace/gpac",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "gpac/gpac/src/scene_manager/loader_bt.c",
+        "vuln_lines": [
+          407,
+          424
+        ]
+      }
+    ]
+  },
+  {
+    "instance_id": "Choser_CVE-2024-0321",
+    "repo": "gpac/gpac",
+    "base_commit": "d0ced41651b279bb054eb6390751e2d4eb84819a^",
+    "patch_commit": "d0ced41651b279bb054eb6390751e2d4eb84819a",
+    "vuln_file": "gpac/gpac/src/filters/load_text.c",
+    "vuln_lines": [
+      379,
+      385
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2024-0321",
+    "cwe_id": "CWE-787",
+    "vuln_type": "Out-of-bounds Write",
+    "severity": "critical",
+    "image": "choser/gpac_cve-2024-0321:latest",
+    "image_name": "gpac-cve-2024-0321",
+    "image_inner_path": "/workspace/gpac",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  }
 ]
+
