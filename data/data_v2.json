@@ -1,0 +1,451 @@
+[
+    {
+        "instance_id": "GioldDiorld_CVE-2017-9988",
+        "repo": "libming/libming",
+        "base_commit": "447821c5cf76f6abfb2d3a397b5983417f29ee9b^",
+        "vuln_file": "util/parser.c",
+        "vuln_lines": [
+            3079,
+            3083
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2017-9988",
+        "cwe_id": "cwe-476",
+        "vuln_type": "Null Pointer Dereference",
+        "severity": "medium",
+        "image": "giolddiorld/aiseceval_cve-2017-9988:latest",
+        "image_name": "cve-2017-9988",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [],
+        "patch_commit": "447821c5cf76f6abfb2d3a397b5983417f29ee9b"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2016-9829",
+        "repo": "libming/libming",
+        "base_commit": "e397b5e6f947e2d18ec633c0ffd933b2f3097876^",
+        "vuln_file": "util/parser.c",
+        "vuln_lines": [
+            1647,
+            1669
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2016-9829",
+        "cwe_id": "cwe-119",
+        "vuln_type": "Memory Buffer Overflow",
+        "severity": "high",
+        "image": "giolddiorld/aiseceval_cve-2016-9829:latest",
+        "image_name": "cve-2016-9829",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [],
+        "patch_commit": "e397b5e6f947e2d18ec633c0ffd933b2f3097876"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2017-11728",
+        "repo": "libming/libming",
+        "base_commit": "2027b24f403a859016a70bbdc79a8da1d6f128eb^",
+        "vuln_file": "util/decompile.c",
+        "vuln_lines": [
+            861,
+            868
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2017-11728",
+        "cwe_id": "cwe-125",
+        "vuln_type": "Out-of-bounds Read",
+        "severity": "medium",
+        "image": "giolddiorld/aiseceval_cve-2017-11728:latest",
+        "image_name": "cve-2017-11728",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [
+            {
+                "vuln_file": "util/read.c",
+                "vuln_lines": [
+                    229,
+                    239
+                ]
+            }
+        ],
+        "patch_commit": "2027b24f403a859016a70bbdc79a8da1d6f128eb"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2017-11729",
+        "repo": "libming/libming",
+        "base_commit": "2027b24f403a859016a70bbdc79a8da1d6f128eb^",
+        "vuln_file": "util/decompile.c",
+        "vuln_lines": [
+            861,
+            868
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2017-11729",
+        "cwe_id": "cwe-125",
+        "vuln_type": "Out-of-bounds Read",
+        "severity": "medium",
+        "image": "giolddiorld/aiseceval_cve-2017-11729:latest",
+        "image_name": "cve-2017-11729",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [
+            {
+                "vuln_file": "util/read.c",
+                "vuln_lines": [
+                    229,
+                    239
+                ]
+            }
+        ],
+        "patch_commit": "2027b24f403a859016a70bbdc79a8da1d6f128eb"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2016-9827",
+        "repo": "libming/libming",
+        "base_commit": "459fa79d04dcd240996765727a726e5dc5c38f34^",
+        "vuln_file": "util/parser.c",
+        "vuln_lines": [
+            2752,
+            2760
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2016-9827",
+        "cwe_id": "cwe-119",
+        "vuln_type": "Memory Buffer Overflow",
+        "severity": "medium",
+        "image": "giolddiorld/aiseceval_cve-2016-9827:latest",
+        "image_name": "cve-2016-9827",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [],
+        "patch_commit": "459fa79d04dcd240996765727a726e5dc5c38f34"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2016-9831",
+        "repo": "libming/libming",
+        "base_commit": "94b25ed1b038b5392fdaa6b845f6f501aba54130^",
+        "vuln_file": "util/listjpeg.c",
+        "vuln_lines": [
+            55,
+            59
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2016-9831",
+        "cwe_id": "cwe-119",
+        "vuln_type": "Memory Buffer Overflow",
+        "severity": "high",
+        "image": "giolddiorld/aiseceval_cve-2016-9831:latest",
+        "image_name": "cve-2016-9831",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [
+            {
+                "vuln_file": "util/listfdb.c",
+                "vuln_lines": [
+                    57,
+                    96
+                ]
+            },
+            {
+                "vuln_file": "util/listfdb.c",
+                "vuln_lines": [
+                    111,
+                    113
+                ]
+            },
+            {
+                "vuln_file": "util/read.c",
+                "vuln_lines": [
+                    46,
+                    85
+                ]
+            },
+            {
+                "vuln_file": "util/read.c",
+                "vuln_lines": [
+                    112,
+                    114
+                ]
+            }
+        ],
+        "patch_commit": "94b25ed1b038b5392fdaa6b845f6f501aba54130"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2018-11225",
+        "repo": "libming/libming",
+        "base_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba^",
+        "vuln_file": "util/decompile.c",
+        "vuln_lines": [
+            3192,
+            3216
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2018-11225",
+        "cwe_id": "cwe-119",
+        "vuln_type": "Memory Buffer Overflow",
+        "severity": "high",
+        "image": "giolddiorld/aiseceval_cve-2018-11225:latest",
+        "image_name": "cve-2018-11225",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [],
+        "patch_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2018-7868",
+        "repo": "libming/libming",
+        "base_commit": "3a000c7b6fe978dd9925266bb6847709e06dbaa3^",
+        "vuln_file": "util/decompile.c",
+        "vuln_lines": [
+            306,
+            369
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2018-7868",
+        "cwe_id": "cwe-125",
+        "vuln_type": "Out-of-bounds Read",
+        "severity": "medium",
+        "image": "giolddiorld/aiseceval_cve-2018-7868:latest",
+        "image_name": "cve-2018-7868",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [
+            {
+                "vuln_file": "util/decompile.c",
+                "vuln_lines": [
+                    375,
+                    419
+                ]
+            },
+            {
+                "vuln_file": "util/decompile.c",
+                "vuln_lines": [
+                    795,
+                    806
+                ]
+            }
+        ],
+        "patch_commit": "3a000c7b6fe978dd9925266bb6847709e06dbaa3"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2018-8962",
+        "repo": "libming/libming",
+        "base_commit": "3a000c7b6fe978dd9925266bb6847709e06dbaa3^",
+        "vuln_file": "util/decompile.c",
+        "vuln_lines": [
+            306,
+            369
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2018-8962",
+        "cwe_id": "cwe-416",
+        "vuln_type": "Use After Free",
+        "severity": "medium",
+        "image": "giolddiorld/aiseceval_cve-2018-8962:latest",
+        "image_name": "cve-2018-8962",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [
+            {
+                "vuln_file": "util/decompile.c",
+                "vuln_lines": [
+                    375,
+                    419
+                ]
+            },
+            {
+                "vuln_file": "util/decompile.c",
+                "vuln_lines": [
+                    795,
+                    806
+                ]
+            }
+        ],
+        "patch_commit": "3a000c7b6fe978dd9925266bb6847709e06dbaa3"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2018-8807",
+        "repo": "libming/libming",
+        "base_commit": "3a000c7b6fe978dd9925266bb6847709e06dbaa3^",
+        "vuln_file": "util/decompile.c",
+        "vuln_lines": [
+            306,
+            369
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2018-8807",
+        "cwe_id": "cwe-416",
+        "vuln_type": "Use After Free",
+        "severity": "medium",
+        "image": "giolddiorld/aiseceval_cve-2018-8807:latest",
+        "image_name": "cve-2018-8807",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [
+            {
+                "vuln_file": "util/decompile.c",
+                "vuln_lines": [
+                    375,
+                    419
+                ]
+            },
+            {
+                "vuln_file": "util/decompile.c",
+                "vuln_lines": [
+                    795,
+                    806
+                ]
+            }
+        ],
+        "patch_commit": "3a000c7b6fe978dd9925266bb6847709e06dbaa3"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2018-9132",
+        "repo": "libming/libming",
+        "base_commit": "d13db01ea1c416f51043bef7496cfb25c2dde29a^",
+        "vuln_file": "util/decompile.c",
+        "vuln_lines": [
+            477,
+            492
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2018-9132",
+        "cwe_id": "cwe-476",
+        "vuln_type": "Null Pointer Dereference",
+        "severity": "medium",
+        "image": "giolddiorld/aiseceval_cve-2018-9132:latest",
+        "image_name": "cve-2018-9132",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [],
+        "patch_commit": "d13db01ea1c416f51043bef7496cfb25c2dde29a"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2017-7578",
+        "repo": "libming/libming",
+        "base_commit": "ea70414984f297958684acee0bb037ac11fb30b8^",
+        "vuln_file": "util/parser.c",
+        "vuln_lines": [
+            436,
+            448
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2017-7578",
+        "cwe_id": "cwe-119",
+        "vuln_type": "Memory Buffer Overflow",
+        "severity": "high",
+        "image": "giolddiorld/aiseceval_cve-2017-7578:latest",
+        "image_name": "cve-2017-7578",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [
+            {
+                "vuln_file": "util/parser.c",
+                "vuln_lines": [
+                    454,
+                    464
+                ]
+            },
+            {
+                "vuln_file": "util/parser.c",
+                "vuln_lines": [
+                    779,
+                    786
+                ]
+            }
+        ],
+        "patch_commit": "ea70414984f297958684acee0bb037ac11fb30b8"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2018-11095",
+        "repo": "libming/libming",
+        "base_commit": "2027b24f403a859016a70bbdc79a8da1d6f128eb^",
+        "vuln_file": "util/decompile.c",
+        "vuln_lines": [
+            861,
+            868
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2018-11095",
+        "cwe_id": "cwe-119",
+        "vuln_type": "Memory Buffer Overflow",
+        "severity": "high",
+        "image": "giolddiorld/aiseceval_cve-2018-11095:latest",
+        "image_name": "cve-2018-11095",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [
+            {
+                "vuln_file": "util/read.c",
+                "vuln_lines": [
+                    229,
+                    239
+                ]
+            }
+        ],
+        "patch_commit": "2027b24f403a859016a70bbdc79a8da1d6f128eb"
+    },
+    {
+        "instance_id": "GioldDiorld_CVE-2018-11226",
+        "repo": "libming/libming",
+        "base_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba^",
+        "vuln_file": "util/decompile.c",
+        "vuln_lines": [
+            3192,
+            3216
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2018-11226",
+        "cwe_id": "cwe-476",
+        "vuln_type": "Null Pointer Dereference",
+        "severity": "high",
+        "image": "giolddiorld/aiseceval_cve-2018-11226:latest",
+        "image_name": "cve-2018-11226",
+        "image_inner_path": "/cve/SRC",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './build.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [],
+        "patch_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba"
+    }
+]
