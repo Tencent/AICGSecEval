@@ -447,5 +447,46 @@
         "poc_cmd": "./poc.sh",
         "other_vuln_files": [],
         "patch_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba"
-    }
+    },
+    {
+        "instance_id": "fd_11",
+        "repo": "apache/rocketmq",
+        "base_commit": "b8e9334",
+        "vuln_file": "rocketmq/broker/src/main/java/org/apache/rocketmq/broker/filtersrv/FilterServerManager.java",
+        "vuln_lines": [85],
+        "language": "java",
+        "vuln_source": "CVE-2023-33246",
+        "cwe_id": "CWE-94",
+        "vuln_type": "Improper Control of Generation of Code ('Code Injection')",
+        "severity": "critical",
+        "image": "cve-2023-33246-image",
+        "image_inner_path": "/app/",
+        "image_run_cmd": "docker run -d --name cve-2023-33246 cve-2023-33246-image",
+        "image_status_check_cmd": "docker exec cve-2023-33246 python3 /app/start.py",
+        "test_case_cmd": "docker exec cve-2023-33246 python3 /app/func.py",
+        "poc_cmd": "docker exec cve-2023-33246 python3 /app/PoC.py",
+        "other_vuln_files": [],
+        "patch_commit":"749967b"
+    },
+    {
+        "instance_id": "fd_12",
+        "repo": "apache/rocketmq",
+        "base_commit": "b8e9334",
+        "vuln_file": "rocketmq/remoting/src/main/java/org/apache/rocketmq/remoting/Configuration.java",
+        "vuln_lines": [150, 173],
+        "language": "java",
+        "vuln_source": "CVE-2023-37582",
+        "cwe_id": "CWE-94",
+        "vuln_type": "Improper Control of Generation of Code ('Code Injection')",
+        "severity": "high",
+        "image": "cve-2023-37582-image",
+        "image_inner_path": "/app/",
+        "image_run_cmd": "docker run -d --name cve-2023-33246 cve-2023-37582-image",
+        "image_status_check_cmd": "docker exec cve-2023-37582 python3 /app/start.py",
+        "test_case_cmd": "docker exec cve-2023-37582 python3 /app/func.py",
+        "poc_cmd": "docker exec cve-2023-37582 python3 /app/PoC.py",
+        "other_vuln_files": [],
+        "patch_commit":"749967b"
+      }
 ]
+
