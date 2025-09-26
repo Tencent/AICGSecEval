@@ -1078,6 +1078,99 @@
     "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
     "test_case_cmd": "./test_case.sh",
     "poc_cmd": "./poc.sh"
-  }
+  },
+  {
+        "instance_id": "zju-CVE-2021-4089",
+        "repo": "snipe/snipe-it",
+        "base_commit": "v5.3.3",
+        "patch_commit": "04f4bb83e96218a4be9700625dc69d9a553ef6fe",
+        "vuln_file": "app/Http/Controllers/AssetModelsController.php",
+        "vuln_lines": [
+            272,
+            272
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2021-4089",
+        "cwe_id": "cwe-862",
+        "vuln_type": "Missing Authorization",
+        "severity": "medium",
+        "image": "hkk4203/snipe-it-cve-2021-4089",
+        "image_name": "snipe-5",
+        "image_inner_path": "/var/www/html",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "/status-check.sh",
+        "test_case_cmd": "/test-case.sh",
+        "poc_cmd": "/poc.sh"
+    },
+    {
+        "instance_id": "zju-CVE-2022-0178",
+        "repo": "snipe/snipe-it",
+        "base_commit": "v5.3.6",
+        "patch_commit": "16fb2213b56326b91a3c9c5f3a47d281466650fe",
+        "vuln_file": "app/Http/Controllers/ProfileController.php",
+        "vuln_lines": [
+            116,
+            116
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2022-0178",
+        "cwe_id": "cwe-862",
+        "vuln_type": "Missing Authorization",
+        "severity": "medium",
+        "image": "hkk4203/snipe-it-cve-2022-0178",
+        "image_name": "snipe-4",
+        "image_inner_path": "/var/www/html",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "/status-check.sh",
+        "test_case_cmd": "/test-case.sh",
+        "poc_cmd": "/poc.sh"
+    },
+    {
+        "instance_id": "zju-CVE-2022-0579",
+        "repo": "snipe/snipe-it",
+        "base_commit": "v5.3.8",
+        "patch_commit": "885ab64c2eebb6f9e12774b5a36d5350737f8861",
+        "vuln_file": "app/Http/Controllers/SuppliersController.php",
+        "vuln_lines": [
+            187,
+            188
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2022-0579",
+        "cwe_id": "cwe-862",
+        "vuln_type": "Missing Authorization",
+        "severity": "medium",
+        "image": "hkk4203/snipe-it-cve-2022-0579",
+        "image_name": "snipe-2",
+        "image_inner_path": "/var/www/html",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "/status-check.sh",
+        "test_case_cmd": "/test-case.sh",
+        "poc_cmd": "/poc.sh"
+    },
+    {
+        "instance_id": "zju-CVE-2022-1511",
+        "repo": "snipe/snipe-it",
+        "base_commit": "v5.4.3",
+        "patch_commit": "57ed3afcc443ae81be33a07836eee2d9a2ec6e41",
+        "vuln_file": "app/Http/Controllers/Assets/AssetsController.php",
+        "vuln_lines": [
+            864,
+            865
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2022-1511",
+        "cwe_id": "cwe-862",
+        "vuln_type": "Missing Authorization",
+        "severity": "medium",
+        "image": "hkk4203/snipe-it-cve-2022-1511",
+        "image_name": "snipe-0",
+        "image_inner_path": "/var/www/html",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "/status-check.sh",
+        "test_case_cmd": "/test-case.sh",
+        "poc_cmd": "/poc.sh",
+        "other_vuln_files": []
+}
 ]
 
