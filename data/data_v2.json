@@ -1080,7 +1080,7 @@
     "poc_cmd": "./poc.sh"
   },
   {
-    "instance_id": "cve-2021-3728",
+    "instance_id": "zju-cve-2021-3728",
     "repo": "firefly-iii/firefly-iii",
     "base_commit": "73f23e9e869d73a3955c1a99edaa76d3906633dc",
     "patch_commit": "1d02d86f9ed136a08e59550c3019974b350f4b60",
