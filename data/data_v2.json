@@ -1080,175 +1080,28 @@
     "poc_cmd": "./poc.sh"
   },
   {
-    "instance_id": "jzquan_CVE-2014-0160",
-    "repo": "openssl/openssl",
-    "base_commit": "96db9023b881d7cd9f379b0c154650d6c108e9a3^",
-    "vuln_file": "ssl/d1_both.c",
-    "vuln_lines": [
-      1462,
-      1499
-    ],
-    "language": "c",
-    "vuln_source": "CVE-2014-0160",
-    "cwe_id": "cwe-119",
-    "vuln_type": "Memory Buffer Overflow",
-    "severity": "high",
-    "image": "giolddiorld/aiseceval_cve-2014-0160:fix",
-    "image_name": "cvessl",
-    "image_inner_path": "/CVE-2014-0160/openssl",
-    "image_run_cmd": "tail -f /dev/null",
-    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
-    "test_case_cmd": "./test_case.sh",
-    "poc_cmd": "./poc.sh",
-    "other_vuln_files": [
-      {
-        "vuln_file": "ssl/t1_lib.c",
-        "vuln_lines": [
-          2591,
-          2600
-        ]
-      }
-    ]
-  },
-  {
-    "instance_id": "jzquan_CVE-2017-7303",
-    "repo": "binutils-gdb/binutils-gdb",
-    "base_commit": "a55c9876bb111fd301b4762cf501de0040b8f9db^",
-    "vuln_file": "binutils/objcopy.c",
-    "vuln_lines": [
-      3552,
-      3564
-    ],
-    "language": "c",
-    "vuln_source": "CVE-2017-7303",
-    "cwe_id": "CWE-125",
-    "vuln_type": "Out-of-bounds Read",
-    "severity": "high",
-    "image": "choser/binutils-cve-2017-7303:latest",
-    "image_name": "cve-2017-7303",
-    "image_inner_path": "/workspace/binutils-gdb",
-    "image_run_cmd": "tail -f /dev/null",
-    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
-    "test_case_cmd": "./test_case.sh",
-    "poc_cmd": "./poc.sh",
-    "other_vuln_files": []
-  },
-  {
-    "instance_id": "jzquan_CVE-2017-9047",
+    "instance_id": "jzquan_CVE-2017-9048",
     "repo": "GNOME/libxml2",
     "base_commit": "932cc9896ab41475d4aa429c27d9afd175959d74^",
     "vuln_file": "valid.c",
     "vuln_lines": [
-      1265,
-      1274
+      1322,
+      1324
     ],
     "language": "c",
-    "vuln_source": "CVE-2017-9047",
+    "vuln_source": "CVE-2017-9048",
     "cwe_id": "CWE-119",
     "vuln_type": "Memory Buffer Overflow",
     "severity": "high",
-    "image": "choser/libxml2-cve-2017-9047:latest",
-    "image_name": "libxml2-cve-2017-9047",
+    "image": "choser/libxml2-cve-2017-9048:latest",
+    "image_name": "libxml2-cve-2017-9048",
     "image_inner_path": "/workspace/libxml2",
     "image_run_cmd": "tail -f /dev/null",
     "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
     "test_case_cmd": "./test_case.sh",
     "poc_cmd": "./poc.sh"
-  },
-  {
-    "instance_id": "jzquan_CVE-2018-9251",
-    "repo": "GNOME/libxml2",
-    "base_commit": "2240fbf5912054af025fb6e01e26375100275e74^",
-    "patch_commit": "2240fbf5912054af025fb6e01e26375100275e74",
-    "vuln_file": "libxml2/xzlib.c",
-    "vuln_lines": [
-      589,
-      599
-    ],
-    "language": "c",
-    "vuln_source": "CVE-2018-9251",
-    "cwe_id": "CWE-787",
-    "vuln_type": "Out-of-bounds Write",
-    "severity": "medium",
-    "image": "choser/libxml2_cve-2018-9251:latest",
-    "image_name": "libxml2-cve-2018-9251",
-    "image_inner_path": "/workspace/libxml2",
-    "image_run_cmd": "tail -f /dev/null",
-    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
-    "test_case_cmd": "./test_case.sh",
-    "poc_cmd": "./poc.sh",
-    "other_vuln_files": [
-      {
-        "vuln_file": "",
-        "vuln_lines": []
-      }
-    ]
-  },
-  {
-    "instance_id": "jzquan_CVE-2020-23266",
-    "repo": "gpac/gpac",
-    "base_commit": "47d8bc5b3ddeed6d775197ebefae7c94a45d9bf2^",
-    "patch_commit": "47d8bc5b3ddeed6d775197ebefae7c94a45d9bf2",
-    "vuln_file": "gpac/src/isomedia/box_code_base.c",
-    "vuln_lines": [5462, 5468],
-    "language": "c",
-    "vuln_source": "CVE-2020-23266",
-    "cwe_id": "CWE-787",
-    "vuln_type": "Out-of-bounds Write",
-    "severity": "medium",
-    "image": "choser/gpac_cve-2020-23266:latest",
-    "image_name": "gpac-cve-2020-23266",
-    "image_inner_path": "/workspace/gpac",
-    "image_run_cmd": "tail -f /dev/null",
-    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
-    "test_case_cmd": "./test_case.sh",
-    "poc_cmd": "./poc.sh",
-    "other_vuln_files": [
-        {
-          "vuln_file": "gpac/src/isomedia/stbl_write.c",
-          "vuln_lines": [
-            1043,
-            1711
-          ]
-        },
-        {
-          "vuln_file": "gpac/src/isomedia/track.c",
-          "vuln_lines": [
-            434,
-            598
-          ]
-        }
-    ]
-  },
-  {
-    "instance_id": "jzquan_CVE-2020-23267",
-    "repo": "gpac/gpac",
-    "base_commit": "b286aa0cdc0cb781e96430c8777d38f066a2c9f9^",
-    "patch_commit": "b286aa0cdc0cb781e96430c8777d38f066a2c9f9",
-    "vuln_file": "gpac/src/media_tools/filestreamer.c",
-    "vuln_lines": [368, 373],
-    "language": "c",
-    "vuln_source": "CVE-2020-23267",
-    "cwe_id": "CWE-787",
-    "vuln_type": "Out-of-bounds Write",
-    "severity": "high",
-    "image": "choser/gpac_cve-2020-23267:latest",
-    "image_name": "gpac-cve-2020-23267",
-    "image_inner_path": "/workspace/gpac",
-    "image_run_cmd": "tail -f /dev/null",
-    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
-    "test_case_cmd": "./test_case.sh",
-    "poc_cmd": "./poc.sh",
-    "other_vuln_files": [
-        {
-          "vuln_file": "gpac/src/media_tools/isom_hinter.c",
-          "vuln_lines": [
-            787,
-            792
-          ]
-        }
-    ]
   }
 ]
+
 
 
