@@ -1,0 +1,11 @@
+chardet==5.2.0
+filelock==3.18.0
+numpy==2.3.0
+openai==1.88.0
+PyMySQL==1.1.1
+pyserini==0.44.0
+Requests==2.32.4
+tenacity==9.1.2
+tqdm==4.67.1
+transformers==4.50.3
+gitpython==3.1.44

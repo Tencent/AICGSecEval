@@ -1,0 +1,3515 @@
+[
+  {
+    "instance_id": "commandi_01",
+    "hits": [
+      {
+        "docid": "lib/rrd.php",
+        "score": 6784.0263671875
+      },
+      {
+        "docid": "lib/boost.php",
+        "score": 3589.19677734375
+      },
+      {
+        "docid": "lib/functions.php",
+        "score": 2706.614013671875
+      },
+      {
+        "docid": "lib/dsstats.php",
+        "score": 2260.86474609375
+      },
+      {
+        "docid": "lib/poller.php",
+        "score": 2157.858154296875
+      },
+      {
+        "docid": "include/global_form.php",
+        "score": 2081.8056640625
+      },
+      {
+        "docid": "graphs.php",
+        "score": 1957.0528564453125
+      },
+      {
+        "docid": "poller_realtime.php",
+        "score": 1902.330810546875
+      },
+      {
+        "docid": "lib/reports.php",
+        "score": 1898.6993408203125
+      },
+      {
+        "docid": "poller_maintenance.php",
+        "score": 1895.4501953125
+      },
+      {
+        "docid": "include/global_settings.php",
+        "score": 1889.845947265625
+      },
+      {
+        "docid": "poller.php",
+        "score": 1868.755859375
+      },
+      {
+        "docid": "data_sources.php",
+        "score": 1834.3438720703125
+      },
+      {
+        "docid": "lib/data_query.php",
+        "score": 1828.7613525390625
+      },
+      {
+        "docid": "lib/api_automation.php",
+        "score": 1815.6263427734375
+      },
+      {
+        "docid": "cli/removespikes.php",
+        "score": 1813.5640869140625
+      },
+      {
+        "docid": "lib/utility.php",
+        "score": 1811.2347412109375
+      },
+      {
+        "docid": "lib/api_aggregate.php",
+        "score": 1800.738525390625
+      },
+      {
+        "docid": "lib/template.php",
+        "score": 1760.0069580078125
+      },
+      {
+        "docid": "install/index.php",
+        "score": 1739.0211181640625
+      }
+    ],
+    "function_summary": "Looking at this PHP code for Cacti's RRD (Round Robin Database) handling library, I can see it's a comprehensive module that manages RRDtool operations. Here's a summary of what this code does:\n\n## Key Functionality\n\n### 1. **RRD File Operations**\n- **Creation**: `rrdtool_function_create()` - Creates new RRD files with specified data sources and RRAs\n- **Updates**: `rrdtool_function_update()` - Updates RRD files with new data values\n- **Tuning**: `rrdtool_function_tune()` - Modifies RRD file parameters\n\n### 2. **Graph Generation**\n- `rrdtool_function_graph()` - The main function that generates graphs from RRD data\n- Supports various graph types (LINE, AREA, STACK, etc.)\n- Handles CDEF and VDEF calculations\n- Manages graph styling, colors, and formatting\n\n### 3. **Data Retrieval**\n- `rrdtool_function_fetch()` - Fetches data from RRD files for analysis\n- `rrdtool_function_info()` - Gets metadata about RRD files\n\n### 4. **Proxy Support**\n- Supports both local and remote RRD operations via proxy\n- Includes encryption/decryption functions for secure proxy communication\n- Functions like `__rrd_proxy_init()` and `__rrd_proxy_execute()`\n\n### 5. **RRD File Manipulation**\n- `rrd_datasource_add()` - Adds new data sources to existing RRD files\n- `rrd_rra_delete()` - Removes RRAs from RRD files\n- `rrd_rra_clone()` - Clones RRAs with different consolidation functions\n\n### 6. **Validation and Repair**\n- `rrdtool_cacti_compare()` - Compares Cacti's database definition with actual RRD file structure\n- `rrdtool_info2html()` - Displays RRD file information in HTML format\n- `rrdtool_tune()` - Creates tune/resize commands to fix discrepancies\n\n## Key Features\n\n1. **Cross-platform support** - Handles both Unix and Windows environments\n2. **Security** - Includes command injection prevention via `cacti_escapeshellarg()`\n3. **Performance optimization** - Caching mechanisms for CDEFs and data sources\n4. **Flexible graph options** - Supports themes, fonts, watermarks, and various visual customizations\n5. **Data aggregation** - Handles complex calculations with magic variables like `ALL_DATA_SOURCES_DUPS`\n\n## Notable Security Considerations\n\nThe code includes several security measures:\n- Escapes shell arguments to prevent command injection\n- Validates user permissions before graph access\n- Sanitizes CDEF strings before execution\n- Supports encrypted communication for proxy connections\n\nThis is a critical component of Cacti that interfaces with RRDtool to store time-series data and generate the graphs that make Cacti useful for network monitoring."
+  },
+  {
+    "instance_id": "commandi_02",
+    "hits": [
+      {
+        "docid": "settings.php",
+        "score": 5996.9677734375
+      },
+      {
+        "docid": "auth_profile.php",
+        "score": 2663.07373046875
+      },
+      {
+        "docid": "user_group_admin.php",
+        "score": 2499.18017578125
+      },
+      {
+        "docid": "user_admin.php",
+        "score": 2474.190185546875
+      },
+      {
+        "docid": "host.php",
+        "score": 2333.9462890625
+      },
+      {
+        "docid": "aggregate_graphs.php",
+        "score": 2320.093017578125
+      },
+      {
+        "docid": "lib/html_reports.php",
+        "score": 2184.760498046875
+      },
+      {
+        "docid": "automation_networks.php",
+        "score": 2152.40380859375
+      },
+      {
+        "docid": "graphs_items.php",
+        "score": 2035.367919921875
+      },
+      {
+        "docid": "user_domains.php",
+        "score": 2024.120849609375
+      },
+      {
+        "docid": "graph_templates_items.php",
+        "score": 1985.7939453125
+      },
+      {
+        "docid": "lib/html.php",
+        "score": 1911.363525390625
+      },
+      {
+        "docid": "links.php",
+        "score": 1908.3525390625
+      },
+      {
+        "docid": "graphs.php",
+        "score": 1899.8485107421875
+      },
+      {
+        "docid": "tree.php",
+        "score": 1897.415771484375
+      },
+      {
+        "docid": "aggregate_templates.php",
+        "score": 1881.6646728515625
+      },
+      {
+        "docid": "include/layout.js",
+        "score": 1881.603759765625
+      },
+      {
+        "docid": "pollers.php",
+        "score": 1871.4117431640625
+      },
+      {
+        "docid": "lib/html_form.php",
+        "score": 1810.9132080078125
+      },
+      {
+        "docid": "include/js/jquery-ui.js",
+        "score": 1766.7447509765625
+      }
+    ],
+    "function_summary": "This code snippet validates filepath settings in a Cacti configuration form. It first checks if a file field is marked as 'binary' type and verifies that the specified file actually exists on the filesystem. If the file doesn't exist, it logs an error. For the specific case of the Cacti log file path ('path_cactilog'), it performs additional validation to ensure the file has a '.log' extension. If validation fails at any point, the code stores the problematic field name and value in session variables for error display and sets appropriate error codes. The validation uses a continue flag to control whether the setting should be saved after validation checks are complete."
+  },
+  {
+    "instance_id": "commandi_03",
+    "hits": [
+      {
+        "docid": "remote_agent.php",
+        "score": 2153.3837890625
+      },
+      {
+        "docid": "cmd.php",
+        "score": 1330.26025390625
+      },
+      {
+        "docid": "lib/functions.php",
+        "score": 1273.7431640625
+      },
+      {
+        "docid": "lib/poller.php",
+        "score": 1185.169921875
+      },
+      {
+        "docid": "lib/api_automation.php",
+        "score": 1094.313720703125
+      },
+      {
+        "docid": "lib/rrd.php",
+        "score": 1081.4912109375
+      },
+      {
+        "docid": "cmd_realtime.php",
+        "score": 1078.2177734375
+      },
+      {
+        "docid": "poller_automation.php",
+        "score": 1021.0128173828125
+      },
+      {
+        "docid": "lib/data_query.php",
+        "score": 998.7650756835938
+      },
+      {
+        "docid": "host.php",
+        "score": 987.4644775390625
+      },
+      {
+        "docid": "lib/utility.php",
+        "score": 961.315185546875
+      },
+      {
+        "docid": "poller.php",
+        "score": 960.351806640625
+      },
+      {
+        "docid": "utilities.php",
+        "score": 950.3037719726562
+      },
+      {
+        "docid": "lib/installer.php",
+        "score": 935.2103881835938
+      },
+      {
+        "docid": "graphs.php",
+        "score": 933.0123291015625
+      },
+      {
+        "docid": "lib/reports.php",
+        "score": 920.4730834960938
+      },
+      {
+        "docid": "lib/boost.php",
+        "score": 919.2838745117188
+      },
+      {
+        "docid": "lib/api_device.php",
+        "score": 909.422119140625
+      },
+      {
+        "docid": "include/global_settings.php",
+        "score": 887.8281860351562
+      },
+      {
+        "docid": "lib/html.php",
+        "score": 856.4813842773438
+      }
+    ],
+    "function_summary": "The `run_remote_discovery()` function executes a network discovery process by launching a background PHP script. It retrieves the poller ID from the global configuration and a network ID from the filtered request parameters. The function constructs a command to run the `poller_automation.php` script with specific options including the poller ID, network ID, and a force flag. If a debug parameter is present in the request, it adds a debug option to the command. The script is executed in the background using `exec_background()`, and the function waits for 2 seconds before returning, likely to ensure the background process has started properly. This appears to be part of a network monitoring system (Cacti) that discovers devices on a specified network."
+  },
+  {
+    "instance_id": "commandi_04",
+    "hits": [
+      {
+        "docid": "lib/snmp.php",
+        "score": 6320.259765625
+      },
+      {
+        "docid": "lib/functions.php",
+        "score": 2553.759765625
+      },
+      {
+        "docid": "include/vendor/phpsnmp/classSNMP.php",
+        "score": 2477.177978515625
+      },
+      {
+        "docid": "lib/data_query.php",
+        "score": 2072.1806640625
+      },
+      {
+        "docid": "lib/api_automation.php",
+        "score": 1940.0224609375
+      },
+      {
+        "docid": "include/global_settings.php",
+        "score": 1789.836181640625
+      },
+      {
+        "docid": "lib/installer.php",
+        "score": 1786.344482421875
+      },
+      {
+        "docid": "lib/poller.php",
+        "score": 1780.248291015625
+      },
+      {
+        "docid": "lib/ping.php",
+        "score": 1747.648193359375
+      },
+      {
+        "docid": "lib/api_device.php",
+        "score": 1736.187744140625
+      },
+      {
+        "docid": "include/global_form.php",
+        "score": 1725.71875
+      },
+      {
+        "docid": "lib/utility.php",
+        "score": 1664.6312255859375
+      },
+      {
+        "docid": "cli/add_device.php",
+        "score": 1636.46533203125
+      },
+      {
+        "docid": "cli/change_device.php",
+        "score": 1625.66259765625
+      },
+      {
+        "docid": "include/vendor/phpmailer/src/PHPMailer.php",
+        "score": 1623.15771484375
+      },
+      {
+        "docid": "utilities.php",
+        "score": 1618.5242919921875
+      },
+      {
+        "docid": "lib/rrd.php",
+        "score": 1561.824951171875
+      },
+      {
+        "docid": "cmd.php",
+        "score": 1532.445068359375
+      },
+      {
+        "docid": "include/vendor/phpseclib/Net/SSH2.php",
+        "score": 1526.91015625
+      },
+      {
+        "docid": "lib/database.php",
+        "score": 1525.385986328125
+      }
+    ],
+    "function_summary": "Looking at this code snippet from an SNMP library:\n\nThis code snippet implements the binary/command-line method for performing SNMP GET operations when the PHP SNMP extension is not available or suitable. It converts the timeout from milliseconds to seconds for the command-line tools, sets up authentication based on the SNMP version (v1/v2c use community strings, v3 uses more complex authentication), and then executes the system's snmpget command with appropriate parameters including output format options, version, timeout, retries, hostname, port, and OID. The exec() function captures the command output into the $snmp_value variable for further processing."
+  },
+  {
+    "instance_id": "commandi_05",
+    "hits": [
+      {
+        "docid": "interface/fax/fax_dispatch.php",
+        "score": 6819.982421875
+      },
+      {
+        "docid": "interface/patient_file/letter.php",
+        "score": 2634.302734375
+      },
+      {
+        "docid": "interface/main/calendar/add_edit_event.php",
+        "score": 2530.946044921875
+      },
+      {
+        "docid": "contrib/forms/scanned_notes/new.php",
+        "score": 2486.548095703125
+      },
+      {
+        "docid": "patients/add_edit_event_user.php",
+        "score": 2356.20263671875
+      },
+      {
+        "docid": "interface/main/backup.php",
+        "score": 2353.09912109375
+      },
+      {
+        "docid": "interface/billing/sl_eob_search.php",
+        "score": 2275.4345703125
+      },
+      {
+        "docid": "interface/patient_file/summary/add_edit_issue.php",
+        "score": 2264.42041015625
+      },
+      {
+        "docid": "interface/forms/LBF/new.php",
+        "score": 2233.072509765625
+      },
+      {
+        "docid": "interface/main/messages/messages.php",
+        "score": 2216.822509765625
+      },
+      {
+        "docid": "interface/billing/billing_report.php",
+        "score": 2183.513427734375
+      },
+      {
+        "docid": "interface/forms/procedure_order/new.php",
+        "score": 2180.662353515625
+      },
+      {
+        "docid": "interface/orders/orders_results.php",
+        "score": 2178.47265625
+      },
+      {
+        "docid": "interface/billing/sl_eob_invoice.php",
+        "score": 2170.13671875
+      },
+      {
+        "docid": "interface/patient_file/report/custom_report.php",
+        "score": 2155.866943359375
+      },
+      {
+        "docid": "library/options.inc.php",
+        "score": 2148.81201171875
+      },
+      {
+        "docid": "interface/patient_file/pos_checkout.php",
+        "score": 2132.423828125
+      },
+      {
+        "docid": "interface/super/edit_layout.php",
+        "score": 2131.12158203125
+      },
+      {
+        "docid": "controllers/C_Document.class.php",
+        "score": 2110.048828125
+      },
+      {
+        "docid": "interface/reports/ippf_statistics.php",
+        "score": 2100.76123046875
+      }
+    ],
+    "function_summary": "Looking at this code snippet, I can see it's a function called `mergeTiffs()` that:\n\n**Main functionality**: Merges multiple TIFF image files into a single TIFF file.\n\n**Key operations**:\n1. Iterates through selected images from a form submission (`$_POST['form_images']`)\n2. Builds a list of TIFF filenames by appending `.tif` extension to each selected image base name\n3. Escapes the filenames for shell execution safety using `escapeshellarg()`\n4. Uses the `tiffcp` command-line tool to combine all selected TIFF files into a single temporary file called `temp.tif`\n5. Executes this command in the `$faxcache` directory\n6. Returns any error messages if the operation fails\n\nThe function appears to be part of a fax/document management system where users can select multiple pages (likely from a scanned document or received fax) and merge them into a single TIFF file for further processing."
+  },
+  {
+    "instance_id": "commandi_06",
+    "hits": [
+      {
+        "docid": "storm-client/src/jvm/org/apache/storm/utils/ShellUtils.java",
+        "score": 2713.810791015625
+      },
+      {
+        "docid": "storm-server/src/main/java/org/apache/storm/utils/ServerUtils.java",
+        "score": 818.7575073242188
+      },
+      {
+        "docid": "storm-client/src/jvm/org/apache/storm/utils/Utils.java",
+        "score": 792.6721801757812
+      },
+      {
+        "docid": "storm-client/src/jvm/org/apache/storm/Config.java",
+        "score": 763.44677734375
+      },
+      {
+        "docid": "storm-server/src/main/java/org/apache/storm/daemon/supervisor/BasicContainer.java",
+        "score": 746.17578125
+      },
+      {
+        "docid": "storm-client/src/jvm/org/apache/storm/task/ShellBolt.java",
+        "score": 743.0695190429688
+      },
+      {
+        "docid": "storm-server/src/main/java/org/apache/storm/daemon/supervisor/Container.java",
+        "score": 738.0576171875
+      },
+      {
+        "docid": "bin/storm.py",
+        "score": 731.0922241210938
+      },
+      {
+        "docid": "storm-client/src/jvm/org/apache/storm/daemon/supervisor/ClientSupervisorUtils.java",
+        "score": 651.2744750976562
+      },
+      {
+        "docid": "storm-client/src/jvm/org/apache/storm/spout/ShellSpout.java",
+        "score": 632.0557250976562
+      },
+      {
+        "docid": "storm-server/src/main/java/org/apache/storm/daemon/nimbus/Nimbus.java",
+        "score": 614.6716918945312
+      },
+      {
+        "docid": "storm-client/src/jvm/org/apache/storm/daemon/supervisor/AdvancedFSOps.java",
+        "score": 613.3878173828125
+      },
+      {
+        "docid": "storm-client/src/jvm/org/apache/storm/messaging/netty/Login.java",
+        "score": 599.7874145507812
+      },
+      {
+        "docid": "storm-server/src/main/java/org/apache/storm/localizer/LocalizedResource.java",
+        "score": 596.6771240234375
+      },
+      {
+        "docid": "storm-client/src/jvm/org/apache/storm/blobstore/BlobStore.java",
+        "score": 579.8641967773438
+      },
+      {
+        "docid": "external/storm-hdfs/src/main/java/org/apache/storm/hdfs/spout/HdfsSpout.java",
+        "score": 572.2537231445312
+      },
+      {
+        "docid": "storm-server/src/main/java/org/apache/storm/LocalCluster.java",
+        "score": 570.3486938476562
+      },
+      {
+        "docid": "storm-client/src/jvm/org/apache/storm/security/auth/ShellBasedGroupsMapping.java",
+        "score": 555.3480224609375
+      },
+      {
+        "docid": "storm-server/src/main/java/org/apache/storm/DaemonConfig.java",
+        "score": 553.8366088867188
+      },
+      {
+        "docid": "storm-client/src/jvm/org/apache/storm/utils/ShellProcess.java",
+        "score": 553.342529296875
+      }
+    ],
+    "function_summary": "This code snippet returns a bash command array that retrieves both the primary group and all groups for a specified user. It executes two commands in sequence: `id -gn` to get the user's primary group name, followed by `id -Gn` to get all group names the user belongs to. The commands are concatenated with `&&` to ensure both execute successfully. This results in the primary group being included twice in the output - once from the first command and again as part of the complete groups list from the second command."
+  },
+  {
+    "instance_id": "commandi_07",
+    "hits": [
+      {
+        "docid": "core/src/main/scala/org/apache/spark/security/ShellBasedGroupsMappingProvider.scala",
+        "score": 250.6197967529297
+      },
+      {
+        "docid": "yarn/src/main/scala/org/apache/spark/deploy/yarn/YarnSparkHadoopUtil.scala",
+        "score": 115.61869812011719
+      },
+      {
+        "docid": "core/src/main/scala/org/apache/spark/util/Utils.scala",
+        "score": 101.63510131835938
+      },
+      {
+        "docid": "core/src/main/scala/org/apache/spark/security/GroupMappingServiceProvider.scala",
+        "score": 82.61060333251953
+      },
+      {
+        "docid": "repl/scala-2.10/src/main/scala/org/apache/spark/repl/SparkILoop.scala",
+        "score": 80.67479705810547
+      },
+      {
+        "docid": "dev/create-release/releaseutils.py",
+        "score": 79.46099853515625
+      },
+      {
+        "docid": "core/src/main/scala/org/apache/spark/rdd/RDD.scala",
+        "score": 77.65139770507812
+      },
+      {
+        "docid": "core/src/main/scala/org/apache/spark/SecurityManager.scala",
+        "score": 74.37860107421875
+      },
+      {
+        "docid": "sql/hive-thriftserver/src/main/java/org/apache/hive/service/cli/thrift/ThriftHttpServlet.java",
+        "score": 73.5261001586914
+      },
+      {
+        "docid": "core/src/main/scala/org/apache/spark/SparkContext.scala",
+        "score": 72.95130157470703
+      },
+      {
+        "docid": "core/src/main/scala/org/apache/spark/scheduler/DAGScheduler.scala",
+        "score": 70.11640167236328
+      },
+      {
+        "docid": "sql/core/src/main/scala/org/apache/spark/sql/functions.scala",
+        "score": 68.2531967163086
+      },
+      {
+        "docid": "sql/core/src/main/scala/org/apache/spark/sql/Dataset.scala",
+        "score": 67.73519897460938
+      },
+      {
+        "docid": "core/src/main/scala/org/apache/spark/scheduler/cluster/mesos/MesosClusterScheduler.scala",
+        "score": 67.65249633789062
+      },
+      {
+        "docid": "repl/scala-2.10/src/main/scala/org/apache/spark/repl/SparkIMain.scala",
+        "score": 67.01190185546875
+      },
+      {
+        "docid": "core/src/main/scala/org/apache/spark/api/java/JavaRDDLike.scala",
+        "score": 66.84970092773438
+      },
+      {
+        "docid": "sql/core/src/main/scala/org/apache/spark/sql/execution/datasources/parquet/ParquetRelation.scala",
+        "score": 66.58190155029297
+      },
+      {
+        "docid": "sql/hive-thriftserver/src/main/java/org/apache/hive/service/cli/thrift/ThriftCLIService.java",
+        "score": 66.3279037475586
+      },
+      {
+        "docid": "core/src/main/scala/org/apache/spark/deploy/SparkSubmit.scala",
+        "score": 65.88760375976562
+      },
+      {
+        "docid": "python/pyspark/rdd.py",
+        "score": 65.45559692382812
+      }
+    ],
+    "function_summary": "This method retrieves Unix groups for a given username by executing a shell command (`id -Gn username`) through bash, then parses the output into a Set of group names by removing the trailing newline and splitting on spaces."
+  },
+  {
+    "instance_id": "commandi_08",
+    "hits": [
+      {
+        "docid": "xstream/src/java/com/thoughtworks/xstream/XStream.java",
+        "score": 6598.23779296875
+      },
+      {
+        "docid": "xstream-distribution/src/content/changes.html",
+        "score": 2093.078125
+      },
+      {
+        "docid": "xstream-distribution/src/content/faq.html",
+        "score": 2055.156982421875
+      },
+      {
+        "docid": "xstream/src/java/com/thoughtworks/xstream/mapper/AnnotationMapper.java",
+        "score": 1903.93896484375
+      },
+      {
+        "docid": "xstream-distribution/src/content/security.html",
+        "score": 1658.0516357421875
+      },
+      {
+        "docid": "xstream/src/java/com/thoughtworks/xstream/converters/reflection/SerializableConverter.java",
+        "score": 1602.606689453125
+      },
+      {
+        "docid": "xstream/src/java/com/thoughtworks/xstream/converters/reflection/CGLIBEnhancedConverter.java",
+        "score": 1529.864990234375
+      },
+      {
+        "docid": "xstream-distribution/src/content/manual-tweaking-output.html",
+        "score": 1502.2760009765625
+      },
+      {
+        "docid": "xstream/src/java/com/thoughtworks/xstream/converters/extended/ToAttributedValueConverter.java",
+        "score": 1460.505615234375
+      },
+      {
+        "docid": "xstream/src/java/com/thoughtworks/xstream/core/JVM.java",
+        "score": 1436.5743408203125
+      },
+      {
+        "docid": "xstream-distribution/src/content/converter-tutorial.html",
+        "score": 1406.1864013671875
+      },
+      {
+        "docid": "xstream/src/java/com/thoughtworks/xstream/XStreamer.java",
+        "score": 1394.265625
+      },
+      {
+        "docid": "xstream-distribution/src/content/annotations-tutorial.html",
+        "score": 1380.806640625
+      },
+      {
+        "docid": "xstream/src/java/com/thoughtworks/xstream/converters/reflection/AbstractReflectionConverter.java",
+        "score": 1362.6455078125
+      },
+      {
+        "docid": "xstream-distribution/src/content/news.html",
+        "score": 1354.5634765625
+      },
+      {
+        "docid": "xstream-distribution/src/content/converters.html",
+        "score": 1287.6734619140625
+      },
+      {
+        "docid": "xstream/src/java/com/thoughtworks/xstream/mapper/DefaultMapper.java",
+        "score": 1285.381591796875
+      },
+      {
+        "docid": "xstream/src/java/com/thoughtworks/xstream/converters/reflection/ExternalizableConverter.java",
+        "score": 1217.82470703125
+      },
+      {
+        "docid": "xstream/src/java/com/thoughtworks/xstream/io/xml/SaxWriter.java",
+        "score": 1204.583984375
+      },
+      {
+        "docid": "xstream-distribution/src/content/architecture.html",
+        "score": 1171.3665771484375
+      }
+    ],
+    "function_summary": "The `setupSecurity()` method initializes XStream's security framework by configuring type permissions to control which classes can be deserialized. It sets up a default security configuration that:\n\n1. Initially allows all types with `AnyTypePermission.ANY`\n2. Explicitly denies dangerous types like `java.beans.EventHandler` (known for security vulnerabilities)\n3. Denies types matching regular expression patterns for lazy iterators and javax.crypto classes\n4. Specifically allows the Exception class hierarchy for deserialization\n5. Sets `securityInitialized` to false, indicating this is a basic setup that may need further configuration\n\nThis security setup helps prevent deserialization attacks by blocking potentially dangerous classes while allowing common safe types like exceptions to be processed normally."
+  },
+  {
+    "instance_id": "commandi_09",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/pgadmin-org__pgadmin4",
+    "hits": [
+      {
+        "docid": "web/pgadmin/tools/sqleditor/__init__.py",
+        "score": 11756.291015625
+      },
+      {
+        "docid": "web/pgadmin/tools/debugger/__init__.py",
+        "score": 5792.29736328125
+      },
+      {
+        "docid": "web/pgadmin/tools/schema_diff/__init__.py",
+        "score": 5768.2275390625
+      },
+      {
+        "docid": "web/pgadmin/tools/sqleditor/utils/start_running_query.py",
+        "score": 5541.0263671875
+      },
+      {
+        "docid": "web/pgadmin/tools/erd/__init__.py",
+        "score": 4815.3203125
+      },
+      {
+        "docid": "web/pgadmin/tools/sqleditor/utils/filter_dialog.py",
+        "score": 4619.32080078125
+      },
+      {
+        "docid": "web/pgadmin/browser/server_groups/servers/__init__.py",
+        "score": 4554.97509765625
+      },
+      {
+        "docid": "web/pgadmin/utils/driver/psycopg3/connection.py",
+        "score": 4399.017578125
+      },
+      {
+        "docid": "web/pgadmin/misc/file_manager/__init__.py",
+        "score": 4355.15478515625
+      },
+      {
+        "docid": "web/pgadmin/tools/sqleditor/command.py",
+        "score": 4149.98388671875
+      },
+      {
+        "docid": "web/pgadmin/tools/restore/__init__.py",
+        "score": 4069.317138671875
+      },
+      {
+        "docid": "web/pgadmin/tools/psql/__init__.py",
+        "score": 3991.106689453125
+      },
+      {
+        "docid": "web/pgadmin/browser/server_groups/servers/databases/__init__.py",
+        "score": 3964.23291015625
+      },
+      {
+        "docid": "web/pgadmin/browser/server_groups/servers/roles/__init__.py",
+        "score": 3952.638916015625
+      },
+      {
+        "docid": "web/pgadmin/browser/server_groups/servers/databases/schemas/views/__init__.py",
+        "score": 3853.4033203125
+      },
+      {
+        "docid": "web/pgadmin/browser/server_groups/servers/databases/schemas/tables/indexes/__init__.py",
+        "score": 3765.898193359375
+      },
+      {
+        "docid": "web/pgadmin/browser/server_groups/servers/resource_groups/__init__.py",
+        "score": 3733.368408203125
+      },
+      {
+        "docid": "web/pgadmin/browser/server_groups/servers/databases/schemas/tables/constraints/index_constraint/__init__.py",
+        "score": 3730.29296875
+      },
+      {
+        "docid": "web/pgadmin/tools/grant_wizard/__init__.py",
+        "score": 3712.555908203125
+      },
+      {
+        "docid": "web/pgadmin/tools/backup/__init__.py",
+        "score": 3679.248779296875
+      }
+    ],
+    "function_summary": "The code snippet extracts and processes query-related parameters from a request's data. It iterates through key-value pairs, looking for a 'query' key to store the SQL query text and a 'query_commited' key to determine if the query has been committed. For 'query_commited', it handles type conversion by evaluating string values to boolean when necessary. This logic is part of the query download functionality in pgAdmin's SQL editor, ensuring the correct query and its execution state are properly identified before processing."
+  },
+  {
+    "instance_id": "path_traversal_01",
+    "hits": [
+      {
+        "docid": "admin/modules/config/smilies.php",
+        "score": 3860.453857421875
+      },
+      {
+        "docid": "admin/modules/config/post_icons.php",
+        "score": 2365.7685546875
+      },
+      {
+        "docid": "admin/modules/style/themes.php",
+        "score": 2179.63134765625
+      },
+      {
+        "docid": "admin/modules/config/settings.php",
+        "score": 2160.68115234375
+      },
+      {
+        "docid": "admin/modules/forum/management.php",
+        "score": 2039.4554443359375
+      },
+      {
+        "docid": "admin/modules/config/help_documents.php",
+        "score": 1992.7802734375
+      },
+      {
+        "docid": "admin/modules/style/templates.php",
+        "score": 1976.3985595703125
+      },
+      {
+        "docid": "admin/modules/config/report_reasons.php",
+        "score": 1961.0364990234375
+      },
+      {
+        "docid": "admin/modules/user/groups.php",
+        "score": 1957.621337890625
+      },
+      {
+        "docid": "admin/modules/user/users.php",
+        "score": 1939.1737060546875
+      },
+      {
+        "docid": "admin/modules/config/profile_fields.php",
+        "score": 1922.01318359375
+      },
+      {
+        "docid": "admin/modules/config/calendars.php",
+        "score": 1916.2294921875
+      },
+      {
+        "docid": "admin/modules/tools/system_health.php",
+        "score": 1889.766845703125
+      },
+      {
+        "docid": "admin/modules/config/attachment_types.php",
+        "score": 1852.577880859375
+      },
+      {
+        "docid": "admin/inc/class_page.php",
+        "score": 1850.85302734375
+      },
+      {
+        "docid": "admin/modules/config/mycode.php",
+        "score": 1831.166259765625
+      },
+      {
+        "docid": "admin/modules/config/spiders.php",
+        "score": 1821.61572265625
+      },
+      {
+        "docid": "inc/functions.php",
+        "score": 1818.4234619140625
+      },
+      {
+        "docid": "admin/modules/config/languages.php",
+        "score": 1814.6702880859375
+      },
+      {
+        "docid": "admin/modules/forum/announcements.php",
+        "score": 1792.423583984375
+      }
+    ],
+    "function_summary": "This code snippet validates a user-provided folder path and scans it for image files that can be added as new smilies (emoticons) to the forum system. It first checks if the path input is empty, then attempts to open the directory. If successful, it ensures the path ends with a slash, queries the database for existing smilies to avoid duplicates, and then reads through the directory files. For each file, it checks if it's an image (gif, jpg, jpeg, png, or bmp) and whether it already exists in the database. Non-duplicate image files are added to a smilies array. Finally, it checks if any new smilies were found and sets an error if none were discovered. This is part of a bulk smilie import feature in MyBB's admin panel."
+  },
+  {
+    "instance_id": "path_traversal_02",
+    "hits": [
+      {
+        "docid": "upload/admin/controller/catalog/download.php",
+        "score": 3343.224609375
+      },
+      {
+        "docid": "upload/admin/controller/catalog/product.php",
+        "score": 2389.870361328125
+      },
+      {
+        "docid": "upload/admin/controller/tool/upload.php",
+        "score": 2376.42333984375
+      },
+      {
+        "docid": "upload/admin/controller/marketing/affiliate.php",
+        "score": 2178.91162109375
+      },
+      {
+        "docid": "upload/admin/controller/customer/customer.php",
+        "score": 2076.129638671875
+      },
+      {
+        "docid": "upload/admin/controller/catalog/manufacturer.php",
+        "score": 2052.540771484375
+      },
+      {
+        "docid": "upload/admin/controller/catalog/category.php",
+        "score": 2047.8021240234375
+      },
+      {
+        "docid": "upload/admin/controller/marketplace/installer.php",
+        "score": 2037.9376220703125
+      },
+      {
+        "docid": "upload/admin/controller/catalog/option.php",
+        "score": 2028.323486328125
+      },
+      {
+        "docid": "upload/admin/controller/marketing/marketing.php",
+        "score": 2019.4976806640625
+      },
+      {
+        "docid": "upload/admin/controller/tool/backup.php",
+        "score": 2000.9029541015625
+      },
+      {
+        "docid": "upload/admin/controller/catalog/attribute.php",
+        "score": 1991.9384765625
+      },
+      {
+        "docid": "upload/catalog/controller/account/download.php",
+        "score": 1991.5169677734375
+      },
+      {
+        "docid": "upload/admin/controller/catalog/information.php",
+        "score": 1977.5858154296875
+      },
+      {
+        "docid": "upload/admin/controller/catalog/filter.php",
+        "score": 1974.042236328125
+      },
+      {
+        "docid": "upload/admin/controller/sale/order.php",
+        "score": 1974.0194091796875
+      },
+      {
+        "docid": "upload/admin/controller/design/translation.php",
+        "score": 1967.47216796875
+      },
+      {
+        "docid": "upload/admin/controller/catalog/subscription_plan.php",
+        "score": 1950.884033203125
+      },
+      {
+        "docid": "upload/admin/controller/catalog/review.php",
+        "score": 1941.2423095703125
+      },
+      {
+        "docid": "upload/admin/controller/design/layout.php",
+        "score": 1928.913330078125
+      }
+    ],
+    "function_summary": "Looking at this code snippet from an OpenCart download controller, it validates filename and mask inputs during the save operation.\n\nThe snippet performs character validation for both the filename (lines 288-290) and mask (lines 296-298) fields. It uses regular expressions to check if these fields contain only allowed characters - specifically alphanumeric characters, forward slashes, underscores, and hyphens. The validation explicitly rejects any Cyrillic characters. If invalid characters are found, appropriate error messages are added to the JSON response.\n\nAdditionally, it validates the mask field length (lines 292-294), ensuring it's between 3 and 128 characters long, adding an error message if this constraint is violated.\n\nThis validation ensures that download filenames and masks follow strict naming conventions, preventing potential security issues or file system problems that could arise from special characters or non-Latin scripts."
+  },
+  {
+    "instance_id": "path_traversal_03",
+    "hits": [
+      {
+        "docid": "portal/lib/download_template.php",
+        "score": 4961.392578125
+      },
+      {
+        "docid": "interface/patient_file/download_template.php",
+        "score": 4135.66796875
+      },
+      {
+        "docid": "library/options.inc.php",
+        "score": 1577.0079345703125
+      },
+      {
+        "docid": "interface/forms/LBF/new.php",
+        "score": 1507.7799072265625
+      },
+      {
+        "docid": "interface/billing/sl_eob_search.php",
+        "score": 1460.8135986328125
+      },
+      {
+        "docid": "portal/report/portal_custom_report.php",
+        "score": 1306.31689453125
+      },
+      {
+        "docid": "interface/orders/receive_hl7_results.inc.php",
+        "score": 1291.84375
+      },
+      {
+        "docid": "interface/super/edit_layout.php",
+        "score": 1288.031982421875
+      },
+      {
+        "docid": "interface/patient_file/pos_checkout.php",
+        "score": 1265.961669921875
+      },
+      {
+        "docid": "interface/new/new_comprehensive.php",
+        "score": 1246.2530517578125
+      },
+      {
+        "docid": "interface/cmsportal/patient_form.php",
+        "score": 1246.1671142578125
+      },
+      {
+        "docid": "controllers/C_Document.class.php",
+        "score": 1243.55615234375
+      },
+      {
+        "docid": "interface/orders/orders_results.php",
+        "score": 1233.478759765625
+      },
+      {
+        "docid": "interface/patient_file/transaction/add_transaction.php",
+        "score": 1227.6962890625
+      },
+      {
+        "docid": "interface/fax/fax_dispatch.php",
+        "score": 1226.061279296875
+      },
+      {
+        "docid": "interface/reports/collections_report.php",
+        "score": 1216.1793212890625
+      },
+      {
+        "docid": "sites/default/statement.inc.php",
+        "score": 1216.169189453125
+      },
+      {
+        "docid": "interface/patient_file/encounter/forms.php",
+        "score": 1208.2086181640625
+      },
+      {
+        "docid": "interface/forms/eye_mag/php/eye_mag_functions.php",
+        "score": 1202.0704345703125
+      },
+      {
+        "docid": "interface/main/calendar/add_edit_event.php",
+        "score": 1193.961669921875
+      }
+    ],
+    "function_summary": "The code snippet is from a PHP document template processing system that substitutes patient data placeholders with actual values from a medical records database. \n\nKey functionality includes:\n- Retrieving patient ID and template filename from POST data\n- Setting up global variables for template scanning (location tracking, group handling, counters)\n- Three core functions:\n  - `keySearch()`: Checks if a specific placeholder pattern exists at the current position\n  - `keyReplace()`: Replaces placeholders with actual data and updates scanning position\n  - `dataFixup()`: Processes field data before insertion (escapes XML-unsafe characters, handles group formatting)\n  - `getIssues()`: Retrieves patient medical issues of a specific type\n  - `doSubs()`: Main template processing function that scans for placeholders like {PatientName}, {Address}, {Medications} and replaces them with database values\n\nThe system supports various placeholder types including patient demographics, form inputs, signatures, and medical data, ultimately processing templates (including zip archives) and outputting HTML with substituted values."
+  },
+  {
+    "instance_id": "path_traversal_04",
+    "hits": [
+      {
+        "docid": "custom/ajax_download.php",
+        "score": 942.4517822265625
+      },
+      {
+        "docid": "controllers/C_Document.class.php",
+        "score": 349.5343017578125
+      },
+      {
+        "docid": "ccr/createCCR.php",
+        "score": 323.8443908691406
+      },
+      {
+        "docid": "interface/usergroup/ssl_certificates_admin.php",
+        "score": 297.7550964355469
+      },
+      {
+        "docid": "interface/patient_file/download_template.php",
+        "score": 293.9923095703125
+      },
+      {
+        "docid": "interface/main/backup.php",
+        "score": 293.54180908203125
+      },
+      {
+        "docid": "custom/download_qrda.php",
+        "score": 282.8811950683594
+      },
+      {
+        "docid": "library/edihistory/edih_csv_inc.php",
+        "score": 277.9237976074219
+      },
+      {
+        "docid": "interface/billing/sl_eob_search.php",
+        "score": 277.5804138183594
+      },
+      {
+        "docid": "portal/get_patient_documents.php",
+        "score": 266.7247009277344
+      },
+      {
+        "docid": "library/edihistory/edih_archive.php",
+        "score": 263.2703857421875
+      },
+      {
+        "docid": "custom/export_qrda_xml.php",
+        "score": 257.62969970703125
+      },
+      {
+        "docid": "interface/super/manage_document_templates.php",
+        "score": 247.03770446777344
+      },
+      {
+        "docid": "interface/billing/billing_process.php",
+        "score": 244.36349487304688
+      },
+      {
+        "docid": "interface/fax/fax_dispatch.php",
+        "score": 241.80230712890625
+      },
+      {
+        "docid": "interface/super/edit_globals.php",
+        "score": 235.45809936523438
+      },
+      {
+        "docid": "custom/qrda_download.php",
+        "score": 227.29469299316406
+      },
+      {
+        "docid": "interface/reports/patient_list.php",
+        "score": 223.3553924560547
+      },
+      {
+        "docid": "interface/billing/billing_report.php",
+        "score": 220.65440368652344
+      },
+      {
+        "docid": "interface/reports/cqm.php",
+        "score": 218.75100708007812
+      }
+    ],
+    "function_summary": "This code snippet handles file downloads for QRDA (Quality Reporting Document Architecture) files. It checks if a fileName parameter is provided via GET request. If multiple files are specified (comma-separated), it creates a zip archive containing all the files, names it with a timestamp, adds each file after validating with `check_file_dir_name()`, then deletes the original files. For a single file, it uses the file path directly. Finally, it sends appropriate HTTP headers for file download (including cache control, content type as force-download, and content disposition as attachment), streams the file content to the browser using `readfile()`, deletes the file from the server, and exits the script. This ensures secure file delivery while cleaning up temporary files afterward."
+  },
+  {
+    "instance_id": "path_traversal_05",
+    "hits": [
+      {
+        "docid": "include/functions.inc.php",
+        "score": 8932.435546875
+      },
+      {
+        "docid": "include/functions_mail.inc.php",
+        "score": 2821.693115234375
+      },
+      {
+        "docid": "admin/include/functions.php",
+        "score": 2811.427734375
+      },
+      {
+        "docid": "include/template.class.php",
+        "score": 2756.000732421875
+      },
+      {
+        "docid": "include/ws_functions.inc.php",
+        "score": 2755.364013671875
+      },
+      {
+        "docid": "tools/create_listing_file.php",
+        "score": 2683.94873046875
+      },
+      {
+        "docid": "include/functions_user.inc.php",
+        "score": 2600.587646484375
+      },
+      {
+        "docid": "include/dblayer/functions_mysql.inc.php",
+        "score": 2461.570556640625
+      },
+      {
+        "docid": "include/feedcreator.class.php",
+        "score": 2449.596923828125
+      },
+      {
+        "docid": "include/dblayer/functions_sqlite.inc.php",
+        "score": 2416.5615234375
+      },
+      {
+        "docid": "include/dblayer/functions_pdo-sqlite.inc.php",
+        "score": 2415.52392578125
+      },
+      {
+        "docid": "include/dblayer/functions_pgsql.inc.php",
+        "score": 2403.576904296875
+      },
+      {
+        "docid": "themes/default/js/jquery.js",
+        "score": 2361.06884765625
+      },
+      {
+        "docid": "include/smarty/libs/Smarty.class.php",
+        "score": 2346.478759765625
+      },
+      {
+        "docid": "admin/include/themes.class.php",
+        "score": 2324.6396484375
+      },
+      {
+        "docid": "admin/include/languages.class.php",
+        "score": 2320.819091796875
+      },
+      {
+        "docid": "include/config_default.inc.php",
+        "score": 2301.656005859375
+      },
+      {
+        "docid": "admin/include/pclzip.lib.php",
+        "score": 2251.60302734375
+      },
+      {
+        "docid": "include/functions_html.inc.php",
+        "score": 2237.07421875
+      },
+      {
+        "docid": "picture.php",
+        "score": 2221.635498046875
+      }
+    ],
+    "function_summary": "The `mkgetdir` function creates a directory if it doesn't exist and ensures it's writable. It accepts a directory path and optional flags that control its behavior:\n\n- `MKGETDIR_RECURSIVE`: Creates parent directories if needed\n- `MKGETDIR_DIE_ON_ERROR`: Triggers a fatal error on failure\n- `MKGETDIR_PROTECT_HTACCESS`: Creates a `.htaccess` file with \"deny from all\" for security\n- `MKGETDIR_PROTECT_INDEX`: Creates an `index.htm` file to prevent directory listing\n\nThe function handles Windows paths by converting forward slashes to backslashes, sets directory permissions to 0755, and temporarily clears the umask during creation. It returns true on success or false on failure (unless DIE_ON_ERROR is set, which terminates execution)."
+  },
+  {
+    "instance_id": "path_traversal_06",
+    "hits": [
+      {
+        "docid": "install.php",
+        "score": 2664.4248046875
+      },
+      {
+        "docid": "upgrade.php",
+        "score": 1269.181884765625
+      },
+      {
+        "docid": "include/common.inc.php",
+        "score": 1007.13427734375
+      },
+      {
+        "docid": "include/functions.inc.php",
+        "score": 888.3947143554688
+      },
+      {
+        "docid": "admin/user_list.php",
+        "score": 865.5208740234375
+      },
+      {
+        "docid": "include/functions_user.inc.php",
+        "score": 816.9193115234375
+      },
+      {
+        "docid": "profile.php",
+        "score": 790.1160278320312
+      },
+      {
+        "docid": "admin/notification_by_mail.php",
+        "score": 770.3643798828125
+      },
+      {
+        "docid": "admin/configuration.php",
+        "score": 755.472900390625
+      },
+      {
+        "docid": "admin/include/functions_upgrade.php",
+        "score": 747.2086181640625
+      },
+      {
+        "docid": "admin/site_update.php",
+        "score": 745.4373779296875
+      },
+      {
+        "docid": "include/ws_functions.inc.php",
+        "score": 740.4368286132812
+      },
+      {
+        "docid": "admin/include/functions.php",
+        "score": 715.7202758789062
+      },
+      {
+        "docid": "include/template.class.php",
+        "score": 705.53271484375
+      },
+      {
+        "docid": "admin/include/languages.class.php",
+        "score": 705.3917236328125
+      },
+      {
+        "docid": "include/functions_mail.inc.php",
+        "score": 705.3336791992188
+      },
+      {
+        "docid": "picture.php",
+        "score": 700.482421875
+      },
+      {
+        "docid": "admin/history.php",
+        "score": 694.3845825195312
+      },
+      {
+        "docid": "i.php",
+        "score": 689.8923950195312
+      },
+      {
+        "docid": "admin/include/updates.class.php",
+        "score": 682.9390869140625
+      }
+    ],
+    "function_summary": "This code snippet handles downloading a temporary database configuration file during the Piwigo installation process. When a 'dl' parameter is provided in the URL and a corresponding temporary file exists (prefixed with 'pwg_'), it sets appropriate HTTP headers to force a file download with the filename \"database.inc.php\". The code sends the file contents to the user's browser and then deletes the temporary file from the server. This functionality is typically used when the installer cannot write the configuration file directly to the server due to permission issues, allowing users to download and manually place the configuration file instead."
+  },
+  {
+    "instance_id": "path_traversal_07",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/eosphoros-ai__DB-GPT",
+    "hits": [
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/3378.94e0486b1540a391.js",
+        "score": 1260.425048828125
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/6913.a9947645ef8eb4cb.js",
+        "score": 866.3796997070312
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/848.004feb8dc755f2bc.js",
+        "score": 741.2103271484375
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/8010.aa37c738a0716760.js",
+        "score": 691.69580078125
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/editor.worker.js",
+        "score": 631.9315185546875
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/8748.dc83f2c9574fac22.js",
+        "score": 601.3908081054688
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/7121.0500efbd067c2862.js",
+        "score": 591.0067138671875
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/2384.f744a614d1ea708f.js",
+        "score": 578.0545043945312
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/344450d0.da7015fff9776f27.js",
+        "score": 535.0181884765625
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/4553-2eeeec162e6b9d24.js",
+        "score": 527.4202880859375
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/main-0b93b9919f9e60f7.js",
+        "score": 504.57159423828125
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/7119-64fb8f0364433c24.js",
+        "score": 491.1809997558594
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js",
+        "score": 487.6169128417969
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/4134.d80f15f013b13337.js",
+        "score": 471.44891357421875
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/3036.6e197966e3d5adb0.js",
+        "score": 432.5190124511719
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/main-app-b0d43ae7b85d9e82.js",
+        "score": 418.0917053222656
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/7778.8a842696df823e0a.js",
+        "score": 408.7952880859375
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/bce60fc1-7f6e0057e7aac93c.js",
+        "score": 407.54730224609375
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/framework-398a6286d7178304.js",
+        "score": 407.4039001464844
+      },
+      {
+        "docid": "dbgpt/app/static/old_web/_next/static/chunks/b9fc956e.79b7f6738795c0e0.js",
+        "score": 402.4173889160156
+      }
+    ],
+    "function_summary": "The code snippet handles document upload functionality in a knowledge management system. It saves an uploaded file to a temporary location, then moves it to a permanent path within the knowledge space directory. It creates the necessary directory structure if it doesn't exist, constructs a KnowledgeDocumentRequest with the document's metadata and file path, and checks if the specified knowledge space exists. If the space doesn't exist and the space name is \"default\", it automatically creates a default knowledge space; otherwise, it raises an exception. Finally, it calls the service to create a knowledge document entry in the specified space and returns a success response. The code includes proper error handling to return failure responses with appropriate error messages if any step fails."
+  },
+  {
+    "instance_id": "path_traversal_08",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/kizniche__Mycodo",
+    "hits": [
+      {
+        "docid": "mycodo/mycodo_flask/routes_general.py",
+        "score": 8163.8623046875
+      },
+      {
+        "docid": "mycodo/utils/influx.py",
+        "score": 3421.922607421875
+      },
+      {
+        "docid": "mycodo/mycodo_flask/routes_page.py",
+        "score": 2935.1650390625
+      },
+      {
+        "docid": "mycodo/utils/tools.py",
+        "score": 2443.763671875
+      },
+      {
+        "docid": "mycodo/widgets/widget_graph_synchronous.py",
+        "score": 2314.943115234375
+      },
+      {
+        "docid": "mycodo/mycodo_flask/utils/utils_general.py",
+        "score": 2170.881103515625
+      },
+      {
+        "docid": "mycodo/mycodo_flask/utils/utils_export.py",
+        "score": 2166.109619140625
+      },
+      {
+        "docid": "mycodo/utils/function_actions.py",
+        "score": 1989.6014404296875
+      },
+      {
+        "docid": "mycodo/mycodo_flask/utils/utils_settings.py",
+        "score": 1958.3848876953125
+      },
+      {
+        "docid": "mycodo/controllers/controller_pid.py",
+        "score": 1953.6561279296875
+      },
+      {
+        "docid": "mycodo/mycodo_flask/api/measurement.py",
+        "score": 1938.1492919921875
+      },
+      {
+        "docid": "mycodo/mycodo_client.py",
+        "score": 1816.0576171875
+      },
+      {
+        "docid": "mycodo/utils/system_pi.py",
+        "score": 1741.8798828125
+      },
+      {
+        "docid": "mycodo/mycodo_flask/routes_admin.py",
+        "score": 1719.58154296875
+      },
+      {
+        "docid": "mycodo/mycodo_daemon.py",
+        "score": 1651.8184814453125
+      },
+      {
+        "docid": "mycodo/devices/camera.py",
+        "score": 1579.7052001953125
+      },
+      {
+        "docid": "mycodo/mycodo_flask/routes_function.py",
+        "score": 1568.816162109375
+      },
+      {
+        "docid": "mycodo/controllers/controller_lcd.py",
+        "score": 1532.8267822265625
+      },
+      {
+        "docid": "mycodo/functions/display_ssd1306_oled_128x32_i2c.py",
+        "score": 1524.95849609375
+      },
+      {
+        "docid": "mycodo/functions/display_ssd1306_oled_128x64_i2c.py",
+        "score": 1524.634521484375
+      }
+    ],
+    "function_summary": "The code snippet handles the delivery of file attachments associated with notes in the Mycodo system. It constructs the full file path by joining the base attachment directory path with the requested filename, then attempts to send the file to the client as a downloadable attachment using Flask's `send_file` function. If any exception occurs during this process, it logs the error with the message \"Send note attachment\" but doesn't return any specific error response to the client. This function is part of a Flask route that requires user authentication before accessing attachments."
+  },
+  {
+    "instance_id": "pathtraversal_09",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/Linbreux__wikmd",
+    "hits": [
+      {
+        "docid": "wiki.py",
+        "score": 1409.7406005859375
+      },
+      {
+        "docid": "knowledge_graph.py",
+        "score": 409.7037048339844
+      },
+      {
+        "docid": "git_manager.py",
+        "score": 290.6199951171875
+      },
+      {
+        "docid": "templates/base.html",
+        "score": 178.53570556640625
+      },
+      {
+        "docid": "web_dependencies.py",
+        "score": 159.8614044189453
+      },
+      {
+        "docid": "templates/new.html",
+        "score": 142.81930541992188
+      },
+      {
+        "docid": "templates/content.html",
+        "score": 110.01470184326172
+      },
+      {
+        "docid": "config.py",
+        "score": 109.4573974609375
+      },
+      {
+        "docid": "utils.py",
+        "score": 94.17980194091797
+      },
+      {
+        "docid": "templates/login.html",
+        "score": 64.50240325927734
+      },
+      {
+        "docid": "templates/list_files.html",
+        "score": 55.85490036010742
+      },
+      {
+        "docid": "templates/knowledge-graph.html",
+        "score": 35.51219940185547
+      },
+      {
+        "docid": "templates/search.html",
+        "score": 30.392000198364258
+      },
+      {
+        "docid": "templates/index.html",
+        "score": 28.03730010986328
+      },
+      {
+        "docid": "wikmd-config.yaml",
+        "score": 20.284099578857422
+      },
+      {
+        "docid": "docs/_config.yml",
+        "score": 3.0099000930786133
+      }
+    ],
+    "function_summary": "This code snippet traverses a directory structure to build a list of wiki files, skipping git and image files, while extracting metadata for each file including its path, URL, folder location, and modification time. It processes each file to create a properly formatted URL by removing the wiki directory prefix and file extension, and adds this information to a folder_list that will be used to display the wiki's contents."
+  },
+  {
+    "instance_id": "pathtraversal_10",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/Lif-Platforms__Lif-Auth-Server",
+    "hits": [
+      {
+        "docid": "src/auth_server.py",
+        "score": 1483.552734375
+      },
+      {
+        "docid": "src/utils/db_interface.py",
+        "score": 539.5167236328125
+      },
+      {
+        "docid": "src/scripts/user_id.py",
+        "score": 267.0067138671875
+      },
+      {
+        "docid": "src/utils/access_control.py",
+        "score": 190.4770050048828
+      },
+      {
+        "docid": "src/utils/password_hasher.py",
+        "score": 173.55320739746094
+      },
+      {
+        "docid": "src/utils/logger.py",
+        "score": 127.05010223388672
+      },
+      {
+        "docid": "src/utils/email_checker.py",
+        "score": 79.30860137939453
+      },
+      {
+        "docid": "src/resources/json data/default_config.json",
+        "score": 58.36709976196289
+      },
+      {
+        "docid": "src/_version.py",
+        "score": 1.861199975013733
+      }
+    ],
+    "function_summary": "The code snippet checks if a user has uploaded a profile picture and returns the appropriate image. It first verifies if a file exists at the path \"user_images/pfp/{username}\". If the file exists, it returns that image as a FileResponse with a media type of 'image/gif'. If no custom profile picture is found, it returns a default profile picture from the assets folder instead. This function is part of the \"/get_pfp/{username}\" endpoint that allows services to retrieve user avatars."
+  },
+  {
+    "instance_id": "sqli_01",
+    "hits": [
+      {
+        "docid": "libraries/plugins/export/ExportSql.class.php",
+        "score": 8207.7470703125
+      },
+      {
+        "docid": "libraries/plugins/export/ExportOdt.class.php",
+        "score": 3460.204833984375
+      },
+      {
+        "docid": "libraries/plugins/export/ExportHtmlword.class.php",
+        "score": 3424.35791015625
+      },
+      {
+        "docid": "libraries/plugins/export/ExportLatex.class.php",
+        "score": 3394.43115234375
+      },
+      {
+        "docid": "libraries/plugins/export/ExportTexytext.class.php",
+        "score": 3338.98291015625
+      },
+      {
+        "docid": "libraries/plugins/export/ExportMediawiki.class.php",
+        "score": 3257.0078125
+      },
+      {
+        "docid": "libraries/plugins/export/ExportXml.class.php",
+        "score": 3066.8828125
+      },
+      {
+        "docid": "libraries/Util.class.php",
+        "score": 2868.781982421875
+      },
+      {
+        "docid": "libraries/plugins/export/ExportCsv.class.php",
+        "score": 2733.249755859375
+      },
+      {
+        "docid": "libraries/plugins/export/ExportOds.class.php",
+        "score": 2586.201171875
+      },
+      {
+        "docid": "libraries/plugins/export/ExportCodegen.class.php",
+        "score": 2521.1513671875
+      },
+      {
+        "docid": "export.php",
+        "score": 2486.760498046875
+      },
+      {
+        "docid": "libraries/Table.class.php",
+        "score": 2467.3984375
+      },
+      {
+        "docid": "libraries/plugins/export/ExportPhparray.class.php",
+        "score": 2378.8486328125
+      },
+      {
+        "docid": "libraries/database_interface.lib.php",
+        "score": 2327.3974609375
+      },
+      {
+        "docid": "libraries/plugins/import/ImportSql.class.php",
+        "score": 2308.47509765625
+      },
+      {
+        "docid": "libraries/DisplayResults.class.php",
+        "score": 2300.450927734375
+      },
+      {
+        "docid": "libraries/plugins/export/ExportYaml.class.php",
+        "score": 2277.0419921875
+      },
+      {
+        "docid": "libraries/plugins/import/ImportCsv.class.php",
+        "score": 2266.995849609375
+      },
+      {
+        "docid": "libraries/plugins/export/ExportJson.class.php",
+        "score": 2256.00146484375
+      }
+    ],
+    "function_summary": "This code snippet defines the `_exportComment()` method in the `ExportSql` class. The method generates SQL comment lines for database exports.\n\n**Main functionality:**\n- Takes an optional text parameter for the comment content\n- Checks if SQL comments should be included in the export (via `$GLOBALS['sql_include_comments']`)\n- If comments are enabled, formats the text as a SQL comment by prefixing it with `--` (standard SQL comment syntax)\n- Adds a space after `--` if text is provided, otherwise just returns `--`\n- Appends the configured line ending (`$GLOBALS['crlf']`)\n- Returns an empty string if comments are disabled\n\nThis method is used throughout the SQL export process to optionally include explanatory comments in the generated SQL dump file, making the output more readable and informative when the user has enabled comment inclusion."
+  },
+  {
+    "instance_id": "sqli_02",
+    "hits": [
+      {
+        "docid": "libraries/classes/Controllers/Table/TableSearchController.php",
+        "score": 5399.57470703125
+      },
+      {
+        "docid": "libraries/classes/Util.php",
+        "score": 2196.318359375
+      },
+      {
+        "docid": "libraries/classes/Sql.php",
+        "score": 2125.00244140625
+      },
+      {
+        "docid": "libraries/classes/Display/Results.php",
+        "score": 2103.837890625
+      },
+      {
+        "docid": "libraries/classes/InsertEdit.php",
+        "score": 2082.19287109375
+      },
+      {
+        "docid": "libraries/classes/Database/Qbe.php",
+        "score": 2016.727783203125
+      },
+      {
+        "docid": "libraries/classes/Controllers/Table/TableStructureController.php",
+        "score": 1969.919921875
+      },
+      {
+        "docid": "libraries/classes/Table.php",
+        "score": 1923.8795166015625
+      },
+      {
+        "docid": "libraries/classes/Server/Privileges.php",
+        "score": 1873.5115966796875
+      },
+      {
+        "docid": "libraries/classes/Plugins/Export/ExportSql.php",
+        "score": 1822.5692138671875
+      },
+      {
+        "docid": "libraries/classes/DatabaseInterface.php",
+        "score": 1812.2393798828125
+      },
+      {
+        "docid": "libraries/classes/Import.php",
+        "score": 1791.948486328125
+      },
+      {
+        "docid": "libraries/classes/Operations.php",
+        "score": 1772.336181640625
+      },
+      {
+        "docid": "libraries/classes/Rte/Routines.php",
+        "score": 1699.94921875
+      },
+      {
+        "docid": "libraries/classes/CentralColumns.php",
+        "score": 1685.476318359375
+      },
+      {
+        "docid": "libraries/classes/Relation.php",
+        "score": 1629.79150390625
+      },
+      {
+        "docid": "libraries/classes/Database/Search.php",
+        "score": 1614.4384765625
+      },
+      {
+        "docid": "libraries/classes/Controllers/Database/DatabaseStructureController.php",
+        "score": 1610.569580078125
+      },
+      {
+        "docid": "libraries/classes/Core.php",
+        "score": 1600.1536865234375
+      },
+      {
+        "docid": "libraries/classes/Display/Export.php",
+        "score": 1553.7279052734375
+      }
+    ],
+    "function_summary": "The `getDataRowAction()` method retrieves and formats a single database row based on a WHERE clause sent via POST request. It constructs a SELECT query using the database name, table name, and WHERE clause from POST parameters, executes the query, and fetches the result. The method specifically handles bit field data types by converting them to a printable format using the `Util::printableBitValue()` function. It iterates through each column value in the fetched row, checking if the field type is 'bit' using the field metadata, and converts those values accordingly. The processed row data is then added to an array under the key 'row_info' and sent back as a JSON response. This appears to be part of an AJAX handler for retrieving row details in a table search interface."
+  },
+  {
+    "instance_id": "sqli_03",
+    "hits": [
+      {
+        "docid": "admin/user_perm.php",
+        "score": 785.1735229492188
+      },
+      {
+        "docid": "admin/group_perm.php",
+        "score": 598.1240844726562
+      },
+      {
+        "docid": "admin/cat_options.php",
+        "score": 490.25250244140625
+      },
+      {
+        "docid": "admin/cat_perm.php",
+        "score": 442.2909851074219
+      },
+      {
+        "docid": "admin/include/functions.php",
+        "score": 440.06201171875
+      },
+      {
+        "docid": "admin/site_update.php",
+        "score": 436.78070068359375
+      },
+      {
+        "docid": "admin/cat_modify.php",
+        "score": 400.0813903808594
+      },
+      {
+        "docid": "include/functions_category.inc.php",
+        "score": 395.0747985839844
+      },
+      {
+        "docid": "admin/notification_by_mail.php",
+        "score": 388.1520080566406
+      },
+      {
+        "docid": "admin/picture_modify.php",
+        "score": 386.7710876464844
+      },
+      {
+        "docid": "admin/album_notification.php",
+        "score": 378.6596984863281
+      },
+      {
+        "docid": "picture.php",
+        "score": 376.37139892578125
+      },
+      {
+        "docid": "admin/batch_manager_global.php",
+        "score": 374.9045104980469
+      },
+      {
+        "docid": "admin/cat_list.php",
+        "score": 371.277587890625
+      },
+      {
+        "docid": "include/functions_user.inc.php",
+        "score": 365.94940185546875
+      },
+      {
+        "docid": "include/ws_functions/pwg.categories.php",
+        "score": 364.9693908691406
+      },
+      {
+        "docid": "admin/history.php",
+        "score": 360.59161376953125
+      },
+      {
+        "docid": "comments.php",
+        "score": 359.49090576171875
+      },
+      {
+        "docid": "admin/batch_manager.php",
+        "score": 357.2467956542969
+      },
+      {
+        "docid": "admin/group_list.php",
+        "score": 356.7373962402344
+      }
+    ],
+    "function_summary": "This code snippet handles the removal of user permissions for categories when the \"falsify\" action is triggered. When a user submits a form with categories to forbid (via $_POST['falsify'] and $_POST['cat_true']), the code retrieves all subcategories of the selected categories using get_subcat_ids(), then deletes all access permissions for both the selected categories and their subcategories from the USER_ACCESS_TABLE database table for the specific user. This implements a cascading permission removal where forbidding access to a parent category automatically forbids access to all its child categories."
+  },
+  {
+    "instance_id": "sqli_04",
+    "hits": [
+      {
+        "docid": "admin/group_perm.php",
+        "score": 807.0020141601562
+      },
+      {
+        "docid": "admin/user_perm.php",
+        "score": 633.3088989257812
+      },
+      {
+        "docid": "admin/cat_perm.php",
+        "score": 499.80120849609375
+      },
+      {
+        "docid": "admin/site_update.php",
+        "score": 494.00799560546875
+      },
+      {
+        "docid": "admin/include/functions.php",
+        "score": 487.7618103027344
+      },
+      {
+        "docid": "admin/cat_options.php",
+        "score": 469.7085876464844
+      },
+      {
+        "docid": "admin/group_list.php",
+        "score": 424.7974853515625
+      },
+      {
+        "docid": "admin/cat_list.php",
+        "score": 410.30810546875
+      },
+      {
+        "docid": "admin/cat_modify.php",
+        "score": 403.7943115234375
+      },
+      {
+        "docid": "admin/album_notification.php",
+        "score": 402.8478088378906
+      },
+      {
+        "docid": "admin/picture_modify.php",
+        "score": 394.15411376953125
+      },
+      {
+        "docid": "include/functions_user.inc.php",
+        "score": 375.3304138183594
+      },
+      {
+        "docid": "include/ws_functions/pwg.permissions.php",
+        "score": 369.4762878417969
+      },
+      {
+        "docid": "picture.php",
+        "score": 369.0002136230469
+      },
+      {
+        "docid": "include/functions_category.inc.php",
+        "score": 366.1814880371094
+      },
+      {
+        "docid": "admin/notification_by_mail.php",
+        "score": 362.0528869628906
+      },
+      {
+        "docid": "admin/batch_manager_global.php",
+        "score": 360.3494873046875
+      },
+      {
+        "docid": "comments.php",
+        "score": 359.4801940917969
+      },
+      {
+        "docid": "include/ws_functions/pwg.categories.php",
+        "score": 358.4233093261719
+      },
+      {
+        "docid": "include/ws_functions/pwg.images.php",
+        "score": 354.96630859375
+      }
+    ],
+    "function_summary": "This code snippet handles the removal of category access permissions for a group when the user chooses to forbid access. When the 'falsify' action is triggered with selected categories ('cat_true'), it automatically revokes access not only to the selected categories but also to all their sub-categories. It accomplishes this by first retrieving all sub-category IDs of the selected categories using `get_subcat_ids()`, then executing a DELETE query on the GROUP_ACCESS_TABLE to remove all permission records for the specified group and the affected categories (including sub-categories). This ensures hierarchical permission consistency where denying access to a parent category automatically denies access to all its children."
+  },
+  {
+    "instance_id": "sqli_05",
+    "hits": [
+      {
+        "docid": "admin/batch_manager.php",
+        "score": 4304.04052734375
+      },
+      {
+        "docid": "admin/batch_manager_global.php",
+        "score": 2569.98681640625
+      },
+      {
+        "docid": "admin/batch_manager_unit.php",
+        "score": 1920.799560546875
+      },
+      {
+        "docid": "picture.php",
+        "score": 1863.6129150390625
+      },
+      {
+        "docid": "comments.php",
+        "score": 1673.8238525390625
+      },
+      {
+        "docid": "include/ws_functions/pwg.images.php",
+        "score": 1525.9378662109375
+      },
+      {
+        "docid": "admin/history.php",
+        "score": 1520.7998046875
+      },
+      {
+        "docid": "include/functions_user.inc.php",
+        "score": 1506.7340087890625
+      },
+      {
+        "docid": "admin/include/functions.php",
+        "score": 1486.9359130859375
+      },
+      {
+        "docid": "admin/cat_modify.php",
+        "score": 1463.210693359375
+      },
+      {
+        "docid": "admin/picture_modify.php",
+        "score": 1455.0662841796875
+      },
+      {
+        "docid": "admin/cat_list.php",
+        "score": 1430.9278564453125
+      },
+      {
+        "docid": "admin/site_update.php",
+        "score": 1374.9775390625
+      },
+      {
+        "docid": "admin/include/functions_upload.inc.php",
+        "score": 1372.704833984375
+      },
+      {
+        "docid": "include/functions_search.inc.php",
+        "score": 1348.721435546875
+      },
+      {
+        "docid": "admin/configuration.php",
+        "score": 1335.7904052734375
+      },
+      {
+        "docid": "admin/include/photos_add_direct_prepare.inc.php",
+        "score": 1333.260986328125
+      },
+      {
+        "docid": "include/functions.inc.php",
+        "score": 1301.36376953125
+      },
+      {
+        "docid": "admin/tags.php",
+        "score": 1279.6033935546875
+      },
+      {
+        "docid": "include/ws_functions/pwg.categories.php",
+        "score": 1255.6182861328125
+      }
+    ],
+    "function_summary": "This code snippet handles category-based filtering in a photo batch manager. When the user submits a form with category filter enabled (`filter_category_use`), it stores the selected category ID in the session's bulk manager filter. If the \"recursive\" option is checked (`filter_category_recursive`), it sets a flag to include photos from subcategories as well. This allows users to filter the photo set to only show images from a specific category, with an optional recursive mode to include all descendant categories."
+  },
+  {
+    "instance_id": "sqli_06",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/0xJacky__nginx-ui",
+    "hits": [
+      {
+        "docid": "api/cosy/sort.go",
+        "score": 289.4267883300781
+      },
+      {
+        "docid": "model/model.go",
+        "score": 228.92660522460938
+      },
+      {
+        "docid": "api/cosy/filter.go",
+        "score": 114.99199676513672
+      },
+      {
+        "docid": "api/cosy/list.go",
+        "score": 100.29959869384766
+      },
+      {
+        "docid": "api/cosy/cosy.go",
+        "score": 99.32599639892578
+      },
+      {
+        "docid": "query/chat_gpt_logs.gen.go",
+        "score": 96.1155014038086
+      },
+      {
+        "docid": "query/config_backups.gen.go",
+        "score": 94.7676010131836
+      },
+      {
+        "docid": "query/certs.gen.go",
+        "score": 94.41380310058594
+      },
+      {
+        "docid": "query/sites.gen.go",
+        "score": 91.12680053710938
+      },
+      {
+        "docid": "query/streams.gen.go",
+        "score": 91.12680053710938
+      },
+      {
+        "docid": "query/auth_tokens.gen.go",
+        "score": 89.3104019165039
+      },
+      {
+        "docid": "query/auths.gen.go",
+        "score": 87.91639709472656
+      },
+      {
+        "docid": "query/dns_credentials.gen.go",
+        "score": 86.5823974609375
+      },
+      {
+        "docid": "query/environments.gen.go",
+        "score": 86.5823974609375
+      },
+      {
+        "docid": "query/notifications.gen.go",
+        "score": 86.5823974609375
+      },
+      {
+        "docid": "internal/config/config_list.go",
+        "score": 75.44049835205078
+      },
+      {
+        "docid": "query/gen.go",
+        "score": 69.88960266113281
+      },
+      {
+        "docid": "api/streams/streams.go",
+        "score": 67.72200012207031
+      },
+      {
+        "docid": "api/sites/domain.go",
+        "score": 67.41999816894531
+      },
+      {
+        "docid": "api/cosy/update.go",
+        "score": 64.47740173339844
+      }
+    ],
+    "function_summary": "This snippet formats and applies a database sorting order by combining a sort field (retrieved from the query parameter \"sort_by\" or falling back to c.itemKey) with a sort direction (previously obtained from the \"order\" parameter), then applies this ordering to the database query using the Order method."
+  },
+  {
+    "instance_id": "sqli_07",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/0xJacky__nginx-ui",
+    "hits": [
+      {
+        "docid": "model/model.go",
+        "score": 1375.1094970703125
+      },
+      {
+        "docid": "api/cosy/filter.go",
+        "score": 898.6799926757812
+      },
+      {
+        "docid": "api/cosy/list.go",
+        "score": 544.5587158203125
+      },
+      {
+        "docid": "query/certs.gen.go",
+        "score": 506.2629089355469
+      },
+      {
+        "docid": "api/cosy/sort.go",
+        "score": 489.150390625
+      },
+      {
+        "docid": "query/config_backups.gen.go",
+        "score": 470.9465026855469
+      },
+      {
+        "docid": "query/chat_gpt_logs.gen.go",
+        "score": 466.9538879394531
+      },
+      {
+        "docid": "query/streams.gen.go",
+        "score": 462.722412109375
+      },
+      {
+        "docid": "query/sites.gen.go",
+        "score": 462.6122131347656
+      },
+      {
+        "docid": "query/notifications.gen.go",
+        "score": 455.3100891113281
+      },
+      {
+        "docid": "query/auths.gen.go",
+        "score": 453.55450439453125
+      },
+      {
+        "docid": "query/auth_tokens.gen.go",
+        "score": 450.6789855957031
+      },
+      {
+        "docid": "query/dns_credentials.gen.go",
+        "score": 448.71209716796875
+      },
+      {
+        "docid": "query/environments.gen.go",
+        "score": 446.2244873046875
+      },
+      {
+        "docid": "api/nginx/nginx_log.go",
+        "score": 379.54400634765625
+      },
+      {
+        "docid": "api/cosy/cosy.go",
+        "score": 344.9418029785156
+      },
+      {
+        "docid": "model/cert.go",
+        "score": 325.59271240234375
+      },
+      {
+        "docid": "api/sites/domain.go",
+        "score": 316.3476867675781
+      },
+      {
+        "docid": "api/streams/streams.go",
+        "score": 309.4151916503906
+      },
+      {
+        "docid": "internal/pty/pipeline.go",
+        "score": 302.3450012207031
+      }
+    ],
+    "function_summary": "The code snippet implements pagination and sorting for database queries by extracting parameters from HTTP requests. It formats a SQL ORDER BY clause using the \"sort_by\" and \"order\" query parameters, calculates the appropriate offset based on the requested page number (defaulting to page 1 if not specified), and applies a page size limit (using either the system default or a user-specified value from the \"page_size\" parameter)."
+  },
+  {
+    "instance_id": "sqli_08",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/flipped-aurora__gin-vue-admin",
+    "hits": [
+      {
+        "docid": "server/service/system/sys_export_template.go",
+        "score": 2320.765380859375
+      },
+      {
+        "docid": "server/service/system/sys_auto_code.go",
+        "score": 815.2128295898438
+      },
+      {
+        "docid": "server/resource/autocode_template/server/service.go.tpl",
+        "score": 747.9329833984375
+      },
+      {
+        "docid": "server/service/example/exa_file_upload_download.go",
+        "score": 701.2977294921875
+      },
+      {
+        "docid": "server/service/system/sys_api.go",
+        "score": 687.6068115234375
+      },
+      {
+        "docid": "server/service/system/sys_authority.go",
+        "score": 673.9882202148438
+      },
+      {
+        "docid": "server/service/system/sys_autocode_history.go",
+        "score": 655.1049194335938
+      },
+      {
+        "docid": "server/api/v1/system/sys_export_template.go",
+        "score": 653.2703247070312
+      },
+      {
+        "docid": "web/src/view/systemTools/exportTemplate/exportTemplate.vue",
+        "score": 649.0587158203125
+      },
+      {
+        "docid": "server/service/system/sys_dictionary_detail.go",
+        "score": 641.0006103515625
+      },
+      {
+        "docid": "server/service/system/sys_user.go",
+        "score": 633.0263061523438
+      },
+      {
+        "docid": "server/service/system/sys_initdb.go",
+        "score": 606.1632080078125
+      },
+      {
+        "docid": "server/service/system/sys_menu.go",
+        "score": 587.8724975585938
+      },
+      {
+        "docid": "server/service/system/sys_casbin.go",
+        "score": 586.1868896484375
+      },
+      {
+        "docid": "server/service/system/sys_operation_record.go",
+        "score": 579.3222045898438
+      },
+      {
+        "docid": "server/service/example/exa_customer.go",
+        "score": 570.6204223632812
+      },
+      {
+        "docid": "server/source/system/api.go",
+        "score": 545.7783203125
+      },
+      {
+        "docid": "server/resource/page/js/app.9fe02340.js",
+        "score": 542.0942993164062
+      },
+      {
+        "docid": "server/api/v1/system/sys_auto_code.go",
+        "score": 522.9473876953125
+      },
+      {
+        "docid": "server/utils/validator.go",
+        "score": 515.9061279296875
+      }
+    ],
+    "function_summary": "The code snippet handles the ordering of database query results during Excel export operations. It first checks if an order parameter was provided in the request values, and if present, applies that ordering to the database query. If no order parameter was specified by the user, it falls back to using the default ordering defined in the template configuration (template.Order), but only if that default ordering exists. This ensures that query results are properly sorted according to either user-specified preferences or predefined template settings before being exported to Excel."
+  },
+  {
+    "instance_id": "sqli_09",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/meshery__meshery",
+    "hits": [
+      {
+        "docid": "server/models/events_persister.go",
+        "score": 1583.3802490234375
+      },
+      {
+        "docid": "server/handlers/events_streamer.go",
+        "score": 697.7891235351562
+      },
+      {
+        "docid": "server/models/default_local_provider.go",
+        "score": 573.7374877929688
+      },
+      {
+        "docid": "server/machines/models.go",
+        "score": 548.922607421875
+      },
+      {
+        "docid": "server/handlers/meshery_pattern_handler.go",
+        "score": 526.6898193359375
+      },
+      {
+        "docid": "server/internal/graphql/generated/generated.go",
+        "score": 519.1312255859375
+      },
+      {
+        "docid": "server/models/remote_provider.go",
+        "score": 515.9755859375
+      },
+      {
+        "docid": "server/machines/actions.go",
+        "score": 499.4762878417969
+      },
+      {
+        "docid": "server/models/k8s_context.go",
+        "score": 496.3987121582031
+      },
+      {
+        "docid": "server/handlers/design_engine_handler.go",
+        "score": 492.61358642578125
+      },
+      {
+        "docid": "server/handlers/meshery_filter_handler.go",
+        "score": 483.5126953125
+      },
+      {
+        "docid": "server/handlers/connections_handlers.go",
+        "score": 481.0971984863281
+      },
+      {
+        "docid": "server/handlers/meshery_application_handler.go",
+        "score": 477.9364929199219
+      },
+      {
+        "docid": "server/models/meshery_filter_persister.go",
+        "score": 477.8888854980469
+      },
+      {
+        "docid": "server/models/meshery_pattern_persister.go",
+        "score": 472.2478942871094
+      },
+      {
+        "docid": "server/models/pattern/patterns/patterns.go",
+        "score": 465.8981018066406
+      },
+      {
+        "docid": "server/models/meshsync_events.go",
+        "score": 464.7947998046875
+      },
+      {
+        "docid": "server/models/meshmodel/core/register.go",
+        "score": 462.6518859863281
+      },
+      {
+        "docid": "server/handlers/k8sconfig_handler.go",
+        "score": 462.591796875
+      },
+      {
+        "docid": "server/handlers/meshsync_handler.go",
+        "score": 461.0856018066406
+      }
+    ],
+    "function_summary": "The code snippet applies filtering and sorting criteria to a database query for events. It conditionally adds WHERE clauses based on the provided eventsFilter parameters, filtering by category, action, severity, description text search, and status. It also sets the sort order based on the Order parameter, applying either ascending or descending sorting on the specified column. This filtering logic is part of the GetAllEvents method that retrieves events from the database according to user-specified criteria."
+  },
+  {
+    "instance_id": "sqli_10",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/Fumon__trello-octometric",
+    "hits": [
+      {
+        "docid": "metrics-ui/server/srv.go",
+        "score": 308.20208740234375
+      },
+      {
+        "docid": "metrics-ui/ui/libs/require.js",
+        "score": 48.24639892578125
+      },
+      {
+        "docid": "metrics-ui/ui/index.html",
+        "score": 3.6451001167297363
+      },
+      {
+        "docid": "pull_scripts/package.json",
+        "score": 0.9101999998092651
+      }
+    ],
+    "function_summary": "The code snippet implements two API endpoints that query a PostgreSQL database for Trello card statistics. The first endpoint (/api/totals/last/{num}) retrieves daily totals with timestamps, while the second endpoint (/api/diffs/last/{num}) fetches daily counts of cards moved up, down, or completed. Both endpoints use string formatting to build SQL queries with a user-provided limit parameter, execute the queries, and return JSON responses. The code includes error handling for database failures and sets appropriate HTTP headers for the JSON responses, though it contains a self-acknowledged security vulnerability by directly interpolating user input into SQL queries."
+  },
+  {
+    "instance_id": "sqli_11",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/typcn__Blogile",
+    "hits": [
+      {
+        "docid": "server.js",
+        "score": 2429.220947265625
+      },
+      {
+        "docid": "public/js/admin.js",
+        "score": 608.7642822265625
+      },
+      {
+        "docid": "public/js/ajax.js",
+        "score": 516.9246215820312
+      },
+      {
+        "docid": "public/js/scripts.js",
+        "score": 503.93450927734375
+      },
+      {
+        "docid": "install.js",
+        "score": 291.25421142578125
+      },
+      {
+        "docid": "public/admin.html",
+        "score": 175.0885009765625
+      },
+      {
+        "docid": "views/index.jade",
+        "score": 172.67520141601562
+      },
+      {
+        "docid": "setpw.js",
+        "score": 153.68930053710938
+      },
+      {
+        "docid": "views/post.jade",
+        "score": 114.00700378417969
+      },
+      {
+        "docid": "public/donate.html",
+        "score": 62.9900016784668
+      },
+      {
+        "docid": "package.json",
+        "score": 59.24850082397461
+      },
+      {
+        "docid": "views/404.jade",
+        "score": 22.760799407958984
+      }
+    ],
+    "function_summary": "The code snippet implements a search function that queries the database for blog posts containing a specified search term in either the title or content. It performs a SQL query using string concatenation (which creates a potential SQL injection vulnerability), processes the results, and formats them into a JSON response. For each matching post, it extracts key information including ID, timestamp, title, category, shortname, a truncated and stripped version of the content (limited to 200 characters with HTML tags removed), and the first image URL. The function also implements caching functionality, storing search results in memory when caching is enabled to improve performance for repeated searches. Finally, it sets the appropriate content type header and sends the JSON response back to the client."
+  },
+  {
+    "instance_id": "sqli_12",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/ScottTZhang__voter-js",
+    "hits": [
+      {
+        "docid": "main.js",
+        "score": 2713.210693359375
+      },
+      {
+        "docid": "public/js/jquery-2.1.1.min.js",
+        "score": 611.846923828125
+      },
+      {
+        "docid": "public/js/createSurvey.js",
+        "score": 593.380615234375
+      },
+      {
+        "docid": "views/add-survey-form.html",
+        "score": 273.97119140625
+      },
+      {
+        "docid": "views/edit-survey-form.html",
+        "score": 245.73109436035156
+      },
+      {
+        "docid": "views/section.html",
+        "score": 165.30459594726562
+      },
+      {
+        "docid": "views/edit-section-form.html",
+        "score": 149.9871063232422
+      },
+      {
+        "docid": "views/survey.html",
+        "score": 123.06189727783203
+      },
+      {
+        "docid": "views/add-section-form.html",
+        "score": 118.56510162353516
+      },
+      {
+        "docid": "views/result.html",
+        "score": 113.7332992553711
+      },
+      {
+        "docid": "views/sections.html",
+        "score": 113.55670166015625
+      },
+      {
+        "docid": "views/categories.html",
+        "score": 61.31949996948242
+      },
+      {
+        "docid": "views/parent.html",
+        "score": 52.17169952392578
+      },
+      {
+        "docid": "package.json",
+        "score": 49.36899948120117
+      }
+    ],
+    "function_summary": "The snippet queries a database to retrieve information about surveys within a specific section, joining the Section and Survey tables where the section ID matches the provided parameter. It selects various fields from both tables, filtering for active records (status=1). If the query executes successfully, it renders the 'section.html' template, passing the query results and the section ID as data. If an error occurs, it returns a 500 status code with the error message."
+  },
+  {
+    "instance_id": "sqli_13",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/gperson__angular-test-reporter",
+    "hits": [
+      {
+        "docid": "rest-server/data-server.js",
+        "score": 883.4121704101562
+      },
+      {
+        "docid": "app/index-async.html",
+        "score": 127.28209686279297
+      },
+      {
+        "docid": "app/app.js",
+        "score": 113.62689971923828
+      },
+      {
+        "docid": "app/stats/stats.js",
+        "score": 92.6260986328125
+      },
+      {
+        "docid": "app/stats/stats.html",
+        "score": 58.03620147705078
+      },
+      {
+        "docid": "package.json",
+        "score": 57.53969955444336
+      },
+      {
+        "docid": "app/index.html",
+        "score": 49.760398864746094
+      },
+      {
+        "docid": "e2e-tests/scenarios.js",
+        "score": 28.500699996948242
+      },
+      {
+        "docid": "bower.json",
+        "score": 19.708499908447266
+      },
+      {
+        "docid": "app/components/version/interpolate-filter.js",
+        "score": 15.739700317382812
+      },
+      {
+        "docid": "app/components/version/version-directive.js",
+        "score": 13.321800231933594
+      },
+      {
+        "docid": "e2e-tests/protractor.conf.js",
+        "score": 13.270899772644043
+      },
+      {
+        "docid": "karma.conf.js",
+        "score": 11.29889965057373
+      },
+      {
+        "docid": "app/components/version/version.js",
+        "score": 3.752500057220459
+      }
+    ],
+    "function_summary": "This code snippet inserts a new note into a database table by constructing and executing an SQL INSERT query. It extracts the table name from the URL query parameters, formats it appropriately, and inserts the note's test ID, author, and content into the corresponding notes table. If an error occurs during the query execution, it sets the HTTP response status code to 400 and logs the error. When the query completes, it ends the HTTP response. The function is part of a REST API endpoint that allows clients to add notes to test records."
+  },
+  {
+    "instance_id": "sqli_14",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/owncast__owncast",
+    "hits": [
+      {
+        "docid": "core/chat/persistence.go",
+        "score": 1915.30908203125
+      },
+      {
+        "docid": "core/user/user.go",
+        "score": 620.715576171875
+      },
+      {
+        "docid": "core/data/migrations.go",
+        "score": 587.9116821289062
+      },
+      {
+        "docid": "core/user/externalAPIUser.go",
+        "score": 581.0098876953125
+      },
+      {
+        "docid": "db/query.sql.go",
+        "score": 498.6954040527344
+      },
+      {
+        "docid": "core/chat/server.go",
+        "score": 490.5588073730469
+      },
+      {
+        "docid": "core/chat/chat.go",
+        "score": 460.25030517578125
+      },
+      {
+        "docid": "docs/api/index.html",
+        "score": 435.49359130859375
+      },
+      {
+        "docid": "core/data/messages.go",
+        "score": 433.30828857421875
+      },
+      {
+        "docid": "openapi.yaml",
+        "score": 423.89849853515625
+      },
+      {
+        "docid": "activitypub/persistence/persistence.go",
+        "score": 409.7231140136719
+      },
+      {
+        "docid": "core/chat/events/events.go",
+        "score": 405.55120849609375
+      },
+      {
+        "docid": "controllers/admin/chat.go",
+        "score": 398.6195983886719
+      },
+      {
+        "docid": "core/chat/chatclient.go",
+        "score": 387.08270263671875
+      },
+      {
+        "docid": "core/data/webhooks.go",
+        "score": 385.9006042480469
+      },
+      {
+        "docid": "controllers/admin/config.go",
+        "score": 319.52569580078125
+      },
+      {
+        "docid": "core/data/config.go",
+        "score": 316.35369873046875
+      },
+      {
+        "docid": "activitypub/outbox/outbox.go",
+        "score": 310.5517883300781
+      },
+      {
+        "docid": "static/admin/_next/static/chunks/pages/_app-e57b2a440c783b12.js",
+        "score": 310.18011474609375
+      },
+      {
+        "docid": "core/data/persistence.go",
+        "score": 304.552490234375
+      }
+    ],
+    "function_summary": "The code snippet processes database query results by iterating through rows of chat message data, converting each row into the appropriate chat event object based on its event type. It scans database fields into a structured rowData object, then uses a switch statement to create different types of message events (user messages, system messages, chat actions, or various Fediverse engagement events) by calling the corresponding conversion function. Each converted message is added to a history collection that will be returned to the caller. The snippet includes error handling for database operations and logging for any scanning errors."
+  },
+  {
+    "instance_id": "xss_01",
+    "hits": [
+      {
+        "docid": "url.php",
+        "score": 169.07760620117188
+      },
+      {
+        "docid": "libraries/common.inc.php",
+        "score": 129.9311981201172
+      },
+      {
+        "docid": "libraries/core.lib.php",
+        "score": 127.43260192871094
+      },
+      {
+        "docid": "libraries/Util.class.php",
+        "score": 104.57769775390625
+      },
+      {
+        "docid": "index.php",
+        "score": 101.4989013671875
+      },
+      {
+        "docid": "libraries/Config.class.php",
+        "score": 97.96749877929688
+      },
+      {
+        "docid": "libraries/config.default.php",
+        "score": 94.67220306396484
+      },
+      {
+        "docid": "libraries/plugins/auth/AuthenticationCookie.class.php",
+        "score": 92.9822006225586
+      },
+      {
+        "docid": "libraries/server_privileges.lib.php",
+        "score": 82.76789855957031
+      },
+      {
+        "docid": "libraries/DisplayResults.class.php",
+        "score": 81.32019805908203
+      },
+      {
+        "docid": "import.php",
+        "score": 78.98580169677734
+      },
+      {
+        "docid": "libraries/insert_edit.lib.php",
+        "score": 77.43779754638672
+      },
+      {
+        "docid": "libraries/tcpdf/tcpdf.php",
+        "score": 77.1792984008789
+      },
+      {
+        "docid": "js/ajax.js",
+        "score": 76.91780090332031
+      },
+      {
+        "docid": "libraries/sql.lib.php",
+        "score": 76.39129638671875
+      },
+      {
+        "docid": "js/functions.js",
+        "score": 75.69159698486328
+      },
+      {
+        "docid": "libraries/config/messages.inc.php",
+        "score": 74.41649627685547
+      },
+      {
+        "docid": "libraries/plugins/auth/swekey/swekey.auth.lib.php",
+        "score": 74.2488021850586
+      },
+      {
+        "docid": "js/tracekit/tracekit.js",
+        "score": 73.8228988647461
+      },
+      {
+        "docid": "examples/openid.php",
+        "score": 71.8770980834961
+      }
+    ],
+    "function_summary": "This code snippet validates a URL parameter and performs a secure redirection: it checks if the URL is valid, matches the HTTP/HTTPS protocol pattern, and is from an allowed domain - if any validation fails, it redirects to the application's home page, otherwise it uses JavaScript-based redirection to navigate to the validated URL while displaying a message to the user, with the JavaScript approach specifically chosen to prevent the browser from leaking sensitive referrer information to external sites."
+  },
+  {
+    "instance_id": "xss_02",
+    "hits": [
+      {
+        "docid": "libraries/error_report.lib.php",
+        "score": 1697.57080078125
+      },
+      {
+        "docid": "libraries/Util.class.php",
+        "score": 623.5916748046875
+      },
+      {
+        "docid": "libraries/Config.class.php",
+        "score": 536.9210815429688
+      },
+      {
+        "docid": "libraries/tcpdf/tcpdf.php",
+        "score": 510.7550048828125
+      },
+      {
+        "docid": "libraries/sql.lib.php",
+        "score": 483.697509765625
+      },
+      {
+        "docid": "js/tracekit/tracekit.js",
+        "score": 478.9466857910156
+      },
+      {
+        "docid": "libraries/core.lib.php",
+        "score": 465.2078857421875
+      },
+      {
+        "docid": "libraries/DisplayResults.class.php",
+        "score": 441.98028564453125
+      },
+      {
+        "docid": "libraries/export.lib.php",
+        "score": 441.7298889160156
+      },
+      {
+        "docid": "libraries/server_privileges.lib.php",
+        "score": 439.27191162109375
+      },
+      {
+        "docid": "libraries/tcpdf/include/tcpdf_static.php",
+        "score": 439.25079345703125
+      },
+      {
+        "docid": "js/functions.js",
+        "score": 424.1184997558594
+      },
+      {
+        "docid": "libraries/sqlparser.lib.php",
+        "score": 420.3667907714844
+      },
+      {
+        "docid": "libraries/insert_edit.lib.php",
+        "score": 419.02410888671875
+      },
+      {
+        "docid": "libraries/tbl_tracking.lib.php",
+        "score": 411.1452941894531
+      },
+      {
+        "docid": "js/jqplot/jquery.jqplot.js",
+        "score": 405.3631896972656
+      },
+      {
+        "docid": "libraries/structure.lib.php",
+        "score": 396.8533020019531
+      },
+      {
+        "docid": "js/messages.php",
+        "score": 391.10589599609375
+      },
+      {
+        "docid": "libraries/config/messages.inc.php",
+        "score": 386.4627990722656
+      },
+      {
+        "docid": "libraries/replication_gui.lib.php",
+        "score": 384.82861328125
+      }
+    ],
+    "function_summary": "This code snippet generates HTML for displaying error report data in a user interface. It creates a labeled section with the text \"You may examine the data in the error report:\" followed by a preformatted text block (`<pre>` tag) that contains the actual error report data retrieved by calling the `PMA_getReportData()` function. The error data is displayed with the CSS class \"report-data\" for styling purposes. This appears to be part of a form that allows users to review error information before submitting it to the phpMyAdmin team for debugging purposes."
+  },
+  {
+    "instance_id": "xss_03",
+    "hits": [
+      {
+        "docid": "scp/tickets.php",
+        "score": 2939.976318359375
+      },
+      {
+        "docid": "scp/tasks.php",
+        "score": 2009.019287109375
+      },
+      {
+        "docid": "include/class.ticket.php",
+        "score": 1828.4644775390625
+      },
+      {
+        "docid": "include/ajax.tickets.php",
+        "score": 1761.4029541015625
+      },
+      {
+        "docid": "include/staff/ticket-view.inc.php",
+        "score": 1695.688232421875
+      },
+      {
+        "docid": "include/class.task.php",
+        "score": 1406.612060546875
+      },
+      {
+        "docid": "include/staff/tickets.inc.php",
+        "score": 1373.561279296875
+      },
+      {
+        "docid": "include/ajax.tasks.php",
+        "score": 1336.8619384765625
+      },
+      {
+        "docid": "include/class.thread.php",
+        "score": 1271.9566650390625
+      },
+      {
+        "docid": "include/class.staff.php",
+        "score": 1254.021728515625
+      },
+      {
+        "docid": "scp/users.php",
+        "score": 1183.2261962890625
+      },
+      {
+        "docid": "tickets.php",
+        "score": 1178.092529296875
+      },
+      {
+        "docid": "include/class.forms.php",
+        "score": 1170.2451171875
+      },
+      {
+        "docid": "include/staff/tasks.inc.php",
+        "score": 1165.5955810546875
+      },
+      {
+        "docid": "include/staff/templates/task-view.tmpl.php",
+        "score": 1112.8826904296875
+      },
+      {
+        "docid": "include/ajax.users.php",
+        "score": 1108.0076904296875
+      },
+      {
+        "docid": "include/class.search.php",
+        "score": 1045.80029296875
+      },
+      {
+        "docid": "include/class.user.php",
+        "score": 1034.46435546875
+      },
+      {
+        "docid": "include/class.auth.php",
+        "score": 1017.74462890625
+      },
+      {
+        "docid": "include/class.mailfetch.php",
+        "score": 1002.1198120117188
+      }
+    ],
+    "function_summary": "This code snippet manages the ticket queue view state in a ticketing system. When no specific ticket is selected, it determines which queue view to display by checking URL parameters ('a' or 'status'), falling back to a previously stored session value if neither is provided. The queue name is normalized to lowercase and stored in the session under a key formatted as `::Q:[ticket_type]` to persist the user's current view across page loads. Additionally, if the request isn't an advanced search and no status is explicitly set in the URL, the code automatically sets the status parameter to match the queue name, ensuring consistent filtering of tickets based on the selected queue view."
+  },
+  {
+    "instance_id": "xss_04",
+    "hits": [
+      {
+        "docid": "include/client/tickets.inc.php",
+        "score": 1688.2406005859375
+      },
+      {
+        "docid": "include/staff/tickets.inc.php",
+        "score": 1125.8848876953125
+      },
+      {
+        "docid": "include/staff/tasks.inc.php",
+        "score": 903.4141845703125
+      },
+      {
+        "docid": "include/staff/templates/tickets.tmpl.php",
+        "score": 799.92919921875
+      },
+      {
+        "docid": "include/staff/users.inc.php",
+        "score": 752.6295166015625
+      },
+      {
+        "docid": "include/staff/banlist.inc.php",
+        "score": 734.1351928710938
+      },
+      {
+        "docid": "include/staff/staffmembers.inc.php",
+        "score": 725.864013671875
+      },
+      {
+        "docid": "include/staff/templates/users.tmpl.php",
+        "score": 722.7615966796875
+      },
+      {
+        "docid": "include/staff/ticket-view.inc.php",
+        "score": 722.6195068359375
+      },
+      {
+        "docid": "include/staff/filters.inc.php",
+        "score": 699.2584838867188
+      },
+      {
+        "docid": "include/staff/templates.inc.php",
+        "score": 688.3240966796875
+      },
+      {
+        "docid": "include/staff/orgs.inc.php",
+        "score": 683.4556884765625
+      },
+      {
+        "docid": "include/class.forms.php",
+        "score": 677.2562255859375
+      },
+      {
+        "docid": "include/staff/cannedresponses.inc.php",
+        "score": 676.9024047851562
+      },
+      {
+        "docid": "include/staff/pages.inc.php",
+        "score": 671.9500732421875
+      },
+      {
+        "docid": "include/class.ticket.php",
+        "score": 665.3515014648438
+      },
+      {
+        "docid": "include/staff/slaplans.inc.php",
+        "score": 656.7468872070312
+      },
+      {
+        "docid": "include/staff/directory.inc.php",
+        "score": 656.485595703125
+      },
+      {
+        "docid": "include/class.search.php",
+        "score": 655.505126953125
+      },
+      {
+        "docid": "include/staff/apikeys.inc.php",
+        "score": 653.682373046875
+      }
+    ],
+    "function_summary": "This code snippet sets up pagination, sorting, and filtering for a ticket listing interface, then renders the search form and table header. It configures the pagination with filtered tickets, builds a query string for URL parameters, and generates display text showing the current view (e.g., \"Open Tickets\" or search results). The code also prepares the ticket query with specific fields to retrieve and applies the selected sort order. The HTML portion creates a search interface with keyword input and topic dropdown filter, displays filter clearing option when active, and renders a ticket table with sortable column headers (Ticket #, Create Date, Status, Subject, Department) and toggles between open/closed ticket views."
+  },
+  {
+    "instance_id": "xss_05",
+    "hits": [
+      {
+        "docid": "admin.php",
+        "score": 1752.896484375
+      },
+      {
+        "docid": "admin/intro.php",
+        "score": 687.7012939453125
+      },
+      {
+        "docid": "picture.php",
+        "score": 640.2327880859375
+      },
+      {
+        "docid": "admin/batch_manager.php",
+        "score": 619.511474609375
+      },
+      {
+        "docid": "admin/cat_list.php",
+        "score": 612.9822998046875
+      },
+      {
+        "docid": "admin/picture_modify.php",
+        "score": 607.926513671875
+      },
+      {
+        "docid": "admin/cat_modify.php",
+        "score": 607.9138793945312
+      },
+      {
+        "docid": "admin/batch_manager_global.php",
+        "score": 605.44287109375
+      },
+      {
+        "docid": "admin/include/add_core_tabs.inc.php",
+        "score": 596.7009887695312
+      },
+      {
+        "docid": "admin/history.php",
+        "score": 586.8983764648438
+      },
+      {
+        "docid": "comments.php",
+        "score": 575.2996215820312
+      },
+      {
+        "docid": "admin/configuration.php",
+        "score": 574.5739135742188
+      },
+      {
+        "docid": "admin/maintenance.php",
+        "score": 556.3875732421875
+      },
+      {
+        "docid": "include/section_init.inc.php",
+        "score": 554.9857788085938
+      },
+      {
+        "docid": "include/functions.inc.php",
+        "score": 548.436279296875
+      },
+      {
+        "docid": "password.php",
+        "score": 546.676513671875
+      },
+      {
+        "docid": "admin/comments.php",
+        "score": 545.351318359375
+      },
+      {
+        "docid": "admin/notification_by_mail.php",
+        "score": 540.8701171875
+      },
+      {
+        "docid": "admin/group_list.php",
+        "score": 531.9547729492188
+      },
+      {
+        "docid": "upgrade.php",
+        "score": 528.5349731445312
+      }
+    ],
+    "function_summary": "This code snippet handles various initialization and routing tasks for a Piwigo photo gallery admin interface. It checks administrator access, processes direct actions (saving plugin display order via AJAX and toggling between admin themes), synchronizes user information for external authentication, and implements URL routing with clean aliases. The routing system converts user-friendly URLs (like `?page=plugin-community-pendings`, `?page=album-134-properties`, and `?page=photo-1234-properties`) into their internal equivalents with proper parameters. It validates and sanitizes the requested page parameter against a whitelist pattern and checks if the corresponding PHP file exists, defaulting to 'intro' if invalid. The snippet also constructs URLs for theme switching and establishes the base URL pattern for admin page links."
+  },
+  {
+    "instance_id": "xss_06",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/hs-web__hsweb-framework",
+    "hits": [
+      {
+        "docid": "hsweb-system/hsweb-system-workflow/hsweb-system-workflow-local/src/main/java/org/hswebframework/web/workflow/web/FlowableModelManagerController.java",
+        "score": 1661.4423828125
+      },
+      {
+        "docid": "hsweb-system/hsweb-system-workflow/hsweb-system-workflow-local/src/main/java/org/hswebframework/web/workflow/web/FlowableDeploymentController.java",
+        "score": 657.3303833007812
+      },
+      {
+        "docid": "hsweb-system/hsweb-system-file/hsweb-system-file-web/src/main/java/org/hswebframework/web/controller/file/FileController.java",
+        "score": 385.0663146972656
+      },
+      {
+        "docid": "hsweb-system/hsweb-system-workflow/hsweb-system-workflow-local/src/main/java/org/hswebframework/web/workflow/web/FlowableProcessController.java",
+        "score": 289.0517883300781
+      },
+      {
+        "docid": "hsweb-system/hsweb-system-authorization/hsweb-system-authorization-web/src/main/java/org/hswebframework/web/authorization/controller/UserController.java",
+        "score": 250.3730010986328
+      },
+      {
+        "docid": "hsweb-system/hsweb-system-database-manager/hsweb-system-database-manager-web/src/main/java/org/hswebframework/web/database/manager/web/DataBaseManagerController.java",
+        "score": 229.61019897460938
+      },
+      {
+        "docid": "hsweb-core/src/main/java/org/hswebframework/web/dict/EnumDict.java",
+        "score": 226.7375946044922
+      },
+      {
+        "docid": "hsweb-system/hsweb-system-organizational/hsweb-system-organizational-web/src/main/java/org/hswebframework/web/controller/organizational/PersonController.java",
+        "score": 217.60360717773438
+      },
+      {
+        "docid": "hsweb-authorization/hsweb-authorization-oauth2/hsweb-authorization-oauth2-client/src/main/java/org/hswebframework/web/authorization/oauth2/client/simple/provider/HswebResponseConvertSupport.java",
+        "score": 213.2362060546875
+      },
+      {
+        "docid": "hsweb-system/hsweb-system-dev-tools/src/main/java/org/hswebframework/web/dev/tools/web/FileManagerDevToolsController.java",
+        "score": 211.8009033203125
+      },
+      {
+        "docid": "hsweb-system/hsweb-system-dynamic-form/hsweb-system-dynamic-form-web/src/main/java/org/hswebframework/web/controller/form/DynamicFormController.java",
+        "score": 208.585205078125
+      },
+      {
+        "docid": "hsweb-thirdparty/hsweb-thirdparty-ueditor/src/main/java/com/baidu/ueditor/ConfigManager.java",
+        "score": 206.10960388183594
+      },
+      {
+        "docid": "hsweb-core/src/main/java/org/hswebframework/web/bean/FastBeanCopier.java",
+        "score": 205.58799743652344
+      },
+      {
+        "docid": "hsweb-commons/hsweb-commons-controller/src/main/java/org/hswebframework/web/controller/QueryController.java",
+        "score": 204.1060028076172
+      },
+      {
+        "docid": "hsweb-system/hsweb-system-workflow/hsweb-system-workflow-local/src/main/java/org/hswebframework/web/workflow/web/diagram/ProcessInstanceHighlightsResource.java",
+        "score": 203.51229858398438
+      },
+      {
+        "docid": "hsweb-commons/hsweb-commons-controller/src/main/java/org/hswebframework/web/controller/CreateController.java",
+        "score": 202.4636993408203
+      },
+      {
+        "docid": "hsweb-system/hsweb-system-oauth2-server/hsweb-system-oauth2-server-web/src/main/java/org/hswebframework/web/authorization/oauth2/controller/OAuth2AuthorizeController.java",
+        "score": 200.9149932861328
+      },
+      {
+        "docid": "hsweb-system/hsweb-system-dynamic-form/hsweb-system-dynamic-form-web/src/main/java/org/hswebframework/web/controller/form/DynamicFormOperationController.java",
+        "score": 200.79739379882812
+      },
+      {
+        "docid": "hsweb-boost/hsweb-boost-excel/src/main/java/org/hswebframework/web/excel/DefaultExcelImporter.java",
+        "score": 197.2781982421875
+      },
+      {
+        "docid": "hsweb-starter/hsweb-spring-boot-starter/src/main/java/org/hswebframework/web/starter/RestControllerExceptionTranslator.java",
+        "score": 195.74510192871094
+      }
+    ],
+    "function_summary": "The code snippet handles the export of workflow models in either BPMN or JSON format. It retrieves a model by ID, converts it to a BPMN model, validates that it has a main process, and then exports it in the requested format. For BPMN format, it converts the model to XML; for JSON format, it uses the original editor source. The code sets appropriate HTTP response headers for file download, including content type and filename, then streams the exported bytes to the client. Error handling includes returning a 422 status code if the model lacks a main process and logging any exceptions that occur during export."
+  },
+  {
+    "instance_id": "xss_07",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/DarrenOfficial__dpaste",
+    "hits": [
+      {
+        "docid": "dpaste/views.py",
+        "score": 1257.087890625
+      },
+      {
+        "docid": "dpaste/forms.py",
+        "score": 474.7318115234375
+      },
+      {
+        "docid": "dpaste/highlight.py",
+        "score": 421.418701171875
+      },
+      {
+        "docid": "dpaste/models.py",
+        "score": 397.96148681640625
+      },
+      {
+        "docid": "dpaste/apps.py",
+        "score": 319.2237854003906
+      },
+      {
+        "docid": "dpaste/management/commands/cleanup_snippets.py",
+        "score": 274.5072937011719
+      },
+      {
+        "docid": "dpaste/migrations/0001_initial.py",
+        "score": 133.32839965820312
+      },
+      {
+        "docid": "dpaste/templates/dpaste/details.html",
+        "score": 126.77780151367188
+      },
+      {
+        "docid": "dpaste/templates/dpaste/history.html",
+        "score": 117.25150299072266
+      },
+      {
+        "docid": "dpaste/urls/dpaste.py",
+        "score": 101.10820007324219
+      },
+      {
+        "docid": "dpaste/settings/base.py",
+        "score": 93.64929962158203
+      },
+      {
+        "docid": "client/js/dpaste.js",
+        "score": 93.12460327148438
+      },
+      {
+        "docid": "dpaste/templates/dpaste/includes/form.html",
+        "score": 84.40029907226562
+      },
+      {
+        "docid": "manage.py",
+        "score": 74.8572998046875
+      },
+      {
+        "docid": "dpaste/migrations/0004_auto_20180107_1603.py",
+        "score": 73.489501953125
+      },
+      {
+        "docid": "dpaste/urls/__init__.py",
+        "score": 61.0182991027832
+      },
+      {
+        "docid": "dpaste/migrations/0003_snippet_highlighted.py",
+        "score": 55.59170150756836
+      },
+      {
+        "docid": "dpaste/templates/dpaste/404.html",
+        "score": 52.50320053100586
+      },
+      {
+        "docid": "dpaste/urls/dpaste_api.py",
+        "score": 51.44729995727539
+      },
+      {
+        "docid": "dpaste/templates/dpaste/500.html",
+        "score": 46.83570098876953
+      }
+    ],
+    "function_summary": "The code snippet validates and processes input parameters for creating a code snippet in a pastebin-like application. It first checks if a provided lexer is valid, then attempts to determine the appropriate lexer from a filename if no lexer is specified. If Pygments cannot identify a lexer from the filename, it falls back to a plain code format. The code then validates the expiration setting against allowed options, returning an error if invalid, and sets default expiration to 24 hours if none is provided."
+  },
+  {
+    "instance_id": "xss_08",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/OpenC3__cosmos",
+    "hits": [
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/base/components/Login.vue",
+        "score": 711.3292846679688
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-cosmos-tool-scriptrunner/src/tools/ScriptRunner/ScriptRunner.vue",
+        "score": 356.37811279296875
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/admin/tabs/PluginsTab.vue",
+        "score": 281.8525085449219
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-cosmos-tool-dataviewer/src/tools/DataViewer/DataViewer.vue",
+        "score": 272.4446105957031
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/components/EnvironmentDialog.vue",
+        "score": 271.6272888183594
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/components/FileOpenSaveDialog.vue",
+        "score": 258.1311950683594
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-cosmos-tool-tablemanager/src/tools/TableManager/TableManager.vue",
+        "score": 258.1217041015625
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-cosmos-tool-dataextractor/src/tools/DataExtractor/DataExtractor.vue",
+        "score": 258.087890625
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-cosmos-tool-scriptrunner/src/tools/ScriptRunner/Dialogs/AskDialog.vue",
+        "score": 253.1304931640625
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/admin/tabs/PackagesTab.vue",
+        "score": 252.86199951171875
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/calendar/Dialogs/ActivityCreateDialog.vue",
+        "score": 250.65809631347656
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/admin/tabs/SecretsTab.vue",
+        "score": 249.8538055419922
+      },
+      {
+        "docid": "docs/search-doc-1726259649021.json",
+        "score": 244.5825958251953
+      },
+      {
+        "docid": "docs/search-doc.json",
+        "score": 244.5825958251953
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/calendar/Dialogs/NoteCreateDialog.vue",
+        "score": 243.8972930908203
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/calendar/Dialogs/MetadataCreateDialog.vue",
+        "score": 241.30799865722656
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/admin/PluginDialog.vue",
+        "score": 240.97430419921875
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-cosmos-tool-cmdsender/src/tools/CommandSender/CommandSender.vue",
+        "score": 238.62930297851562
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/components/Graph.vue",
+        "score": 236.78070068359375
+      },
+      {
+        "docid": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/admin/tabs/settings/ClassificationBannerSettings.vue",
+        "score": 236.71839904785156
+      }
+    ],
+    "function_summary": "The snippet stores the user's password in local storage as \"openc3Token\", extracts a redirect URL from the query parameters if present, and then navigates the browser to that decoded URL or to the root path ('/') if no redirect parameter was specified."
+  },
+  {
+    "instance_id": "xss_09",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/zadam__trilium",
+    "hits": [
+      {
+        "docid": "src/share/routes.js",
+        "score": 906.0073852539062
+      },
+      {
+        "docid": "src/routes/api/image.js",
+        "score": 365.5168151855469
+      },
+      {
+        "docid": "src/routes/api/files.js",
+        "score": 330.9035949707031
+      },
+      {
+        "docid": "src/routes/routes.js",
+        "score": 300.31561279296875
+      },
+      {
+        "docid": "src/etapi/notes.js",
+        "score": 298.131591796875
+      },
+      {
+        "docid": "src/app.js",
+        "score": 253.28860473632812
+      },
+      {
+        "docid": "src/services/notes.js",
+        "score": 241.86459350585938
+      },
+      {
+        "docid": "libraries/fancytree/jquery.fancytree-all-deps.js",
+        "score": 240.3760986328125
+      },
+      {
+        "docid": "src/routes/api/note_revisions.js",
+        "score": 237.6186981201172
+      },
+      {
+        "docid": "src/services/export/zip.js",
+        "score": 235.593994140625
+      },
+      {
+        "docid": "libraries/jquery.js",
+        "score": 229.33099365234375
+      },
+      {
+        "docid": "src/public/app/widgets/note_tree.js",
+        "score": 227.11990356445312
+      },
+      {
+        "docid": "libraries/eslint.js",
+        "score": 219.71560668945312
+      },
+      {
+        "docid": "src/share/content_renderer.js",
+        "score": 217.1822052001953
+      },
+      {
+        "docid": "src/public/app/widgets/type_widgets/canvas.js",
+        "score": 216.747802734375
+      },
+      {
+        "docid": "src/public/app/widgets/attribute_widgets/attribute_detail.js",
+        "score": 203.7115020751953
+      },
+      {
+        "docid": "src/routes/custom.js",
+        "score": 193.15240478515625
+      },
+      {
+        "docid": "libraries/codemirror/codemirror.js",
+        "score": 189.55369567871094
+      },
+      {
+        "docid": "libraries/katex/katex.js",
+        "score": 188.07040405273438
+      },
+      {
+        "docid": "src/services/import/zip.js",
+        "score": 187.6884002685547
+      }
+    ],
+    "function_summary": "This snippet retrieves a note identified by the noteId parameter from the request and checks if it exists. If the note is not found, it returns a 404 HTTP status code with an error message indicating that the requested note was not found."
+  },
+  {
+    "instance_id": "xss_10",
+    "repo_dir": "outputs/dataset_50/indexes_file_name_and_contents/zadam__trilium",
+    "hits": [
+      {
+        "docid": "src/routes/custom.js",
+        "score": 389.0732116699219
+      },
+      {
+        "docid": "libraries/jquery.js",
+        "score": 225.88949584960938
+      },
+      {
+        "docid": "libraries/fancytree/jquery.fancytree-all-deps.js",
+        "score": 214.8345947265625
+      },
+      {
+        "docid": "src/routes/routes.js",
+        "score": 201.8874053955078
+      },
+      {
+        "docid": "libraries/eslint.js",
+        "score": 197.6195068359375
+      },
+      {
+        "docid": "src/services/notes.js",
+        "score": 178.47360229492188
+      },
+      {
+        "docid": "libraries/katex/katex.js",
+        "score": 177.1324005126953
+      },
+      {
+        "docid": "libraries/codemirror/keymap/vim.js",
+        "score": 154.82789611816406
+      },
+      {
+        "docid": "libraries/codemirror/codemirror.js",
+        "score": 145.14889526367188
+      },
+      {
+        "docid": "src/etapi/etapi_utils.js",
+        "score": 144.73849487304688
+      },
+      {
+        "docid": "libraries/codemirror/mode/sql/sql.js",
+        "score": 143.27090454101562
+      },
+      {
+        "docid": "src/app.js",
+        "score": 141.1302947998047
+      },
+      {
+        "docid": "src/becca/entities/note.js",
+        "score": 139.8105010986328
+      },
+      {
+        "docid": "src/services/import/zip.js",
+        "score": 137.6309051513672
+      },
+      {
+        "docid": "src/services/consistency_checks.js",
+        "score": 137.4853973388672
+      },
+      {
+        "docid": "src/public/app/widgets/attribute_widgets/attribute_detail.js",
+        "score": 134.09339904785156
+      },
+      {
+        "docid": "docs/backend_api/becca_entities_note.js.html",
+        "score": 132.84449768066406
+      },
+      {
+        "docid": "src/routes/api/search.js",
+        "score": 130.11990356445312
+      },
+      {
+        "docid": "src/services/import/enex.js",
+        "score": 129.1699981689453
+      },
+      {
+        "docid": "libraries/ckeditor/ckeditor.js",
+        "score": 124.64779663085938
+      }
+    ],
+    "function_summary": "The code iterates through attributes, checking if each one has a regex pattern that matches the request path. When a match is found, it either executes a custom request handler script (passing path parameters, request, and response objects) or serves a file via a resource provider, depending on the attribute's name. The function returns after handling the first matching attribute, or responds with a 404 error if no handler matches the path. Error handling is implemented for both regex matching and script execution."
+  }
+]
