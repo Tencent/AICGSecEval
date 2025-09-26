@@ -478,6 +478,29 @@
     ]
   },
   {
+    "instance_id": "uuykea_CVE-2017-5969",
+    "repo": "GNOME/libxml2",
+    "base_commit": "94691dc884d1a8ada39f073408b4bb92fe7fe882^",
+    "patch_commit": "94691dc884d1a8ada39f073408b4bb92fe7fe882",
+    "vuln_file": "valid.c",
+    "vuln_lines": [
+      1265,
+      1274
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2017-5969",
+    "cwe_id": "CWE-476",
+    "vuln_type": "Null Pointer Dereference",
+    "severity": "medium",
+    "image": "choser/libxml2-cve-2017-5969:latest",
+    "image_name": "libxml2-cve-2017-5969",
+    "image_inner_path": "/workspace/libxml2",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
     "instance_id": "Choser_CVE-2016-7445",
     "repo": "uclouvain/openjpeg",
     "base_commit": "f053508f6fc26aa95839f747bc7cbf257bd43996^",
@@ -1080,4 +1103,5 @@
     "poc_cmd": "./poc.sh"
   }
 ]
+
 
