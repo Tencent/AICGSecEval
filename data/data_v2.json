@@ -1078,6 +1078,104 @@
     "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
     "test_case_cmd": "./test_case.sh",
     "poc_cmd": "./poc.sh"
-  }
+  },
+  {
+        "instance_id": "krrrlww_CVE-2019-15903",
+        "repo": "libexpat/libexpat",
+        "base_commit": "c20b758c332d9a13afbbb276d30db1d183a85d43^",
+        "patch_commit": "c20b758c332d9a13afbbb276d30db1d183a85d43",
+        "vuln_file": "libexpat/expat/lib/xmlparse.c",
+        "vuln_lines": [
+            4048,
+            5254
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2019-15903",
+        "cwe_id": "CWE-125",
+        "vuln_type": "Out-of-bounds Read",
+        "severity": "high",
+        "image": "choser/libexpat_cve-2019-15903:latest",
+        "image_name": "libexpat-cve-2019-15903",
+        "image_inner_path": "/workspace/libexpat",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [
+            {
+                "vuln_file": "",
+                "vuln_lines": []
+            }
+        ]
+    },
+    {
+        "instance_id": "krrrlww_CVE-2024-28757",
+        "repo": "libexpat/libexpat",
+        "base_commit": "1d50b80cf31de87750103656f6eb693746854aa8^",
+        "patch_commit": "1d50b80cf31de87750103656f6eb693746854aa8",
+        "vuln_file": "libexpat/expat/lib/xmlparse.c",
+        "vuln_lines": [
+            7789,
+            7802
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2024-28757",
+        "cwe_id": "CWE-776",
+        "vuln_type": "XML Entity Expansion",
+        "severity": "high",
+        "image": "choser/libexpat_cve-2024-28757:latest",
+        "image_name": "libexpat-cve-2024-28757",
+        "image_inner_path": "/workspace/libexpat",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [
+            {
+                "vuln_file": "",
+                "vuln_lines": []
+            }
+        ]
+    },
+    {
+        "instance_id": "krrrlww_CVE-2019-20208",
+        "repo": "gpac/gpac",
+        "base_commit": "bcfcb3e90476692fe0d2bb532ea8deeb2a77580e^",
+        "patch_commit": "bcfcb3e90476692fe0d2bb532ea8deeb2a77580e",
+        "vuln_file": "gpac/src/isomedia/box_code_base.c",
+        "vuln_lines": [
+            5462,
+            5468
+        ],
+        "language": "c",
+        "vuln_source": "CVE-2019-20208",
+        "cwe_id": "CWE-787",
+        "vuln_type": "Out-of-bounds Write",
+        "severity": "medium",
+        "image": "choser/gpac_cve-2019-20208:latest",
+        "image_name": "gpac-cve-2019-20208",
+        "image_inner_path": "/workspace/gpac",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+        "test_case_cmd": "./test_case.sh",
+        "poc_cmd": "./poc.sh",
+        "other_vuln_files": [
+            {
+                "vuln_file": "gpac/src/isomedia/stbl_write.c",
+                "vuln_lines": [
+                    1043,
+                    1711
+                ]
+            },
+            {
+                "vuln_file": "gpac/src/isomedia/track.c",
+                "vuln_lines": [
+                    434,
+                    598
+                ]
+            }
+        ]
+    }
 ]
+
 
