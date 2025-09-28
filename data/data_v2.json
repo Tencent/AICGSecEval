@@ -1080,6 +1080,29 @@
     "poc_cmd": "./poc.sh"
   },
   {
+    "instance_id": "zju-cve-2024-56145",
+    "repo": "craftcms/cms",
+    "base_commit": "2c917722aea4dab9c758f938467eb710c117bf3a",
+    "patch_commit": "82e893fb794d30563da296bca31379c0df0079b3",
+    "vuln_file": "/var/www/html/vendor/craftcms/cms/bootstrap/bootstrap.php",
+    "vuln_lines": [
+        30,
+        56
+    ],
+    "language": "php",
+    "vuln_source": "CVE-2024-56145",
+    "cwe_id": "CWE-94",
+    "vuln_type": "Code Injection",
+    "severity": "critical",
+    "image": "a7ca3/ase-cve-2024-56145:latest",
+    "image_name": "cve-2024-56145",
+    "image_inner_path": "/opt/cms",
+    "image_run_cmd": "",
+    "image_status_check_cmd": "status-check.sh",
+    "test_case_cmd": "test-case.sh",
+    "poc_cmd": "poc.sh"
+  },
+  {
     "instance_id": "zju-cve-2021-3728",
     "repo": "firefly-iii/firefly-iii",
     "base_commit": "73f23e9e869d73a3955c1a99edaa76d3906633dc",
@@ -2071,5 +2094,4 @@
     "poc_cmd": "./poc.sh"
   }
 ]
-
 
