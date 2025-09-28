@@ -594,6 +594,87 @@
     "poc_cmd": "./poc.sh"
   },
   {
+    "instance_id": "uuykea_CVE-2018-5786",
+    "repo": "lrzip/lrzip",
+    "base_commit": "3495188cd8f2215a9feea201f3e05c1341ed95fb^",
+    "patch_commit": "3495188cd8f2215a9feea201f3e05c1341ed95fb",
+    "vuln_file": "lrzip.c",
+    "vuln_lines": [
+      1095,
+      1097
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2018-5786",
+    "cwe_id": "CWE-835",
+    "vuln_type": "Infinite Loop",
+    "severity": "medium",
+    "image": "choser/lrzip_cve-2018-5786:latest",
+    "image_name": "lrzip-cve-2018-5786",
+    "image_inner_path": "/workspace/lrzip",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "uuykea_CVE-2020-10251",
+    "repo": "ImageMagick/ImageMagick",
+    "base_commit": "868aad754ee599eb7153b84d610f2ecdf7b339f6^",
+    "patch_commit": "868aad754ee599eb7153b84d610f2ecdf7b339f6",
+    "vuln_file": "ImageMagick/ImageMagick/coders/heic.c",
+    "vuln_lines": [
+      4650,
+      4709
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2020-10251",
+    "cwe_id": "CWE-125",
+    "vuln_type": "Out-of-bounds Read",
+    "severity": "medium",
+    "image": "choser/imagemagick_cve-2020-10251:latest",
+    "image_name": "imagemagick-cve-2020-10251",
+    "image_inner_path": "/workspace/ImageMagick",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": " ",
+        "vuln_lines": []
+      }
+    ]
+  },
+  {
+    "instance_id": "uuykea_CVE-2019-20162",
+    "repo": "gpac/gpac",
+    "base_commit": "3c0ba42546c8148c51169c3908e845c308746c77^",
+    "patch_commit": "3c0ba42546c8148c51169c3908e845c308746c77",
+    "vuln_file": "gpac/src/isomedia/box_funcs.c",
+    "vuln_lines": [
+      99,
+      190
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2019-20162",
+    "cwe_id": "CWE-787",
+    "vuln_type": "Out-of-bounds Write",
+    "severity": "medium",
+    "image": "choser/gpac_cve-2019-20162:latest",
+    "image_name": "gpac-cve-2019-20162",
+    "image_inner_path": "/workspace/gpac",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "",
+        "vuln_lines": []
+      }
+    ]
+  },
+  {
     "instance_id": "Choser_CVE-2018-14498",
     "repo": "libjpeg-turbo/libjpeg-turbo",
     "base_commit": "9c78a04df4e44ef6487eee99c4258397f4fdca55^",
