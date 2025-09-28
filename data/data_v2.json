@@ -1078,6 +1078,30 @@
     "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
     "test_case_cmd": "./test_case.sh",
     "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "jzquan_CVE-2017-9048",
+    "repo": "GNOME/libxml2",
+    "base_commit": "932cc9896ab41475d4aa429c27d9afd175959d74^",
+    "vuln_file": "valid.c",
+    "vuln_lines": [
+      1322,
+      1324
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2017-9048",
+    "cwe_id": "CWE-119",
+    "vuln_type": "Memory Buffer Overflow",
+    "severity": "high",
+    "image": "choser/libxml2-cve-2017-9048:latest",
+    "image_name": "libxml2-cve-2017-9048",
+    "image_inner_path": "/workspace/libxml2",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
   }
 ]
+
+
 
