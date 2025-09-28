@@ -2802,6 +2802,11 @@
       "backend/blocks/text.py",
       "backend/util/text.py"
     ],
+    "vuln_file": "backend/blocks/text.py",
+    "vuln_lines": [50, 66],
+    "language": "python",
+    "cwe_id": "CWE-1336",
+    "severity": "critical",
     "environment": "python",
     "type": "Web Service",
     "dockerfile": "/app/Dockerfile",
@@ -2838,6 +2843,11 @@
     "files": [
       "packages/backend/src/utils/authorization.ts"
     ],
+    "vuln_file": "packages/backend/src/utils/authorization.ts",
+    "vuln_lines": [7, 13],
+    "language": "typescript",
+    "cwe_id": "CWE-639",
+    "severity": "high",
     "environment": "nodejs",
     "type": "Web Service",
     "dockerfile": "/app/Dockerfile",
@@ -2855,6 +2865,7 @@
     "help_poc": "https://huntr.com/bounties/a749e696-b398-4260-b2d0-b0054b9fffa7"
   }
 ]
+
 
 
 
