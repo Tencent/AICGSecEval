@@ -449,7 +449,7 @@
         "patch_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba"
     },
     {
-        "instance_id": "fd_11",
+        "instance_id": "fd_cve-2023-33246",
         "repo": "apache/rocketmq",
         "base_commit": "b8e9334",
         "vuln_file": "rocketmq/broker/src/main/java/org/apache/rocketmq/broker/filtersrv/FilterServerManager.java",
@@ -469,7 +469,7 @@
         "patch_commit":"749967b"
     },
     {
-        "instance_id": "fd_12",
+        "instance_id": "fd_cve-2023-37582",
         "repo": "apache/rocketmq",
         "base_commit": "b8e9334",
         "vuln_file": "rocketmq/remoting/src/main/java/org/apache/rocketmq/remoting/Configuration.java",
