@@ -207,6 +207,17 @@ class ContextManager:
             source_patch_file = os.path.join(tmp_dir, "patch.diff")
             target_patch_file = os.path.join(target_repo_dir, "patch.diff")
             shutil.copy(source_patch_file, target_patch_file)
+
+            # 原始响应内容 & patch 拷贝
+            raw_response_file = os.path.join(tmp_dir, "response.txt")
+            raw_patch_file = os.path.join(tmp_dir, "raw_patch.diff")
+            if os.path.exists(raw_response_file):
+                target_response_file = os.path.join(target_repo_dir, "response.txt")
+                shutil.copy(raw_response_file, target_response_file)
+            if os.path.exists(raw_patch_file):
+                target_patch_file = os.path.join(target_repo_dir, "raw_patch.diff")
+                shutil.copy(raw_patch_file, target_patch_file)
+
             shutil.rmtree(tmp_dir)
         # 重新挖空
         self.masked_content = None

@@ -150,13 +150,22 @@ def add_lines(content):
 # 将文件内容转换为文本
 def make_code_text(files_dict, add_line_numbers=True):
     all_text = ""
-    for filename, contents in sorted(files_dict.items()):
-        all_text += f"[start of {filename}]\n"
-        if add_line_numbers:
-            all_text += add_lines(contents)
-        else:
-            all_text += contents
-        all_text += f"\n[end of {filename}]\n"
+    if isinstance(files_dict, list):
+        for file in files_dict:
+            all_text += f"[start of {file['path']}]\n"
+            if add_line_numbers:
+                all_text += add_lines(file['content'])
+            else:
+                all_text += file['content']
+            all_text += f"\n[end of {file['path']}]\n"
+    else:
+        for filename, contents in sorted(files_dict.items()):
+            all_text += f"[start of {filename}]\n"
+            if add_line_numbers:
+                all_text += add_lines(contents)
+            else:
+                all_text += contents
+            all_text += f"\n[end of {filename}]\n"
     return all_text.strip("\n")
 
 # 将文件内容转换为文本
@@ -300,8 +309,8 @@ def make_codegen_prompt_withsummary(readme_files,masked_files,context_files,func
     code_text = make_code_text(masked_files)
 
     # 删除上下文文件中和漏洞文件重合的文件
-    context_files = [file for file in context_files if file not in masked_files]
-    code_base_text = make_code_text(ingest_files(context_files))
+    context_files = [file for file in context_files if file["path"] not in masked_files]
+    code_base_text = make_code_text(context_files)
     # 生成函数功能摘要的解释
     summary_explanation = (
         "Here is the functionality summary of the code snippet that you need to complete: "
@@ -357,7 +366,7 @@ def make_codegen_prompt(MAXTOKEN,readme_files,masked_files,context_files,functio
     used_context_files = []
     count=0
     for file in context_files:
-        content = make_code_text(ingest_files([file]))
+        content = make_code_text({file["path"]: file["content"]})
         content_tokens = len(TOKENIZER(content)['input_ids'])
         if prompt_tokens + content_tokens > MAXTOKEN:
             break
@@ -383,16 +392,19 @@ def call_llm(base_url, openai_key, model_name, system_message, user_message, max
     if model_name == "hunyuan-t1-20250321":
         return hySend(model_name, system_message, user_message)
     
-    if model_name == "Qwen3-235B-A22B-thinking":
-        return qwen3_call(system_message, user_message, thinking=True)
+
+    if model_name == "qwen3-4b-thinking": # or model_name == "qwen3-235b-a22b-thinking-2507" or model_name == "qwen3-30b-a3b-thinking-2507"
+        return qwen3_call(base_url, openai_key, model_name,system_message, user_message, thinking=True)
     
-    if model_name == "Qwen3-235B-A22B-nothinking":
-        return qwen3_call(system_message, user_message, thinking=False)
+    if model_name == "qwen3-4b-nothinking":
+        return qwen3_call(base_url, openai_key, model_name, system_message, user_message, thinking=False)
     
     if model_name == "codex-mini-latest":
         return openai_response_call_model(base_url, openai_key, model_name, system_message, user_message)
-
     
+    if model_name == "glm-4.5":
+        return invoke_glm4_5(system_message, user_message)
+
     openai.base_url = base_url
     openai.api_key = openai_key
 
@@ -416,8 +428,16 @@ def call_llm(base_url, openai_key, model_name, system_message, user_message, max
             max_completion_tokens=max_gen_token,
             **model_args
         )
+
+    print(response)
+
     completion = response.choices[0].message.content.strip()
     return completion
+
+
+def invoke_glm4_5(system_message, user_message):
+    pass
+
 
 
 # 通过response方式调用大模型
@@ -463,19 +483,20 @@ def hySend(model_name, system_message, user_message):
 
 
 # 调用 Qwen3 模型
-def qwen3_call(system_message, user_message, thinking=False):
-    api_key = os.getenv('QWEN3_KEY')
+def qwen3_call(base_url, openai_key, model_name, system_message, user_message, thinking=False):
+    # api_key = os.getenv('QWEN3_KEY')
     client = openai.OpenAI(
-        base_url='https://dashscope.aliyuncs.com/compatible-mode/v1',
-        api_key=api_key,
+        base_url=base_url,
+        api_key=openai_key,
     )
     # 设置 extra_body 用于控制思考
     extra_body = {
         "enable_thinking": thinking,
     }
     # 调用大模型
+    model_name = model_name[:model_name.rfind('-')]
     response = client.chat.completions.create(
-        model='qwen3-235b-a22b', 
+        model=model_name, 
         messages=[
                 {"role": "system", "content": system_message}, 
                 {"role": "user", "content": user_message}
