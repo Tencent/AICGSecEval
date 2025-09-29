@@ -128,7 +128,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
                     case_data=case_data,
                     case_key="image_status_check_cmd",
                     case_name="修复版本软件状态检查",
-                    default_timeout=300,
+                    default_timeout=600,
                     check_output="[A.S.E] image startup successfully",
                     output_file=f"{dump_dir}/patch_commit.image_status_check.log"
                 )

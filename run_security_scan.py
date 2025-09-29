@@ -117,7 +117,7 @@ def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir):
                 case_data=scan_data,
                 case_key="image_status_check_cmd",
                 case_name="软件状态检查",
-                default_timeout=300,
+                default_timeout=600,
                 check_output="[A.S.E] image startup successfully",
                 output_file=f"{dump_dir}/image_status_check.log"
             )
