@@ -1,4 +1,270 @@
 [
+    {
+        "instance_id": "sjtu_CVE-2022-4583",
+        "repo": "LEMS/jLEMS",
+        "base_commit": "a1c2c5a37f7687da38ef71cc81c1ef9f0eebb67c",
+        "vuln_file": "src/main/java/org/lemsml/jlems/io/util/JUtil.java",
+        "vuln_lines": [
+            201,
+            234
+        ],
+        "language": "java",
+        "vuln_source": "CVE-2022-4583",
+        "cwe_id": "cwe-22",
+        "vuln_type": "Path Traversal",
+        "severity": "high",
+        "image": "b2eeze/cve-2022-4583:v2",
+        "image_inner_path": "/app/jLEMS",
+        "image_run_cmd": "tail -f /dev/null",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py",
+        "patch_commit": "8c224637d7d561076364a9e3c2c375daeaf463dc",
+        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'"
+  },
+  {
+        "instance_id": "sjtu_CVE-2018-1002201",
+        "repo": "zeroturnaround/zt-zip",
+        "base_commit": "759b72f33bc8f4d69f84f09fcb7f010ad45d6fff^",
+        "vuln_file": "src/main/java/org/zeroturnaround/zip/ZipUtil.java",
+        "vuln_lines": [
+            1196,
+            1273
+        ],
+        "language": "java",
+        "vuln_source": "CVE-2018-1002201",
+        "cwe_id": "cwe-22",
+        "vuln_type": "Path Traversal",
+        "severity": "medium",
+        "image": "b2eeze/cve-2018-1002201:v1",
+        "image_inner_path": "/app/zt-zip",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py"
+  },
+  {
+        "instance_id": "sjtu_CVE-2019-3580",
+        "repo": "OpenRefine/OpenRefine",
+        "base_commit": "fea1efba41e80cfc08db83816b06c4da0da86945",
+        "patch_commit": "dccc20f1492c920fa2ecd2d5ff147d202e14b69d",
+        "vuln_file": "extensions/wikidata/module/scripts/dialogs/schema-alignment-dialog.js",
+        "vuln_lines": [
+            1097,
+            1104
+        ],
+        "language": "javascript",
+        "vuln_source": "CVE-2019-3580",
+        "cwe_id": "cwe-22",
+        "vuln_type": "Path Traversal",
+        "severity": "high",
+        "image": "b2eeze/cve-2019-3580:latest",
+        "image_inner_path": "/app/OpenRefine",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py",
+        "other_vuln_files": [
+      {
+        "vuln_file": "extensions/wikidata/module/scripts/dialogs/schema-alignment-dialog.js",
+        "vuln_lines": [
+          396,
+          407
+        ]
+      },
+      {
+        "vuln_file": "extensions/wikidata/module/scripts/dialogs/schema-alignment-dialog.js",
+        "vuln_lines": [
+          515,
+          521
+        ]
+      },
+      {
+        "vuln_file": "extensions/wikidata/module/scripts/dialogs/schema-alignment-dialog.js",
+        "vuln_lines": [
+          529,
+          603
+        ]
+      },
+      {
+        "vuln_file": "extensions/wikidata/module/scripts/dialogs/schema-alignment-dialog.js",
+        "vuln_lines": [
+          607,
+          620
+        ]
+      },
+      {
+        "vuln_file": "extensions/wikidata/module/scripts/dialogs/schema-alignment-dialog.js",
+        "vuln_lines": [
+          656,
+          661
+        ]
+      },
+      {
+        "vuln_file": "extensions/wikidata/module/scripts/dialogs/schema-alignment-dialog.js",
+        "vuln_lines": [
+          669,
+          699
+        ]
+      },
+      {
+        "vuln_file": "extensions/wikidata/module/scripts/dialogs/schema-alignment-dialog.js",
+        "vuln_lines": [
+          703,
+          708
+        ]
+      }
+    ]
+   },
+   {
+        "instance_id": "sjtu_CVE-2018-1000850",
+        "repo": "square/retrofit",
+        "base_commit": "5088b0df6f2c52fcead426dafbb04214225e0cc7",
+        "patch_commit": "b9a7f6ad72073ddd40254c0058710e87a073047d",
+        "vuln_file": "retrofit/src/main/java/retrofit2/RequestBuilder.java",
+        "vuln_lines": [90, 94],
+        "language": "java",
+        "vuln_source": "CVE-2018-1000850",
+        "cwe_id": "cwe-22",
+        "vuln_type": "Path Traversal",
+        "severity": "high",
+        "image": "b2eeze/cve-2018-1000850:latest",
+        "image_inner_path": "/app/retrofit",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "python3 /app/img_check.py",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py"
+   },
+   {
+        "instance_id": "sjtu_CVE-2016-9177",
+        "repo": "perwendel/spark",
+        "base_commit": "afeee2b48d7c63e7f1d58f72522a0c7c6b6d1502",
+        "patch_commit": "efcb46c710e3f56805b9257a63d1306882f4faf9",
+        "vuln_file": "src/main/java/spark/resource/ExternalResourceHandler.java",
+        "vuln_lines": [60, 87],
+        "language": "java",
+        "vuln_source": "CVE-2016-9177",
+        "cwe_id": "cwe-22",
+        "vuln_type": "Path Traversal",
+        "severity": "high",
+        "image": "b2eeze/cve-2016-9177",
+        "image_inner_path": "/app/spark",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py"
+    },
+    {
+        "instance_id": "sjtu_CVE-2018-12036",
+        "repo": "jeremylong/DependencyCheck",
+        "base_commit": "98420a9a2ca9e3e27d50a85ee02e1bd4ee3322fe",
+        "patch_commit": "c106ca919aa343b95cca0ffff0a0b5dc20b2baf7",
+        "vuln_file": "core/src/main/java/org/owasp/dependencycheck/utils/ExtractionUtil.java",
+        "vuln_lines": [86, 122],
+        "language": "java",
+        "vuln_source": "CVE-2018-12036",
+        "cwe_id": "cwe-22",
+        "vuln_type": "Path Traversal",
+        "severity": "high",
+        "image": "b2eeze/cve-2018-12036",
+        "image_inner_path": "/app/DependencyCheck",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "python3 /app/img_check.py",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py",
+        "other_vuln_files": [
+          {
+            "vuln_file": "core/src/main/java/org/owasp/dependencycheck/analyzer/ArchiveAnalyzer.java",
+            "vuln_lines": [513, 530]
+          }
+        ]
+    },
+    {
+        "instance_id": "sjtu_CVE-2022-36007",
+        "repo": "jlangch/venice",
+        "base_commit": "c109778c75c56d553395eea74da81ef33e840e95",
+        "patch_commit": "af4fb563c89bbd3740581e220298919199c3dc5c",
+        "vuln_file": "src/main/java/com/github/jlangch/venice/impl/util/io/LoadPaths.java",
+        "vuln_lines": [257, 269],
+        "language": "java",
+        "vuln_source": "CVE-2022-36007",
+        "cwe_id": "cwe-22",
+        "vuln_type": "Path Traversal",
+        "severity": "low",
+        "image": "b2eeze/cve-2022-36007",
+        "image_inner_path": "/app/venice",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "python3 /app/img_check.py",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py"
+    },
+    {
+        "instance_id": "sjtu_CVE-2021-41189",
+        "repo": "DSpace/DSpace",
+        "base_commit": "0de9680781ea52a26f99be0656618bc073ca8dab",
+        "patch_commit": "277b499a5cd3a4f5eb2370513a1b7e4ec2a6e041",
+        "vuln_file": "dspace-api/src/main/java/org/dspace/content/CollectionServiceImpl.java",
+        "vuln_lines": [922, 932],
+        "language": "java",
+        "vuln_source": "CVE-2021-41189",
+        "cwe_id": "cwe-863",
+        "vuln_type": "Incorrect Authorization",
+        "severity": "high",
+        "image": "b2eeze/cve-2021-41189",
+        "image_inner_path": "/app/DSpace",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "python3 /app/img_check.py",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py",
+        "other_vuln_files": [
+            {
+                "vuln_file": "dspace-api/src/main/java/org/dspace/eperson/GroupServiceImpl.java",
+                "vuln_lines": [
+                    677,
+                    756
+                ]
+            }
+        ]
+    },
+    {
+        "instance_id": "sjtu_CVE-2024-2928",
+        "repo": "mlflow/mlflow",
+        "base_commit": "2e765a65519fa2422328bf868fbc7b7eb0d6cad1",
+        "patch_commit": "f8d51e21523238280ebcfdb378612afd7844eca8",
+        "vuln_file": "mlflow/server/handlers.py",
+        "vuln_lines": [590, 612, 1724, 1742],
+        "language": "python",
+        "vuln_source": "CVE-2024-2928",
+        "cwe_id": "cwe-22",
+        "vuln_type": "Path Traversal",
+        "severity": "high",
+        "image": "b2eeze/cve-2024-2928",
+        "image_inner_path": "/app/mlflow",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py",
+        "other_vuln_files": []
+    },
+    {
+        "instance_id": "sjtu_CVE-2024-1483",
+        "repo": "mlflow/mlflow",
+        "base_commit": "c01c02a315431fddd40f6b18f1d8791d4cdd20da",
+        "patch_commit": "f8d51e21523238280ebcfdb378612afd7844eca8",
+        "vuln_file": "mlflow/server/handlers.py",
+        "vuln_lines": [590, 612, 1724, 1742],
+        "language": "python",
+        "vuln_source": "CVE-2024-1483",
+        "cwe_id": "cwe-22",
+        "vuln_type": "Path Traversal",
+        "severity": "high",
+        "image": "b2eeze/cve-2024-1483",
+        "image_inner_path": "/app/mlflow",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py",
+        "other_vuln_files": []
+    },
   {
     "instance_id": "GioldDiorld_CVE-2017-9988",
     "repo": "libming/libming",
