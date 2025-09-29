@@ -600,8 +600,8 @@
     "patch_commit": "3495188cd8f2215a9feea201f3e05c1341ed95fb",
     "vuln_file": "lrzip.c",
     "vuln_lines": [
-      1095,
-      1097
+      1093,
+      1134
     ],
     "language": "c",
     "vuln_source": "CVE-2018-5786",
@@ -733,8 +733,8 @@
     "patch_commit": "f8cca819a4fb42aafa5f70df43c45e8c416d716f",
     "vuln_file": "wrbmp.c",
     "vuln_lines": [
-      505,
-      507
+      498,
+      511
     ],
     "language": "c",
     "vuln_source": "CVE-2018-19664",
@@ -892,8 +892,8 @@
     "patch_commit": "3de15e0c344d11d4b90f4a47136467053eb2d09a",
     "vuln_file": "libjpeg-turbo/src/rdppm.c",
     "vuln_lines": [
-      722,
-      724
+      717,
+      732
     ],
     "language": "c",
     "vuln_source": "CVE-2020-13790",
@@ -1043,8 +1043,8 @@
     "patch_commit": "2849d86aaae168fcac2e1b6c373c249781a41c5c",
     "vuln_file": "libjpeg-turbo/simd/x86_64/jchuff-sse2.asm",
     "vuln_lines": [
-      85,
-      86
+      53,
+      87
     ],
     "language": "c",
     "vuln_source": "CVE-2021-37972",
@@ -1089,8 +1089,8 @@
     "patch_commit": "7e2e92feb1b30fac1d659f6620d743b5a188ffe0",
     "vuln_file": "gpac/gpac/src/scene_manager/swf_parse.c",
     "vuln_lines": [
-      1428,
-      1430
+      1423,
+      1467
     ],
     "language": "c",
     "vuln_source": "CVE-2023-4754",
@@ -2434,8 +2434,8 @@
     "base_commit": "932cc9896ab41475d4aa429c27d9afd175959d74^",
     "vuln_file": "valid.c",
     "vuln_lines": [
-      1322,
-      1324
+      1265,
+      1323
     ],
     "language": "c",
     "vuln_source": "CVE-2017-9048",
@@ -2457,8 +2457,8 @@
     "patch_commit": "3495188cd8f2215a9feea201f3e05c1341ed95fb",
     "vuln_file": "lrzip.c",
     "vuln_lines": [
-      1095,
-      1097
+      1093,
+      1134
     ],
     "language": "c",
     "vuln_source": "CVE-2018-5786",
