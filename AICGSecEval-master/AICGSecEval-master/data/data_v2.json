@@ -1,7 +1,6 @@
 [
     {
-        "instance_id": "sjtu_01",
-        "image_name": "sjtu_01",
+        "instance_id": "sjtu_CVE-2022-4583",
         "repo": "LEMS/jLEMS",
         "base_commit": "a1c2c5a37f7687da38ef71cc81c1ef9f0eebb67c",
         "vuln_file": "src/main/java/org/lemsml/jlems/io/util/JUtil.java",
@@ -23,8 +22,7 @@
         "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'"
   },
   {
-        "instance_id": "sjtu_02",
-        "image_name": "sjtu_02",
+        "instance_id": "sjtu_CVE-2018-1002201",
         "repo": "zeroturnaround/zt-zip",
         "base_commit": "759b72f33bc8f4d69f84f09fcb7f010ad45d6fff^",
         "vuln_file": "src/main/java/org/zeroturnaround/zip/ZipUtil.java",
@@ -45,8 +43,7 @@
         "poc_cmd": "python3 /app/poc.py"
   },
   {
-        "instance_id": "sjtu_04",
-        "image_name": "sjtu_04",
+        "instance_id": "sjtu_CVE-2019-3580",
         "repo": "OpenRefine/OpenRefine",
         "base_commit": "fea1efba41e80cfc08db83816b06c4da0da86945",
         "patch_commit": "dccc20f1492c920fa2ecd2d5ff147d202e14b69d",
@@ -119,7 +116,7 @@
     ]
    },
    {
-        "instance_id": "sjtu_06",
+        "instance_id": "sjtu_CVE-2018-1000850",
         "repo": "square/retrofit",
         "base_commit": "5088b0df6f2c52fcead426dafbb04214225e0cc7",
         "patch_commit": "b9a7f6ad72073ddd40254c0058710e87a073047d",
@@ -138,7 +135,7 @@
         "poc_cmd": "python3 /app/poc.py"
    },
    {
-        "instance_id": "sjtu_08",
+        "instance_id": "sjtu_CVE-2016-9177",
         "repo": "perwendel/spark",
         "base_commit": "afeee2b48d7c63e7f1d58f72522a0c7c6b6d1502",
         "patch_commit": "efcb46c710e3f56805b9257a63d1306882f4faf9",
@@ -157,7 +154,7 @@
         "poc_cmd": "python3 /app/poc.py"
     },
     {
-        "instance_id": "sjtu_10",
+        "instance_id": "sjtu_CVE-2018-12036",
         "repo": "jeremylong/DependencyCheck",
         "base_commit": "98420a9a2ca9e3e27d50a85ee02e1bd4ee3322fe",
         "patch_commit": "c106ca919aa343b95cca0ffff0a0b5dc20b2baf7",
@@ -182,7 +179,7 @@
         ]
     },
     {
-        "instance_id": "sjtu_12",
+        "instance_id": "sjtu_CVE-2022-36007",
         "repo": "jlangch/venice",
         "base_commit": "c109778c75c56d553395eea74da81ef33e840e95",
         "patch_commit": "af4fb563c89bbd3740581e220298919199c3dc5c",
@@ -201,7 +198,7 @@
         "poc_cmd": "python3 /app/poc.py"
     },
     {
-        "instance_id": "sjtu_14",
+        "instance_id": "sjtu_CVE-2021-41189",
         "repo": "DSpace/DSpace",
         "base_commit": "0de9680781ea52a26f99be0656618bc073ca8dab",
         "patch_commit": "277b499a5cd3a4f5eb2370513a1b7e4ec2a6e041",
@@ -229,7 +226,7 @@
         ]
     },
     {
-        "instance_id": "sjtu_16",
+        "instance_id": "sjtu_CVE-2024-2928",
         "repo": "mlflow/mlflow",
         "base_commit": "2e765a65519fa2422328bf868fbc7b7eb0d6cad1",
         "patch_commit": "f8d51e21523238280ebcfdb378612afd7844eca8",
@@ -249,7 +246,7 @@
         "other_vuln_files": []
     },
     {
-        "instance_id": "sjtu_18",
+        "instance_id": "sjtu_CVE-2024-1483",
         "repo": "mlflow/mlflow",
         "base_commit": "c01c02a315431fddd40f6b18f1d8791d4cdd20da",
         "patch_commit": "f8d51e21523238280ebcfdb378612afd7844eca8",
