@@ -12,7 +12,7 @@ import shutil
 from bench import generate_code
 from bench.generate_code import make_codegen_prompt
 from bench.context_manager import ContextManager
-from bench.utils import extract_diff, repair_patch
+from bench.utils import extract_diff, repair_patch, clone_repo
 
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -28,14 +28,6 @@ def load_data(file_path):
     return data
 
 
-def clone_repo(repo, save_repo_dir, token):
-    if not save_repo_dir.exists():
-        repo_url = f"https://{token}@github.com/{repo}.git"
-        logger.info(f"Cloning {repo} {os.getpid()}")
-        Repo.clone_from(repo_url, save_repo_dir)
-    return save_repo_dir
-
-
 def process_instance(instance, model_name, base_url, api_key, max_context_token, max_gen_token, **model_args):
     repo_dir = instance["repo_dir"]
     hits = instance["hits"]
@@ -47,15 +39,36 @@ def process_instance(instance, model_name, base_url, api_key, max_context_token,
         # 修改磁盘上的文件
         masked_vulnerability_file = cm.get_masked_vulnerability_file()
         
-        context_files = generate_code.ingest_files([os.path.join(repo_dir, x["docid"]) for x in hits])
+        context_file_contents = generate_code.ingest_files([os.path.join(repo_dir, x["docid"]) for x in hits])
+        context_files = []
+
+        for hit in hits:
+            hit_path = hit["docid"]
+            hit_abspath = os.path.join(repo_dir, hit["docid"])
+            if hit_abspath not in context_file_contents:
+                continue
+            if "startline" in hit and "endline" in hit:
+                hit_content = "\n".join(context_file_contents[hit_abspath].splitlines()[hit["startline"]-1:hit["endline"]])
+            else:
+                hit_content = context_file_contents[hit_abspath]
+            context_files.append({
+                "path": hit_path,
+                "abspath": hit_abspath,
+                "content": hit_content,
+            })
+
         system_message, user_message = make_codegen_prompt(max_context_token, readme_files, 
                                                            masked_vulnerability_file, context_files, function_summary)
         
         # 调用 LLM 生成代码
         response = generate_code.call_llm(base_url, api_key, model_name, system_message, user_message, 
                                           max_gen_token, **model_args)
-        model_patch = extract_diff(response)
+        
+        # save raw response
+        with open(os.path.join(repo_dir, "raw_response.txt"), "w") as f:
+            f.write(response)
 
+        model_patch = extract_diff(response)
         if model_patch is None or len(model_patch)==0:
             logger.error(f"模型生成补丁为空")
             print(response)
@@ -81,7 +94,11 @@ def try_patch(model_patch, repo_dir, cm, instance):
 
     # 如果第二次尝试失败，则重置项目，修复补丁，并尝试第三次
     cm.reset_repo(instance["raw_repo_dir"], repo_dir)
-    logger.info(f"原始应用补丁失败，尝试修复补丁")
+    # save raw patch
+    with open(os.path.join(repo_dir, "raw_patch.diff"), "w") as f:
+        f.write(model_patch)
+
+    logger.info(f"原始应用补丁失败，尝试修复补丁")    
     repaired_patch = repair_patch(model_patch)
     if len(repaired_patch)==0:
         logger.error(f"修复后补丁为空")
@@ -99,7 +116,6 @@ def try_patch(model_patch, repo_dir, cm, instance):
     else:
         logger.info(f"修复后应用补丁成功")
         return True
-
 
 
 def process_all_instances(raw_instances, retrieval_instances, model_name, batch_id, base_url, api_key, 
@@ -192,7 +208,7 @@ def process(instance, model_name, base_url, api_key, github_token, raw_repo_dir,
     # 获取原始 repo 
     repo = instance["repo"]
     repo_dir = Path(raw_repo_dir, f"{repo.replace('/', '__')}")
-    clone_repo(repo, repo_dir, github_token)
+    clone_repo(repo, repo_dir, github_token, logger)
 
     # 为每个周期创建一个新的工作目录
     for cycle in range(1, num_cycles + 1):
