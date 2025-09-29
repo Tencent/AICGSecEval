@@ -2429,147 +2429,6 @@
     ]
   },
   {
-    "instance_id": "fd_CVE-2020-23079",
-    "repo": "halo/halo",
-    "base_commit": "1.3.2",
-    "vuln_file": "halo/src/main/java/run/halo/app/mail/AbstractMailService.java",
-    "vuln_lines": [
-      55,
-      69
-    ],
-    "language": "java",
-    "vuln_source": "CVE-2020-23079",
-    "cwe_id": "CWE-918",
-    "vuln_type": "Server-Side Request Forgery (SSRF)",
-    "severity": "high",
-    "image": "cve-2020-23079.tar",
-    "image_name": "cve-2020-23079",
-    "image_inner_path": "/application",
-    "image_run_cmd": "docker load -i cve-2020-23079.tar,docker-compose up -d",
-    "image_status_check_cmd": "docker exec -it cve-2020-23079 python3 /opt/check_service.py -t http://127.0.0.1:8090/admin",
-    "test_case_cmd": "docker exec -it cve-2020-23079 python3 /opt/func.py",
-    "poc_cmd": "docker exec -it cve-2020-23079 python3 /opt/poc.py",
-    "other_vuln_files": [],
-    "patch_commit": ""
-  },
-  {
-    "instance_id": "fd_CVE-2021-43659",
-    "repo": "halo/halo",
-    "base_commit": "1.4.14",
-    "vuln_file": "halo/src/main/java/run/halo/app/handler/file/LocalFileHandler.java",
-    "vuln_lines": [
-      86,
-      167
-    ],
-    "language": "java",
-    "vuln_source": "CVE-2021-43659",
-    "cwe_id": "CWE-79",
-    "vuln_type": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
-    "severity": "medium",
-    "image": "cve-2021-43659.tar",
-    "image_name": "cve-2021-43659",
-    "image_inner_path": "/application",
-    "image_run_cmd": "docker load -i cve-2021-43659.tar,docker-compose up -d",
-    "image_status_check_cmd": "docker exec -it cve-2021-43659 python3 /opt/check_service.py -t http://127.0.0.1:8090/admin",
-    "test_case_cmd": "docker exec -it cve-2021-43659 python3 /opt/func.py",
-    "poc_cmd": "docker exec -it cve-2021-43659 python3 /opt/poc.py",
-    "other_vuln_files": [],
-    "patch_commit": ""
-  },
-  {
-    "instance_id": "fd_CVE-2022-26619",
-    "repo": "halo/halo",
-    "base_commit": "1.4.17",
-    "vuln_file": "halo/src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
-    "vuln_lines": [
-      110,
-      143
-    ],
-    "language": "java",
-    "vuln_source": "CVE-2022-26619",
-    "cwe_id": "CWE-434",
-    "vuln_type": "Unrestricted Upload of File with Dangerous Type",
-    "severity": "high",
-    "image": "cve-2022-26619.tar",
-    "image_name": "cve-2022-26619",
-    "image_inner_path": "/application",
-    "image_run_cmd": "docker load -i cve-2022-26619.tar,docker-compose up -d",
-    "image_status_check_cmd": "docker exec -it cve-2022-26619 python3 /opt/check_service.py -t http://127.0.0.1:8090/admin",
-    "test_case_cmd": "docker exec -it cve-2022-26619 python3 /opt/func.py",
-    "poc_cmd": "docker exec -it cve-2022-26619 python3 /opt/poc.py",
-    "other_vuln_files": [],
-    "patch_commit": ""
-  },
-  {
-    "instance_id": "fd_CVE-2022-28074",
-    "repo": "halo/halo",
-    "base_commit": "1.5.0",
-    "vuln_file": "",
-    "vuln_lines": [],
-    "language": "java",
-    "vuln_source": "CVE-2022-28074",
-    "cwe_id": "CWE-79",
-    "vuln_type": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
-    "severity": "medium",
-    "image": "cve-2022-28074.tar",
-    "image_name": "cve-2022-28074",
-    "image_inner_path": "/application",
-    "image_run_cmd": "docker load -i cve-2022-28074.tar,docker-compose up -d",
-    "image_status_check_cmd": "docker exec -it cve-2022-28074 python3 /opt/check_service.py -t http://127.0.0.1:8090/admin",
-    "test_case_cmd": "docker exec -it cve-2022-28074 python3 /opt/func.py",
-    "poc_cmd": "docker exec -it cve-2022-28074 python3 /opt/poc.py",
-    "other_vuln_files": [],
-    "patch_commit": ""
-  },
-  {
-    "instance_id": "fd_CVE-2022-32994",
-    "repo": "halo/halo",
-    "base_commit": "1.5.3",
-    "vuln_file": "halo/src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
-    "vuln_lines": [
-      110,
-      143
-    ],
-    "language": "java",
-    "vuln_source": "CVE-2022-32994",
-    "cwe_id": "CWE-434",
-    "vuln_type": "Unrestricted Upload of File with Dangerous Type",
-    "severity": "critical",
-    "image": "cve-2022-32994.tar",
-    "image_name": "cve-2022-32994",
-    "image_inner_path": "/application",
-    "image_run_cmd": "docker load -i cve-2022-32994.tar,docker-compose up -d",
-    "image_status_check_cmd": "docker exec -it cve-2022-32994 python3 /opt/check_service.py -t http://127.0.0.1:8090/admin",
-    "test_case_cmd": "docker exec -it cve-2022-32994 python3 /opt/func.py",
-    "poc_cmd": "docker exec -it cve-2022-32994 python3 /opt/poc.py",
-    "other_vuln_files": [],
-    "patch_commit": ""
-  },
-  {
-    "instance_id": "fd_CVE-2022-32995",
-    "repo": "halo/halo",
-    "base_commit": "1.5.3",
-    "vuln_file": "halo/src/main/java/run/halo/app/theme/ZipThemeFetcher.java",
-    "vuln_lines": [
-      43,
-      73
-    ],
-    "language": "java",
-    "vuln_source": "CVE-2022-32995",
-    "cwe_id": "CWE-918",
-    "vuln_type": "Server-Side Request Forgery",
-    "severity": "critical",
-    "image": "cve-2022-32995.tar",
-    "image_name": "cve-2022-32995",
-    "image_inner_path": "/application",
-    "image_run_cmd": "docker load -i cve-2022-32995.tar,docker-compose up -d",
-    "image_status_check_cmd": "docker exec -it cve-2022-32995 python3 /opt/check_service.py -t http://127.0.0.1:8090/admin",
-    "test_case_cmd": "docker exec -it cve-2022-32995 python3 /opt/func.py",
-    "poc_cmd": "docker exec -it cve-2022-32995 python3 /opt/poc.py",
-    "other_vuln_files": [],
-    "patch_commit": ""
-  },
-  {
     "instance_id": "jzquan_CVE-2017-9048",
     "repo": "GNOME/libxml2",
     "base_commit": "932cc9896ab41475d4aa429c27d9afd175959d74^",
@@ -2863,23 +2722,7 @@
     "image_run_cmd": "tail -f /dev/null",
     "image_status_check_cmd": "./image_status_check.sh",
     "test_case_cmd": "./test_case.sh",
-    "poc_cmd": "./poc.sh",
-    "help_commit_urls": [
-      "https://github.com/diffplug/goomph/commit/25f04f67ba62d9a14104bee13a0a0f2517afb8c8"
-    ],
-    "help_poc": {
-      "pocCode": [
-        {
-          "date": "",
-          "desc": "",
-          "source": "nvd",
-          "url": "https://security.snyk.io/vuln/SNYK-JAVA-COMDIFFPLUGGRADLE-2981040"
-        }
-      ],
-      "pocUrl": [
-        "https://security.snyk.io/vuln/SNYK-JAVA-COMDIFFPLUGGRADLE-2981040"
-      ]
-    }
+    "poc_cmd": "./poc.sh"
   },
   {
     "instance_id": "Capsa_CVE-2022-23457",
@@ -2902,23 +2745,7 @@
     "image_run_cmd": "tail -f /dev/null",
     "image_status_check_cmd": "bash -c ./image_status.sh",
     "test_case_cmd": "./test_case.sh",
-    "poc_cmd": "./poc.sh",
-    "help_commit_urls": [
-      "https://github.com/ESAPI/esapi-java-legacy/commit/a0d67b75593878b1b6e39e2acc1773b3effedb2a"
-    ],
-    "help_poc": {
-      "pocCode": [
-        {
-          "date": "",
-          "desc": "",
-          "source": "nvd",
-          "url": "https://securitylab.github.com/advisories/GHSL-2022-008_The_OWASP_Enterprise_Security_API/"
-        }
-      ],
-      "pocUrl": [
-        "https://securitylab.github.com/advisories/GHSL-2022-008_The_OWASP_Enterprise_Security_API/"
-      ]
-    }
+    "poc_cmd": "./poc.sh"
   },
   {
     "instance_id": "Capsa_CVE-2022-21675",
@@ -2950,9 +2777,7 @@
     "vuln_file": "mlflow/server/handlers.py",
     "vuln_lines": [
       589,
-      612,
-      1724,
-      1742
+      612
     ],
     "language": "python",
     "vuln_source": "CVE-2024-1594",
@@ -2966,7 +2791,15 @@
     "image_status_check_cmd": "/src/image_status.sh",
     "test_case_cmd": "/src/test_case.sh",
     "poc_cmd": "/src/poc.sh",
-    "other_vuln_files": []
+    "other_vuln_files": [
+      {
+        "vuln_file": "mlflow/server/handlers.py",
+        "vuln_lines": [
+          1724,
+          1742
+        ]
+      }
+    ]
   },
   {
     "instance_id": "Capsa_CVE-2024-1593",
@@ -2976,9 +2809,7 @@
     "vuln_file": "mlflow/server/handlers.py",
     "vuln_lines": [
       579,
-      601,
-      1591,
-      1621
+      601
     ],
     "language": "python",
     "vuln_source": "CVE-2024-1593",
@@ -2991,6 +2822,14 @@
     "image_status_check_cmd": "/src/image_status.sh",
     "test_case_cmd": "/src/test_case.sh",
     "poc_cmd": "/src/poc.sh",
-    "other_vuln_files": []
+    "other_vuln_files": [
+      {
+        "vuln_file": "mlflow/server/handlers.py",
+        "vuln_lines": [
+          1591,
+          1621
+        ]
+      }
+    ]
   }
 ]
