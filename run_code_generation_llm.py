@@ -179,7 +179,7 @@ def get_seed_mutation_map(raw_instances):
     CVE_map_instanceid = {}
     seed_instance_map_repo = {}
     for instance in raw_instances:
-        if instance["seed"] == False:
+        if "seed" in instance and instance["seed"] == False:
             continue
         CVE_map_instanceid[instance["vuln_source"]] = instance["instance_id"]
         seed_instance_map_repo[instance["instance_id"]] = instance["repo"]
@@ -200,7 +200,7 @@ def process(instance, model_name, base_url, api_key, github_token, raw_repo_dir,
             seed_instance_map_function_summary, seed_instance_map_repo, processed_instances_file, **model_args):
     instance_id = instance["instance_id"]
     # 从 retrival data 中获取 hits 
-    if instance["seed"] == False:
+    if "seed" in instance and instance["seed"] == False:
         cve_source = instance["vuln_source"]
         seed_instance_id = CVE_map_instanceid[cve_source]
     else:
@@ -229,7 +229,7 @@ def process(instance, model_name, base_url, api_key, github_token, raw_repo_dir,
             shutil.rmtree(cycle_dir)
         
         # 复制代码仓库到新目录
-        if instance["seed"] == False:
+        if "seed" in instance and instance["seed"] == False:
             # 检查编译项目目录层级是否正确
             source_instance_id = CVE_map_instanceid[instance["vuln_source"]]
             source_repo = seed_instance_map_repo[source_instance_id]
