@@ -348,6 +348,15 @@ def get_root_dir(dataset_name, output_dir, document_encoding_style):
     return root_dir, root_dir_name
 
 
+def load_data(file_path):
+    data = []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            if line.strip():  # 跳过空行
+                data.append(json.loads(line))
+    return data
+
+
 def main(
     dataset_name,
     instances,
@@ -400,11 +409,8 @@ def main(
     logger.info(f"Saved retrieval results to {output_file}")
 
     # 将 output_file 和 data_file 合并
-    with open(output_file, 'r', encoding='utf-8') as f:
-        output_data = json.load(f)
-    with open(dst_file, 'r', encoding='utf-8') as f:
-        dst_data = json.load(f)
-    # 去重合并 output_data 和 dst_data
+    output_data = load_data(output_file)
+    dst_data = load_data(dst_file)
     # 以 instance_id 为唯一标识，后出现的覆盖前面的
     merged_dict = {}
     for item in dst_data:
