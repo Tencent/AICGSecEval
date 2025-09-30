@@ -65,7 +65,7 @@ def process_instance(instance, model_name, base_url, api_key, max_context_token,
                                           max_gen_token, **model_args)
         
         # save raw response
-        with open(os.path.join(repo_dir, "raw_response.txt"), "w") as f:
+        with open(os.path.join(repo_dir, "response.txt"), "w") as f:
             f.write(response)
 
         model_patch = extract_diff(response)
