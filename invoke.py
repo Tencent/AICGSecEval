@@ -49,9 +49,9 @@ async def invoke(args, remaining_args):
             if not hasattr(args, "model_args") or args.model_args is None:
                 args.model_args = {}
 
-            if args.temperature is not None:
+            if hasattr(args, "temperature") and args.temperature is not None:
                 args.model_args['temperature'] = args.temperature
-            if args.top_p is not None:
+            if hasattr(args, "top_p") and args.top_p is not None:
                 args.model_args['top_p'] = args.top_p
             model_args = args.model_args
             
