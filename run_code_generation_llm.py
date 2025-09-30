@@ -152,6 +152,9 @@ def process_all_instances(raw_instances, retrieval_instances, model_name, batch_
         seed_instance_map_function_summary[instance["instance_id"]] = instance["function_summary"]
 
     for instance in tqdm(filtered_instances, desc=f"处理 {model_name} 的实例"):
+        if instance["instance_id"] not in seed_instance_map_hits:
+            logger.warning(f"实例 {instance['instance_id']} 没有 context, 跳过")
+            continue
         process(instance, model_name, base_url, api_key, github_token, raw_repo_dir, num_cycles, max_context_token, 
                 max_gen_token,processed_instances, model_output_dir, CVE_map_instanceid, seed_instance_map_hits, 
                 seed_instance_map_function_summary, seed_instance_map_repo, processed_instances_file, **model_args)
