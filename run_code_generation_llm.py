@@ -183,10 +183,10 @@ def get_seed_mutation_map(raw_instances):
     return CVE_map_instanceid, seed_instance_map_repo
 
 # 用于更新处理记录
-def update_processed_record(cycle_dir_name, success, processed_instances, processed_instances_file):
+def update_processed_record(cycle_dir_name, success, processed_instances, processed_instances_file, start_time):
     processed_instances[cycle_dir_name] = {
         "success": success,
-        "timestamp": time.time()
+        "time": time.time() - start_time
     }
     with open(processed_instances_file, 'w', encoding='utf-8') as f:
         json.dump(processed_instances, f, ensure_ascii=False, indent=2)
@@ -242,9 +242,10 @@ def process(instance, model_name, base_url, api_key, github_token, raw_repo_dir,
         instance["repo_dir"] = cycle_dir
         instance["raw_repo_dir"] = repo_dir
         try:
+            start_time = time.time()
             success = process_instance(instance, model_name, base_url, api_key, max_context_token, 
                                        max_gen_token, **model_args)
-            update_processed_record(cycle_dir_name, success, processed_instances, processed_instances_file)
+            update_processed_record(cycle_dir_name, success, processed_instances, processed_instances_file, start_time)
         except Exception as e:
             logger.error(f"处理实例 {instance_id} 失败: {str(e)}")
             print(traceback.format_exc())

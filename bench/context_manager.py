@@ -96,20 +96,20 @@ class ContextManager:
             raise ValueError(
                 "Must provide an api key. Expected in OPENAI_API_KEY environment variable."
             )
-        openai.base_url = "https://gnomic.nengyongai.cn/v1/"
+        openai.base_url = "https://ai.nengyongai.cn/v1/"
         openai.api_key = openai_key
 
         # 构建提示词
         system_messages = (
             "Given a code file and a code snippet, summarize the functionality "
-            "of the snippet in one sentence."
+            "of the snippet."
         )
         code_text = make_code_text({self.vuln_file: self.vulnerability_file_content})
 
         instructions = (
             "Please respond with a brief but clear summary that describes the main "
             "functionality of the code snippet, including any key operations or "
-            "important logic. Keep the summary within 150 words."
+            "important logic. Keep the summary within 200 words."
         )
         text = [
             "<code>",
@@ -123,13 +123,11 @@ class ContextManager:
         ]
         user_message =  "\n".join(text)
         response = openai.chat.completions.create(
-                model = "claude-opus-4-20250514", # 摘要生成用比较好的模型
+                model = "claude-sonnet-4-20250514", # 摘要生成用比较好的模型
                 messages=[
                     {"role": "system", "content": system_messages},
                     {"role": "user", "content": user_message},
-                ],
-                temperature=0.2,
-                top_p=0.95,
+                ]
             )
         function_summary = response.choices[0].message.content.strip()
         return function_summary

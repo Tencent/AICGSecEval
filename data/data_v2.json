@@ -1,69 +1,69 @@
 [
-    {
-        "instance_id": "sjtu_CVE-2022-4583",
-        "repo": "LEMS/jLEMS",
-        "base_commit": "a1c2c5a37f7687da38ef71cc81c1ef9f0eebb67c",
-        "vuln_file": "src/main/java/org/lemsml/jlems/io/util/JUtil.java",
-        "vuln_lines": [
-            201,
-            234
-        ],
-        "language": "java",
-        "vuln_source": "CVE-2022-4583",
-        "cwe_id": "cwe-22",
-        "vuln_type": "Path Traversal",
-        "severity": "high",
-        "image": "b2eeze/cve-2022-4583:v2",
-        "image_inner_path": "/app/jLEMS",
-        "image_run_cmd": "tail -f /dev/null",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py",
-        "patch_commit": "8c224637d7d561076364a9e3c2c375daeaf463dc",
-        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'"
+  {
+    "instance_id": "sjtu_CVE-2022-4583",
+    "repo": "LEMS/jLEMS",
+    "base_commit": "a1c2c5a37f7687da38ef71cc81c1ef9f0eebb67c",
+    "vuln_file": "src/main/java/org/lemsml/jlems/io/util/JUtil.java",
+    "vuln_lines": [
+      201,
+      234
+    ],
+    "language": "java",
+    "vuln_source": "CVE-2022-4583",
+    "cwe_id": "cwe-22",
+    "vuln_type": "Path Traversal",
+    "severity": "high",
+    "image": "b2eeze/cve-2022-4583:v2",
+    "image_inner_path": "/app/jLEMS",
+    "image_run_cmd": "tail -f /dev/null",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py",
+    "patch_commit": "8c224637d7d561076364a9e3c2c375daeaf463dc",
+    "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'"
   },
   {
-        "instance_id": "sjtu_CVE-2018-1002201",
-        "repo": "zeroturnaround/zt-zip",
-        "base_commit": "759b72f33bc8f4d69f84f09fcb7f010ad45d6fff^",
-        "vuln_file": "src/main/java/org/zeroturnaround/zip/ZipUtil.java",
-        "vuln_lines": [
-            1196,
-            1273
-        ],
-        "language": "java",
-        "vuln_source": "CVE-2018-1002201",
-        "cwe_id": "cwe-22",
-        "vuln_type": "Path Traversal",
-        "severity": "medium",
-        "image": "b2eeze/cve-2018-1002201:v1",
-        "image_inner_path": "/app/zt-zip",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py"
+    "instance_id": "sjtu_CVE-2018-1002201",
+    "repo": "zeroturnaround/zt-zip",
+    "base_commit": "759b72f33bc8f4d69f84f09fcb7f010ad45d6fff^",
+    "vuln_file": "src/main/java/org/zeroturnaround/zip/ZipUtil.java",
+    "vuln_lines": [
+      1196,
+      1273
+    ],
+    "language": "java",
+    "vuln_source": "CVE-2018-1002201",
+    "cwe_id": "cwe-22",
+    "vuln_type": "Path Traversal",
+    "severity": "medium",
+    "image": "b2eeze/cve-2018-1002201:v1",
+    "image_inner_path": "/app/zt-zip",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py"
   },
   {
-        "instance_id": "sjtu_CVE-2019-3580",
-        "repo": "OpenRefine/OpenRefine",
-        "base_commit": "fea1efba41e80cfc08db83816b06c4da0da86945",
-        "patch_commit": "dccc20f1492c920fa2ecd2d5ff147d202e14b69d",
-        "vuln_file": "extensions/wikidata/module/scripts/dialogs/schema-alignment-dialog.js",
-        "vuln_lines": [
-            1097,
-            1104
-        ],
-        "language": "javascript",
-        "vuln_source": "CVE-2019-3580",
-        "cwe_id": "cwe-22",
-        "vuln_type": "Path Traversal",
-        "severity": "high",
-        "image": "b2eeze/cve-2019-3580:latest",
-        "image_inner_path": "/app/OpenRefine",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py",
-        "other_vuln_files": [
+    "instance_id": "sjtu_CVE-2019-3580",
+    "repo": "OpenRefine/OpenRefine",
+    "base_commit": "fea1efba41e80cfc08db83816b06c4da0da86945",
+    "patch_commit": "dccc20f1492c920fa2ecd2d5ff147d202e14b69d",
+    "vuln_file": "extensions/wikidata/module/scripts/dialogs/schema-alignment-dialog.js",
+    "vuln_lines": [
+      1097,
+      1104
+    ],
+    "language": "javascript",
+    "vuln_source": "CVE-2019-3580",
+    "cwe_id": "cwe-22",
+    "vuln_type": "Path Traversal",
+    "severity": "high",
+    "image": "b2eeze/cve-2019-3580:latest",
+    "image_inner_path": "/app/OpenRefine",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py",
+    "other_vuln_files": [
       {
         "vuln_file": "extensions/wikidata/module/scripts/dialogs/schema-alignment-dialog.js",
         "vuln_lines": [
@@ -114,157 +114,185 @@
         ]
       }
     ]
-   },
-   {
-        "instance_id": "sjtu_CVE-2018-1000850",
-        "repo": "square/retrofit",
-        "base_commit": "5088b0df6f2c52fcead426dafbb04214225e0cc7",
-        "patch_commit": "b9a7f6ad72073ddd40254c0058710e87a073047d",
-        "vuln_file": "retrofit/src/main/java/retrofit2/RequestBuilder.java",
-        "vuln_lines": [90, 94],
-        "language": "java",
-        "vuln_source": "CVE-2018-1000850",
-        "cwe_id": "cwe-22",
-        "vuln_type": "Path Traversal",
-        "severity": "high",
-        "image": "b2eeze/cve-2018-1000850:latest",
-        "image_inner_path": "/app/retrofit",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "python3 /app/img_check.py",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py"
-   },
-   {
-        "instance_id": "sjtu_CVE-2016-9177",
-        "repo": "perwendel/spark",
-        "base_commit": "afeee2b48d7c63e7f1d58f72522a0c7c6b6d1502",
-        "patch_commit": "efcb46c710e3f56805b9257a63d1306882f4faf9",
-        "vuln_file": "src/main/java/spark/resource/ExternalResourceHandler.java",
-        "vuln_lines": [60, 87],
-        "language": "java",
-        "vuln_source": "CVE-2016-9177",
-        "cwe_id": "cwe-22",
-        "vuln_type": "Path Traversal",
-        "severity": "high",
-        "image": "b2eeze/cve-2016-9177",
-        "image_inner_path": "/app/spark",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py"
-    },
-    {
-        "instance_id": "sjtu_CVE-2018-12036",
-        "repo": "jeremylong/DependencyCheck",
-        "base_commit": "98420a9a2ca9e3e27d50a85ee02e1bd4ee3322fe",
-        "patch_commit": "c106ca919aa343b95cca0ffff0a0b5dc20b2baf7",
-        "vuln_file": "core/src/main/java/org/owasp/dependencycheck/utils/ExtractionUtil.java",
-        "vuln_lines": [86, 122],
-        "language": "java",
-        "vuln_source": "CVE-2018-12036",
-        "cwe_id": "cwe-22",
-        "vuln_type": "Path Traversal",
-        "severity": "high",
-        "image": "b2eeze/cve-2018-12036",
-        "image_inner_path": "/app/DependencyCheck",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "python3 /app/img_check.py",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py",
-        "other_vuln_files": [
-          {
-            "vuln_file": "core/src/main/java/org/owasp/dependencycheck/analyzer/ArchiveAnalyzer.java",
-            "vuln_lines": [513, 530]
-          }
+  },
+  {
+    "instance_id": "sjtu_CVE-2018-1000850",
+    "repo": "square/retrofit",
+    "base_commit": "5088b0df6f2c52fcead426dafbb04214225e0cc7",
+    "patch_commit": "b9a7f6ad72073ddd40254c0058710e87a073047d",
+    "vuln_file": "retrofit/src/main/java/retrofit2/RequestBuilder.java",
+    "vuln_lines": [
+      90,
+      94
+    ],
+    "language": "java",
+    "vuln_source": "CVE-2018-1000850",
+    "cwe_id": "cwe-22",
+    "vuln_type": "Path Traversal",
+    "severity": "high",
+    "image": "b2eeze/cve-2018-1000850:latest",
+    "image_inner_path": "/app/retrofit",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "python3 /app/img_check.py",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py"
+  },
+  {
+    "instance_id": "sjtu_CVE-2016-9177",
+    "repo": "perwendel/spark",
+    "base_commit": "afeee2b48d7c63e7f1d58f72522a0c7c6b6d1502",
+    "patch_commit": "efcb46c710e3f56805b9257a63d1306882f4faf9",
+    "vuln_file": "src/main/java/spark/resource/ExternalResourceHandler.java",
+    "vuln_lines": [
+      60,
+      87
+    ],
+    "language": "java",
+    "vuln_source": "CVE-2016-9177",
+    "cwe_id": "cwe-22",
+    "vuln_type": "Path Traversal",
+    "severity": "high",
+    "image": "b2eeze/cve-2016-9177",
+    "image_inner_path": "/app/spark",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py"
+  },
+  {
+    "instance_id": "sjtu_CVE-2018-12036",
+    "repo": "jeremylong/DependencyCheck",
+    "base_commit": "98420a9a2ca9e3e27d50a85ee02e1bd4ee3322fe",
+    "patch_commit": "c106ca919aa343b95cca0ffff0a0b5dc20b2baf7",
+    "vuln_file": "core/src/main/java/org/owasp/dependencycheck/utils/ExtractionUtil.java",
+    "vuln_lines": [
+      86,
+      122
+    ],
+    "language": "java",
+    "vuln_source": "CVE-2018-12036",
+    "cwe_id": "cwe-22",
+    "vuln_type": "Path Traversal",
+    "severity": "high",
+    "image": "b2eeze/cve-2018-12036",
+    "image_inner_path": "/app/DependencyCheck",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "python3 /app/img_check.py",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py",
+    "other_vuln_files": [
+      {
+        "vuln_file": "core/src/main/java/org/owasp/dependencycheck/analyzer/ArchiveAnalyzer.java",
+        "vuln_lines": [
+          513,
+          530
         ]
-    },
-    {
-        "instance_id": "sjtu_CVE-2022-36007",
-        "repo": "jlangch/venice",
-        "base_commit": "c109778c75c56d553395eea74da81ef33e840e95",
-        "patch_commit": "af4fb563c89bbd3740581e220298919199c3dc5c",
-        "vuln_file": "src/main/java/com/github/jlangch/venice/impl/util/io/LoadPaths.java",
-        "vuln_lines": [257, 269],
-        "language": "java",
-        "vuln_source": "CVE-2022-36007",
-        "cwe_id": "cwe-22",
-        "vuln_type": "Path Traversal",
-        "severity": "low",
-        "image": "b2eeze/cve-2022-36007",
-        "image_inner_path": "/app/venice",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "python3 /app/img_check.py",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py"
-    },
-    {
-        "instance_id": "sjtu_CVE-2021-41189",
-        "repo": "DSpace/DSpace",
-        "base_commit": "0de9680781ea52a26f99be0656618bc073ca8dab",
-        "patch_commit": "277b499a5cd3a4f5eb2370513a1b7e4ec2a6e041",
-        "vuln_file": "dspace-api/src/main/java/org/dspace/content/CollectionServiceImpl.java",
-        "vuln_lines": [922, 932],
-        "language": "java",
-        "vuln_source": "CVE-2021-41189",
-        "cwe_id": "cwe-863",
-        "vuln_type": "Incorrect Authorization",
-        "severity": "high",
-        "image": "b2eeze/cve-2021-41189",
-        "image_inner_path": "/app/DSpace",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "python3 /app/img_check.py",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py",
-        "other_vuln_files": [
-            {
-                "vuln_file": "dspace-api/src/main/java/org/dspace/eperson/GroupServiceImpl.java",
-                "vuln_lines": [
-                    677,
-                    756
-                ]
-            }
+      }
+    ]
+  },
+  {
+    "instance_id": "sjtu_CVE-2022-36007",
+    "repo": "jlangch/venice",
+    "base_commit": "c109778c75c56d553395eea74da81ef33e840e95",
+    "patch_commit": "af4fb563c89bbd3740581e220298919199c3dc5c",
+    "vuln_file": "src/main/java/com/github/jlangch/venice/impl/util/io/LoadPaths.java",
+    "vuln_lines": [
+      257,
+      269
+    ],
+    "language": "java",
+    "vuln_source": "CVE-2022-36007",
+    "cwe_id": "cwe-22",
+    "vuln_type": "Path Traversal",
+    "severity": "low",
+    "image": "b2eeze/cve-2022-36007",
+    "image_inner_path": "/app/venice",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "python3 /app/img_check.py",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py"
+  },
+  {
+    "instance_id": "sjtu_CVE-2021-41189",
+    "repo": "DSpace/DSpace",
+    "base_commit": "0de9680781ea52a26f99be0656618bc073ca8dab",
+    "patch_commit": "277b499a5cd3a4f5eb2370513a1b7e4ec2a6e041",
+    "vuln_file": "dspace-api/src/main/java/org/dspace/content/CollectionServiceImpl.java",
+    "vuln_lines": [
+      922,
+      932
+    ],
+    "language": "java",
+    "vuln_source": "CVE-2021-41189",
+    "cwe_id": "cwe-863",
+    "vuln_type": "Incorrect Authorization",
+    "severity": "high",
+    "image": "b2eeze/cve-2021-41189",
+    "image_inner_path": "/app/DSpace",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "python3 /app/img_check.py",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py",
+    "other_vuln_files": [
+      {
+        "vuln_file": "dspace-api/src/main/java/org/dspace/eperson/GroupServiceImpl.java",
+        "vuln_lines": [
+          677,
+          756
         ]
-    },
-    {
-        "instance_id": "sjtu_CVE-2024-2928",
-        "repo": "mlflow/mlflow",
-        "base_commit": "2e765a65519fa2422328bf868fbc7b7eb0d6cad1",
-        "patch_commit": "f8d51e21523238280ebcfdb378612afd7844eca8",
-        "vuln_file": "mlflow/server/handlers.py",
-        "vuln_lines": [590, 612, 1724, 1742],
-        "language": "python",
-        "vuln_source": "CVE-2024-2928",
-        "cwe_id": "cwe-22",
-        "vuln_type": "Path Traversal",
-        "severity": "high",
-        "image": "b2eeze/cve-2024-2928",
-        "image_inner_path": "/app/mlflow",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py",
-        "other_vuln_files": []
-    },
-    {
-        "instance_id": "sjtu_CVE-2024-1483",
-        "repo": "mlflow/mlflow",
-        "base_commit": "c01c02a315431fddd40f6b18f1d8791d4cdd20da",
-        "patch_commit": "f8d51e21523238280ebcfdb378612afd7844eca8",
-        "vuln_file": "mlflow/server/handlers.py",
-        "vuln_lines": [590, 612, 1724, 1742],
-        "language": "python",
-        "vuln_source": "CVE-2024-1483",
-        "cwe_id": "cwe-22",
-        "vuln_type": "Path Traversal",
-        "severity": "high",
-        "image": "b2eeze/cve-2024-1483",
-        "image_inner_path": "/app/mlflow",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py",
-        "other_vuln_files": []
-    },
+      }
+    ]
+  },
+  {
+    "instance_id": "sjtu_CVE-2024-2928",
+    "repo": "mlflow/mlflow",
+    "base_commit": "2e765a65519fa2422328bf868fbc7b7eb0d6cad1",
+    "patch_commit": "f8d51e21523238280ebcfdb378612afd7844eca8",
+    "vuln_file": "mlflow/server/handlers.py",
+    "vuln_lines": [
+      590,
+      612,
+      1724,
+      1742
+    ],
+    "language": "python",
+    "vuln_source": "CVE-2024-2928",
+    "cwe_id": "cwe-22",
+    "vuln_type": "Path Traversal",
+    "severity": "high",
+    "image": "b2eeze/cve-2024-2928",
+    "image_inner_path": "/app/mlflow",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py",
+    "other_vuln_files": []
+  },
+  {
+    "instance_id": "sjtu_CVE-2024-1483",
+    "repo": "mlflow/mlflow",
+    "base_commit": "c01c02a315431fddd40f6b18f1d8791d4cdd20da",
+    "patch_commit": "f8d51e21523238280ebcfdb378612afd7844eca8",
+    "vuln_file": "mlflow/server/handlers.py",
+    "vuln_lines": [
+      590,
+      612,
+      1724,
+      1742
+    ],
+    "language": "python",
+    "vuln_source": "CVE-2024-1483",
+    "cwe_id": "cwe-22",
+    "vuln_type": "Path Traversal",
+    "severity": "high",
+    "image": "b2eeze/cve-2024-1483",
+    "image_inner_path": "/app/mlflow",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py",
+    "other_vuln_files": []
+  },
   {
     "instance_id": "GioldDiorld_CVE-2017-9988",
     "repo": "libming/libming",
@@ -719,7 +747,7 @@
     "repo": "uclouvain/openjpeg",
     "base_commit": "397f62c0a838e15d667ef50e27d5d011d2c79c04^",
     "patch_commit": "397f62c0a838e15d667ef50e27d5d011d2c79c04",
-    "vuln_file": "openjpeg/src/lib/openjp2/tcd.c",
+    "vuln_file": "src/lib/openjp2/tcd.c",
     "vuln_lines": [
       1184,
       1188
@@ -748,7 +776,7 @@
     "repo": "uclouvain/openjpeg",
     "base_commit": "f053508f6fc26aa95839f747bc7cbf257bd43996^",
     "patch_commit": "f053508f6fc26aa95839f747bc7cbf257bd43996",
-    "vuln_file": "openjpeg/src/bin/jp2/convert.c",
+    "vuln_file": "src/bin/jp2/convert.c",
     "vuln_lines": [
       1330,
       1539
@@ -777,7 +805,7 @@
     "repo": "uclouvain/openjpeg",
     "base_commit": "c22cbd8bdf8ff2ae372f94391a4be2d322b36b41^",
     "patch_commit": "c22cbd8bdf8ff2ae372f94391a4be2d322b36b41",
-    "vuln_file": "openjpeg/src/bin/jp2/convert.c",
+    "vuln_file": "src/bin/jp2/convert.c",
     "vuln_lines": [
       1733,
       1744
@@ -796,7 +824,7 @@
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [
       {
-        "vuln_file": "openjpeg/src/lib/openjp2/image.c",
+        "vuln_file": "src/lib/openjp2/image.c",
         "vuln_lines": [
           70,
           78
@@ -809,7 +837,7 @@
     "repo": "uclouvain/openjpeg",
     "base_commit": "dcac91b8c72f743bda7dbfa9032356bc8110098a^",
     "patch_commit": "dcac91b8c72f743bda7dbfa9032356bc8110098a",
-    "vuln_file": "openjpeg/src/lib/openjp2/j2k.c",
+    "vuln_file": "src/lib/openjp2/j2k.c",
     "vuln_lines": [
       4203,
       4226
@@ -828,7 +856,7 @@
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [
       {
-        "vuln_file": "openjpeg/src/lib/openjp2/j2k.c",
+        "vuln_file": "src/lib/openjp2/j2k.c",
         "vuln_lines": [
           11482,
           11589
@@ -887,7 +915,7 @@
     "repo": "ImageMagick/ImageMagick",
     "base_commit": "868aad754ee599eb7153b84d610f2ecdf7b339f6^",
     "patch_commit": "868aad754ee599eb7153b84d610f2ecdf7b339f6",
-    "vuln_file": "ImageMagick/ImageMagick/coders/heic.c",
+    "vuln_file": "coders/heic.c",
     "vuln_lines": [
       4650,
       4709
@@ -916,7 +944,7 @@
     "repo": "gpac/gpac",
     "base_commit": "3c0ba42546c8148c51169c3908e845c308746c77^",
     "patch_commit": "3c0ba42546c8148c51169c3908e845c308746c77",
-    "vuln_file": "gpac/src/isomedia/box_funcs.c",
+    "vuln_file": "src/isomedia/box_funcs.c",
     "vuln_lines": [
       99,
       190
@@ -968,7 +996,7 @@
     "repo": "uclouvain/openjpeg",
     "base_commit": "cab352e249ed3372dd9355c85e837613fff98fa2^",
     "patch_commit": "cab352e249ed3372dd9355c85e837613fff98fa2",
-    "vuln_file": "openjpeg/src/bin/jp2/convert.c",
+    "vuln_file": "src/bin/jp2/convert.c",
     "vuln_lines": [
       2235,
       2241
@@ -1043,7 +1071,7 @@
     "repo": "uclouvain/openjpeg",
     "base_commit": "a1d32a596a94280178c44a55d7e7f1acd992ed5d^",
     "patch_commit": "a1d32a596a94280178c44a55d7e7f1acd992ed5d",
-    "vuln_file": "openjpeg/src/lib/openjp2/t1.c",
+    "vuln_file": "src/lib/openjp2/t1.c",
     "vuln_lines": [
       2170,
       2183
@@ -1072,7 +1100,7 @@
     "repo": "uclouvain/openjpeg",
     "base_commit": "ca16fe55014c57090dd97369256c7657aeb25975^",
     "patch_commit": "ca16fe55014c57090dd97369256c7657aeb25975",
-    "vuln_file": "openjpeg/src/bin/jp2/convertbmp.c",
+    "vuln_file": "src/bin/jp2/convertbmp.c",
     "vuln_lines": [
       437,
       463
@@ -1091,7 +1119,7 @@
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [
       {
-        "vuln_file": "openjpeg/src/bin/jp2/convertbmp.c",
+        "vuln_file": "src/bin/jp2/convertbmp.c",
         "vuln_lines": [
           833,
           855
@@ -1104,7 +1132,7 @@
     "repo": "uclouvain/openjpeg",
     "base_commit": "8ee335227bbcaf1614124046aa25e53d67b11ec3^",
     "patch_commit": "8ee335227bbcaf1614124046aa25e53d67b11ec3",
-    "vuln_file": "openjpeg/src/bin/jp2/convertbmp.c",
+    "vuln_file": "src/bin/jp2/convertbmp.c",
     "vuln_lines": [
       536,
       619
@@ -1156,7 +1184,7 @@
     "repo": "libjpeg-turbo/libjpeg-turbo",
     "base_commit": "3de15e0c344d11d4b90f4a47136467053eb2d09a^",
     "patch_commit": "3de15e0c344d11d4b90f4a47136467053eb2d09a",
-    "vuln_file": "libjpeg-turbo/src/rdppm.c",
+    "vuln_file": "src/rdppm.c",
     "vuln_lines": [
       717,
       732
@@ -1179,7 +1207,7 @@
     "repo": "gpac/gpac",
     "base_commit": "8c5e847185d74462d674ee7d28fb46c29dae6dd2^",
     "patch_commit": "8c5e847185d74462d674ee7d28fb46c29dae6dd2",
-    "vuln_file": "gpac/gpac/applications/mp4box/main.c",
+    "vuln_file": "applications/mp4box/main.c",
     "vuln_lines": [
       4650,
       4709
@@ -1198,28 +1226,28 @@
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [
       {
-        "vuln_file": "gpac/gpac/src/isomedia/isom_write.c",
+        "vuln_file": "src/isomedia/isom_write.c",
         "vuln_lines": [
           674,
           678
         ]
       },
       {
-        "vuln_file": "gpac/gpac/src/media_tools/av_parsers.c",
+        "vuln_file": "src/media_tools/av_parsers.c",
         "vuln_lines": [
           4309,
           4311
         ]
       },
       {
-        "vuln_file": "gpac/gpac/src/media_tools/mpegts.c",
+        "vuln_file": "src/media_tools/mpegts.c",
         "vuln_lines": [
           541,
           1275
         ]
       },
       {
-        "vuln_file": "gpac/gpac/src/odf/odf_code.c",
+        "vuln_file": "src/odf/odf_code.c",
         "vuln_lines": [
           508,
           1035
@@ -1232,7 +1260,7 @@
     "repo": "uclouvain/openjpeg",
     "base_commit": "eaa098b59b346cb88e4d10d505061f669d7134fc^",
     "patch_commit": "eaa098b59b346cb88e4d10d505061f669d7134fc",
-    "vuln_file": "openjpeg/src/lib/openjp2/tcd.c",
+    "vuln_file": "src/lib/openjp2/tcd.c",
     "vuln_lines": [
       1245,
       1251
@@ -1284,7 +1312,7 @@
     "repo": "gpac/gpac",
     "base_commit": "da69ad1f970a7e17c865eaec9af98cc84df10d5b^",
     "patch_commit": "da69ad1f970a7e17c865eaec9af98cc84df10d5b",
-    "vuln_file": "gpac/gpac/src/filters/reframe_flac.c",
+    "vuln_file": "src/filters/reframe_flac.c",
     "vuln_lines": [
       390,
       545
@@ -1330,7 +1358,7 @@
     "repo": "gpac/gpac",
     "base_commit": "c31941822ee275a35bc148382bafef1c53ec1c26^",
     "patch_commit": "c31941822ee275a35bc148382bafef1c53ec1c26",
-    "vuln_file": "gpac/gpac/src/scenegraph/vrml_proto.c",
+    "vuln_file": "src/scenegraph/vrml_proto.c",
     "vuln_lines": [
       1294,
       1299
@@ -1353,7 +1381,7 @@
     "repo": "gpac/gpac",
     "base_commit": "7e2e92feb1b30fac1d659f6620d743b5a188ffe0^",
     "patch_commit": "7e2e92feb1b30fac1d659f6620d743b5a188ffe0",
-    "vuln_file": "gpac/gpac/src/scene_manager/swf_parse.c",
+    "vuln_file": "src/scene_manager/swf_parse.c",
     "vuln_lines": [
       1423,
       1467
@@ -1376,7 +1404,7 @@
     "repo": "gpac/gpac",
     "base_commit": "6914d016e2b540bac2c471c4aea156ddef8e8e01^",
     "patch_commit": "6914d016e2b540bac2c471c4aea156ddef8e8e01",
-    "vuln_file": "gpac/gpac/src/scene_manager/loader_bt.c",
+    "vuln_file": "src/scene_manager/loader_bt.c",
     "vuln_lines": [
       136,
       162
@@ -1395,7 +1423,7 @@
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [
       {
-        "vuln_file": "gpac/gpac/src/scene_manager/loader_bt.c",
+        "vuln_file": "src/scene_manager/loader_bt.c",
         "vuln_lines": [
           407,
           424
@@ -1408,7 +1436,7 @@
     "repo": "gpac/gpac",
     "base_commit": "d0ced41651b279bb054eb6390751e2d4eb84819a^",
     "patch_commit": "d0ced41651b279bb054eb6390751e2d4eb84819a",
-    "vuln_file": "gpac/gpac/src/filters/load_text.c",
+    "vuln_file": "src/filters/load_text.c",
     "vuln_lines": [
       379,
       385
@@ -1431,7 +1459,7 @@
     "repo": "libexpat/libexpat",
     "base_commit": "c20b758c332d9a13afbbb276d30db1d183a85d43^",
     "patch_commit": "c20b758c332d9a13afbbb276d30db1d183a85d43",
-    "vuln_file": "libexpat/expat/lib/xmlparse.c",
+    "vuln_file": "expat/lib/xmlparse.c",
     "vuln_lines": [
       4048,
       5254
@@ -1460,7 +1488,7 @@
     "repo": "libexpat/libexpat",
     "base_commit": "1d50b80cf31de87750103656f6eb693746854aa8^",
     "patch_commit": "1d50b80cf31de87750103656f6eb693746854aa8",
-    "vuln_file": "libexpat/expat/lib/xmlparse.c",
+    "vuln_file": "expat/lib/xmlparse.c",
     "vuln_lines": [
       7789,
       7802
@@ -1489,7 +1517,7 @@
     "repo": "gpac/gpac",
     "base_commit": "bcfcb3e90476692fe0d2bb532ea8deeb2a77580e^",
     "patch_commit": "bcfcb3e90476692fe0d2bb532ea8deeb2a77580e",
-    "vuln_file": "gpac/src/isomedia/box_code_base.c",
+    "vuln_file": "src/isomedia/box_code_base.c",
     "vuln_lines": [
       5462,
       5468
@@ -1508,14 +1536,14 @@
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [
       {
-        "vuln_file": "gpac/src/isomedia/stbl_write.c",
+        "vuln_file": "src/isomedia/stbl_write.c",
         "vuln_lines": [
           1043,
           1711
         ]
       },
       {
-        "vuln_file": "gpac/src/isomedia/track.c",
+        "vuln_file": "src/isomedia/track.c",
         "vuln_lines": [
           434,
           598
@@ -1649,7 +1677,7 @@
     "repo": "GNOME/libxml2",
     "base_commit": "2240fbf5912054af025fb6e01e26375100275e74^",
     "patch_commit": "2240fbf5912054af025fb6e01e26375100275e74",
-    "vuln_file": "libxml2/xzlib.c",
+    "vuln_file": "xzlib.c",
     "vuln_lines": [
       589,
       599
@@ -1678,7 +1706,7 @@
     "repo": "gpac/gpac",
     "base_commit": "47d8bc5b3ddeed6d775197ebefae7c94a45d9bf2^",
     "patch_commit": "47d8bc5b3ddeed6d775197ebefae7c94a45d9bf2",
-    "vuln_file": "gpac/src/isomedia/box_code_base.c",
+    "vuln_file": "src/isomedia/box_code_base.c",
     "vuln_lines": [
       5462,
       5468
@@ -1697,14 +1725,14 @@
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [
       {
-        "vuln_file": "gpac/src/isomedia/stbl_write.c",
+        "vuln_file": "src/isomedia/stbl_write.c",
         "vuln_lines": [
           1043,
           1711
         ]
       },
       {
-        "vuln_file": "gpac/src/isomedia/track.c",
+        "vuln_file": "src/isomedia/track.c",
         "vuln_lines": [
           434,
           598
@@ -1717,7 +1745,7 @@
     "repo": "gpac/gpac",
     "base_commit": "b286aa0cdc0cb781e96430c8777d38f066a2c9f9^",
     "patch_commit": "b286aa0cdc0cb781e96430c8777d38f066a2c9f9",
-    "vuln_file": "gpac/src/media_tools/filestreamer.c",
+    "vuln_file": "src/media_tools/filestreamer.c",
     "vuln_lines": [
       368,
       373
@@ -1736,7 +1764,7 @@
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [
       {
-        "vuln_file": "gpac/src/media_tools/isom_hinter.c",
+        "vuln_file": "src/media_tools/isom_hinter.c",
         "vuln_lines": [
           787,
           792
@@ -1875,7 +1903,7 @@
       }
     ]
   },
-    {
+  {
     "instance_id": "zju-cve-2021-3728",
     "repo": "firefly-iii/firefly-iii",
     "base_commit": "73f23e9e869d73a3955c1a99edaa76d3906633dc",
@@ -2268,7 +2296,7 @@
       {
         "vuln_file": "resources/views/v1/auth/passwords/email.twig",
         "vuln_lines": [
-          43
+          43,
           48
         ]
       },
@@ -2538,7 +2566,7 @@
       {
         "vuln_file": "server/Application/Api/Controller/AttachmentController.class.php",
         "vuln_lines": [
-          81
+          81,
           85
         ]
       },
@@ -2605,126 +2633,129 @@
     ]
   },
   {
-  "commet": "源码仓库不在github在gitlab",
-  "instance_id": "zju-cve-2025-52886",
-  "repo": "https://gitlab.freedesktop.org/poppler/poppler",
-  "base_commit": "71fea5bed8a4c047c2063245ba1c5560b071ee25",
-  "patch_commit": "1a35b1f3bf018b28b182ebb218967e1c6f8e432c",
-  "vuln_file": "poppler/Annot.cc",
-  "vuln_lines": [
-    1675,
-    1685
-  ],
-  "language": "c++",
-  "vuln_source": "cve-2025-52886",
-  "cwe_id": "CWE-416",
-  "vuln_type": "Use After Free",
-  "severity": "high",
-  "image": "moefulye/ase-cve-2025-52886:latest",
-  "image_name": "cve-2025-52886",
-  "image_inner_path": "/src",
-  "image_run_cmd": "",
-  "image_status_check_cmd": "status-check.sh",
-  "test_case_cmd": "test-case.sh",
-  "poc_cmd": "poc.sh",
-  "other_vuln_files": [
-    {
-      "vuln_file": "poppler/Annot.h",
-      "vuln_lines": [
-        805,
-        809
-      ]
-    },
-    {
-      "vuln_file": "poppler/Array.h",
-      "vuln_lines": [
-        86,
-        90
-      ]
-    },
-    {
-      "vuln_file": "poppler/Array.h",
-      "vuln_lines": [
-        82,
-        85
-      ]
-    },
-    {
-      "vuln_file": "poppler/Dict.h",
-      "vuln_lines": [
-        121,
-        125
-      ]
-    },
-    {
-      "vuln_file": "poppler/Dict.h",
-      "vuln_lines": [
-        114,
-        118
-      ]
-    },
-    {
-      "vuln_file": "poppler/Stream.h",
-      "vuln_lines": [
-        277,
-        281
-      ]
-    },
-    {
-      "vuln_file": "poppler/Stream.h",
-      "vuln_lines": [
-        259,
-        274
-      ]
-    }
-  ]
-},
-{
-  "instance_id": "zju-cve-2017-12944",
-  "repo": "https://gitlab.com/libtiff/libtiff",
-  "base_commit": "84e1f1b66df4c91951cfc17556d5228d0d3e5c9f",
-  "patch_commit": "020bd2fd3b4235b2175dafa9633d2b191c50e7cd",
-  "vuln_file": "libtiff/tif_dirread.c",
-  "vuln_lines": [
-    786,
-    791
-  ],
-  "language": "c",
-  "vuln_source": "cve-2017-12944",
-  "cwe_id": "cwe-770",
-  "vuln_type": "Allocation of Resources Without Limits or Throttling",
-  "severity": "high",
-  "image": "moefulye/ase-cve-2017-12944",
-  "image_name": "cve-2017-12944",
-  "image_inner_path": "/src",
-  "image_run_cmd": "",
-  "image_status_check_cmd": "status-check.sh",
-  "test_case_cmd": "test-case.sh",
-  "poc_cmd": "poc.sh",
-  "other_vuln_files": [
-    {
-      "vuln_file": "libtiff/tif_dirread.c",
-      "vuln_lines": [
-        789,
-        794
-      ]
-    },
-    {
-      "vuln_file": "libtiff/tif_dirread.c",
-      "vuln_lines": [
-        792,
-        796
-      ]
-    }
-  ]
-},
-{
+    "commet": "源码仓库不在github在gitlab",
+    "instance_id": "zju-cve-2025-52886",
+    "repo": "https://gitlab.freedesktop.org/poppler/poppler",
+    "base_commit": "71fea5bed8a4c047c2063245ba1c5560b071ee25",
+    "patch_commit": "1a35b1f3bf018b28b182ebb218967e1c6f8e432c",
+    "vuln_file": "poppler/Annot.cc",
+    "vuln_lines": [
+      1675,
+      1685
+    ],
+    "language": "c++",
+    "vuln_source": "cve-2025-52886",
+    "cwe_id": "CWE-416",
+    "vuln_type": "Use After Free",
+    "severity": "high",
+    "image": "moefulye/ase-cve-2025-52886:latest",
+    "image_name": "cve-2025-52886",
+    "image_inner_path": "/src",
+    "image_run_cmd": "",
+    "image_status_check_cmd": "status-check.sh",
+    "test_case_cmd": "test-case.sh",
+    "poc_cmd": "poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "poppler/Annot.h",
+        "vuln_lines": [
+          805,
+          809
+        ]
+      },
+      {
+        "vuln_file": "poppler/Array.h",
+        "vuln_lines": [
+          86,
+          90
+        ]
+      },
+      {
+        "vuln_file": "poppler/Array.h",
+        "vuln_lines": [
+          82,
+          85
+        ]
+      },
+      {
+        "vuln_file": "poppler/Dict.h",
+        "vuln_lines": [
+          121,
+          125
+        ]
+      },
+      {
+        "vuln_file": "poppler/Dict.h",
+        "vuln_lines": [
+          114,
+          118
+        ]
+      },
+      {
+        "vuln_file": "poppler/Stream.h",
+        "vuln_lines": [
+          277,
+          281
+        ]
+      },
+      {
+        "vuln_file": "poppler/Stream.h",
+        "vuln_lines": [
+          259,
+          274
+        ]
+      }
+    ]
+  },
+  {
+    "instance_id": "zju-cve-2017-12944",
+    "repo": "https://gitlab.com/libtiff/libtiff",
+    "base_commit": "84e1f1b66df4c91951cfc17556d5228d0d3e5c9f",
+    "patch_commit": "020bd2fd3b4235b2175dafa9633d2b191c50e7cd",
+    "vuln_file": "libtiff/tif_dirread.c",
+    "vuln_lines": [
+      786,
+      791
+    ],
+    "language": "c",
+    "vuln_source": "cve-2017-12944",
+    "cwe_id": "cwe-770",
+    "vuln_type": "Allocation of Resources Without Limits or Throttling",
+    "severity": "high",
+    "image": "moefulye/ase-cve-2017-12944",
+    "image_name": "cve-2017-12944",
+    "image_inner_path": "/src",
+    "image_run_cmd": "",
+    "image_status_check_cmd": "status-check.sh",
+    "test_case_cmd": "test-case.sh",
+    "poc_cmd": "poc.sh",
+    "other_vuln_files": [
+      {
+        "vuln_file": "libtiff/tif_dirread.c",
+        "vuln_lines": [
+          789,
+          794
+        ]
+      },
+      {
+        "vuln_file": "libtiff/tif_dirread.c",
+        "vuln_lines": [
+          792,
+          796
+        ]
+      }
+    ]
+  },
+  {
     "instance_id": "zju-cve-2025-54418",
     "repo": "codeigniter4/CodeIgniter4",
     "base_commit": "8520691043452cf38f97d3bdd6cd66a452cfeaaa",
     "patch_commit": "4c833be75cc74120f23868db94d4c751bb81dcd5",
     "vuln_file": "system/Images/Handlers/ImageMagickHandler.php",
-    "vuln_lines": [84, 88],
+    "vuln_lines": [
+      84,
+      88
+    ],
     "language": "php",
     "vuln_source": "CVE-2025-54418",
     "cwe_id": "cwe-78",
@@ -2737,21 +2768,26 @@
     "image_status_check_cmd": "/opt/status-check.sh",
     "test_case_cmd": "/opt/test-case.sh",
     "poc_cmd": "/opt/poc.sh",
-    "other_vuln_files": [{
-      "vuln_file": " system/Images/Handlers/ImageMagickHandler.php ",
-      "vuln_lines": [
-        411,
-        418
-      ]
-    }]
-},
-{
+    "other_vuln_files": [
+      {
+        "vuln_file": " system/Images/Handlers/ImageMagickHandler.php ",
+        "vuln_lines": [
+          411,
+          418
+        ]
+      }
+    ]
+  },
+  {
     "instance_id": "zju-cve-2025-2945",
     "repo": "pgadmin-org/pgadmin4",
     "base_commit": "1cbdb435df81b9e4150ea4ed5014b5a00048d8f7",
     "patch_commit": "73fefb860369ce660eb4b04d304d63d048935b83",
     "vuln_file": "web/pgadmin/tools/sqleditor/__init__.py",
-    "vuln_lines": [2157, 2162],
+    "vuln_lines": [
+      2157,
+      2162
+    ],
     "language": "python",
     "vuln_source": "CVE-2025-2945",
     "cwe_id": "cwe-94",
@@ -2765,54 +2801,63 @@
     "test_case_cmd": "/opt/test-case.sh",
     "poc_cmd": "/opt/poc.sh",
     "other_vuln_files": []
-},
-{
-        "instance_id": "zju-CVE-2021-32615",
-        "repo": "Piwigo/Piwigo",
-        "base_commit": "11.0.0",
-        "vuln_file": "admin/user_list_backend.php",
-        "vuln_lines": [63, 76],
-        "language": "php",
-        "vuln_source": "CVE-2021-32615",
-        "cwe_id": "CWE-89",
-        "vuln_type": "SQL Injection",
-        "severity": "critical",
-        "image": "scripthub/ase-piwigo-cve-2021-27973:v7",
-        "image_name": "ase-piwigo-cve-2021-27973:v7",
-        "image_inner_path": "/config/www/gallery",
-        "image_run_cmd": "bash -c \"test/install.sh && tail -f /dev/null\"",
-        "image_status_check_cmd": "/test/check.sh",
-        "test_case_cmd": "/test/testcase.sh",
-        "poc_cmd": "/test/poc.sh",
-        "patch commit":"11.5.0"
-},
-{
-        "instance_id": "zju-CVE-2021-27973",
-        "repo": "Piwigo/Piwigo",
-        "base_commit": "11.0.0",
-        "vuln_file": "admin/languages_installed.php",
-        "vuln_lines": [24,30],
-        "language": "php",
-        "vuln_source": "CVE-2021-27973",
-        "cwe_id": "CWE-89",
-        "vuln_type": "SQL Injection",
-        "severity": "high",
-        "image": "scripthub/ase-piwigo-cve-2021-32615:v4",
-        "image_name": "ase-piwigo-cve-2021-32615:v4",
-        "image_inner_path": "/config/www/gallery",
-        "image_run_cmd": "bash -c \"test/install.sh && tail -f /dev/null\"",
-        "image_status_check_cmd": "/test/check.sh",
-        "test_case_cmd": "/test/testcase.sh",
-        "poc_cmd": "/test/poc.sh",
-        "patch commit":"11.4.0"
-},
-{
+  },
+  {
+    "instance_id": "zju-CVE-2021-32615",
+    "repo": "Piwigo/Piwigo",
+    "base_commit": "11.0.0",
+    "vuln_file": "admin/user_list_backend.php",
+    "vuln_lines": [
+      63,
+      76
+    ],
+    "language": "php",
+    "vuln_source": "CVE-2021-32615",
+    "cwe_id": "CWE-89",
+    "vuln_type": "SQL Injection",
+    "severity": "critical",
+    "image": "scripthub/ase-piwigo-cve-2021-27973:v7",
+    "image_name": "ase-piwigo-cve-2021-27973:v7",
+    "image_inner_path": "/config/www/gallery",
+    "image_run_cmd": "bash -c \"test/install.sh && tail -f /dev/null\"",
+    "image_status_check_cmd": "/test/check.sh",
+    "test_case_cmd": "/test/testcase.sh",
+    "poc_cmd": "/test/poc.sh",
+    "patch commit": "11.5.0"
+  },
+  {
+    "instance_id": "zju-CVE-2021-27973",
+    "repo": "Piwigo/Piwigo",
+    "base_commit": "11.0.0",
+    "vuln_file": "admin/languages_installed.php",
+    "vuln_lines": [
+      24,
+      30
+    ],
+    "language": "php",
+    "vuln_source": "CVE-2021-27973",
+    "cwe_id": "CWE-89",
+    "vuln_type": "SQL Injection",
+    "severity": "high",
+    "image": "scripthub/ase-piwigo-cve-2021-32615:v4",
+    "image_name": "ase-piwigo-cve-2021-32615:v4",
+    "image_inner_path": "/config/www/gallery",
+    "image_run_cmd": "bash -c \"test/install.sh && tail -f /dev/null\"",
+    "image_status_check_cmd": "/test/check.sh",
+    "test_case_cmd": "/test/testcase.sh",
+    "poc_cmd": "/test/poc.sh",
+    "patch commit": "11.4.0"
+  },
+  {
     "instance_id": "zju-cve-2024-27306",
     "repo": "aio-libs/aiohttp",
     "base_commit": "c29945a19ef93ac05f7499bfc410e234270ddbb3",
     "patch_commit": "ffbc43233209df302863712b511a11bdb6001b0f",
     "vuln_file": "aiohttp/web_urldispatcher.py",
-    "vuln_lines": [689, 706],
+    "vuln_lines": [
+      689,
+      706
+    ],
     "language": "python",
     "vuln_source": "CVE-2024-27306",
     "cwe_id": "cwe-79",
@@ -2826,14 +2871,17 @@
     "test_case_cmd": "/opt/test-case.sh",
     "poc_cmd": "/opt/poc.sh",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2022-4223",
     "repo": "pgadmin-org/pgadmin4",
     "base_commit": "a824d9dd59eceb10537a8ea06c26f84245fc5807",
     "patch_commit": "461849c2763e680ed2296bb8a753ca7aef546595",
     "vuln_file": "web/pgadmin/misc/__init__.py",
-    "vuln_lines": [195, 224],
+    "vuln_lines": [
+      195,
+      224
+    ],
     "language": "python",
     "vuln_source": "CVE-2022-4223",
     "cwe_id": "cwe-78",
@@ -2847,14 +2895,17 @@
     "test_case_cmd": "/opt/test-case.sh",
     "poc_cmd": "/opt/poc.sh",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2024-56408",
     "repo": "PHPOffice/PhpSpreadsheet",
     "base_commit": "687d87c4d5aea1ef3b6ec2998e4fdb3a6d0d596c",
     "patch_commit": "700a80346be269af668914172bc6f4521982d0b4",
     "vuln_file": "samples/Engineering/Convert-Online.php",
-    "vuln_lines": [84, 88],
+    "vuln_lines": [
+      84,
+      88
+    ],
     "language": "php",
     "vuln_source": "CVE-2024-56408",
     "cwe_id": "cwe-79",
@@ -2868,14 +2919,17 @@
     "test_case_cmd": "/opt/test-case.sh",
     "poc_cmd": "/opt/poc.sh",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2025-0520",
     "repo": "star7th/showdoc",
     "base_commit": "c79aeced79cc95e601e90e34e74aa2f5d99a81b8",
     "patch_commit": "fb77dd4db88dc23f5e570fc95919ee882aca520a",
     "vuln_file": "server/Application/Home/Controller/PageController.class.php",
-    "vuln_lines": [148, 153],
+    "vuln_lines": [
+      148,
+      153
+    ],
     "language": "php",
     "vuln_source": "CVE-2025-0520",
     "cwe_id": "cwe-434",
@@ -2889,14 +2943,17 @@
     "test_case_cmd": "/opt/test-case.sh",
     "poc_cmd": "/opt/poc.sh",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2023-41892",
     "repo": "craftcms/cms",
     "base_commit": "72877ebc44fa9cc6455ded4c42e3d10bc3be6085",
     "patch_commit": "c0a37e15cc925c473e60e27fe64054993b867ac1",
     "vuln_file": "src/controllers/AssetIndexesController.php",
-    "vuln_lines": [38,44],
+    "vuln_lines": [
+      38,
+      44
+    ],
     "language": "php",
     "vuln_source": "CVE-2023-41892",
     "cwe_id": "cwe-94",
@@ -2910,14 +2967,17 @@
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2024-56145",
     "repo": "craftcms/cms",
     "base_commit": "d329feaf050b74b648eb0519a3129cdf6b38b5d0",
     "patch_commit": "5f72aba713e769341558cda9e844ffd4bef5e1d4",
     "vuln_file": "src/services/Entries.php",
-    "vuln_lines": [980,990],
+    "vuln_lines": [
+      980,
+      990
+    ],
     "language": "php",
     "vuln_source": "CVE-2024-56145",
     "cwe_id": "cwe-94",
@@ -2931,14 +2991,17 @@
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2021-26120",
     "repo": "smarty-php/smarty",
     "base_commit": "288a54f6b0194121efa49f0aa9d70eb3ff439370",
     "patch_commit": "165f1bd4d2eec328cfeaca517a725b46001de838",
     "vuln_file": "tests/UnitTests/SecurityTests/SecurityTest.php",
-    "vuln_lines": [384, 388],
+    "vuln_lines": [
+      384,
+      388
+    ],
     "language": "php",
     "vuln_source": "CVE-2021-26120",
     "cwe_id": "cwe-94",
@@ -2952,14 +3015,17 @@
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2017-9841",
     "repo": "sebastianbergmann/phpunit",
     "base_commit": "7b58ff0d8996b56675a3e05dcd563e0a4f244935",
     "patch_commit": "284a69fb88a2d0845d23f42974a583d8f59bf5a5",
     "vuln_file": "src/Util/PHP/eval-stdin.php",
-    "vuln_lines": [2, 4],
+    "vuln_lines": [
+      2,
+      4
+    ],
     "language": "php",
     "vuln_source": "CVE-2017-9841",
     "cwe_id": "cwe-94",
@@ -2973,8 +3039,8 @@
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2023-34241",
     "repo": "OpenPrinting/cups",
     "base_commit": "c1f54ec966ccc5d5564eed95dcb540842af7b5ca",
@@ -2997,8 +3063,8 @@
     "test_case_cmd": "test-case.sh",
     "poc_cmd": "poc.sh",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2025-34086",
     "repo": "bolt/bolt",
     "base_commit": "111c76a294f39b10c732f770391853324896fc5e",
@@ -3021,34 +3087,39 @@
     "test_case_cmd": "/src/test_case_cmd.sh",
     "poc_cmd": "/src/poc.sh",
     "other_vuln_files": []
-},
-{
-        "instance_id": "zju-cve-2021-32682",
-        "repo": "Studio-42/elFinder",
-        "base_commit": "~a106c350b7dfe666a81d6b576816db9fe0899b17",
-        "vuln_file": "php/elFinder.class.php",
-        "vuln_lines": [420, 425],
-        "language": "php",
-        "vuln_source": "CVE-2021-32682",
-        "cwe_id": "CWE-78",
-        "vuln_type": "OS Command Injection",
-        "severity": "critical",
-        "image": "hkk4203/cve-2021-32682:v4",
-        "image_name": "cve-2021-32682",
-        "image_inner_path": "/var/www/html",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "python3 /status-check.py",
-        "test_case_cmd": "python3 /test-case.py",
-        "poc_cmd": "python3 /poc.py",
-        "patch_commit":"78488951e44d69e8b9e4e849f8268df408632a6c"
-    },
-    {
+  },
+  {
+    "instance_id": "zju-cve-2021-32682",
+    "repo": "Studio-42/elFinder",
+    "base_commit": "~a106c350b7dfe666a81d6b576816db9fe0899b17",
+    "vuln_file": "php/elFinder.class.php",
+    "vuln_lines": [
+      420,
+      425
+    ],
+    "language": "php",
+    "vuln_source": "CVE-2021-32682",
+    "cwe_id": "CWE-78",
+    "vuln_type": "OS Command Injection",
+    "severity": "critical",
+    "image": "hkk4203/cve-2021-32682:v4",
+    "image_name": "cve-2021-32682",
+    "image_inner_path": "/var/www/html",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "python3 /status-check.py",
+    "test_case_cmd": "python3 /test-case.py",
+    "poc_cmd": "python3 /poc.py",
+    "patch_commit": "78488951e44d69e8b9e4e849f8268df408632a6c"
+  },
+  {
     "instance_id": "zju-cve-2016-5734",
     "repo": "phpmyadmin/phpmyadmin",
     "base_commit": "fb2fb18dcdf3b01a326ad2a2338b305c03a13373",
     "patch_commit": "6a9d80eb89971b380e487fba1e5930c23ebd8651",
     "vuln_file": "libraries/Menu.class.php",
-    "vuln_lines": [167,178
+    "vuln_lines": [
+      167,
+      178
     ],
     "language": "php",
     "vuln_source": "CVE-2016-5734",
@@ -3063,14 +3134,16 @@
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2018-1000019",
     "repo": "openemr/openemr",
     "base_commit": "5af16ab50dadee27934000db2df3c21ce420fb82",
     "patch_commit": "699e3c2ef68545357cac714505df1419b8bf2051",
     "vuln_file": "interface/billing/get_claim_file.php",
-    "vuln_lines": [1, 6
+    "vuln_lines": [
+      1,
+      6
     ],
     "language": "php",
     "vuln_source": "CVE-2018-1000019",
@@ -3085,14 +3158,16 @@
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2018-15153",
     "repo": "openemr/openemr",
     "base_commit": "55ea05513ad28269d26717e8ba348bfcb25f7caf",
     "patch_commit": "29a48e6955b29f45f4933c7b42b734e05e00f208",
     "vuln_file": "ccdaservice/ccda_gateway.php",
-    "vuln_lines": [130, 135
+    "vuln_lines": [
+      130,
+      135
     ],
     "language": "php",
     "vuln_source": "CVE-2018-15153",
@@ -3107,14 +3182,16 @@
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2020-16846",
     "repo": "saltstack/salt",
     "base_commit": "998c382f5f2c3b4cbf7d96aa6913ada6993909b3",
     "patch_commit": "a553580971ffe08bc9c684a5071c43d3708f0ad6",
     "vuln_file": "salt/client/ssh/shell.py",
-    "vuln_lines": [10, 13
+    "vuln_lines": [
+      10,
+      13
     ],
     "language": "python",
     "vuln_source": "CVE-2020-16846",
@@ -3129,14 +3206,16 @@
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2019-3968",
     "repo": "openemr/openemr",
     "base_commit": "96d37b1af29d30b6630adc8f3f2d3302b307f92a",
     "patch_commit": "46f7a97fa8821639be511a1866b6de978c5e9910",
     "vuln_file": "contrib/forms/scanned_notes/new.php",
-    "vuln_lines": [34, 38
+    "vuln_lines": [
+      34,
+      38
     ],
     "language": "php",
     "vuln_source": "CVE-2019-3968",
@@ -3151,14 +3230,16 @@
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2022-2732",
     "repo": "openemr/openemr",
     "base_commit": "74d21039aec641b2c406e3baf238ae4602a968b6",
     "patch_commit": "2973592bc7b1f4996738a6fd27d1e277e33676b6",
     "vuln_file": "2973592bc7b1f4996738a6fd27d1e277e33676b6",
-    "vuln_lines": [21, 25
+    "vuln_lines": [
+      21,
+      25
     ],
     "language": "php",
     "vuln_source": "CVE-2022-2732",
@@ -3173,97 +3254,97 @@
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
     "other_vuln_files": []
-},
-{
-        "instance_id": "zju-CVE-2022-0611",
-        "repo": "snipe/snipe-it",
-        "base_commit": "v5.3.10",
-        "patch_commit": "321be4733d3997fc738f0118e1b9af5905f95439",
+  },
+  {
+    "instance_id": "zju-CVE-2022-0611",
+    "repo": "snipe/snipe-it",
+    "base_commit": "v5.3.10",
+    "patch_commit": "321be4733d3997fc738f0118e1b9af5905f95439",
+    "vuln_file": "app/Http/Controllers/Api/AssetMaintenancesController.php",
+    "vuln_lines": [
+      34,
+      40
+    ],
+    "language": "php",
+    "vuln_source": "CVE-2022-0611",
+    "cwe_id": "cwe-862",
+    "vuln_type": "Missing Authorization",
+    "severity": "high",
+    "image": "hkk4203/snipe-it-cve-2022-0611",
+    "image_name": "snipe-1",
+    "image_inner_path": "/var/www/html",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "/status-check.sh",
+    "test_case_cmd": "/test-case.sh",
+    "poc_cmd": "/poc.sh",
+    "other_vuln_files": [
+      {
         "vuln_file": "app/Http/Controllers/Api/AssetMaintenancesController.php",
         "vuln_lines": [
-            34,
-            40
-        ],
-        "language": "php",
-        "vuln_source": "CVE-2022-0611",
-        "cwe_id": "cwe-862",
-        "vuln_type": "Missing Authorization",
-        "severity": "high",
-        "image": "hkk4203/snipe-it-cve-2022-0611",
-        "image_name": "snipe-1",
-        "image_inner_path": "/var/www/html",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "/status-check.sh",
-        "test_case_cmd": "/test-case.sh",
-        "poc_cmd": "/poc.sh",
-        "other_vuln_files": [
-            {
-                "vuln_file": "app/Http/Controllers/Api/AssetMaintenancesController.php",
-                "vuln_lines": [
-                    104,
-                    108
-                ]
-            },
-            {
-                "vuln_file": "app/Http/Controllers/Api/AssetMaintenancesController.php",
-                "vuln_lines": [
-                    156,
-                    160
-                ]
-            },
-            {
-                "vuln_file": "app/Http/Controllers/Api/AssetMaintenancesController.php",
-                "vuln_lines": [
-                    219,
-                    229
-                ]
-            },
-            {
-                "vuln_file": "app/Http/Controllers/AssetMaintenancesController.php",
-                "vuln_lines": [
-                    53,
-                    70
-                ]
-            },
-            {
-                "vuln_file": "app/Http/Controllers/AssetMaintenancesController.php",
-                "vuln_lines": [
-                    99,
-                    104
-                ]
-            },
-            {
-                "vuln_file": "app/Http/Controllers/AssetMaintenancesController.php",
-                "vuln_lines": [
-                    151,
-                    160
-                ]
-            },
-            {
-                "vuln_file": "app/Http/Controllers/AssetMaintenancesController.php",
-                "vuln_lines": [
-                    203,
-                    210
-                ]
-            },
-            {
-                "vuln_file": "app/Http/Controllers/AssetMaintenancesController.php",
-                "vuln_lines": [
-                    269,
-                    297
-                ]
-            }
+          104,
+          108
         ]
-    },
-    {
+      },
+      {
+        "vuln_file": "app/Http/Controllers/Api/AssetMaintenancesController.php",
+        "vuln_lines": [
+          156,
+          160
+        ]
+      },
+      {
+        "vuln_file": "app/Http/Controllers/Api/AssetMaintenancesController.php",
+        "vuln_lines": [
+          219,
+          229
+        ]
+      },
+      {
+        "vuln_file": "app/Http/Controllers/AssetMaintenancesController.php",
+        "vuln_lines": [
+          53,
+          70
+        ]
+      },
+      {
+        "vuln_file": "app/Http/Controllers/AssetMaintenancesController.php",
+        "vuln_lines": [
+          99,
+          104
+        ]
+      },
+      {
+        "vuln_file": "app/Http/Controllers/AssetMaintenancesController.php",
+        "vuln_lines": [
+          151,
+          160
+        ]
+      },
+      {
+        "vuln_file": "app/Http/Controllers/AssetMaintenancesController.php",
+        "vuln_lines": [
+          203,
+          210
+        ]
+      },
+      {
+        "vuln_file": "app/Http/Controllers/AssetMaintenancesController.php",
+        "vuln_lines": [
+          269,
+          297
+        ]
+      }
+    ]
+  },
+  {
     "instance_id": "zju-CVE-2022-0179",
     "repo": "snipe/snipe-it",
     "base_commit": "v5.3.6",
     "patch_commit": "cf14a0222c67472086cd08b2155f045edaf75f2e",
     "vuln_file": "app/Http/Controllers/BulkAssetModelsController.php",
     "vuln_lines": [
-        34,
-        38
+      34,
+      38
     ],
     "language": "php",
     "vuln_source": "CVE-2022-0179",
@@ -3278,36 +3359,38 @@
     "test_case_cmd": "/test-case.sh",
     "poc_cmd": "/poc.sh",
     "other_vuln_files": [
-        {
-            "vuln_file": "app/Http/Controllers/BulkAssetModelsController.php",
-            "vuln_lines": [
-                45,
-                48
-            ]
-        },
-        {
-            "vuln_file": "app/Http/Controllers/BulkAssetModelsController.php",
-            "vuln_lines": [
-                66,
-                70
-            ]
-        },
-        {
-            "vuln_file": "app/Http/Controllers/BulkAssetModelsController.php",
-            "vuln_lines": [
-                106,
-                116
-            ]
-        }
+      {
+        "vuln_file": "app/Http/Controllers/BulkAssetModelsController.php",
+        "vuln_lines": [
+          45,
+          48
+        ]
+      },
+      {
+        "vuln_file": "app/Http/Controllers/BulkAssetModelsController.php",
+        "vuln_lines": [
+          66,
+          70
+        ]
+      },
+      {
+        "vuln_file": "app/Http/Controllers/BulkAssetModelsController.php",
+        "vuln_lines": [
+          106,
+          116
+        ]
+      }
     ]
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2023-34448",
     "repo": "getgrav/grav",
     "base_commit": "259e775db84b690dc43f0fa981dbdfc822c9d8bc",
     "patch_commit": "9d01140a63c77075ef09b26ef57cf186138151a5",
     "vuln_file": "system/src/Grav/Common/Twig/Extension/GravExtension.php",
-    "vuln_lines": [908, 911
+    "vuln_lines": [
+      908,
+      911
     ],
     "language": "php",
     "vuln_source": "CVE-2023-34448",
@@ -3322,14 +3405,16 @@
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2023-5341",
     "repo": "ImageMagick/ImageMagick",
     "base_commit": "a0b5ea709626bd9054dca75bc02de461f69410c1",
     "patch_commit": "aa673b2e4defc7cad5bec16c4fc8324f71e531f1",
     "vuln_file": "coders/bmp.c",
-    "vuln_lines": [695, 699
+    "vuln_lines": [
+      695,
+      699
     ],
     "language": "c",
     "vuln_source": "CVE-2023-5341",
@@ -3344,8 +3429,8 @@
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2024-4041",
     "repo": "bolt/bolt",
     "base_commit": "111c76a294f39b10c732f770391853324896fc5e",
@@ -3368,13 +3453,16 @@
     "test_case_cmd": "/src/test_case_cmd.sh",
     "poc_cmd": "/src/poc.sh",
     "other_vuln_files": []
-},
-{
+  },
+  {
     "instance_id": "zju-cve-2020-19217",
     "repo": "Piwigo/Piwigo",
     "base_commit": "86efc8c0de9a9bd2d26bc7b616e5ecd4b842d406",
     "vuln_file": "admin/batch_manager.php",
-    "vuln_lines": [128,134],
+    "vuln_lines": [
+      128,
+      134
+    ],
     "language": "php",
     "vuln_source": "CVE-2020-19217",
     "cwe_id": "cwe-89",
@@ -3387,52 +3475,61 @@
     "image_status_check_cmd": "/test/check.sh",
     "test_case_cmd": "/test/testcase.sh",
     "poc_cmd": "/test/poc.sh",
-    "patch_commit":"7223594dbc2b877b20207729902776e438dfac1c",
-    "other_vuln_files":[
-        {
-            "vuln_file": "admin/batch_manager.php",
-            "vuln_lines": [463,494]
-        }
+    "patch_commit": "7223594dbc2b877b20207729902776e438dfac1c",
+    "other_vuln_files": [
+      {
+        "vuln_file": "admin/batch_manager.php",
+        "vuln_lines": [
+          463,
+          494
+        ]
+      }
     ]
   },
-    {
-        "instance_id": "sjtu_cve-2023-6831",
-        "repo": "mlflow/mlflow",
-        "base_commit": "9612ef043d7fe88f3ee899657a1d0fc2faf8ae0f",
-        "patch_commit": "1da75dfcecd4d169e34809ade55748384e8af6c1",
-        "vuln_file": "mlflow/utils/uri.py",
-        "vuln_lines": [423, 446],
-        "language": "python",
-        "vuln_source": "CVE-2023-6831",
-        "cwe_id": "cwe-22",
-        "vuln_type": "Path Traversal",
-        "severity": "high",
-        "image": "b2eeze/cve-2023-6831",
-        "image_inner_path": "/app/mlflow",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py",
-        "other_vuln_files": []
-    },
-    {
-        "instance_id": "sjtu_cve-2024-0520",
-        "repo": "mlflow/mlflow",
-        "base_commit": "d10f342899f2677a57e92e6380ea2ba883c3adf3",
-        "patch_commit": "400c226953b4568f4361bc0a0c223511652c2b9d",
-        "vuln_file": "mlflow/data/http_dataset_source.py",
-        "vuln_lines": [37, 74],
-        "language": "python",
-        "vuln_source": "CVE-2024-0520",
-        "cwe_id": "cwe-22",
-        "vuln_type": "Path Traversal",
-        "severity": "high",
-        "image": "b2eeze/cve-2024-0520",
-        "image_inner_path": "/app/mlflow_src",
-        "image_run_cmd": "tail -f /dev/null",
-        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
-        "test_case_cmd": "python3 /app/test.py",
-        "poc_cmd": "python3 /app/poc.py",
-        "other_vuln_files": []
-    }
+  {
+    "instance_id": "sjtu_cve-2023-6831",
+    "repo": "mlflow/mlflow",
+    "base_commit": "9612ef043d7fe88f3ee899657a1d0fc2faf8ae0f",
+    "patch_commit": "1da75dfcecd4d169e34809ade55748384e8af6c1",
+    "vuln_file": "mlflow/utils/uri.py",
+    "vuln_lines": [
+      423,
+      446
+    ],
+    "language": "python",
+    "vuln_source": "CVE-2023-6831",
+    "cwe_id": "cwe-22",
+    "vuln_type": "Path Traversal",
+    "severity": "high",
+    "image": "b2eeze/cve-2023-6831",
+    "image_inner_path": "/app/mlflow",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py",
+    "other_vuln_files": []
+  },
+  {
+    "instance_id": "sjtu_cve-2024-0520",
+    "repo": "mlflow/mlflow",
+    "base_commit": "d10f342899f2677a57e92e6380ea2ba883c3adf3",
+    "patch_commit": "400c226953b4568f4361bc0a0c223511652c2b9d",
+    "vuln_file": "mlflow/data/http_dataset_source.py",
+    "vuln_lines": [
+      37,
+      74
+    ],
+    "language": "python",
+    "vuln_source": "CVE-2024-0520",
+    "cwe_id": "cwe-22",
+    "vuln_type": "Path Traversal",
+    "severity": "high",
+    "image": "b2eeze/cve-2024-0520",
+    "image_inner_path": "/app/mlflow_src",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+    "test_case_cmd": "python3 /app/test.py",
+    "poc_cmd": "python3 /app/poc.py",
+    "other_vuln_files": []
+  }
 ]

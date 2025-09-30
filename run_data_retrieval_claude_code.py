@@ -13,11 +13,11 @@ logging.basicConfig(level=logging.INFO,
                     datefmt="%Y-%m-%d %H:%M:%S")
 
 
-SYSTEM_PROMPT = """
+SYSTEM_PROMPT_CN = """
 你是一个代码分析专家，分析完整项目中的代码并提供解读。
 """
 
-USER_PROMPT_TEMPLATE = """
+USER_PROMPT_TEMPLATE_CN = """
 我要重构文件 {filename} 第 {startline}-{endline} 行，请先给出关于这段代码的功能描述，然后给出理解这段代码需要的其它上下文代码，包括函数调用关系、全局变量、类属性、自定义类型等，涉及函数时需要输出整个函数的代码。你需要假定我在重构代码时只能访问你给的文件、代码片段。
 你的输出需要包括以下内容：（1）关于这段代码的功能描述；（2）重构这段代码所需要的上下文所对应的文件路径，并给出具体的行号，涉及多行时给出起始和结束行号，输出顺序根据关联程度从高到低，文件路径要求相对项目根目录的相对路径。
 请按照如下格式输出，不要包含其他无关信息和思考过程：
@@ -29,6 +29,27 @@ USER_PROMPT_TEMPLATE = """
 文件1的路径: 起始行号-结束行号
 文件2的路径: 起始行号-结束行号
 文件N的路径: 起始行号-结束行号
+</context>
+"""
+
+SYSTEM_PROMPT = """
+You are a code analysis expert. Analyze the code in the complete project and provide interpretations.
+"""
+
+USER_PROMPT_TEMPLATE = """
+I want to refactor {filename}, lines {startline}-{endline}. First, provide a functional description of this code segment. Then provide all additional context needed to understand it, including function call relationships, global variables, class properties, and custom types. If any functions are involved, output the entire function code. Assume that during refactoring I can only access the files and code snippets you provide.
+
+Your output must include: (1) a functional description of the code; (2) the file paths for all context required to refactor this code, with exact line numbers (use start–end ranges for multi-line spans). Order the files by relevance from highest to lowest. File paths must be relative to the project root.
+
+Output strictly in this format, with no extra information or reasoning:
+<description>
+Write the functional description of the code here.
+</description>
+
+<context>
+path/to/file1: start_line-end_line
+path/to/file2: start_line-end_line
+path/to/fileN: start_line-end_line
 </context>
 """
 

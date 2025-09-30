@@ -429,10 +429,20 @@ def call_llm(base_url, openai_key, model_name, system_message, user_message, max
             **model_args
         )
 
-    print(response)
-
-    completion = response.choices[0].message.content.strip()
-    return completion
+    stream = model_args.get("stream", False)
+    if stream:
+        final_answer = ""
+        for chunk in response:
+            if not chunk.choices:
+                continue
+            answer_chunk = chunk.choices[0].delta.content
+            if answer_chunk is None:
+                continue
+            final_answer += answer_chunk
+        return final_answer
+    else:
+        completion = response.choices[0].message.content.strip()
+        return completion
 
 
 def invoke_glm4_5(system_message, user_message):

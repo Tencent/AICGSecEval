@@ -40,19 +40,21 @@ async def invoke(args, remaining_args):
             api_key = args.api_key
             max_context_token = args.max_context_token
             max_gen_token = args.max_gen_token
-            model_args = args.model_args
 
             if api_key is None:
                 api_key_from_env = os.getenv('LLM_API_KEY')
                 if type(api_key_from_env) == tuple:
                     api_key = api_key_from_env[0]
 
-            model_args = {}
+            if not hasattr(args, "model_args") or args.model_args is None:
+                args.model_args = {}
+
             if args.temperature is not None:
                 args.model_args['temperature'] = args.temperature
             if args.top_p is not None:
                 args.model_args['top_p'] = args.top_p
-
+            model_args = args.model_args
+            
             gen_code_llm(model_name, batch_id, base_url, api_key, max_context_token, max_gen_token, github_token, 
                     dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, **model_args)
 
@@ -147,6 +149,7 @@ def parse_args():
             parser.error("代码生成使用Agent模式时，必须指定Agent名称（--agent_name）")
 
     return args, remaining_args
+
 
 if __name__ == "__main__":
     args, remaining_args = parse_args()
