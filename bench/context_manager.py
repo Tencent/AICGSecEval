@@ -191,8 +191,22 @@ class ContextManager:
     def reset_repo(self, raw_repo_dir, target_repo_dir):
         # 重置项目
         if self.repo is not None:
+            with open(os.path.join(target_repo_dir, "response.txt"), "r") as f:
+                response = f.read()
+            raw_diff_file = os.path.join(target_repo_dir, "raw_patch.diff")
+            flag = os.path.exists(raw_diff_file)
+            if flag:
+                with open(raw_diff_file, "r") as f:
+                    raw_diff = f.read()
+
             self.repo.git.reset("--hard", self.base_commit)
             self.repo.git.clean("-fdxq")
+            
+            with open(os.path.join(target_repo_dir, "response.txt"), "w") as f:
+                f.write(response)
+            if flag:
+                with open(raw_diff_file, "w") as f:
+                    f.write(raw_diff)
         else:
             # 重新复制原始目录
             target_dir_name = os.path.basename(os.path.normpath(target_repo_dir))
@@ -212,6 +226,7 @@ class ContextManager:
             if os.path.exists(raw_response_file):
                 target_response_file = os.path.join(target_repo_dir, "response.txt")
                 shutil.copy(raw_response_file, target_response_file)
+                print("拷贝文件了！！！！！")
             if os.path.exists(raw_patch_file):
                 target_patch_file = os.path.join(target_repo_dir, "raw_patch.diff")
                 shutil.copy(raw_patch_file, target_patch_file)
