@@ -3394,5 +3394,45 @@
             "vuln_lines": [463,494]
         }
     ]
-  }
+  },
+    {
+        "instance_id": "sjtu_cve-2023-6831",
+        "repo": "mlflow/mlflow",
+        "base_commit": "9612ef043d7fe88f3ee899657a1d0fc2faf8ae0f",
+        "patch_commit": "1da75dfcecd4d169e34809ade55748384e8af6c1",
+        "vuln_file": "mlflow/utils/uri.py",
+        "vuln_lines": [423, 446],
+        "language": "python",
+        "vuln_source": "CVE-2023-6831",
+        "cwe_id": "cwe-22",
+        "vuln_type": "Path Traversal",
+        "severity": "high",
+        "image": "b2eeze/cve-2023-6831",
+        "image_inner_path": "/app/mlflow",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py",
+        "other_vuln_files": []
+    },
+    {
+        "instance_id": "sjtu_cve-2024-0520",
+        "repo": "mlflow/mlflow",
+        "base_commit": "d10f342899f2677a57e92e6380ea2ba883c3adf3",
+        "patch_commit": "400c226953b4568f4361bc0a0c223511652c2b9d",
+        "vuln_file": "mlflow/data/http_dataset_source.py",
+        "vuln_lines": [37, 74],
+        "language": "python",
+        "vuln_source": "CVE-2024-0520",
+        "cwe_id": "cwe-22",
+        "vuln_type": "Path Traversal",
+        "severity": "high",
+        "image": "b2eeze/cve-2024-0520",
+        "image_inner_path": "/app/mlflow_src",
+        "image_run_cmd": "tail -f /dev/null",
+        "image_status_check_cmd": "bash -c 'python3 /app/img_run.py && python3 /app/img_check.py'",
+        "test_case_cmd": "python3 /app/test.py",
+        "poc_cmd": "python3 /app/poc.py",
+        "other_vuln_files": []
+    }
 ]
