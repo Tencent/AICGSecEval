@@ -286,7 +286,8 @@ def gen_code(model_name, batch_id, base_url, api_key, max_context_token, max_gen
     with open(dataset_path, 'r', encoding='utf-8') as f:
         raw_instances = json.load(f)
     with open(retrieval_data_path, 'r', encoding='utf-8') as f:
-        retrieval_instances = json.load(f)
+        # retrieval_instances = json.load(f)
+        retrieval_instances = load_data(retrieval_data_path)
     process_all_instances(raw_instances, retrieval_instances, model_name, batch_id, base_url, api_key, 
                           max_context_token, max_gen_token, 
                           github_token, raw_repo_dir, generated_code_dir, num_cycles, **model_args)
