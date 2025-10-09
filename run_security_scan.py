@@ -407,8 +407,11 @@ def process_cut_repo_for_scan(success_folders, generated_code_dir):
         process_cut_repo(os.path.join(generated_code_dir, folder), cut_repo_info[instance_id])
 
 def read_cut_repo_info():
-    with open("data/cut_repos.json", "r") as f:
-        repo_info = json.load(f)
+    if os.path.exists("data/cut_repos.json"):
+        with open("data/cut_repos.json", "r") as f:
+            repo_info = json.load(f)
+    else:
+        repo_info = {}
     return repo_info
 
 def process_cut_repo(target_repo_dir, file_list):
