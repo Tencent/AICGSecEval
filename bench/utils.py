@@ -72,7 +72,10 @@ def repair_patch(model_patch):
         diff_header = DIFF_PATTERN.findall(patch)
         if diff_header:
             new_patch += diff_header[0] + "\n"
-        patch_header = PATCH_FILE_PATTERN.findall(patch)[0]
+        tmp = PATCH_FILE_PATTERN.findall(patch)
+        if not tmp:
+            continue
+        patch_header = tmp[0]
         if patch_header:
             new_patch += patch_header + "\n"
         for hunk in PATCH_HUNK_PATTERN.findall(patch):

@@ -362,6 +362,10 @@ def make_codegen_prompt(MAXTOKEN,readme_files,masked_files,context_files,functio
     prompt_tokens = len(TOKENIZER(basic_prompt)['input_ids'])
     prompt_length = len(basic_prompt)
 
+    # 提示词过长时，移除 readme 文件
+    if prompt_tokens > 130000:
+        readme_files = []
+
     # 根据 MAX_TOKENS 和 MAX_LENGTH 计算使用的上下文文件
     used_context_files = []
     count=0
