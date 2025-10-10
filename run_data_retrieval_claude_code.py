@@ -1,12 +1,15 @@
 import argparse
 import asyncio
+import datetime
 import json
 import logging
 import os
 import re
 from pathlib import Path
+import traceback
 from claude_code_sdk import ClaudeSDKClient, ClaudeCodeOptions
 from bench.utils import clone_repo
+from tqdm import tqdm
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -193,34 +196,43 @@ async def main(dataset_path: str, retrieval_data_path: str, temp_dir: str, model
         logging.info("没有需要处理的数据集，退出")
         return
 
-    for instance in dataset:
-        instance_id = instance["instance_id"]
-        logging.info(f"开始处理数据集 \"{instance_id}\"")
-
-        repo = instance["repo"]
-        repo_dir = Path(temp_dir, f"{repo.replace('/', '__')}")
-        clone_repo(repo, repo_dir, github_token, logging.getLogger())
-
-        instance_data = await query_claude_code(
-            instance_id=instance_id,
-            repo_dir=repo_dir,
-            vuln_filename=instance["vuln_file"],
-            vuln_startline=instance["vuln_lines"][0],
-            vuln_endline=instance["vuln_lines"][1] if len(
-                instance["vuln_lines"]) > 1 else instance["vuln_lines"][0],
-            model=model
-        )
-        if not instance_data:
-            logging.error(f"数据集 \"{instance_id}\" 处理失败，跳过")
+    
+    failed_instances = []
+    for instance in tqdm(dataset, desc="Claude Code Context Retrieval"):
+        try:
+            instance_id = instance["instance_id"]
+            logging.info(f"开始处理数据集 \"{instance_id}\"")
+            repo = instance["repo"]
+            repo_dir = Path(temp_dir, f"{repo.replace('/', '__')}")
+            clone_repo(repo, repo_dir, github_token, logging.getLogger())
+            instance_data = await query_claude_code(
+                instance_id=instance_id,
+                repo_dir=repo_dir,
+                vuln_filename=instance["vuln_file"],
+                vuln_startline=instance["vuln_lines"][0],
+                vuln_endline=instance["vuln_lines"][1] if len(
+                    instance["vuln_lines"]) > 1 else instance["vuln_lines"][0],
+                model=model
+            )
+            if not instance_data:
+                failed_instances.append(instance_id)
+                logging.error(f"数据集 \"{instance_id}\" 提取上下文失败，跳过")
+                continue
+            retrieval_data.append(instance_data)
+        except Exception as e:
+            logging.error(f"处理数据集 \"{instance_id}\" 失败，失败原因：{e}")
+            print(traceback.format_exc())
+            with open("outputs/claude_code_context_error.log", "a", encoding="utf-8") as error_file:
+                error_file.write(
+                    f"[{datetime.datetime.now()}] 处理数据集 \"{instance_id}\" 失败，失败原因：{e}\n")
+                error_file.write(f"详细错误: {traceback.format_exc()}\n\n")
             continue
-
-        retrieval_data.append(instance_data)
-
-    try:
-        with open(retrieval_data_path, "w") as f:
-            json.dump(retrieval_data, f, indent=2)
-    except Exception as e:
-        logging.error(f"保存结果失败，失败原因：{e}")
+    
+    with open(retrieval_data_path, "w") as f:
+        json.dump(retrieval_data, f, indent=2)
+    with open("outputs/claude_code_context_failed_instances.txt", "w", encoding="utf-8") as f:
+        for instance_id in failed_instances:
+            f.write(f"{instance_id}\n")
 
 
 if __name__ == "__main__":
