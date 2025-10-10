@@ -14,7 +14,7 @@ from argparse import ArgumentParser
 
 
 from bench.context_manager import ContextManager, get_context_base_info, get_function_summary
-from bench.utils import list_files
+from bench.utils import list_files, clone_repo
 
 import logging
 
@@ -56,27 +56,6 @@ DOCUMENT_ENCODING_FUNCTIONS = {
     "file_name_and_contents": file_name_and_contents,
     # "file_name_and_documentation": file_name_and_documentation,
 }
-
-
-def clone_repo(repo, root_dir, token):
-    """
-    Clones a GitHub repository to a specified directory.
-
-    Args:
-        repo (str): The GitHub repository to clone.
-        root_dir (str): The root directory to clone the repository to.
-        token (str): The GitHub personal access token to use for authentication.
-
-    Returns:
-        Path: The path to the cloned repository directory.
-    """
-    repo_dir = Path(root_dir, f"{repo.replace('/', '__')}")
-
-    if not repo_dir.exists():
-        repo_url = f"https://{token}@github.com/{repo}.git"
-        logger.info(f"Cloning {repo} {os.getpid()}")
-        Repo.clone_from(repo_url, repo_dir)
-    return repo_dir
 
 
 def build_documents(repo_dir, commit, document_encoding_func):
@@ -298,7 +277,8 @@ def get_index_paths_worker(
     instance_id = instance["instance_id"]
     
     print(f"Cloning {repo} to {root_dir_name}")
-    repo_dir = clone_repo(repo, root_dir_name, token)
+    repo_dir = Path(root_dir_name, f"{repo.replace('/', '__')}")
+    clone_repo(repo, repo_dir, token, logger)
     print(f"Cloned {repo} to {repo_dir}")
     instance["repo_dir"] = repo_dir
     # 切换到对应 commit 后，获取上下文查询的输出信息
@@ -341,17 +321,22 @@ def get_index_paths(
         A dictionary mapping instance IDs to index paths.
     """
     all_index_paths = dict()
+    error_file = Path("data", "bm25_error.log")
     for instance in tqdm(remaining_instances, desc="Indexing"):
-        instance_id, index_path = get_index_paths_worker(
-            instance=instance,
-            root_dir_name=root_dir_name,
-            document_encoding_func=document_encoding_func,
-            python=python,
-            token=token,
-        )
-        if index_path is None:
-            continue
-        all_index_paths[instance_id] = index_path
+        try:
+            instance_id, index_path = get_index_paths_worker(
+                instance=instance,
+                root_dir_name=root_dir_name,
+                document_encoding_func=document_encoding_func,
+                python=python,
+                token=token,
+            )
+            if index_path is None:
+                continue
+            all_index_paths[instance_id] = index_path
+        except Exception as e:
+            with open(error_file, "a") as f:
+                f.write(f"{instance} \n {str(e)}\n")
     return all_index_paths
 
 
@@ -361,6 +346,15 @@ def get_root_dir(dataset_name, output_dir, document_encoding_style):
         root_dir.mkdir(parents=True, exist_ok=True)
     root_dir_name = root_dir
     return root_dir, root_dir_name
+
+
+def load_data(file_path):
+    data = []
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            if line.strip():  # 跳过空行
+                data.append(json.loads(line))
+    return data
 
 
 def main(
@@ -380,7 +374,7 @@ def main(
         output_dir, dataset_name, document_encoding_style + ".retrieval.jsonl"
     )
 
-    dst_file = Path("data",dataset_name+"_retrieval.jsonl")
+    dst_file = Path("data",dataset_name+"_context_bm25.jsonl")
     # 断点重连
     remaining_instances = get_remaining_instances(instances, dst_file)
     root_dir, root_dir_name = get_root_dir(
@@ -414,11 +408,28 @@ def main(
     logger.warning(f"Missing indexes for {len(missing_ids)} instances.")
     logger.info(f"Saved retrieval results to {output_file}")
 
-    # 拷贝索引结果到 data 目录
-    shutil.copy2(output_file, dst_file)
+    # 将 output_file 和 data_file 合并
+    output_data = load_data(output_file)
+    dst_data = load_data(dst_file)
+    # 以 instance_id 为唯一标识，后出现的覆盖前面的
+    merged_dict = {}
+    for item in dst_data:
+        if isinstance(item, dict) and "instance_id" in item:
+            merged_dict[item["instance_id"]] = item
+    for item in output_data:
+        if isinstance(item, dict) and "instance_id" in item:
+            merged_dict[item["instance_id"]] = item
+    dst_data = list(merged_dict.values())
+    with open(dst_file, 'w', encoding='utf-8') as f:
+        json.dump(dst_data, f, ensure_ascii=False, indent=2)
+    
 
     # 清理所有中间数据
     shutil.rmtree(output_dir, ignore_errors=True)
+
+    tmp_lock_file = Path("data/data_v2_context_bm25.jsonl.lock")
+    if tmp_lock_file.exists():
+        tmp_lock_file.unlink()
 
     # 仅清理索引，不清理 repo 目录
     # del_dirs = list(root_dir.glob("repo__*"))

@@ -96,20 +96,20 @@ class ContextManager:
             raise ValueError(
                 "Must provide an api key. Expected in OPENAI_API_KEY environment variable."
             )
-        openai.base_url = "https://gnomic.nengyongai.cn/v1/"
+        openai.base_url = "https://ai.nengyongai.cn/v1/"
         openai.api_key = openai_key
 
         # 构建提示词
         system_messages = (
             "Given a code file and a code snippet, summarize the functionality "
-            "of the snippet in one sentence."
+            "of the snippet."
         )
         code_text = make_code_text({self.vuln_file: self.vulnerability_file_content})
 
         instructions = (
             "Please respond with a brief but clear summary that describes the main "
             "functionality of the code snippet, including any key operations or "
-            "important logic. Keep the summary within 150 words."
+            "important logic. Keep the summary within 200 words."
         )
         text = [
             "<code>",
@@ -123,13 +123,11 @@ class ContextManager:
         ]
         user_message =  "\n".join(text)
         response = openai.chat.completions.create(
-                model = "claude-opus-4-20250514", # 摘要生成用比较好的模型
+                model = "claude-sonnet-4-20250514", # 摘要生成用比较好的模型
                 messages=[
                     {"role": "system", "content": system_messages},
                     {"role": "user", "content": user_message},
-                ],
-                temperature=0.2,
-                top_p=0.95,
+                ]
             )
         function_summary = response.choices[0].message.content.strip()
         return function_summary
@@ -193,8 +191,22 @@ class ContextManager:
     def reset_repo(self, raw_repo_dir, target_repo_dir):
         # 重置项目
         if self.repo is not None:
+            with open(os.path.join(target_repo_dir, "response.txt"), "r") as f:
+                response = f.read()
+            raw_diff_file = os.path.join(target_repo_dir, "raw_patch.diff")
+            flag = os.path.exists(raw_diff_file)
+            if flag:
+                with open(raw_diff_file, "r") as f:
+                    raw_diff = f.read()
+
             self.repo.git.reset("--hard", self.base_commit)
             self.repo.git.clean("-fdxq")
+            
+            with open(os.path.join(target_repo_dir, "response.txt"), "w") as f:
+                f.write(response)
+            if flag:
+                with open(raw_diff_file, "w") as f:
+                    f.write(raw_diff)
         else:
             # 重新复制原始目录
             target_dir_name = os.path.basename(os.path.normpath(target_repo_dir))
@@ -207,6 +219,18 @@ class ContextManager:
             source_patch_file = os.path.join(tmp_dir, "patch.diff")
             target_patch_file = os.path.join(target_repo_dir, "patch.diff")
             shutil.copy(source_patch_file, target_patch_file)
+
+            # 原始响应内容 & patch 拷贝
+            raw_response_file = os.path.join(tmp_dir, "response.txt")
+            raw_patch_file = os.path.join(tmp_dir, "raw_patch.diff")
+            if os.path.exists(raw_response_file):
+                target_response_file = os.path.join(target_repo_dir, "response.txt")
+                shutil.copy(raw_response_file, target_response_file)
+                print("拷贝文件了！！！！！")
+            if os.path.exists(raw_patch_file):
+                target_patch_file = os.path.join(target_repo_dir, "raw_patch.diff")
+                shutil.copy(raw_patch_file, target_patch_file)
+
             shutil.rmtree(tmp_dir)
         # 重新挖空
         self.masked_content = None
