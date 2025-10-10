@@ -2062,7 +2062,7 @@
   },
   {
     "instance_id": "uuykea_CVE-2018-5786",
-    "repo": "lrzip/lrzip",
+    "repo": "ckolivas/lrzip",
     "base_commit": "3495188cd8f2215a9feea201f3e05c1341ed95fb^",
     "patch_commit": "3495188cd8f2215a9feea201f3e05c1341ed95fb",
     "vuln_file": "lrzip.c",
@@ -2802,7 +2802,7 @@
   },
   {
     "instance_id": "Choser_CVE-2017-7303",
-    "repo": "binutils-gdb/binutils-gdb",
+    "repo": "bminor/binutils-gdb",
     "base_commit": "a55c9876bb111fd301b4762cf501de0040b8f9db^",
     "vuln_file": "binutils/objcopy.c",
     "vuln_lines": [
