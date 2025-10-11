@@ -164,6 +164,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
     logging.info(f"[{trace}] 验证结束：{result}")
 
     try:
+        result["instance_id"] = trace
         with open(output_file, "a") as f:
             fcntl.flock(f.fileno(), fcntl.LOCK_EX)
             f.write(json.dumps(result) + "\n")
@@ -215,27 +216,28 @@ def main(args: list[str]) -> int:
         return -1
 
     validate_success_result = list()    # 已经验证成功的结果
-    validate_success_result_base_commit = set()    # 已经验证成功的基准版本结果
+    validate_success_result_instance_id = set()    # 已经验证成功的基准版本结果
     try:
         if os.path.exists(args.output_file):
             exist_result = load_validate_result(args.output_file)
             for item in exist_result:
                 if item["base_commit"]["image_status_check"] and item["base_commit"]["test_case_check"] and item["base_commit"]["poc_check"] and item["patch_commit"]["checkout"] and item["patch_commit"]["image_status_check"] and item["patch_commit"]["test_case_check"] and item["patch_commit"]["poc_check"]:
                     validate_success_result.append(item)
-                    validate_success_result_base_commit.add(item["base_commit"]["commit"])
+                    validate_success_result_instance_id.add(item["instance_id"])
             os.remove(args.output_file)
     except Exception as e:
         logging.error(f"删除输出文件 \"{args.output_file}\" 失败：{e}")
         return -1
 
     # 将成功的结果先写入
-    with open(args.output_file, "w") as f:
-        for item in validate_success_result:
-            f.write(json.dumps(item) + "\n")
+    if validate_success_result:
+        with open(args.output_file, "w") as f:
+            for item in validate_success_result:
+                f.write(json.dumps(item) + "\n")
 
     data_to_validate = list()
     for case in case_data_list:
-        if case["base_commit"] in validate_success_result_base_commit:
+        if case["instance_id"] in validate_success_result_instance_id:
             continue
         data_to_validate.append(case)
     case_data_list = data_to_validate
