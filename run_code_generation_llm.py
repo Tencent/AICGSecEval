@@ -32,8 +32,12 @@ def process_instance(instance, model_name, base_url, api_key, max_context_token,
     repo_dir = instance["repo_dir"]
     hits = instance["hits"]
     function_summary = instance["function_summary"]
+    if "branch_origin" in instance:
+        branch_origin = instance["branch_origin"]
+    else:
+        branch_origin = None
     
-    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"]) as cm:
+    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
         # 获取 instance 中的 system_message 和 user_message
         readme_files = cm.get_readme_files()
         # 修改磁盘上的文件

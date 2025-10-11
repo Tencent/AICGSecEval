@@ -171,14 +171,15 @@ def get_remaining_instances(instances, output_file):
     
     # 读取已处理的实例ID
     instance_ids = set()
-    with FileLock(output_file.as_posix() + ".lock"):
-        with open(output_file) as f:
-            instance_ids = {json.loads(line)["instance_id"] for line in f}
-        
-        if instance_ids:
-            logger.warning(
-                f"Found {len(instance_ids)} existing instances in {output_file}. Will skip them."
-            )
+    with open(output_file,"r") as f:
+        content = f.read()
+        data = json.loads(content)
+    instance_ids = {item["instance_id"] for item in data}
+
+    if instance_ids:
+        logger.warning(
+            f"Found {len(instance_ids)} existing instances in {output_file}. Will skip them."
+        )
     
     # 过滤出未处理的实例
     return [instance for instance in instances if instance["instance_id"] not in instance_ids]
@@ -350,6 +351,8 @@ def get_root_dir(dataset_name, output_dir, document_encoding_style):
 
 def load_data(file_path):
     data = []
+    if not os.path.exists(file_path):
+        return data
     with open(file_path, 'r', encoding='utf-8') as f:
         for line in f:
             if line.strip():  # 跳过空行
@@ -404,13 +407,15 @@ def main(
     # 检索索引
     search_indexes(remaining_instances, output_file, all_index_paths)
     # 获取未检索的索引
-    missing_ids = get_missing_ids(instances, output_file)
-    logger.warning(f"Missing indexes for {len(missing_ids)} instances.")
+    # missing_ids = get_missing_ids(instances, output_file)
+    # logger.warning(f"Missing indexes for {len(missing_ids)} instances.")
     logger.info(f"Saved retrieval results to {output_file}")
 
     # 将 output_file 和 data_file 合并
     output_data = load_data(output_file)
-    dst_data = load_data(dst_file)
+    with open(dst_file,"r") as f:
+        content = f.read()
+        dst_data = json.loads(content)
     # 以 instance_id 为唯一标识，后出现的覆盖前面的
     merged_dict = {}
     for item in dst_data:

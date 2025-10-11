@@ -30,8 +30,12 @@ async def process_instance(instance, agent_name, agent_class, agent_args):
     repo_dir = instance["repo_dir"]
     hits = instance["hits"]
     function_summary = instance["function_summary"]
+    if "branch_origin" in instance:
+        branch_origin = instance["branch_origin"]
+    else:
+        branch_origin = None
 
-    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"]) as cm:
+    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
         # 修改磁盘上的文件
         masked_vulnerability_file = cm.get_masked_vulnerability_file()
         masked_vulnerability_file_content = masked_vulnerability_file[instance["vuln_file"]]

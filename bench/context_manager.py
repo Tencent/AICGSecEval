@@ -18,11 +18,12 @@ class ContextManager:
     A context manager for managing a Git repository at a specific commit.
     """
 
-    def __init__(self, repo_path, base_commit, vuln_file=None, vuln_lines=None, verbose=False):
+    def __init__(self, repo_path, base_commit, vuln_file=None, vuln_lines=None, branch_origin=None, verbose=False):
         self.repo_path = Path(repo_path).resolve().as_posix()
         self.base_commit = base_commit # commit hash 或 版本 tag 字符串，如"1.0.0"
         self.vuln_file = vuln_file
         self.vuln_lines = vuln_lines
+        self.branch_origin = branch_origin
         self.verbose = verbose
         if self.base_commit != "HEAD":
             self.repo = Repo(self.repo_path)
@@ -36,6 +37,9 @@ class ContextManager:
             print(f"Switching to {self.base_commit}")
         try:
             if self.base_commit != "HEAD":
+                if self.branch_origin:
+                    self.repo.git.fetch("origin", self.branch_origin)
+                
                 self.repo.git.reset("--hard", self.base_commit)
                 self.repo.git.clean("-fdxq")
             self.vulnerability_file_content = self.get_vulnerability_file_content()
@@ -198,7 +202,9 @@ class ContextManager:
             if flag:
                 with open(raw_diff_file, "r") as f:
                     raw_diff = f.read()
-
+            
+            if self.branch_origin:
+                self.repo.git.fetch("origin", self.branch_origin)
             self.repo.git.reset("--hard", self.base_commit)
             self.repo.git.clean("-fdxq")
             
@@ -242,7 +248,11 @@ class ContextManager:
 
 
 def get_context_base_info(repo_dir, instance):
-    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"]) as cm:
+    if "branch_origin" in instance:
+        branch_origin = instance["branch_origin"]
+    else:
+        branch_origin = None
+    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
         # 策略 1： 直接返回漏洞文件内容
         return cm.get_vulnerability_file_content()
 
@@ -250,7 +260,11 @@ def get_context_base_info(repo_dir, instance):
         # return cm.get_vulnerability_block()
 
 def get_function_summary(repo_dir, instance):
-    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"]) as cm:
+    if "branch_origin" in instance:
+        branch_origin = instance["branch_origin"]
+    else:
+        branch_origin = None
+    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
         return cm.generate_function_summary()
 
 

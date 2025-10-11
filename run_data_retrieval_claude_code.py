@@ -211,6 +211,8 @@ async def main(dataset_path: str, retrieval_data_path: str, temp_dir: str, model
                 logging.info(f"重置仓库到 {instance['base_commit']}")
                 try:
                     git_repo = Repo(repo_dir)
+                    if "branch_origin" in instance:
+                        git_repo.git.fetch("origin", instance["branch_origin"])
                     git_repo.git.reset("--hard", instance["base_commit"])
                     git_repo.git.clean("-fdxq")
                 except Exception as e:

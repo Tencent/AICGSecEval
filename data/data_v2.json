@@ -191,7 +191,7 @@
   {
     "instance_id": "GioldDiorld_CVE-2018-11225",
     "repo": "libming/libming",
-    "base_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba^",
+    "base_commit": "fbbb6f82199de42110c0299e50c5b2f81d8897f4^",
     "vuln_file": "util/decompile.c",
     "vuln_lines": [
       3192,
@@ -210,7 +210,7 @@
     "test_case_cmd": "./test_case.sh",
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [],
-    "patch_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba"
+    "patch_commit": "fbbb6f82199de42110c0299e50c5b2f81d8897f4"
   },
   {
     "instance_id": "GioldDiorld_CVE-2018-7868",
@@ -333,6 +333,7 @@
     "instance_id": "GioldDiorld_CVE-2018-9132",
     "repo": "libming/libming",
     "base_commit": "d13db01ea1c416f51043bef7496cfb25c2dde29a^",
+    "branch_origin": "pull/145/head:pr-145",
     "vuln_file": "util/decompile.c",
     "vuln_lines": [
       477,
@@ -427,7 +428,7 @@
   {
     "instance_id": "GioldDiorld_CVE-2018-11226",
     "repo": "libming/libming",
-    "base_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba^",
+    "base_commit": "fbbb6f82199de42110c0299e50c5b2f81d8897f4^",
     "vuln_file": "util/decompile.c",
     "vuln_lines": [
       3192,
@@ -446,7 +447,7 @@
     "test_case_cmd": "./test_case.sh",
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [],
-    "patch_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba"
+    "patch_commit": "fbbb6f82199de42110c0299e50c5b2f81d8897f4"
   },
   {
     "instance_id": "Choser_CVE-2018-11813",
@@ -568,7 +569,7 @@
     "repo": "libjpeg-turbo/libjpeg-turbo",
     "base_commit": "1719d12e51641cce5c77e259516649ba5ef6303c^",
     "patch_commit": "1719d12e51641cce5c77e259516649ba5ef6303c",
-    "vuln_file": "libjpeg-turbo/rdgif.c",
+    "vuln_file": "rdgif.c",
     "vuln_lines": [
       406,
       449
@@ -591,7 +592,7 @@
     "repo": "libjpeg-turbo/libjpeg-turbo",
     "base_commit": "2849d86aaae168fcac2e1b6c373c249781a41c5c^",
     "patch_commit": "2849d86aaae168fcac2e1b6c373c249781a41c5c",
-    "vuln_file": "libjpeg-turbo/simd/x86_64/jchuff-sse2.asm",
+    "vuln_file": "simd/x86_64/jchuff-sse2.asm",
     "vuln_lines": [
       53,
       87
@@ -1323,7 +1324,7 @@
     "repo": "libjpeg-turbo/libjpeg-turbo",
     "base_commit": "3de15e0c344d11d4b90f4a47136467053eb2d09a^",
     "patch_commit": "3de15e0c344d11d4b90f4a47136467053eb2d09a",
-    "vuln_file": "src/rdppm.c",
+    "vuln_file": "rdppm.c",
     "vuln_lines": [
       717,
       732
@@ -3138,7 +3139,7 @@
     "repo": "OpenPrinting/cups",
     "base_commit": "c1f54ec966ccc5d5564eed95dcb540842af7b5ca",
     "patch_commit": "3a4d9204e5818e5d0b8f1e0e50832661209048ee",
-    "vuln_file": "client.c",
+    "vuln_file": "scheduler/client.c",
     "vuln_lines": [
       224,
       228
@@ -3180,29 +3181,6 @@
     "test_case_cmd": "/src/test_case_cmd.sh",
     "poc_cmd": "/src/poc.sh",
     "other_vuln_files": []
-  },
-  {
-    "instance_id": "zju-cve-2021-32682",
-    "repo": "Studio-42/elFinder",
-    "base_commit": "~a106c350b7dfe666a81d6b576816db9fe0899b17",
-    "vuln_file": "php/elFinder.class.php",
-    "vuln_lines": [
-      420,
-      425
-    ],
-    "language": "php",
-    "vuln_source": "CVE-2021-32682",
-    "cwe_id": "CWE-78",
-    "vuln_type": "OS Command Injection",
-    "severity": "critical",
-    "image": "hkk4203/cve-2021-32682:v4",
-    "image_name": "cve-2021-32682",
-    "image_inner_path": "/var/www/html",
-    "image_run_cmd": "tail -f /dev/null",
-    "image_status_check_cmd": "python3 /status-check.py",
-    "test_case_cmd": "python3 /test-case.py",
-    "poc_cmd": "python3 /poc.py",
-    "patch_commit": "78488951e44d69e8b9e4e849f8268df408632a6c"
   },
   {
     "instance_id": "zju-cve-2016-5734",
