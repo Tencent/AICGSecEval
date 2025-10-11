@@ -10,6 +10,7 @@ import traceback
 from claude_code_sdk import ClaudeSDKClient, ClaudeCodeOptions
 from bench.utils import clone_repo
 from tqdm import tqdm
+from git import Repo
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -205,6 +206,17 @@ async def main(dataset_path: str, retrieval_data_path: str, temp_dir: str, model
             repo = instance["repo"]
             repo_dir = Path(temp_dir, f"{repo.replace('/', '__')}")
             clone_repo(repo, repo_dir, github_token, logging.getLogger())
+
+            if instance["base_commit"] != "HEAD":
+                logging.info(f"重置仓库到 {instance['base_commit']}")
+                try:
+                    git_repo = Repo(repo_dir)
+                    git_repo.git.reset("--hard", instance["base_commit"])
+                    git_repo.git.clean("-fdxq")
+                except Exception as e:
+                    logging.error(f"重置仓库失败，失败原因：{e}")
+                    continue
+
             instance_data = await query_claude_code(
                 instance_id=instance_id,
                 repo_dir=repo_dir,
