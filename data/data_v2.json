@@ -2916,7 +2916,7 @@
     "image_status_check_cmd": "/test/check.sh",
     "test_case_cmd": "/test/testcase.sh",
     "poc_cmd": "/test/poc.sh",
-    "patch commit": "11.5.0"
+    "patch_commit": "11.5.0"
   },
   {
     "instance_id": "zju-CVE-2021-27973",
@@ -2939,7 +2939,7 @@
     "image_status_check_cmd": "/test/check.sh",
     "test_case_cmd": "/test/testcase.sh",
     "poc_cmd": "/test/poc.sh",
-    "patch commit": "11.4.0"
+    "patch_commit": "11.4.0"
   },
   {
     "instance_id": "zju-cve-2024-27306",

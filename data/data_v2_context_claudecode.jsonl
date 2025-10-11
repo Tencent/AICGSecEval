@@ -776,57 +776,6 @@
     "function_summary": "Lines 2235-2241 handle error cleanup and variable initialization when a file fails to open for writing in the PNM image export function. Specifically: line 2235 frees the dynamically allocated destination filename string, line 2236 returns an error code (1), and lines 2238-2241 extract and compute image component properties (width, height, precision, and maximum pixel value based on precision) from the current image component being processed."
   },
   {
-    "instance_id": "Choser_CVE-2018-19664",
-    "hits": [
-      {
-        "docid": "src/wrbmp.c",
-        "startline": 495,
-        "endline": 508
-      },
-      {
-        "docid": "src/jpegint.h",
-        "startline": 77,
-        "endline": 78
-      },
-      {
-        "docid": "src/jpeglib.h",
-        "startline": 264,
-        "endline": 290
-      },
-      {
-        "docid": "src/jmorecfg.h",
-        "startline": 300,
-        "endline": 358
-      },
-      {
-        "docid": "src/wrbmp.c",
-        "startline": 96,
-        "endline": 169
-      },
-      {
-        "docid": "src/wrbmp.c",
-        "startline": 171,
-        "endline": 204
-      },
-      {
-        "docid": "src/wrbmp.c",
-        "startline": 476,
-        "endline": 553
-      },
-      {
-        "docid": "src/cdjpeg.h",
-        "startline": 51,
-        "endline": 85
-      },
-      {
-        "docid": "src/wrbmp.c",
-        "startline": 50,
-        "endline": 74
-      }
-    ],
-    "function_summary": "This code segment (lines 498-511 in wrbmp.c) is the function pointer assignment logic within the `jinit_write_bmp` initialization function. It determines which pixel row writing function to assign to `dest->pub.put_pixel_rows` based on the output color space and quantization settings of the JPEG decompressor. Specifically:\n\n- If output is grayscale (JCS_GRAYSCALE), it assigns `put_gray_rows`\n- If output is an extended RGB format (IsExtRGB) and colors are quantized, it assigns `put_gray_rows` (for colormapped output)\n- If output is an extended RGB format and not quantized, it assigns `put_pixel_rows` (for 24-bit full-color output)\n- If output is RGB565 or CMYK without quantization, it assigns `put_pixel_rows`\n- Otherwise, it reports a colorspace error\n\nThis logic routes decompressed JPEG data to the appropriate BMP writing handler based on the output format requirements."
-  },
-  {
     "instance_id": "Choser_CVE-2018-20330",
     "hits": [
       {
@@ -1262,113 +1211,6 @@
       }
     ],
     "function_summary": "Lines 390-545 of src/filters/reframe_flac.c contain core FLAC frame parsing and processing logic:\n\n1. **flac_dmx_crc16() function (lines 386-394)**: Computes CRC-16 checksum over a data buffer using the flac_dmx_crc16_table lookup table for FLAC frame validation.\n\n2. **Static lookup arrays (lines 395-402)**: Define valid FLAC block sizes and sample rates used during frame header parsing.\n\n3. **FLAC constants (lines 404-405)**: Define FLAC_CHANNELS (8) and FLAC_MID_SIDE (3) for channel configuration validation.\n\n4. **flac_parse_header() function (lines 407-511)**: Parses and validates a FLAC frame header by:\n   - Verifying sync word (0x7FFC)\n   - Extracting block size, sample rate, channel configuration, and bits per sample\n   - Computing and validating CRC-8 checksum on header\n   - Validating subframe type field\n   - Populating FLACHeader structure with parsed values\n\n5. **flac_dmx_process() function start (lines 513-545)**: Begins main packet processing loop that:\n   - Checks for error state and EOS conditions\n   - Retrieves input packets from the filter framework\n   - Manages internal buffer (flac_buffer) for incomplete frames\n   - Tracks byte offsets for packet property management\n   - Handles timestamp (CTS) initialization and propagation\n\nThis code segment is central to the FLAC demuxer's ability to parse raw FLAC bitstreams into valid frames with proper timing and validation."
-  },
-  {
-    "instance_id": "Choser_CVE-2021-37972",
-    "hits": [
-      {
-        "docid": "simd/x86_64/jchuff-sse2.asm",
-        "startline": 1,
-        "endline": 52
-      },
-      {
-        "docid": "src/jchuff.c",
-        "startline": 1,
-        "endline": 200
-      },
-      {
-        "docid": "src/jchuff.c",
-        "startline": 322,
-        "endline": 660
-      },
-      {
-        "docid": "src/jutils.c",
-        "startline": 59,
-        "endline": 70
-      },
-      {
-        "docid": "src/jpegint.h",
-        "startline": 597,
-        "endline": 597
-      }
-    ],
-    "function_summary": "This code segment (lines 53-87) defines a lookup table called `jpeg_nbits_table` which is used to efficiently compute the number of bits required to represent the magnitude of a DCT coefficient in Huffman encoding. The table is organized in a reverse-lookup format: for a given coefficient value (used as an index), it returns how many bits are needed to represent that value. The table covers values from -32767 to +32767, with the entries arranged so that negative values (in the upper half) and positive values (in the lower half) both map to their bit-width requirements (0-15 bits). Following the table definition (lines 88-90) are macro definitions that provide convenient access to this table and a related `jpeg_mask_bits` table, with position-independent code (PIC) support."
-  },
-  {
-    "instance_id": "Choser_CVE-2023-4754",
-    "hits": [
-      {
-        "docid": "src/scene_manager/swf_parse.c",
-        "startline": 1414,
-        "endline": 1551
-      },
-      {
-        "docid": "src/scene_manager/swf_parse.c",
-        "startline": 144,
-        "endline": 216
-      },
-      {
-        "docid": "src/scene_manager/swf_parse.c",
-        "startline": 1057,
-        "endline": 1066
-      },
-      {
-        "docid": "src/scene_manager/swf_parse.c",
-        "startline": 896,
-        "endline": 935
-      },
-      {
-        "docid": "src/scene_manager/swf_parse.c",
-        "startline": 190,
-        "endline": 201
-      },
-      {
-        "docid": "include/gpac/internal/swf_dev.h",
-        "startline": 262,
-        "endline": 285
-      },
-      {
-        "docid": "include/gpac/internal/swf_dev.h",
-        "startline": 65,
-        "endline": 195
-      },
-      {
-        "docid": "include/gpac/internal/swf_dev.h",
-        "startline": 223,
-        "endline": 239
-      },
-      {
-        "docid": "include/gpac/tools.h",
-        "startline": 1,
-        "endline": 100
-      },
-      {
-        "docid": "include/gpac/list.h",
-        "startline": 1,
-        "endline": 100
-      },
-      {
-        "docid": "include/gpac/color.h",
-        "startline": 1,
-        "endline": 100
-      },
-      {
-        "docid": "include/gpac/maths.h",
-        "startline": 1,
-        "endline": 100
-      },
-      {
-        "docid": "include/gpac/maths.h",
-        "startline": 242,
-        "endline": 290
-      },
-      {
-        "docid": "include/gpac/scenegraph_vrml.h",
-        "startline": 176,
-        "endline": 185
-      }
-    ],
-    "function_summary": "This code segment (lines 1423-1467 of swf_parse.c) implements the swf_def_font function which parses and defines SWF font definitions. It handles two font format revisions (DEFINEFONT and DEFINEFONT2). For revision 0, it reads a simple offset table and parses glyph shapes. For revision 1, it reads comprehensive font metadata including font name, unicode/ANSI flags, character codes, and optional layout information (ascent, descent, leading, glyph advances, and kerning data). The function allocates memory for font structures, reads glyph shape definitions via swf_parse_shape_def, and stores the font in the SWFReader's font list."
   },
   {
     "instance_id": "krrrlww_CVE-2019-15903",
@@ -2976,5 +2818,2210 @@
       }
     ],
     "function_summary": "The code segment (lines 37-74) is a property getter for the `url` attribute that returns the HTTP/HTTPS URL of the dataset source. This property is part of the `HTTPDatasetSource` class, which represents a dataset stored at a web location. The property simply returns the private `_url` attribute that was set during initialization."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2016-9829",
+    "hits": [
+      {
+        "docid": "util/parser.c",
+        "startline": 1642,
+        "endline": 1696
+      },
+      {
+        "docid": "util/parser.c",
+        "startline": 39,
+        "endline": 48
+      },
+      {
+        "docid": "util/parser.c",
+        "startline": 75,
+        "endline": 84
+      },
+      {
+        "docid": "util/parser.c",
+        "startline": 66,
+        "endline": 72
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 1101,
+        "endline": 1133
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 545,
+        "endline": 551
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 538,
+        "endline": 543
+      },
+      {
+        "docid": "util/read.c",
+        "startline": 36,
+        "endline": 43
+      },
+      {
+        "docid": "util/read.c",
+        "startline": 45,
+        "endline": 104
+      },
+      {
+        "docid": "util/read.c",
+        "startline": 128,
+        "endline": 142
+      },
+      {
+        "docid": "util/read.c",
+        "startline": 157,
+        "endline": 163
+      },
+      {
+        "docid": "util/read.c",
+        "startline": 267,
+        "endline": 317
+      },
+      {
+        "docid": "util/parser.h",
+        "startline": 38,
+        "endline": 49
+      },
+      {
+        "docid": "util/parser.c",
+        "startline": 34,
+        "endline": 35
+      }
+    ],
+    "function_summary": "This code segment parses a sequence of 16 boolean flags from an SWF file stream to configure the properties of an editable text field (DefineEditText block). After byte-aligning the stream, it reads 16 consecutive 1-bit flags using readBits(f, 1) that control various text field attributes: HasText, WordWrap, Multiline, Password, ReadOnly, HasTextColor, HasMaxLength, HasFont, HasFontClass, AutoSize, HasLayout, NoSelect, Border, WasStatic, HTML, and UseOutlines. These flags determine whether optional fields are present later in the DefineEditText structure and control the text field's behavior. The conditional read at lines 1665-1666 demonstrates this pattern: if the HasFont flag is set, the code subsequently reads a FontID value from the stream."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2016-9827",
+    "hits": [
+      {
+        "docid": "util/parser.c",
+        "startline": 2750,
+        "endline": 2762
+      },
+      {
+        "docid": "util/parser.c",
+        "startline": 39,
+        "endline": 48
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 1601,
+        "endline": 1604
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 38,
+        "endline": 38
+      },
+      {
+        "docid": "util/read.h",
+        "startline": 25,
+        "endline": 25
+      },
+      {
+        "docid": "util/read.c",
+        "startline": 267,
+        "endline": 317
+      },
+      {
+        "docid": "util/parser.h",
+        "startline": 38,
+        "endline": 48
+      },
+      {
+        "docid": "util/parser.h",
+        "startline": 71,
+        "endline": 71
+      },
+      {
+        "docid": "src/blocks/blocktypes.h",
+        "startline": 81,
+        "endline": 81
+      }
+    ],
+    "function_summary": "This code segment is the parseSWF_PROTECT function that parses the SWF_PROTECT block from a SWF (Flash) file. It conditionally reads a password string based on whether the block length is non-zero: if length is non-zero, it reads a null-terminated password string from the file; otherwise, it sets the password field to NULL. This implements password-based protection for SWF files."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2016-9831",
+    "hits": [
+      {
+        "docid": "util/listjpeg.c",
+        "startline": 24,
+        "endline": 65
+      },
+      {
+        "docid": "util/listjpeg.c",
+        "startline": 6,
+        "endline": 23
+      },
+      {
+        "docid": "util/listjpeg.c",
+        "startline": 2,
+        "endline": 3
+      }
+    ],
+    "function_summary": "This code segment reads a 2-byte big-endian length field from a JPEG file stream that specifies the size of the current JPEG block, prints the length value, and then skips over the remaining bytes of that block by reading and discarding (l-2) bytes from the stream. The length field includes the 2 bytes used for the length itself, which is why 2 is subtracted before skipping."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2018-8962",
+    "hits": [
+      {
+        "docid": "util/decompile.c",
+        "startline": 306,
+        "endline": 369
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 121,
+        "endline": 136
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 289,
+        "endline": 302
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 48,
+        "endline": 49
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 235,
+        "endline": 272
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 419,
+        "endline": 489
+      },
+      {
+        "docid": "src/blocks/error.h",
+        "startline": 15,
+        "endline": 31
+      }
+    ],
+    "function_summary": "Lines 306-369 in util/decompile.c define the `getString` function, which converts a `SWF_ACTIONPUSHPARAM` structure into a dynamically allocated string representation. The function handles different parameter types (strings, NULL, undefined, register numbers, booleans, doubles, integers, constants from a constant pool, and variables) and formats them appropriately for output. The function returns a newly allocated string that must be freed by the caller. It includes error handling via SWF_warn for various edge cases like NULL strings, buffer size evaluation failures, and out-of-bounds constant pool accesses."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2018-8807",
+    "hits": [
+      {
+        "docid": "util/decompile.c",
+        "startline": 304,
+        "endline": 417
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 48,
+        "endline": 49
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 289,
+        "endline": 302
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 419,
+        "endline": 489
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 234,
+        "endline": 272
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 121,
+        "endline": 136
+      },
+      {
+        "docid": "src/blocks/error.h",
+        "startline": 1,
+        "endline": 69
+      }
+    ],
+    "function_summary": "Lines 306-369 define the `getString` function which converts a `struct SWF_ACTIONPUSHPARAM` action parameter into a heap-allocated string representation. The function uses a switch statement based on the parameter's Type field to handle different data types: strings (with quotes), null, undefined, registers, booleans, doubles, integers, and constants from a global constant pool. It allocates memory and formats the value as a string suitable for decompilation output. The function also handles error cases by calling `SWF_warn` and returning an empty string."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2018-9132",
+    "hits": [
+      {
+        "docid": "util/decompile.c",
+        "startline": 466,
+        "endline": 480
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 419,
+        "endline": 489
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 235,
+        "endline": 272
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 48,
+        "endline": 50
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 121,
+        "endline": 136
+      }
+    ],
+    "function_summary": "This code segment handles the PUSH_CONSTANT16 case in the getName() function. When a constant pool entry is accessed via a 16-bit index, it retrieves the string from the global pool array, escapes any special characters (primarily single quotes), and returns it. If the retrieved string is empty (zero length), it falls back to returning the string \"this\" (a common ActionScript keyword). The code also performs bounds checking to ensure the requested index doesn't exceed the pool size, issuing a warning if it does."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2017-7578",
+    "hits": [
+      {
+        "docid": "util/parser.c",
+        "startline": 433,
+        "endline": 450
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 565,
+        "endline": 571
+      },
+      {
+        "docid": "util/parser.c",
+        "startline": 423,
+        "endline": 431
+      },
+      {
+        "docid": "util/read.h",
+        "startline": 1,
+        "endline": 40
+      },
+      {
+        "docid": "util/read.c",
+        "startline": 1,
+        "endline": 400
+      },
+      {
+        "docid": "util/parser.c",
+        "startline": 34,
+        "endline": 37
+      }
+    ],
+    "function_summary": "This code segment parses a focal gradient structure from an SWF file. It reads bit-packed gradient properties (spread mode, interpolation mode, and gradient count), validates the gradient count (limiting it to 15 maximum), iterates through each gradient record to parse color stops, and finally reads a 16-bit focal point value. This is used for rendering radial gradients with an off-center focal point in Flash content."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2018-11095",
+    "hits": [
+      {
+        "docid": "util/decompile.c",
+        "startline": 50,
+        "endline": 50
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 289,
+        "endline": 302
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 419,
+        "endline": 489
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 841,
+        "endline": 916
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 1,
+        "endline": 87
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 121,
+        "endline": 136
+      }
+    ],
+    "function_summary": "Lines 861-868 implement a conditional check within the `decompilePUSHPARAM` function. This code handles the case where a register (PUSH_REGISTER type) is being decompiled for output. If the register has been previously populated (i.e., `regs[act->p.RegisterNumber]` is not NULL), it calls `getName(act)` to retrieve the human-readable name. Otherwise, it formats and prints a generic register identifier in the format \"Rddd\" (e.g., \"R0\", \"R1\", etc.) using the register number."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2018-11226",
+    "hits": [
+      {
+        "docid": "util/decompile.c",
+        "startline": 3190,
+        "endline": 3216
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 304,
+        "endline": 417
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 678,
+        "endline": 695
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 985,
+        "endline": 1001
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 2527,
+        "endline": 2538
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 210,
+        "endline": 223
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 195,
+        "endline": 195
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 820,
+        "endline": 821
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 804,
+        "endline": 804
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 287,
+        "endline": 287
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 50,
+        "endline": 50
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 48,
+        "endline": 49
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 54,
+        "endline": 54
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 289,
+        "endline": 302
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 105,
+        "endline": 110
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 295,
+        "endline": 297
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 121,
+        "endline": 136
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 460,
+        "endline": 532
+      },
+      {
+        "docid": "util/action.h",
+        "startline": 28,
+        "endline": 29
+      }
+    ],
+    "function_summary": "The `decompileSETTARGET` function (lines 3190-3216) decompiles Flash ActionScript SETTARGET and SETTARGET2 bytecode actions into readable `tellTarget()` statements. It handles two variants: type1 (SETTARGET) where the target name is stored in the action structure, and type2 (SETTARGET2) where the target name is popped from the virtual machine stack. The function:\n\n1. Retrieves the target movie clip name either from the action structure (`sact->TargetName`) or by popping from the stack using `getString(pop())`\n2. If the target name is non-empty, outputs `tellTarget('name') {` with proper indentation\n3. Counts subsequent actions until encountering a terminating opcode (SETTARGET, SETTARGET2, DEFINEFUNCTION, DEFINEFUNCTION2, or END)\n4. Recursively decompiles the counted actions as the body of the tellTarget block with increased indentation\n5. Outputs the closing brace `}` and returns the count of actions processed\n\nThis function is part of a larger SWF bytecode decompiler that reconstructs ActionScript source code from compiled Flash files."
+  },
+  {
+    "instance_id": "Choser_CVE-2018-11813",
+    "hits": [
+      {
+        "docid": "src/rdtarga.c",
+        "startline": 129,
+        "endline": 156
+      },
+      {
+        "docid": "src/rdtarga.c",
+        "startline": 82,
+        "endline": 92
+      },
+      {
+        "docid": "src/rdtarga.c",
+        "startline": 31,
+        "endline": 32
+      },
+      {
+        "docid": "src/rdtarga.c",
+        "startline": 41,
+        "endline": 68
+      },
+      {
+        "docid": "src/rdtarga.c",
+        "startline": 370,
+        "endline": 378
+      },
+      {
+        "docid": "src/cdjpeg.h",
+        "startline": 28,
+        "endline": 44
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 338,
+        "endline": 340
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 345,
+        "endline": 518
+      },
+      {
+        "docid": "src/jmorecfg.h",
+        "startline": 48,
+        "endline": 52
+      },
+      {
+        "docid": "src/jmorecfg.h",
+        "startline": 155,
+        "endline": 157
+      },
+      {
+        "docid": "src/jmorecfg.h",
+        "startline": 168,
+        "endline": 174
+      },
+      {
+        "docid": "src/jerror.h",
+        "startline": 238,
+        "endline": 241
+      }
+    ],
+    "function_summary": "The read_rle_pixel function reads one pixel from a Targa file that uses RLE (Run-Length Encoding) compression. It implements RLE decompression by managing duplicate pixel runs and raw data blocks. When duplicate pixels remain from a previous run, it simply decrements the counter and returns without reading new data. Otherwise, it checks if it needs to read a new RLE block header. If the high bit (0x80) of the header byte is set, it indicates a run of duplicate pixels, and the function stores the repeat count (lower 7 bits) in dup_pixel_count. If the high bit is clear, it indicates raw pixel data, and the function stores the count in block_count. Finally, it reads pixel_size bytes from the input file into the tga_pixel array. This function is assigned to the read_pixel function pointer for RLE-encoded Targa files."
+  },
+  {
+    "instance_id": "Choser_CVE-2018-14498",
+    "hits": [
+      {
+        "docid": "src/rdbmp.c",
+        "startline": 53,
+        "endline": 77
+      },
+      {
+        "docid": "src/rdbmp.c",
+        "startline": 80,
+        "endline": 90
+      },
+      {
+        "docid": "src/rdbmp.c",
+        "startline": 93,
+        "endline": 134
+      },
+      {
+        "docid": "src/rdbmp.c",
+        "startline": 41,
+        "endline": 42
+      },
+      {
+        "docid": "src/rdbmp.c",
+        "startline": 37,
+        "endline": 38
+      },
+      {
+        "docid": "src/rdbmp.c",
+        "startline": 44,
+        "endline": 46
+      },
+      {
+        "docid": "src/cdjpeg.h",
+        "startline": 28,
+        "endline": 44
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 356,
+        "endline": 359
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 264,
+        "endline": 290
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 89,
+        "endline": 93
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 338,
+        "endline": 340
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 155,
+        "endline": 156
+      },
+      {
+        "docid": "src/jmorecfg.h",
+        "startline": 48,
+        "endline": 52
+      },
+      {
+        "docid": "src/jmorecfg.h",
+        "startline": 332,
+        "endline": 358
+      },
+      {
+        "docid": "src/jpegint.h",
+        "startline": 77,
+        "endline": 78
+      },
+      {
+        "docid": "src/cmyk.h",
+        "startline": 26,
+        "endline": 45
+      }
+    ],
+    "function_summary": "This code segment (lines 158-218 in rdbmp.c) implements the `get_8bit_row` function, which reads one row of 8-bit colormap-indexed pixels from a BMP file and expands them to their corresponding RGB/RGBA/CMYK values. The function first retrieves the raw pixel data either from a virtual array (if using inversion to flip bottom-up to top-down) or directly from the input file. It then iterates through each pixel, validates the colormap index, and expands it to the target color space (grayscale, CMYK, or RGB variants with optional alpha channel) using the pre-loaded colormap."
+  },
+  {
+    "instance_id": "Choser_CVE-2018-19664",
+    "hits": [
+      {
+        "docid": "src/wrbmp.c",
+        "startline": 495,
+        "endline": 508
+      },
+      {
+        "docid": "src/wrbmp.c",
+        "startline": 96,
+        "endline": 169
+      },
+      {
+        "docid": "src/wrbmp.c",
+        "startline": 171,
+        "endline": 204
+      },
+      {
+        "docid": "src/wrbmp.c",
+        "startline": 50,
+        "endline": 74
+      },
+      {
+        "docid": "src/cdjpeg.h",
+        "startline": 51,
+        "endline": 85
+      },
+      {
+        "docid": "src/jpegint.h",
+        "startline": 77,
+        "endline": 78
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 264,
+        "endline": 290
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 523,
+        "endline": 605
+      },
+      {
+        "docid": "src/jmorecfg.h",
+        "startline": 295,
+        "endline": 298
+      },
+      {
+        "docid": "src/jmorecfg.h",
+        "startline": 332,
+        "endline": 358
+      },
+      {
+        "docid": "src/cmyk.h",
+        "startline": 50,
+        "endline": 58
+      },
+      {
+        "docid": "src/cderror.h",
+        "startline": 49,
+        "endline": 49
+      }
+    ],
+    "function_summary": "This code segment (lines 498-511 in wrbmp.c) is a color space selection and validation logic within the BMP file writer initialization function. It determines which pixel row writing function to use based on the output color space and quantization settings. For grayscale output, it assigns put_gray_rows. For extended RGB color spaces (JCS_EXT_RGB through JCS_EXT_ARGB), it assigns put_gray_rows if color quantization is enabled, otherwise put_pixel_rows. For RGB565 and CMYK color spaces (without quantization), it assigns put_pixel_rows. If none of these conditions match, it raises a JERR_BMP_COLORSPACE error indicating BMP output requires grayscale or RGB color space."
+  },
+  {
+    "instance_id": "Choser_CVE-2021-37972",
+    "hits": [
+      {
+        "docid": "src/jpeg_nbits.c",
+        "startline": 1,
+        "endline": 4132
+      }
+    ],
+    "function_summary": "This code segment (lines 53-87) defines two lookup table data structures used by the Huffman encoder:\n\n1. **jpeg_nbits_table (lines 50-84)**: A 65536-byte reverse lookup table that maps integer values (0-65535) to the minimum number of bits required to represent them. The table is organized in reverse order: values requiring 15 bits come first (32768 entries of value 15), followed by 14-bit values (16384 entries of value 14), down to 0-bit values (1 entry of value 0). This table enables fast bit-length determination during Huffman encoding without conditional branching.\n\n2. **jpeg_mask_bits (lines 43-46)**: A 16-element array containing bitmasks (0x0000, 0x0001, 0x0003, 0x0007, 0x000f, etc.) used to extract the lower N bits from a value, where each mask corresponds to (2^N - 1). These masks are used during coefficient encoding to isolate specific bit ranges.\n\nTogether, these tables support the core Huffman encoding operations: determining how many bits are needed to represent a coefficient (using jpeg_nbits_table) and extracting the appropriate bit pattern (using jpeg_mask_bits)."
+  },
+  {
+    "instance_id": "zju-CVE-2021-4089",
+    "hits": [
+      {
+        "docid": "app/Http/Controllers/AssetModelsController.php",
+        "startline": 268,
+        "endline": 289
+      },
+      {
+        "docid": "app/Http/Controllers/AssetModelsController.php",
+        "startline": 1,
+        "endline": 33
+      },
+      {
+        "docid": "app/Models/AssetModel.php",
+        "startline": 1,
+        "endline": 50
+      },
+      {
+        "docid": "app/Models/AssetModel.php",
+        "startline": 184,
+        "endline": 187
+      },
+      {
+        "docid": "app/Models/AssetModel.php",
+        "startline": 201,
+        "endline": 204
+      },
+      {
+        "docid": "app/Helpers/Helper.php",
+        "startline": 640,
+        "endline": 646
+      },
+      {
+        "docid": "app/Models/SnipeModel.php",
+        "startline": 1,
+        "endline": 239
+      },
+      {
+        "docid": "app/Http/Controllers/AssetModelsController.php",
+        "startline": 91,
+        "endline": 102
+      }
+    ],
+    "function_summary": "Line 272 is a docblock comment line containing \"@since [v1.0]\" as part of the PHPDoc documentation for the `getClone` method. This method (lines 275-289) displays the asset model cloning page. It authorizes the user to create asset models, clones the provided AssetModel instance, resets the cloned model's ID and deletion timestamp to null, and returns a view with the model data, depreciation list, and a reference to the original cloned model for image cloning purposes."
+  },
+  {
+    "instance_id": "zju-CVE-2022-0178",
+    "hits": [
+      {
+        "docid": "app/Http/Controllers/ProfileController.php",
+        "startline": 108,
+        "endline": 116
+      },
+      {
+        "docid": "app/Models/User.php",
+        "startline": 69,
+        "endline": 69
+      },
+      {
+        "docid": "resources/lang/en-US/admin/users/message.php",
+        "startline": 55,
+        "endline": 55
+      },
+      {
+        "docid": "routes/web.php",
+        "startline": 356,
+        "endline": 363
+      }
+    ],
+    "function_summary": "This code segment returns a view for the password change page. It first retrieves the authenticated user and checks if they were imported via LDAP (ldap_import=='1'). If the user is an LDAP user, it redirects back to the account page with an error message indicating that LDAP users cannot change their password through the application. If the user is not an LDAP user, it returns the 'account/change-password' view with the user data."
+  },
+  {
+    "instance_id": "zju-CVE-2022-0579",
+    "hits": [
+      {
+        "docid": "app/Http/Controllers/SuppliersController.php",
+        "startline": 1,
+        "endline": 159
+      },
+      {
+        "docid": "app/Http/Controllers/Api/SuppliersController.php",
+        "startline": 187,
+        "endline": 189
+      }
+    ],
+    "function_summary": "Lines 187-188 do not exist in app/Http/Controllers/SuppliersController.php as the file only contains 159 lines. The file is a Laravel controller that handles CRUD operations for suppliers in the Snipe-IT asset management system. If you meant app/Http/Controllers/Api/SuppliersController.php lines 187-188, those lines contain only a PHPDoc comment block (\"/**\" and \" * Remove the specified resource from storage.\") which is not executable code requiring refactoring."
+  },
+  {
+    "instance_id": "zju-CVE-2022-1511",
+    "hits": [
+      {
+        "docid": "app/Http/Controllers/Assets/AssetsController.php",
+        "startline": 732,
+        "endline": 877
+      },
+      {
+        "docid": "app/Helpers/Helper.php",
+        "startline": 1046,
+        "endline": 1050
+      },
+      {
+        "docid": "app/Models/User.php",
+        "startline": 715,
+        "endline": 763
+      },
+      {
+        "docid": "app/Models/Asset.php",
+        "startline": 1,
+        "endline": 150
+      },
+      {
+        "docid": "app/Models/Actionlog.php",
+        "startline": 34,
+        "endline": 44
+      },
+      {
+        "docid": "app/Models/Setting.php",
+        "startline": 90,
+        "endline": 100
+      }
+    ],
+    "function_summary": "Lines 864-865 handle a failure condition when matching a user for import history. If a user cannot be found after searching by username, email, or other criteria, these lines set the user_id to null and add an error message to the status array indicating that no checkin log was created because the user does not exist. This is part of the history import process where asset checkout/checkin records are being imported from a CSV file."
+  },
+  {
+    "instance_id": "sjtu_CVE-2022-4583",
+    "hits": [
+      {
+        "docid": "src/main/java/org/lemsml/jlems/io/util/JUtil.java",
+        "startline": 200,
+        "endline": 238
+      },
+      {
+        "docid": "src/main/java/org/lemsml/jlems/core/logging/E.java",
+        "startline": 53,
+        "endline": 63
+      },
+      {
+        "docid": "src/main/java/org/lemsml/jlems/core/logging/E.java",
+        "startline": 215,
+        "endline": 218
+      }
+    ],
+    "function_summary": "This code segment is the `unpackJar` method that extracts all entries from a JAR file to a target directory. It iterates through all entries in the JAR file, creates directories for directory entries, and extracts file entries while skipping META-INF files. The method includes a security check to prevent Zip Slip attacks by validating that extracted paths remain within the output directory. Files are extracted by reading from the JAR input stream and writing to the file system."
+  },
+  {
+    "instance_id": "sjtu_CVE-2019-3580",
+    "hits": [
+      {
+        "docid": "extensions/wikibase/module/scripts/schema-alignment.js",
+        "startline": 1085,
+        "endline": 1115
+      },
+      {
+        "docid": "extensions/wikibase/module/scripts/schema-alignment.js",
+        "startline": 1212,
+        "endline": 1222
+      },
+      {
+        "docid": "extensions/wikibase/module/scripts/schema-alignment.js",
+        "startline": 1149,
+        "endline": 1158
+      },
+      {
+        "docid": "extensions/wikibase/module/scripts/schema-alignment.js",
+        "startline": 1632,
+        "endline": 1639
+      },
+      {
+        "docid": "extensions/wikibase/module/scripts/schema-alignment.js",
+        "startline": 943,
+        "endline": 955
+      },
+      {
+        "docid": "extensions/wikibase/module/scripts/dialogs/statement-configuration-dialog.js",
+        "startline": 114,
+        "endline": 126
+      },
+      {
+        "docid": "extensions/wikibase/module/scripts/schema-alignment.js",
+        "startline": 963,
+        "endline": 967
+      },
+      {
+        "docid": "extensions/wikibase/module/scripts/schema-alignment.js",
+        "startline": 1061,
+        "endline": 1067
+      },
+      {
+        "docid": "extensions/wikibase/module/scripts/schema-alignment.js",
+        "startline": 1164,
+        "endline": 1210
+      }
+    ],
+    "function_summary": "This code segment conditionally processes references for a Wikibase statement during JSON serialization. If the editing mode is not 'delete', it iterates through all reference DOM elements within the statement's reference container, converts each reference to JSON format using `SchemaAlignment._referenceToJSON()`, and adds them to the `referencesList` array. When the editing mode is 'delete', references are skipped and not included in the serialization."
+  },
+  {
+    "instance_id": "Choser_CVE-2016-10504",
+    "hits": [
+      {
+        "docid": "src/lib/openjp2/tcd.c",
+        "startline": 791,
+        "endline": 1190
+      },
+      {
+        "docid": "src/lib/openjp2/tcd.h",
+        "startline": 148,
+        "endline": 160
+      },
+      {
+        "docid": "src/lib/openjp2/tcd.h",
+        "startline": 120,
+        "endline": 145
+      },
+      {
+        "docid": "src/lib/openjp2/tcd.h",
+        "startline": 77,
+        "endline": 90
+      },
+      {
+        "docid": "src/lib/openjp2/opj_malloc.h",
+        "startline": 88,
+        "endline": 94
+      },
+      {
+        "docid": "src/lib/openjp2/event.h",
+        "startline": 50,
+        "endline": 68
+      },
+      {
+        "docid": "src/lib/openjp2/event.h",
+        "startline": 89,
+        "endline": 90
+      },
+      {
+        "docid": "src/lib/openjp2/openjpeg.h",
+        "startline": 116,
+        "endline": 118
+      }
+    ],
+    "function_summary": "This code segment handles memory reallocation failure for precinct code block data. When opj_realloc fails to expand the code block array to the required size (l_nb_code_blocks_size), it performs cleanup by: (1) freeing the original memory block at l_current_precinct->cblks.blocks, (2) setting the pointer to NULL to prevent dangling pointer access, (3) resetting block_size to 0 to reflect no allocated memory, (4) logging an error message to the event manager, and (5) returning OPJ_FALSE to indicate initialization failure."
+  },
+  {
+    "instance_id": "Choser_CVE-2016-7445",
+    "hits": [
+      {
+        "docid": "src/bin/jp2/convert.c",
+        "startline": 1331,
+        "endline": 1539
+      },
+      {
+        "docid": "src/lib/openjp2/openjpeg.h",
+        "startline": 56,
+        "endline": 67
+      },
+      {
+        "docid": "src/lib/openjp2/openjpeg.h",
+        "startline": 681,
+        "endline": 708
+      },
+      {
+        "docid": "src/lib/openjp2/openjpeg.h",
+        "startline": 713,
+        "endline": 732
+      },
+      {
+        "docid": "src/bin/jp2/convert.h",
+        "startline": 42,
+        "endline": 66
+      }
+    ],
+    "function_summary": "This code segment contains a macro definition, a helper function, and a function that exports an OpenJPEG image to PGX (Portable Graymap for eXchange) format. Specifically:\n\n1. **CLAMP macro (line 1331)**: A utility macro that constrains a value between a minimum and maximum bound.\n\n2. **clamp function (lines 1333-1352)**: A static inline function that clamps integer values based on precision (`prec`) and signedness (`sgnd`). It returns values clamped to the appropriate range for signed/unsigned 8-bit, 16-bit, or 32-bit integers.\n\n3. **imagetopgx function (lines 1354-1480)**: Converts an `opj_image_t` structure to one or more PGX files. For multi-component images, it creates separate PGX files for each component (with filenames like \"output_0.pgx\", \"output_1.pgx\", etc.). The function:\n   - Iterates through each image component\n   - Constructs output filenames by inserting component numbers before the file extension\n   - Writes PGX headers containing format information (signedness, precision, dimensions)\n   - Outputs pixel data in either 1-byte (8-bit), 2-byte (16-bit), or 4-byte (32-bit) formats\n   - Clamps pixel values to valid ranges for the component's precision and signedness\n   - Uses optimized writing for 8-bit unsigned data, and byte-by-byte writing for multi-byte formats\n\n4. **PNM helper functions (lines 1488-1539)**: Begin definitions for PNM (Portable aNyMap) format handling, including:\n   - `pnm_header` struct definition\n   - `skip_white` function to skip whitespace in PNM headers\n   - `skip_int` function to parse integers from PNM headers (partial)\n   - `skip_idf` function declaration (starts at line 1537)"
+  },
+  {
+    "instance_id": "Choser_CVE-2016-9118",
+    "hits": [
+      {
+        "docid": "src/bin/jp2/convert.c",
+        "startline": 1728,
+        "endline": 1734
+      },
+      {
+        "docid": "src/bin/jp2/convert.c",
+        "startline": 1488,
+        "endline": 1492
+      },
+      {
+        "docid": "src/bin/jp2/convert.c",
+        "startline": 1562,
+        "endline": 1734
+      },
+      {
+        "docid": "src/bin/jp2/convert.c",
+        "startline": 1786,
+        "endline": 1879
+      },
+      {
+        "docid": "src/bin/jp2/convert.h",
+        "startline": 1,
+        "endline": 127
+      }
+    ],
+    "function_summary": "Lines 1733-1744 contain a conditional check that sets the `ph->maxval` to 255 for PNM bitmap formats (P1/P4). Specifically, when the PNM format is 1 (ASCII bitmap) or 4 (raw bitmap), the function assigns 255 to the `maxval` field of the `pnm_header` structure. This ensures that bitmap formats, which don't have an explicit maxval field in their headers, have a default maximum pixel value of 255 for subsequent image processing."
+  },
+  {
+    "instance_id": "Choser_CVE-2020-13790",
+    "hits": [
+      {
+        "docid": "src/rdppm.c",
+        "startline": 137,
+        "endline": 152
+      },
+      {
+        "docid": "src/rdppm.c",
+        "startline": 164,
+        "endline": 195
+      },
+      {
+        "docid": "src/rdppm.c",
+        "startline": 199,
+        "endline": 225
+      },
+      {
+        "docid": "src/rdppm.c",
+        "startline": 61,
+        "endline": 72
+      },
+      {
+        "docid": "src/rdppm.c",
+        "startline": 47,
+        "endline": 48
+      },
+      {
+        "docid": "src/rdppm.c",
+        "startline": 92,
+        "endline": 121
+      },
+      {
+        "docid": "src/rdppm.c",
+        "startline": 75,
+        "endline": 89
+      },
+      {
+        "docid": "src/rdppm.c",
+        "startline": 51,
+        "endline": 52
+      },
+      {
+        "docid": "src/cdjpeg.h",
+        "startline": 28,
+        "endline": 44
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 264,
+        "endline": 290
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 345,
+        "endline": 359
+      },
+      {
+        "docid": "src/jpeglib.h",
+        "startline": 384,
+        "endline": 387
+      },
+      {
+        "docid": "src/jmorecfg.h",
+        "startline": 332,
+        "endline": 358
+      },
+      {
+        "docid": "src/jpegint.h",
+        "startline": 77,
+        "endline": 78
+      },
+      {
+        "docid": "src/cmyk.h",
+        "startline": 25,
+        "endline": 45
+      },
+      {
+        "docid": "src/cderror.h",
+        "startline": 75,
+        "endline": 82
+      },
+      {
+        "docid": "src/jerror.h",
+        "startline": 66,
+        "endline": 66
+      },
+      {
+        "docid": "src/jerror.h",
+        "startline": 239,
+        "endline": 277
+      },
+      {
+        "docid": "src/jerror.h",
+        "startline": 296,
+        "endline": 312
+      },
+      {
+        "docid": "src/jsamplecomp.h",
+        "startline": 1,
+        "endline": 333
+      }
+    ],
+    "function_summary": "This code segment (lines 717-732 in src/rdppm.c) is a conditional branch that handles text-format PGM (Portable GrayMap) files. It checks the input color space, assigns the appropriate pixel row reading function based on the color space (grayscale, extended RGB, or CMYK), and logs a trace message. If the color space is invalid, it triggers an error and exits. Finally, it sets the need_iobuffer flag to FALSE since text-format files don't need an I/O buffer (data is read directly from the input file as text)."
+  },
+  {
+    "instance_id": "Choser_CVE-2020-24829",
+    "hits": [
+      {
+        "docid": "applications/mp4box/mp4box.c",
+        "startline": 4650,
+        "endline": 4709
+      },
+      {
+        "docid": "applications/mp4box/mp4box.c",
+        "startline": 4550,
+        "endline": 4649
+      },
+      {
+        "docid": "applications/mp4box/fileimport.c",
+        "startline": 2740,
+        "endline": 3336
+      },
+      {
+        "docid": "applications/mp4box/mp4box.c",
+        "startline": 200,
+        "endline": 369
+      },
+      {
+        "docid": "applications/mp4box/mp4box.c",
+        "startline": 5978,
+        "endline": 6077
+      },
+      {
+        "docid": "applications/mp4box/mp4box.h",
+        "startline": 1,
+        "endline": 202
+      },
+      {
+        "docid": "applications/mp4box/fileimport.c",
+        "startline": 1,
+        "endline": 2739
+      },
+      {
+        "docid": "include/gpac/filters.h",
+        "startline": 1,
+        "endline": 5202
+      }
+    ],
+    "function_summary": "This code segment handles file concatenation operations for MP4Box (`-cat`, `-catx`, `-catpl` commands). It opens or creates a destination ISOBMFF file based on the `force_new` and `do_flat` flags, then calls `cat_isomedia_file()` to append the source media file specified by `inName`. For two-pass processing mode (`nb_pass == 2`), it sets up and executes a filter session using the mux arguments and source ID from the first pass, loads a filter with the constructed arguments, runs the filter session, checks for errors, prints filter statistics if requested, and cleans up the session. Error handling includes logging with `M4_LOG`, cleanup via `mp4box_cleanup()`, and appropriate error code returns."
+  },
+  {
+    "instance_id": "Choser_CVE-2020-27814",
+    "hits": [
+      {
+        "docid": "src/lib/openjp2/opj_intmath.h",
+        "startline": 56,
+        "endline": 59
+      },
+      {
+        "docid": "src/lib/openjp2/opj_intmath.h",
+        "startline": 74,
+        "endline": 77
+      },
+      {
+        "docid": "src/lib/openjp2/tcd.h",
+        "startline": 120,
+        "endline": 145
+      },
+      {
+        "docid": "src/lib/openjp2/tcd.h",
+        "startline": 148,
+        "endline": 160
+      },
+      {
+        "docid": "src/lib/openjp2/tcd.c",
+        "startline": 791,
+        "endline": 1264
+      },
+      {
+        "docid": "src/lib/openjp2/tcd.c",
+        "startline": 1218,
+        "endline": 1252
+      },
+      {
+        "docid": "src/lib/openjp2/tcd.c",
+        "startline": 117,
+        "endline": 124
+      }
+    ],
+    "function_summary": "This code segment sets the spatial boundaries (x0, y0, x1, y1) of a decoder code block within the JPEG2000 tile structure. It computes the intersection between the theoretical code block boundaries (cblkxstart, cblkystart, cblkxend, cblkyend) and the precinct boundaries (l_current_precinct->x0, y0, x1, y1), ensuring the code block does not extend beyond its containing precinct. This is part of the tile component initialization process during JPEG2000 decoding."
+  },
+  {
+    "instance_id": "Choser_CVE-2023-4754",
+    "hits": [
+      {
+        "docid": "src/scene_manager/swf_parse.c",
+        "startline": 1437,
+        "endline": 1551
+      },
+      {
+        "docid": "src/scene_manager/swf_parse.c",
+        "startline": 896,
+        "endline": 1055
+      },
+      {
+        "docid": "src/scene_manager/swf_parse.c",
+        "startline": 144,
+        "endline": 152
+      },
+      {
+        "docid": "src/scene_manager/swf_parse.c",
+        "startline": 149,
+        "endline": 152
+      },
+      {
+        "docid": "src/scene_manager/swf_parse.c",
+        "startline": 177,
+        "endline": 180
+      },
+      {
+        "docid": "src/scene_manager/swf_parse.c",
+        "startline": 208,
+        "endline": 211
+      },
+      {
+        "docid": "include/gpac/internal/swf_dev.h",
+        "startline": 263,
+        "endline": 285
+      },
+      {
+        "docid": "include/gpac/internal/swf_dev.h",
+        "startline": 65,
+        "endline": 195
+      }
+    ],
+    "function_summary": "This code segment parses SWF font glyph offset table and shape data for SWF_DEFINEFONT (revision 0). It reads the first offset value to calculate the number of glyphs, allocates an offset table array, reads remaining offsets, then iterates through each glyph to seek to its position and parse its shape definition."
+  },
+  {
+    "instance_id": "jzquan_CVE-2017-9048",
+    "hits": [
+      {
+        "docid": "valid.c",
+        "startline": 1264,
+        "endline": 1269
+      },
+      {
+        "docid": "valid.c",
+        "startline": 1271,
+        "endline": 1274
+      },
+      {
+        "docid": "valid.c",
+        "startline": 1283,
+        "endline": 1286
+      },
+      {
+        "docid": "valid.c",
+        "startline": 1295,
+        "endline": 1328
+      },
+      {
+        "docid": "valid.c",
+        "startline": 1076,
+        "endline": 1089
+      },
+      {
+        "docid": "valid.c",
+        "startline": 778,
+        "endline": 860
+      },
+      {
+        "docid": "valid.c",
+        "startline": 872,
+        "endline": 874
+      },
+      {
+        "docid": "valid.c",
+        "startline": 706,
+        "endline": 750
+      },
+      {
+        "docid": "valid.c",
+        "startline": 885,
+        "endline": 929
+      },
+      {
+        "docid": "valid.c",
+        "startline": 940,
+        "endline": 942
+      },
+      {
+        "docid": "valid.c",
+        "startline": 52,
+        "endline": 65
+      },
+      {
+        "docid": "valid.c",
+        "startline": 1338,
+        "endline": 1341
+      },
+      {
+        "docid": "valid.c",
+        "startline": 1102,
+        "endline": 1269
+      },
+      {
+        "docid": "include/libxml/tree.h",
+        "startline": 459,
+        "endline": 493
+      },
+      {
+        "docid": "include/libxml/tree.h",
+        "startline": 422,
+        "endline": 437
+      },
+      {
+        "docid": "include/libxml/tree.h",
+        "startline": 442,
+        "endline": 448
+      },
+      {
+        "docid": "include/libxml/tree.h",
+        "startline": 395,
+        "endline": 410
+      },
+      {
+        "docid": "include/libxml/tree.h",
+        "startline": 161,
+        "endline": 280
+      },
+      {
+        "docid": "include/libxml/valid.h",
+        "startline": 59,
+        "endline": 92
+      },
+      {
+        "docid": "include/libxml/valid.h",
+        "startline": 97,
+        "endline": 98
+      },
+      {
+        "docid": "include/libxml/valid.h",
+        "startline": 134,
+        "endline": 156
+      },
+      {
+        "docid": "include/libxml/valid.h",
+        "startline": 179,
+        "endline": 183
+      },
+      {
+        "docid": "include/libxml/hash.h",
+        "startline": 28,
+        "endline": 29
+      },
+      {
+        "docid": "include/libxml/hash.h",
+        "startline": 61,
+        "endline": 61
+      },
+      {
+        "docid": "include/libxml/hash.h",
+        "startline": 69,
+        "endline": 69
+      },
+      {
+        "docid": "include/libxml/hash.h",
+        "startline": 100,
+        "endline": 101
+      },
+      {
+        "docid": "include/libxml/hash.h",
+        "startline": 214,
+        "endline": 217
+      },
+      {
+        "docid": "include/libxml/xmlmemory.h",
+        "startline": 33,
+        "endline": 33
+      },
+      {
+        "docid": "include/libxml/xmlmemory.h",
+        "startline": 40,
+        "endline": 40
+      },
+      {
+        "docid": "include/libxml/xmlmemory.h",
+        "startline": 49,
+        "endline": 49
+      },
+      {
+        "docid": "include/libxml/xmlmemory.h",
+        "startline": 57,
+        "endline": 57
+      },
+      {
+        "docid": "include/libxml/xmlmemory.h",
+        "startline": 89,
+        "endline": 89
+      },
+      {
+        "docid": "include/libxml/xmlmemory.h",
+        "startline": 97,
+        "endline": 97
+      },
+      {
+        "docid": "include/libxml/xmlmemory.h",
+        "startline": 101,
+        "endline": 101
+      },
+      {
+        "docid": "include/libxml/xmlmemory.h",
+        "startline": 105,
+        "endline": 105
+      },
+      {
+        "docid": "include/libxml/xmlmemory.h",
+        "startline": 109,
+        "endline": 109
+      },
+      {
+        "docid": "include/libxml/xmlstring.h",
+        "startline": 29,
+        "endline": 29
+      },
+      {
+        "docid": "include/libxml/xmlstring.h",
+        "startline": 34,
+        "endline": 34
+      },
+      {
+        "docid": "include/libxml/xmlstring.h",
+        "startline": 39,
+        "endline": 40
+      },
+      {
+        "docid": "include/libxml/xmlstring.h",
+        "startline": 77,
+        "endline": 78
+      },
+      {
+        "docid": "libxml.h",
+        "startline": 70,
+        "endline": 74
+      }
+    ],
+    "function_summary": "Lines 1265-1323 of valid.c contain error handling code and element-related utility functions:\n\n1. Lines 1264-1269: The `mem_error` label within `xmlAddElementDecl` function handles memory allocation failures by calling `xmlVErrMemory` to report the error and freeing the allocated `prefix` string.\n\n2. Lines 1271-1274: `xmlFreeElementTableEntry` is a callback wrapper function that casts a void pointer to an xmlElementPtr and invokes `xmlFreeElement` to deallocate the element.\n\n3. Lines 1283-1286: `xmlFreeElementTable` deallocates an entire element hash table using `xmlHashFree` with `xmlFreeElementTableEntry` as the deallocator callback.\n\n4. Lines 1295-1323 (extends to 1328): `xmlCopyElement` creates a deep copy of an xmlElement structure. It allocates a new element, copies the type and element type fields, duplicates the name and prefix strings, recursively copies the element content tree using `xmlCopyElementContent`, and returns the new element (or NULL on error). Note: attribute list is intentionally not copied."
+  },
+  {
+    "instance_id": "YilZhong_CVE-2017-5969",
+    "hits": [
+      {
+        "docid": "valid.c",
+        "startline": 1102,
+        "endline": 1269
+      },
+      {
+        "docid": "valid.c",
+        "startline": 52,
+        "endline": 65
+      },
+      {
+        "docid": "valid.c",
+        "startline": 1075,
+        "endline": 1089
+      },
+      {
+        "docid": "include/libxml/valid.h",
+        "startline": 59,
+        "endline": 92
+      },
+      {
+        "docid": "include/libxml/tree.h",
+        "startline": 443,
+        "endline": 449
+      },
+      {
+        "docid": "include/libxml/tree.h",
+        "startline": 451,
+        "endline": 494
+      },
+      {
+        "docid": "include/libxml/tree.h",
+        "startline": 534,
+        "endline": 580
+      },
+      {
+        "docid": "include/libxml/tree.h",
+        "startline": 348,
+        "endline": 391
+      },
+      {
+        "docid": "include/libxml/tree.h",
+        "startline": 413,
+        "endline": 438
+      },
+      {
+        "docid": "include/libxml/xmlmemory.h",
+        "startline": 89,
+        "endline": 109
+      },
+      {
+        "docid": "tree.c",
+        "startline": 306,
+        "endline": 337
+      }
+    ],
+    "function_summary": "Lines 1265-1268 implement a memory error cleanup label (`mem_error:`) that handles allocation failures in the `xmlAddElementDecl` function. When reached via goto statements from various allocation failure points in the function, it calls `xmlVErrMemory` to report the memory allocation error through the validation context's error callback mechanism, conditionally frees the `prefix` pointer if it was successfully allocated by `xmlSplitQName4`, and returns NULL to indicate failure.\n\nLines 1271-1274 define `xmlFreeElementTableEntry`, a static wrapper function used as a hash table callback to free element table entries. It takes a void pointer to an element and casts it to `xmlElementPtr` before calling `xmlFreeElement` to properly deallocate the element and all its associated resources."
+  },
+  {
+    "instance_id": "Capsa_CVE-2022-23457",
+    "hits": [
+      {
+        "docid": "src/main/java/org/owasp/esapi/reference/DefaultValidator.java",
+        "startline": 448,
+        "endline": 457
+      },
+      {
+        "docid": "src/main/java/org/owasp/esapi/reference/DefaultValidator.java",
+        "startline": 439,
+        "endline": 443
+      },
+      {
+        "docid": "src/main/java/org/owasp/esapi/reference/DefaultValidator.java",
+        "startline": 118,
+        "endline": 118
+      },
+      {
+        "docid": "src/main/java/org/owasp/esapi/reference/validation/CreditCardValidationRule.java",
+        "startline": 1,
+        "endline": 165
+      },
+      {
+        "docid": "src/main/java/org/owasp/esapi/ValidationErrorList.java",
+        "startline": 1,
+        "endline": 137
+      },
+      {
+        "docid": "src/main/java/org/owasp/esapi/errors/ValidationException.java",
+        "startline": 1,
+        "endline": 115
+      },
+      {
+        "docid": "src/main/java/org/owasp/esapi/errors/IntrusionException.java",
+        "startline": 1,
+        "endline": 92
+      },
+      {
+        "docid": "src/main/java/org/owasp/esapi/Encoder.java",
+        "startline": 1,
+        "endline": 761
+      },
+      {
+        "docid": "src/main/java/org/owasp/esapi/reference/validation/BaseValidationRule.java",
+        "startline": 1,
+        "endline": 202
+      }
+    ],
+    "function_summary": "This code segment implements the overloaded `getValidCreditCard` method that validates credit card input and collects validation errors in a `ValidationErrorList` instead of throwing exceptions. It wraps the main validation logic (from the simpler `getValidCreditCard` method) in a try-catch block. If validation succeeds, it returns the validated credit card string; if a `ValidationException` occurs, it adds the exception to the provided `errors` list and returns an empty string. The method also declares that it may throw `IntrusionException` (a runtime exception for potential attacks)."
+  },
+  {
+    "instance_id": "zju-cve-2021-3728",
+    "hits": [
+      {
+        "docid": "routes/web.php",
+        "startline": 253,
+        "endline": 269
+      },
+      {
+        "docid": "app/Http/Kernel.php",
+        "startline": 145,
+        "endline": 157
+      },
+      {
+        "docid": "app/Http/Middleware/Authenticate.php",
+        "startline": 1,
+        "endline": 50
+      },
+      {
+        "docid": "app/Http/Middleware/Range.php",
+        "startline": 1,
+        "endline": 100
+      },
+      {
+        "docid": "routes/web.php",
+        "startline": 235,
+        "endline": 251
+      },
+      {
+        "docid": "app/Models/Bill.php",
+        "startline": 1,
+        "endline": 150
+      }
+    ],
+    "function_summary": "This code defines a route group for subscription management endpoints under the '/subscriptions' URL prefix. It registers 9 routes (index, rescan, create, edit, delete, show, store, update, destroy, and set-order) that are all handled by Bill controller methods. The route group applies the 'user-full-auth' middleware (requiring full authentication with 2FA and email confirmation), sets the namespace to 'FireflyIII\\Http\\Controllers', and uses 'subscriptions.' as the route name prefix. All routes delegate to Bill\\*Controller classes, effectively treating subscriptions as an alias or alternative interface to bills functionality."
+  },
+  {
+    "instance_id": "zju-cve-2021-3900",
+    "hits": [
+      {
+        "docid": "routes/web.php",
+        "startline": 28,
+        "endline": 30
+      },
+      {
+        "docid": "routes/web.php",
+        "startline": 950,
+        "endline": 955
+      },
+      {
+        "docid": "app/Http/Controllers/Report/DoubleController.php",
+        "startline": 1,
+        "endline": 490
+      },
+      {
+        "docid": "app/Repositories/Account/AccountRepositoryInterface.php",
+        "startline": 64,
+        "endline": 64
+      },
+      {
+        "docid": "app/Repositories/Account/AccountRepository.php",
+        "startline": 76,
+        "endline": 106
+      }
+    ],
+    "function_summary": "Defines a web route that handles GET requests to 'report-data/double/ops-asset/{accountList}/{doubleList}/{start_date}/{end_date}'. The route calls the `operationsPerAsset` method of the `DoubleController` class (in the Report namespace), validates date parameters against the DATEFORMAT regex pattern, and is named 'report-data.double.ops-asset'. This route is used to generate report data showing financial operations (expenses/income) grouped by asset accounts within a specified date range."
+  },
+  {
+    "instance_id": "zju-cve-2025-2945",
+    "hits": [
+      {
+        "docid": "web/pgadmin/tools/sqleditor/__init__.py",
+        "startline": 2154,
+        "endline": 2157
+      },
+      {
+        "docid": "web/pgadmin/tools/sqleditor/__init__.py",
+        "startline": 2088,
+        "endline": 2180
+      },
+      {
+        "docid": "web/pgadmin/tools/sqleditor/__init__.py",
+        "startline": 167,
+        "endline": 167
+      },
+      {
+        "docid": "web/pgadmin/tools/sqleditor/utils/query_tool_preferences.py",
+        "startline": 226,
+        "endline": 240
+      },
+      {
+        "docid": "web/pgadmin/tools/sqleditor/utils/query_tool_preferences.py",
+        "startline": 199,
+        "endline": 224
+      },
+      {
+        "docid": "web/pgadmin/tools/sqleditor/utils/query_tool_preferences.py",
+        "startline": 242,
+        "endline": 262
+      }
+    ],
+    "function_summary": "This code segment generates a default filename for CSV/TXT download when the user hasn't provided a custom filename. It determines the file extension ('csv' or 'txt') based on the CSV field separator preference setting, then creates a filename using the current Unix timestamp followed by the appropriate extension."
+  },
+  {
+    "instance_id": "zju-cve-2022-4223",
+    "hits": [
+      {
+        "docid": "web/pgadmin/misc/__init__.py",
+        "startline": 194,
+        "endline": 216
+      },
+      {
+        "docid": "web/pgadmin/utils/__init__.py",
+        "startline": 37,
+        "endline": 84
+      },
+      {
+        "docid": "web/pgadmin/__init__.py",
+        "startline": 167,
+        "endline": 174
+      },
+      {
+        "docid": "web/pgadmin/misc/__init__.py",
+        "startline": 1,
+        "endline": 39
+      },
+      {
+        "docid": "web/pgadmin/misc/bgprocess/__init__.py",
+        "startline": 1,
+        "endline": 50
+      },
+      {
+        "docid": "web/pgadmin/misc/cloud/__init__.py",
+        "startline": 1,
+        "endline": 50
+      },
+      {
+        "docid": "web/pgadmin/misc/file_manager/__init__.py",
+        "startline": 1,
+        "endline": 50
+      },
+      {
+        "docid": "web/pgadmin/misc/workspaces/__init__.py",
+        "startline": 1,
+        "endline": 50
+      },
+      {
+        "docid": "web/config.py",
+        "startline": 571,
+        "endline": 573
+      }
+    ],
+    "function_summary": "This code segment registers submodules (blueprints) for the MiscModule by importing and appending them to the submodules list. It also defines and registers a background task (`autovacuum_sessions`) that runs every 5 minutes to clean up session files using a daemon thread with threading.Timer. The background task is registered with the Flask app using `app.register_before_app_start()`, and finally calls the parent class's register method to complete the registration process."
+  },
+  {
+    "instance_id": "zju-cve-2023-34241",
+    "hits": [
+      {
+        "docid": "scheduler/client.c",
+        "startline": 224,
+        "endline": 230
+      },
+      {
+        "docid": "scheduler/client.c",
+        "startline": 193,
+        "endline": 232
+      },
+      {
+        "docid": "scheduler/client.c",
+        "startline": 50,
+        "endline": 107
+      },
+      {
+        "docid": "scheduler/client.c",
+        "startline": 174,
+        "endline": 191
+      },
+      {
+        "docid": "scheduler/client.h",
+        "startline": 21,
+        "endline": 72
+      },
+      {
+        "docid": "scheduler/conf.h",
+        "startline": 280,
+        "endline": 280
+      },
+      {
+        "docid": "scheduler/conf.h",
+        "startline": 17,
+        "endline": 34
+      },
+      {
+        "docid": "scheduler/conf.h",
+        "startline": 201,
+        "endline": 202
+      },
+      {
+        "docid": "scheduler/cupsd.h",
+        "startline": 103,
+        "endline": 103
+      }
+    ],
+    "function_summary": "This code segment logs a warning message and terminates a client connection when reverse DNS lookup (double-lookup) fails. Specifically, when HostNameLookups is set to 2 (double lookups enabled), if the hostname obtained from the client's IP address cannot be resolved back to the same IP address, the server logs a warning with cupsdLogClient(), closes the HTTP connection with httpClose(), frees the client structure with free(), and returns early from the cupsdAcceptClient() function. This security measure prevents connections where hostname-to-IP reverse resolution doesn't match the original IP-to-hostname forward resolution."
+  },
+  {
+    "instance_id": "zju-cve-2023-5341",
+    "hits": [
+      {
+        "docid": "coders/bmp.c",
+        "startline": 695,
+        "endline": 701
+      },
+      {
+        "docid": "coders/bmp.c",
+        "startline": 586,
+        "endline": 699
+      },
+      {
+        "docid": "coders/bmp.c",
+        "startline": 127,
+        "endline": 163
+      },
+      {
+        "docid": "MagickCore/blob-private.h",
+        "startline": 131,
+        "endline": 134
+      },
+      {
+        "docid": "MagickCore/log.h",
+        "startline": 27,
+        "endline": 28
+      },
+      {
+        "docid": "MagickCore/log.h",
+        "startline": 33,
+        "endline": 59
+      },
+      {
+        "docid": "MagickCore/log.h",
+        "startline": 83,
+        "endline": 89
+      },
+      {
+        "docid": "MagickCore/image.h",
+        "startline": 131,
+        "endline": 350
+      },
+      {
+        "docid": "MagickCore/image-private.h",
+        "startline": 25,
+        "endline": 26
+      }
+    ],
+    "function_summary": "This code segment reads the BMP file header information from a BMP image file. Specifically, it reads four consecutive 32-bit little-endian values:\n1. bmp_info.file_size: Total size of the BMP file\n2. A reserved field (read but discarded)\n3. bmp_info.offset_bits: Offset from the beginning of the file to the pixel data\n4. bmp_info.size: Size of the BMP info header structure\n\nAfter reading these values, if debug mode is enabled, it logs the BMP header size for diagnostic purposes."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2018-11225",
+    "hits": [
+      {
+        "docid": "util/decompile.c",
+        "startline": 3189,
+        "endline": 3216
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 820,
+        "endline": 821
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 195,
+        "endline": 195
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 210,
+        "endline": 223
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 189,
+        "endline": 193
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 985,
+        "endline": 1001
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 305,
+        "endline": 417
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 678,
+        "endline": 695
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 805,
+        "endline": 806
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 804,
+        "endline": 804
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 54,
+        "endline": 54
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 339,
+        "endline": 360
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 105,
+        "endline": 110
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 295,
+        "endline": 297
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 22,
+        "endline": 37
+      },
+      {
+        "docid": "util/action.c",
+        "startline": 1,
+        "endline": 50
+      }
+    ],
+    "function_summary": "This code segment implements the decompileSETTARGET function, which decompiles Flash ActionScript bytecode for SETTARGET and SETTARGET2 actions. The function processes a \"tellTarget\" statement that directs subsequent actions to a specific movie clip or object. It determines the target name (either from the action structure or from the stack), outputs a formatted \"tellTarget\" block with the target name, counts how many subsequent actions belong to this target block (stopping when it encounters another SETTARGET, function definition, or END action), recursively decompiles those nested actions with increased indentation, closes the block, and returns the count of processed actions so the main decompiler can skip them."
+  },
+  {
+    "instance_id": "Choser_CVE-2023-0770",
+    "hits": [
+      {
+        "docid": "src/scenegraph/vrml_proto.c",
+        "startline": 1275,
+        "endline": 1303
+      },
+      {
+        "docid": "include/gpac/internal/scenegraph_dev.h",
+        "startline": 306,
+        "endline": 327
+      },
+      {
+        "docid": "include/gpac/internal/scenegraph_dev.h",
+        "startline": 455,
+        "endline": 482
+      },
+      {
+        "docid": "include/gpac/internal/scenegraph_dev.h",
+        "startline": 494,
+        "endline": 520
+      },
+      {
+        "docid": "include/gpac/scenegraph.h",
+        "startline": 437,
+        "endline": 453
+      },
+      {
+        "docid": "include/gpac/scenegraph_vrml.h",
+        "startline": 322,
+        "endline": 327
+      },
+      {
+        "docid": "include/gpac/scenegraph_vrml.h",
+        "startline": 81,
+        "endline": 88
+      },
+      {
+        "docid": "src/scenegraph/vrml_proto.c",
+        "startline": 1,
+        "endline": 32
+      }
+    ],
+    "function_summary": "This code segment checks if a proto instance field (of type SFTime) is routed to a timing-related field (startTime or stopTime). It first handles the case where the route target is another prototype node by recursively calling the same function. If the target is not a proto or the recursion didn't return true, it checks if the destination field name is \"startTime\" or \"stopTime\", returning 1 (true) if so."
+  },
+  {
+    "instance_id": "Choser_CVE-2023-4756",
+    "hits": [
+      {
+        "docid": "src/scene_manager/loader_bt.c",
+        "startline": 50,
+        "endline": 111
+      },
+      {
+        "docid": "src/scene_manager/loader_bt.c",
+        "startline": 136,
+        "endline": 433
+      },
+      {
+        "docid": "include/gpac/tools.h",
+        "startline": 2298,
+        "endline": 2366
+      },
+      {
+        "docid": "include/gpac/utf.h",
+        "startline": 63,
+        "endline": 63
+      },
+      {
+        "docid": "include/gpac/scene_manager.h",
+        "startline": 271,
+        "endline": 319
+      }
+    ],
+    "function_summary": "This code segment (lines 136-162 in `src/scene_manager/loader_bt.c`) implements the `gf_bt_check_line` function, which performs whitespace skipping and comment detection for a BT (BIFS Text) parser.\n\nThe function:\n1. **Skips whitespace characters** (spaces, tabs, newlines, carriage returns) in the current line buffer (lines 139-153)\n2. **Detects and handles comments** by checking for:\n   - Shell-style comments starting with `#` (line 156-158)\n   - C++-style comments starting with `//` (lines 159-161)\n3. **Truncates the line** at the comment start position to effectively ignore comment content during parsing"
+  },
+  {
+    "instance_id": "Choser_CVE-2014-0160",
+    "hits": [
+      {
+        "docid": "include/openssl/ssl3.h",
+        "startline": 210,
+        "endline": 220
+      },
+      {
+        "docid": "include/openssl/tls1.h",
+        "startline": 388,
+        "endline": 396
+      },
+      {
+        "docid": "ssl/record/rec_layer_d1.c",
+        "startline": 100,
+        "endline": 120
+      },
+      {
+        "docid": "ssl/d1_lib.c",
+        "startline": 180,
+        "endline": 210
+      },
+      {
+        "docid": "include/openssl/rand.h",
+        "startline": 1,
+        "endline": 50
+      }
+    ],
+    "function_summary": "This code segment (lines 1462-1499 of ssl/d1_both.c) implements the construction and serialization of a DTLS HeartBeat request message. It allocates a buffer, populates it with a heartbeat request message type, payload length (18 bytes: 2-byte sequence number + 16 random bytes), the actual payload data, and random padding. The function uses the s2n macro to write 2-byte values in network byte order and RAND_bytes to generate cryptographically secure random data for both the payload and padding portions of the message."
+  },
+  {
+    "instance_id": "Choser_CVE-2017-7303",
+    "hits": [
+      {
+        "docid": "binutils/objcopy.c",
+        "startline": 2657,
+        "endline": 3603
+      },
+      {
+        "docid": "bfd/bfd-in2.h",
+        "startline": 105,
+        "endline": 139
+      },
+      {
+        "docid": "bfd/bfd-in2.h",
+        "startline": 435,
+        "endline": 845
+      },
+      {
+        "docid": "bfd/bfd-in2.h",
+        "startline": 1060,
+        "endline": 1204
+      },
+      {
+        "docid": "bfd/bfd-in2.h",
+        "startline": 1947,
+        "endline": 2288
+      },
+      {
+        "docid": "bfd/bfd-in2.h",
+        "startline": 2642,
+        "endline": 2646
+      },
+      {
+        "docid": "bfd/bfd-in2.h",
+        "startline": 1031,
+        "endline": 1035
+      },
+      {
+        "docid": "binutils/objcopy.c",
+        "startline": 40,
+        "endline": 50
+      },
+      {
+        "docid": "binutils/objcopy.c",
+        "startline": 172,
+        "endline": 186
+      },
+      {
+        "docid": "binutils/objcopy.c",
+        "startline": 2027,
+        "endline": 2028
+      }
+    ],
+    "function_summary": "This code segment performs cleanup and finalization tasks at the end of the gap-filling section in the copy_object function. Specifically, it: (1) frees the dynamically allocated gap-fill buffer (buf); (2) frees and nullifies the gaps array that tracks gap sizes between sections; (3) frees and nullifies the osections array that holds sorted output sections; (4) closes the gap-filling conditional block; and (5) calls bfd_copy_private_bfd_data() to copy backend-specific private data from the input BFD to the output BFD, which must be done after all sections and symbols have been processed to allow backends (especially ECOFF) to access the filtered symbol table."
+  },
+  {
+    "instance_id": "zju-CVE-2021-32615",
+    "hits": [
+      {
+        "docid": "admin/user_list.php",
+        "startline": 64,
+        "endline": 68
+      },
+      {
+        "docid": "include/dblayer/functions_mysqli.inc.php",
+        "startline": 127,
+        "endline": 173
+      },
+      {
+        "docid": "include/dblayer/functions_mysqli.inc.php",
+        "startline": 209,
+        "endline": 212
+      },
+      {
+        "docid": "include/dblayer/functions_mysqli.inc.php",
+        "startline": 886,
+        "endline": 919
+      },
+      {
+        "docid": "include/constants.php",
+        "startline": 73,
+        "endline": 74
+      },
+      {
+        "docid": "include/functions_user.inc.php",
+        "startline": 770,
+        "endline": 821
+      }
+    ],
+    "function_summary": "This code segment queries the USER_INFOS_TABLE database to extract distinct registration dates (month and year) for all users. It fetches the results using pwg_query() and pwg_db_fetch_assoc() in a while loop, formats each date as \"YYYY-MM\" (zero-padded month), and stores them in an array. Finally, it assigns a comma-separated string of these dates to the template variable 'register_dates' for use in the frontend."
+  },
+  {
+    "instance_id": "zju-cve-2024-27306",
+    "hits": [
+      {
+        "docid": "aiohttp/web_urldispatcher.py",
+        "startline": 670,
+        "endline": 700
+      },
+      {
+        "docid": "aiohttp/web_urldispatcher.py",
+        "startline": 502,
+        "endline": 540
+      },
+      {
+        "docid": "aiohttp/web_urldispatcher.py",
+        "startline": 477,
+        "endline": 498
+      },
+      {
+        "docid": "aiohttp/web_urldispatcher.py",
+        "startline": 81,
+        "endline": 81
+      },
+      {
+        "docid": "aiohttp/web_urldispatcher.py",
+        "startline": 1,
+        "endline": 44
+      },
+      {
+        "docid": "aiohttp/web_urldispatcher.py",
+        "startline": 22,
+        "endline": 22
+      }
+    ],
+    "function_summary": "This code segment constructs the final portions of an HTML document for displaying a directory index. It handles the conditional logic for determining file names (adding a trailing slash for directories), builds HTML list items for each file/directory with links, assembles the complete HTML structure (unordered list, body, head, and html tags), and returns the complete HTML string."
+  },
+  {
+    "instance_id": "zju-cve-2024-56145",
+    "hits": [
+      {
+        "docid": "src/services/Entries.php",
+        "startline": 935,
+        "endline": 1060
+      },
+      {
+        "docid": "src/elements/Entry.php",
+        "startline": 1,
+        "endline": 100
+      },
+      {
+        "docid": "src/models/Section.php",
+        "startline": 1,
+        "endline": 463
+      },
+      {
+        "docid": "src/models/EntryType.php",
+        "startline": 1,
+        "endline": 100
+      },
+      {
+        "docid": "src/db/Table.php",
+        "startline": 48,
+        "endline": 56
+      },
+      {
+        "docid": "src/services/Entries.php",
+        "startline": 957,
+        "endline": 960
+      },
+      {
+        "docid": "src/services/Entries.php",
+        "startline": 970,
+        "endline": 996
+      }
+    ],
+    "function_summary": "This code segment (lines 980-990) attempts to find and restore a soft-deleted entry for a Single section. If no entry with a valid typeId exists, it searches for any entry in the section regardless of typeId and potentially includes soft-deleted entries (trashed). If an entry is found with a dateDeleted timestamp, it restores the element using Craft's Elements service. Then it assigns the first valid entry type ID to the entry."
+  },
+  {
+    "instance_id": "zju-cve-2025-34086",
+    "hits": [
+      {
+        "docid": "src/Controller/Async/FilesystemManager.php",
+        "startline": 383,
+        "endline": 419
+      },
+      {
+        "docid": "src/Controller/Base.php",
+        "startline": 314,
+        "endline": 322
+      },
+      {
+        "docid": "src/Translation/Translator.php",
+        "startline": 99,
+        "endline": 113
+      },
+      {
+        "docid": "src/Helpers/Str.php",
+        "startline": 1,
+        "endline": 95
+      },
+      {
+        "docid": "src/Twig/FilesystemLoader.php",
+        "startline": 69,
+        "endline": 82
+      },
+      {
+        "docid": "src/Twig/FilesystemLoader.php",
+        "startline": 92,
+        "endline": 103
+      }
+    ],
+    "function_summary": "Lines 392-397 validate that a filesystem path represents a directory before performing a rename operation. The code retrieves a directory handler using the filesystem manager, checks if the handler exists and is actually a directory (not a file), and returns a HTTP 400 error response if the validation fails. This prevents renaming operations from being executed on file paths when only directory paths are expected."
+  },
+  {
+    "instance_id": "zju-CVE-2022-0611",
+    "hits": [
+      {
+        "docid": "app/Models/Maintenance.php",
+        "startline": 1,
+        "endline": 317
+      },
+      {
+        "docid": "app/Models/Traits/Searchable.php",
+        "startline": 1,
+        "endline": 305
+      },
+      {
+        "docid": "app/Models/Company.php",
+        "startline": 137,
+        "endline": 180
+      }
+    ],
+    "function_summary": "This code segment initializes a query for retrieving asset maintenance records with authorization check and eager loading. Line 34 authorizes the current user to view assets. Lines 36-37 create a query selecting all columns from the maintenances table and eagerly load related models (asset, asset's model, locations, supplier, company, status, and admin user). Lines 39-41 conditionally apply text search filtering if a 'search' parameter is present in the request."
   }
 ]

@@ -177,6 +177,14 @@ def case_validator(input_data):
                                 dump_dir=input_data["args"].dump_dir,
                                 remove_container=input_data["args"].remove_container)
 
+def load_validate_result(output_file: str):
+    result = list()
+    with open(output_file, "r", encoding="utf-8") as f:
+        for line in f:
+            data = json.loads(line)
+            result.append(data)
+    return result
+
 
 def main(args: list[str]) -> int:
     parser = argparse.ArgumentParser(description="V2 Data Validator")
@@ -206,12 +214,31 @@ def main(args: list[str]) -> int:
         logging.error(f"输入文件 \"{args.input_file}\" 没有任何数据")
         return -1
 
+    validate_success_result = list()    # 已经验证成功的结果
+    validate_success_result_base_commit = set()    # 已经验证成功的基准版本结果
     try:
         if os.path.exists(args.output_file):
+            exist_result = load_validate_result(args.output_file)
+            for item in exist_result:
+                if item["base_commit"]["image_status_check"] and item["base_commit"]["test_case_check"] and item["base_commit"]["poc_check"] and item["patch_commit"]["checkout"] and item["patch_commit"]["image_status_check"] and item["patch_commit"]["test_case_check"] and item["patch_commit"]["poc_check"]:
+                    validate_success_result.append(item)
+                    validate_success_result_base_commit.add(item["base_commit"]["commit"])
             os.remove(args.output_file)
     except Exception as e:
         logging.error(f"删除输出文件 \"{args.output_file}\" 失败：{e}")
         return -1
+
+    # 将成功的结果先写入
+    with open(args.output_file, "w") as f:
+        for item in validate_success_result:
+            f.write(json.dumps(item) + "\n")
+
+    data_to_validate = list()
+    for case in case_data_list:
+        if case["base_commit"] in validate_success_result_base_commit:
+            continue
+        data_to_validate.append(case)
+    case_data_list = data_to_validate
 
     logging.info(f"一共有 {len(case_data_list)} 条数据需要验证")
 
