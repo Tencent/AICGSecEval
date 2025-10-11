@@ -20,9 +20,8 @@ logger = logging.getLogger(__name__)
 def load_data(file_path):
     data = []
     with open(file_path, 'r', encoding='utf-8') as f:
-        for line in f:
-            if line.strip():  # 跳过空行
-                data.append(json.loads(line))
+        content = f.read()
+        data = json.loads(content)
     return data
 
 
