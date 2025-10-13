@@ -52,7 +52,7 @@ python3 invoke.py \
 
 ## 开发 Agent 评测模块
 
-Agent 评测模块需要实现对 Agent SDK 的调用，包括启动、停止、交互，并实现代码生成的交互、编写相应的 Prompt。
+Agent 评测模块需要实现对 Agent SDK 的调用，包括启动、停止、交互，并实现代码生成的交互、编写相应的 Prompt（Prompt 可复用已有 Agent 模块）。
 
 开发一个 Agent 评测模块步骤：
 

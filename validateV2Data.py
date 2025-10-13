@@ -217,7 +217,7 @@ def validate_basic_info(case_data: dict):
     result = dict()
     
     # 检查 repo 是否能成功 clone
-    repo_dir = Path(f"{case_data['repo'].replace('/', '__')}")
+    repo_dir = Path(f"{case_data['instance_id']}")
     try:
         clone_repo(case_data["repo"],repo_dir)
     except Exception as e:
