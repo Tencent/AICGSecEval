@@ -167,6 +167,12 @@ A.S.E​ 由腾讯安全平台部联合以下学术单位共同建设：
      <a href="https://github.com/YilZhong" style="text-align: center; margin: 0 10px;">
          <img src="https://avatars.githubusercontent.com/YilZhong" width="50" height="50" style="border-radius: 50%; object-fit: cover;">
      </a>
+     <a href="https://github.com/Ch0ser" style="text-align: center; margin: 0 10px;">
+         <img src="https://avatars.githubusercontent.com/Ch0ser" width="50" height="50" style="border-radius: 50%; object-fit: cover;">
+     </a>
+     <a href="https://github.com/GioldDiorld" style="text-align: center; margin: 0 10px;">
+         <img src="https://avatars.githubusercontent.com/GioldDiorld" width="50" height="50" style="border-radius: 50%; object-fit: cover;">
+     </a>
 </div>
 
 
