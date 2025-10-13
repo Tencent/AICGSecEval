@@ -3,8 +3,11 @@ import fcntl
 import json
 import logging
 import os
+import shutil
+from pathlib import Path
 import sys
 from multiprocessing.pool import Pool
+from bench.utils import clone_repo
 from docker_helper import DockerHelper
 from run_security_scan import run_command_and_validate, run_case_and_validate
 
@@ -37,7 +40,30 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
     else:
         patch_commit = None
 
+    basic_result = validate_basic_info(case_data)
+    # 如果基础检查未通过，不启动后续验证
+    passed = True
+    for key in basic_result:
+        if not basic_result[key]:
+            passed = False
+            break
+    if not passed:
+        logging.info(f"[{trace}] 基础检查未通过, 未启动后续验证")
+        result = {
+            "instance_id": trace,
+            **basic_result,
+        }
+        try:
+            with open(output_file, "a", encoding="utf-8") as f:
+                fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+                f.write(json.dumps(result) + "\n")
+        except Exception as e:
+            logging.error(f"[{trace}] 保存验证结果失败：{e}")
+        return
+    
     result = {
+        "instance_id": trace,
+        **basic_result,
         "base_commit": {
             "commit": case_data.get("base_commit", None),
             "image_status_check": False,
@@ -52,7 +78,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
             "poc_check": False,
         },
     }
-
+    
     try:
         with DockerHelper(
             trace=trace,
@@ -164,7 +190,6 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
     logging.info(f"[{trace}] 验证结束：{result}")
 
     try:
-        result["instance_id"] = trace
         with open(output_file, "a") as f:
             fcntl.flock(f.fileno(), fcntl.LOCK_EX)
             f.write(json.dumps(result) + "\n")
@@ -189,7 +214,59 @@ def load_validate_result(output_file: str):
 
 # 对各个字段进行检查
 def validate_basic_info(case_data: dict):
-    pass
+    result = dict()
+    
+    # 检查 repo 是否能成功 clone
+    repo_dir = Path(f"{case_data['repo'].replace('/', '__')}")
+    try:
+        clone_repo(case_data["repo"],repo_dir)
+    except Exception as e:
+        result["repo"] = False
+        result["repo_clone_failed_reason"] = f"无法 clone 仓库: {e}"
+        return result
+    result["repo"] = True
+
+    # 检查 base_commit 是否能成功 checkout
+    base_commit = case_data["base_commit"]
+    from git import Repo, GitCommandError
+    try:
+        repo = Repo(repo_dir)
+        repo.git.checkout(base_commit)
+        logging.info(f"[{case_data.get('instance_id', base_commit)}] git checkout {base_commit} 成功")
+        checkout_success = True
+    except GitCommandError as e:
+        logging.error(f"[{case_data.get('instance_id', base_commit)}] git checkout {base_commit} 失败: {str(e)}")
+        checkout_success = False
+    except Exception as e:
+        logging.error(f"执行 git checkout 发生异常: {e}")
+        checkout_success = False
+    result["base_commit_checkout"] = checkout_success
+    if not checkout_success:
+        result["base_commit_checkout_failed_reason"] = "无法 checkout 切换到 base_commit"
+
+    # 检查 vuln_file 是否存在（路径是否正确）
+    vuln_file_path = repo_dir / case_data['vuln_file']
+    result["vuln_file"] = vuln_file_path.exists()
+    if not result["vuln_file"]:
+        result["vuln_file_failed_reason"] = f"路径不存在: {vuln_file_path}"
+
+    # 检查 vuln_lines
+    if len(case_data["vuln_lines"]) != 2:
+        result["vuln_lines"] = False
+        result["vuln_lines_failed_reason"] = f"漏洞代码行数应包含起始行和结束行两个值"
+    elif case_data["vuln_lines"][1] - case_data["vuln_lines"][0] <= 3:
+        result["vuln_lines"] = False
+        result["vuln_lines_failed_reason"] = f"漏洞代码行数太短, 请增加代码片段长度"
+    else:
+        result["vuln_lines"] = True
+
+    # 删除 repo 目录
+    try:
+        shutil.rmtree(repo_dir)
+    except Exception as e:
+        logging.warning(f"删除目录 {repo_dir} 时出错: {e}")
+    return result
+
 
 
 def main(args: list[str]) -> int:
@@ -226,7 +303,7 @@ def main(args: list[str]) -> int:
         if os.path.exists(args.output_file):
             exist_result = load_validate_result(args.output_file)
             for item in exist_result:
-                if item["base_commit"]["image_status_check"] and item["base_commit"]["test_case_check"] and item["base_commit"]["poc_check"] and item["patch_commit"]["checkout"] and item["patch_commit"]["image_status_check"] and item["patch_commit"]["test_case_check"] and item["patch_commit"]["poc_check"]:
+                if item["repo"] and item["base_commit_checkout"] and item["vuln_file"] and item["vuln_lines"] and item["base_commit"]["image_status_check"] and item["base_commit"]["test_case_check"] and item["base_commit"]["poc_check"] and item["patch_commit"]["checkout"] and item["patch_commit"]["image_status_check"] and item["patch_commit"]["test_case_check"] and item["patch_commit"]["poc_check"]:
                     validate_success_result.append(item)
                     validate_success_result_instance_id.add(item["instance_id"])
             os.remove(args.output_file)
