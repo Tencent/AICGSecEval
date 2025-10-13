@@ -3307,10 +3307,10 @@
     "repo": "openemr/openemr",
     "base_commit": "74d21039aec641b2c406e3baf238ae4602a968b6",
     "patch_commit": "2973592bc7b1f4996738a6fd27d1e277e33676b6",
-    "vuln_file": "2973592bc7b1f4996738a6fd27d1e277e33676b6",
+    "vuln_file": "interface/patient_file/summary/add_edit_amendments.php",
     "vuln_lines": [
-      21,
-      25
+      19,
+      52
     ],
     "language": "php",
     "vuln_source": "CVE-2022-2732",
@@ -3324,7 +3324,14 @@
     "image_status_check_cmd": "python3 /status-check.py",
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
-    "other_vuln_files": []
+    "other_vuln_files": [{
+        "vuln_file": "interface/patient_file/summary/list_amendments.php",
+        "vuln_lines": [17, 20]
+    },
+    {
+        "vuln_file": "interface/patient_file/summary/print_amendments.php",
+        "vuln_lines": [17, 20]
+    }]
   },
   {
     "instance_id": "zju-CVE-2022-0611",

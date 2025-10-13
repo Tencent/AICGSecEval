@@ -9457,5 +9457,91 @@
       }
     ],
     "function_summary": "This code snippet is part of a hostname verification process that performs reverse DNS lookups to validate client connections. \n\nThe code checks if a resolved hostname actually maps back to the same IP address as the connecting client. It iterates through a list of IP addresses (`addrlist`) that were obtained by resolving the client's hostname, comparing each address against the client's actual IP address using `httpAddrEqual()`.\n\nIf a matching address is found in the list, the `addr` variable is set to point to that address and the loop breaks. If no matching address is found after checking all entries in the list, `addr` remains NULL.\n\nThis is a security mechanism commonly known as \"double reverse DNS lookup\" - it ensures that not only can the client's IP address resolve to a hostname, but that the hostname also resolves back to the same IP address. This helps prevent spoofing attacks where an attacker might control the reverse DNS for an IP address but not the forward DNS for a hostname.\n\nThe result of this check (whether `addr` is NULL or not) is later used to determine if the connection should be allowed or rejected based on the server's hostname lookup policy settings."
+  },
+  {
+    "instance_id": "zju-cve-2022-2732",
+    "hits": [
+      {
+        "docid": "interface/patient_file/summary/add_edit_amendments.php",
+        "score": 1737.4747314453125
+      },
+      {
+        "docid": "interface/patient_file/summary/list_amendments.php",
+        "score": 958.9835205078125
+      },
+      {
+        "docid": "interface/forms/procedure_order/common.php",
+        "score": 754.663330078125
+      },
+      {
+        "docid": "interface/patient_file/summary/immunizations.php",
+        "score": 740.720703125
+      },
+      {
+        "docid": "interface/patient_file/summary/print_amendments.php",
+        "score": 738.12158203125
+      },
+      {
+        "docid": "interface/patient_file/pos_checkout_normal.php",
+        "score": 726.74951171875
+      },
+      {
+        "docid": "interface/billing/sl_eob_search.php",
+        "score": 719.4246826171875
+      },
+      {
+        "docid": "interface/patient_file/summary/demographics.php",
+        "score": 719.287109375
+      },
+      {
+        "docid": "interface/patient_file/front_payment.php",
+        "score": 716.47802734375
+      },
+      {
+        "docid": "interface/forms/LBF/new.php",
+        "score": 711.9005126953125
+      },
+      {
+        "docid": "interface/patient_tracker/patient_tracker.php",
+        "score": 699.3104858398438
+      },
+      {
+        "docid": "interface/main/messages/messages.php",
+        "score": 698.2014770507812
+      },
+      {
+        "docid": "interface/patient_file/summary/pnotes_full_add.php",
+        "score": 696.65771484375
+      },
+      {
+        "docid": "interface/billing/edit_payment.php",
+        "score": 696.0216064453125
+      },
+      {
+        "docid": "library/MedEx/API.php",
+        "score": 694.0045776367188
+      },
+      {
+        "docid": "interface/super/edit_layout.php",
+        "score": 690.5535278320312
+      },
+      {
+        "docid": "interface/orders/list_reports.php",
+        "score": 688.2866821289062
+      },
+      {
+        "docid": "interface/orders/orders_results.php",
+        "score": 680.2305297851562
+      },
+      {
+        "docid": "interface/patient_file/transaction/add_transaction.php",
+        "score": 676.7993774414062
+      },
+      {
+        "docid": "interface/main/dated_reminders/dated_reminders_add.php",
+        "score": 675.642822265625
+      }
+    ],
+    "function_summary": "This code snippet handles the server-side processing for creating or updating patient record amendments in an OpenEMR system. Here's the main functionality:\n\n**Security & Setup:**\n- Uses CSRF token verification to prevent cross-site request forgery attacks\n- Retrieves the current user ID and timestamp for audit tracking\n\n**Amendment Processing Logic:**\n- Determines whether to create a new amendment or update an existing one based on whether `amendment_id` is empty\n- **For new amendments:** Executes an INSERT query to create a new record in the `amendments` table with fields including amendment date, requester, status, patient ID, description, and audit information\n- **For existing amendments:** Prepares to execute an UPDATE query to modify an existing amendment record\n\n**Data Handling:**\n- Converts the amendment date to YYYY-MM-DD format using `DateToYYYYMMDD()`\n- Uses parameterized queries with bound arrays to prevent SQL injection\n- Captures form data including amendment details, status, and description\n- Maintains audit trail by recording who created/modified the amendment and when\n\nThis snippet represents the core business logic for amendment management, ensuring secure data persistence while maintaining proper audit trails for healthcare record modifications."
   }
 ]

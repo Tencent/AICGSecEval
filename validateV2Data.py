@@ -187,6 +187,11 @@ def load_validate_result(output_file: str):
     return result
 
 
+# 对各个字段进行检查
+def validate_basic_info(case_data: dict):
+    pass
+
+
 def main(args: list[str]) -> int:
     parser = argparse.ArgumentParser(description="V2 Data Validator")
     parser.add_argument("-i", "--input-file", type=str,
