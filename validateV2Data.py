@@ -7,7 +7,7 @@ import shutil
 from pathlib import Path
 import sys
 from multiprocessing.pool import Pool
-from bench.utils import clone_repo
+from git import Repo
 from docker_helper import DockerHelper
 from run_security_scan import run_command_and_validate, run_case_and_validate
 
@@ -210,6 +210,18 @@ def load_validate_result(output_file: str):
             data = json.loads(line)
             result.append(data)
     return result
+
+
+def clone_repo(repo, repo_dir):
+    if not repo_dir.exists():
+        # 如果 repo 是 gitlab 地址，则使用 gitlab 地址
+        if repo.startswith("https://gitlab"):
+            repo_url = repo
+        else:
+            repo_url = f"https://github.com/{repo}.git"
+        print(f"Cloning {repo} (pid={os.getpid()})")
+        Repo.clone_from(repo_url, repo_dir)
+    return repo_dir
 
 
 # 对各个字段进行检查

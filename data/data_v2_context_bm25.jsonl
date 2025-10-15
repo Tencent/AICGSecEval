@@ -9543,5 +9543,1619 @@
       }
     ],
     "function_summary": "This code snippet handles the server-side processing for creating or updating patient record amendments in an OpenEMR system. Here's the main functionality:\n\n**Security & Setup:**\n- Uses CSRF token verification to prevent cross-site request forgery attacks\n- Retrieves the current user ID and timestamp for audit tracking\n\n**Amendment Processing Logic:**\n- Determines whether to create a new amendment or update an existing one based on whether `amendment_id` is empty\n- **For new amendments:** Executes an INSERT query to create a new record in the `amendments` table with fields including amendment date, requester, status, patient ID, description, and audit information\n- **For existing amendments:** Prepares to execute an UPDATE query to modify an existing amendment record\n\n**Data Handling:**\n- Converts the amendment date to YYYY-MM-DD format using `DateToYYYYMMDD()`\n- Uses parameterized queries with bound arrays to prevent SQL injection\n- Captures form data including amendment details, status, and description\n- Maintains audit trail by recording who created/modified the amendment and when\n\nThis snippet represents the core business logic for amendment management, ensuring secure data persistence while maintaining proper audit trails for healthcare record modifications."
+  },
+  {
+    "instance_id": "tsinghua_owncloud_cve_2012_4392",
+    "hits": [
+      {
+        "docid": "index.php",
+        "score": 1110.5780029296875
+      },
+      {
+        "docid": "lib/util.php",
+        "score": 622.3276977539062
+      },
+      {
+        "docid": "lib/base.php",
+        "score": 535.8068237304688
+      },
+      {
+        "docid": "lib/user.php",
+        "score": 508.2640075683594
+      },
+      {
+        "docid": "lib/ocs.php",
+        "score": 489.98809814453125
+      },
+      {
+        "docid": "lib/app.php",
+        "score": 392.3136901855469
+      },
+      {
+        "docid": "apps/user_openid/phpmyid.php",
+        "score": 367.130615234375
+      },
+      {
+        "docid": "core/lostpassword/index.php",
+        "score": 325.4460144042969
+      },
+      {
+        "docid": "lib/setup.php",
+        "score": 324.62548828125
+      },
+      {
+        "docid": "lib/migrate.php",
+        "score": 323.6333923339844
+      },
+      {
+        "docid": "apps/remoteStorage/auth.php",
+        "score": 295.6065979003906
+      },
+      {
+        "docid": "lib/installer.php",
+        "score": 293.7497863769531
+      },
+      {
+        "docid": "webapps.php",
+        "score": 292.87908935546875
+      },
+      {
+        "docid": "lib/template.php",
+        "score": 283.6676025390625
+      },
+      {
+        "docid": "lib/helper.php",
+        "score": 283.4491882324219
+      },
+      {
+        "docid": "lib/db.php",
+        "score": 278.7016906738281
+      },
+      {
+        "docid": "lib/files.php",
+        "score": 267.7829895019531
+      },
+      {
+        "docid": "lib/l10n.php",
+        "score": 267.4939880371094
+      },
+      {
+        "docid": "3rdparty/php-cloudfiles/cloudfiles.php",
+        "score": 265.3783874511719
+      },
+      {
+        "docid": "lib/filesystem.php",
+        "score": 262.7561950683594
+      }
+    ],
+    "function_summary": "This code snippet handles user authentication for ownCloud when no user is currently logged in. It implements three different authentication methods:\n\n1. **Cookie-based \"Remember Me\" login**: Checks for existing login cookies (`oc_remember_login`, `oc_token`, `oc_username`) and validates the stored token against the user's preferences. If valid, it automatically logs the user in and redirects them to the default page. If invalid, it clears the cookies.\n\n2. **Form-based login**: Processes POST requests containing username and password fields, along with CSRF protection via session tokens (`sectoken`). Upon successful authentication, it optionally sets \"remember me\" cookies if requested by generating an MD5 token from the username, current time, and password.\n\n3. **HTTP Basic Authentication**: Handles server-level authentication using `PHP_AUTH_USER` and `PHP_AUTH_PW` variables, typically used with LDAP integration.\n\nThe code loads all apps first, initializes an error flag, and processes each authentication method in sequence. Successful logins redirect to the default page, while failures set error flags. This provides a comprehensive authentication system supporting both convenience features (remember me) and enterprise integration (HTTP auth) while maintaining security through token validation and CSRF protection."
+  },
+  {
+    "instance_id": "tsinghua_cpython_cve_2015_20107",
+    "hits": [
+      {
+        "docid": "Lib/mailcap.py",
+        "score": 1633.67626953125
+      },
+      {
+        "docid": "Lib/pydoc_data/topics.py",
+        "score": 672.2557983398438
+      },
+      {
+        "docid": "Lib/nntplib.py",
+        "score": 622.6934814453125
+      },
+      {
+        "docid": "Lib/pydoc.py",
+        "score": 613.44091796875
+      },
+      {
+        "docid": "Lib/http/server.py",
+        "score": 590.4370727539062
+      },
+      {
+        "docid": "Tools/gdb/libpython.py",
+        "score": 583.174072265625
+      },
+      {
+        "docid": "Lib/tkinter/__init__.py",
+        "score": 582.341796875
+      },
+      {
+        "docid": "Lib/pdb.py",
+        "score": 581.8541870117188
+      },
+      {
+        "docid": "Lib/inspect.py",
+        "score": 555.0557250976562
+      },
+      {
+        "docid": "Lib/urllib/request.py",
+        "score": 551.6547241210938
+      },
+      {
+        "docid": "Lib/cgi.py",
+        "score": 543.5839233398438
+      },
+      {
+        "docid": "Tools/clinic/clinic.py",
+        "score": 539.8563842773438
+      },
+      {
+        "docid": "Lib/ftplib.py",
+        "score": 538.3052978515625
+      },
+      {
+        "docid": "Tools/scripts/texi2html.py",
+        "score": 535.5086059570312
+      },
+      {
+        "docid": "Lib/imaplib.py",
+        "score": 534.8602905273438
+      },
+      {
+        "docid": "Lib/configparser.py",
+        "score": 528.2559814453125
+      },
+      {
+        "docid": "Tools/unicode/makeunicodedata.py",
+        "score": 526.7592163085938
+      },
+      {
+        "docid": "Tools/i18n/pygettext.py",
+        "score": 519.5977783203125
+      },
+      {
+        "docid": "Lib/email/message.py",
+        "score": 506.7862854003906
+      },
+      {
+        "docid": "Lib/idlelib/help.html",
+        "score": 504.56939697265625
+      }
+    ],
+    "function_summary": "This code snippet is part of the `findmatch` function and the beginning of the `lookup` function in a mailcap file handler. \n\nThe main functionality includes:\n\n1. **Finding matching mailcap entries**: The `findmatch` function searches for appropriate handlers for a given MIME type by calling `lookup` to get potential entries.\n\n2. **Testing entries**: It iterates through each entry and checks if there's a 'test' condition. If present, it uses the `subst` function to substitute variables in the test command and executes it via `os.system()`. If the test fails (returns non-zero), it skips to the next entry.\n\n3. **Returning the first valid match**: Once it finds an entry that passes its test (or has no test), it substitutes variables in the command using `subst` and returns both the processed command and the entry itself.\n\n4. **Fallback behavior**: If no entries match, it returns `(None, None)`.\n\n5. **Entry lookup**: The `lookup` function begins by collecting entries that match the exact MIME type from the caps database, then starts processing to also include wildcard matches (like \"text/*\" for \"text/plain\").\n\nThis implements the core mailcap functionality of finding and validating the appropriate application to handle a specific MIME type."
+  },
+  {
+    "instance_id": "tsinghua_ganglia_web_cve_2015_6816",
+    "hits": [
+      {
+        "docid": "lib/GangliaAuth.php",
+        "score": 587.9066162109375
+      },
+      {
+        "docid": "contrib/jquery-ui-1.10.2/jquery-1.9.1.js",
+        "score": 257.5050964355469
+      },
+      {
+        "docid": "js/jquery-1.9.1.js",
+        "score": 257.5050964355469
+      },
+      {
+        "docid": "functions.php",
+        "score": 245.74240112304688
+      },
+      {
+        "docid": "dwoo/Dwoo/Compiler.php",
+        "score": 244.2960968017578
+      },
+      {
+        "docid": "dwoo/Dwoo/Core.php",
+        "score": 234.26409912109375
+      },
+      {
+        "docid": "js/jquery.mobile-1.0.js",
+        "score": 217.4980926513672
+      },
+      {
+        "docid": "js/protovis-d3.2.js",
+        "score": 206.39419555664062
+      },
+      {
+        "docid": "dwoo/Dwoo.compiled.php",
+        "score": 203.75160217285156
+      },
+      {
+        "docid": "js/jquery-1.7.1.js",
+        "score": 202.83889770507812
+      },
+      {
+        "docid": "contrib/jquery-ui-1.10.2/external/globalize.js",
+        "score": 198.7342071533203
+      },
+      {
+        "docid": "eval_conf.php",
+        "score": 198.66749572753906
+      },
+      {
+        "docid": "js/jstree/jstree.js",
+        "score": 197.06520080566406
+      },
+      {
+        "docid": "header.php",
+        "score": 196.02000427246094
+      },
+      {
+        "docid": "js/jquery.ba-bbq.js",
+        "score": 191.1096954345703
+      },
+      {
+        "docid": "graph.php",
+        "score": 190.04409790039062
+      },
+      {
+        "docid": "contrib/jquery-ui-1.10.2/ui/jquery-ui.js",
+        "score": 182.48980712890625
+      },
+      {
+        "docid": "js/jquery-ui-timepicker-addon.js",
+        "score": 168.57260131835938
+      },
+      {
+        "docid": "js/d3.v2.js",
+        "score": 165.0207977294922
+      },
+      {
+        "docid": "lib/Zend/Acl.php",
+        "score": 163.2602996826172
+      }
+    ],
+    "function_summary": "This code snippet is part of a cookie-based authentication validation process. It performs the following key operations:\n\n1. **Deserializes cookie data**: The `$cookie` variable (containing authentication data from a browser cookie) is unserialized into a PHP array stored in `$data`.\n\n2. **Validates cookie structure**: It checks if the deserialized data contains exactly three expected keys: 'user', 'group', and 'token'. If the array structure doesn't match this exact format, the function returns `false`, indicating invalid authentication data.\n\n3. **Verifies authentication token**: It validates the token by comparing the stored token in the cookie against a freshly generated token using `getAuthToken($data['user'])`. This method likely creates a hash using the username and a server-side secret.\n\nThe snippet implements a security mechanism to ensure that:\n- The cookie hasn't been tampered with (structure validation)\n- The token is legitimate and matches what the server would generate for that user (token verification)\n\nThis is a common pattern for stateless authentication where the server can verify user credentials without storing session data, relying instead on cryptographically signed tokens embedded in cookies."
+  },
+  {
+    "instance_id": "tsinghua_mosquitto_cve_2017_7650",
+    "hits": [
+      {
+        "docid": "man/libmosquitto.3.xml",
+        "score": 809.56201171875
+      },
+      {
+        "docid": "man/mosquitto.conf.5.xml",
+        "score": 589.1536254882812
+      },
+      {
+        "docid": "mosquitto.conf",
+        "score": 550.35498046875
+      },
+      {
+        "docid": "man/mosquitto_pub.1.xml",
+        "score": 381.5498962402344
+      },
+      {
+        "docid": "man/mosquitto_sub.1.xml",
+        "score": 336.05169677734375
+      },
+      {
+        "docid": "man/mosquitto.8.xml",
+        "score": 320.9276123046875
+      },
+      {
+        "docid": "man/mosquitto_passwd.1.xml",
+        "score": 193.80740356445312
+      },
+      {
+        "docid": "notice.html",
+        "score": 147.58740234375
+      },
+      {
+        "docid": "man/mqtt.7.xml",
+        "score": 131.47039794921875
+      },
+      {
+        "docid": "misc/currentcost/gnome-panel/CurrentCostMQTT.py",
+        "score": 121.95320129394531
+      },
+      {
+        "docid": "about.html",
+        "score": 68.41500091552734
+      },
+      {
+        "docid": "misc/currentcost/cc128_read.py",
+        "score": 58.13359832763672
+      },
+      {
+        "docid": "man/mosquitto-tls.7.xml",
+        "score": 32.15610122680664
+      },
+      {
+        "docid": "appveyor.yml",
+        "score": 27.136999130249023
+      },
+      {
+        "docid": "service/upstart/mosquitto.conf",
+        "score": 6.152200222015381
+      }
+    ],
+    "function_summary": "This code snippet is part of an ACL (Access Control List) pattern matching system in the Mosquitto MQTT broker. It processes ACL patterns that contain placeholders for dynamic substitution.\n\n**Key functionality:**\n\n1. **Pattern Processing**: After checking direct ACL matches, the code iterates through pattern-based ACLs stored in `db->acl_patterns`.\n\n2. **Username Validation**: It skips patterns that require a username (`ucount > 0`) when the client has no username.\n\n3. **Dynamic String Construction**: The code calculates the required buffer length and builds a concrete ACL string by replacing pattern placeholders:\n   - `%c` is replaced with the client ID (`context->id`)\n   - `%u` is replaced with the username (`context->username`)\n\n4. **Memory Management**: It allocates memory for the expanded ACL string based on the calculated length, accounting for the original topic length plus the expansion of placeholders.\n\n5. **Character-by-Character Processing**: The loop iterates through each character of the pattern topic, detecting `%` markers and performing appropriate substitutions while copying regular characters directly.\n\nThis allows for flexible ACL rules like `user/%u/topic` or `client/%c/data` that dynamically expand to match specific client contexts, enabling personalized access control without requiring individual ACL entries for each user."
+  },
+  {
+    "instance_id": "tsinghua_lucene_solr_cve_2017_7660",
+    "hits": [
+      {
+        "docid": "solr/core/src/java/org/apache/solr/security/PKIAuthenticationPlugin.java",
+        "score": 2012.046630859375
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/servlet/HttpSolrCall.java",
+        "score": 625.8198852539062
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/servlet/SolrDispatchFilter.java",
+        "score": 592.6964111328125
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/servlet/SolrRequestParsers.java",
+        "score": 522.8751831054688
+      },
+      {
+        "docid": "solr/webapp/web/libs/angular.js",
+        "score": 522.7625122070312
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/security/BasicAuthPlugin.java",
+        "score": 518.0908813476562
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/util/CryptoKeys.java",
+        "score": 510.64239501953125
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/cloud/ZkController.java",
+        "score": 505.0563049316406
+      },
+      {
+        "docid": "solr/solrj/src/java/org/apache/solr/client/solrj/impl/HttpSolrClient.java",
+        "score": 499.53289794921875
+      },
+      {
+        "docid": "solr/webapp/web/js/require.js",
+        "score": 493.3821105957031
+      },
+      {
+        "docid": "solr/solrj/src/java/org/apache/solr/client/solrj/impl/CloudSolrClient.java",
+        "score": 493.01458740234375
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/util/SolrCLI.java",
+        "score": 492.8918151855469
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/cloud/OverseerCollectionMessageHandler.java",
+        "score": 489.6780090332031
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/core/SolrCore.java",
+        "score": 488.0627136230469
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/handler/ReplicationHandler.java",
+        "score": 480.3328857421875
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/handler/admin/CollectionsHandler.java",
+        "score": 475.0635070800781
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/security/HadoopAuthPlugin.java",
+        "score": 455.5452880859375
+      },
+      {
+        "docid": "solr/test-framework/src/java/org/apache/solr/cloud/AbstractFullDistribZkTestBase.java",
+        "score": 454.059814453125
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/core/CoreContainer.java",
+        "score": 446.006591796875
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/handler/IndexFetcher.java",
+        "score": 443.3277893066406
+      }
+    ],
+    "function_summary": "This code snippet is part of the `PKIAuthenticationPlugin` class and contains two main functionalities:\n\n1. **Header Data Parsing (lines 184-194)**: The code creates a `PKIHeaderData` object from decrypted authentication data. It parses a space-separated string where the first element is the username and the second is a timestamp. If parsing fails (e.g., invalid timestamp format), it logs a warning and returns null.\n\n2. **Remote Public Key Retrieval (lines 196-212)**: The `getRemotePublicKey` method fetches a public key from a remote Solr node for authentication purposes. It:\n   - Constructs a URL using the node's base URL and a specific path (`/admin/info/key`)\n   - Makes an HTTP GET request to retrieve the key in JSON format\n   - Parses the JSON response to extract the \"key\" field\n   - Deserializes the key string into a `PublicKey` object using `CryptoKeys.deserializeX509PublicKey`\n   - Caches the key for the specified node name\n   - Handles errors gracefully by logging and returning null if the key retrieval fails\n\nThis functionality is essential for Solr's PKI-based inter-node authentication system, allowing nodes to verify each other's identity using public key cryptography."
+  },
+  {
+    "instance_id": "tsinghua_cpython_cve_2018_1000802",
+    "hits": [
+      {
+        "docid": "Lib/shutil.py",
+        "score": 4034.074462890625
+      },
+      {
+        "docid": "Lib/distutils/archive_util.py",
+        "score": 1718.7078857421875
+      },
+      {
+        "docid": "Lib/tarfile.py",
+        "score": 1506.548828125
+      },
+      {
+        "docid": "Lib/plat-mac/bundlebuilder.py",
+        "score": 1363.287841796875
+      },
+      {
+        "docid": "Lib/distutils/file_util.py",
+        "score": 1285.508056640625
+      },
+      {
+        "docid": "Lib/distutils/dir_util.py",
+        "score": 1258.8079833984375
+      },
+      {
+        "docid": "Lib/distutils/cmd.py",
+        "score": 1184.4085693359375
+      },
+      {
+        "docid": "Mac/BuildScript/build-installer.py",
+        "score": 1182.40478515625
+      },
+      {
+        "docid": "Lib/distutils/ccompiler.py",
+        "score": 1133.969482421875
+      },
+      {
+        "docid": "Mac/scripts/buildpkg.py",
+        "score": 1096.632568359375
+      },
+      {
+        "docid": "Lib/zipfile.py",
+        "score": 1090.8431396484375
+      },
+      {
+        "docid": "Lib/distutils/command/sdist.py",
+        "score": 1087.457275390625
+      },
+      {
+        "docid": "setup.py",
+        "score": 1051.9962158203125
+      },
+      {
+        "docid": "PC/VS9.0/build_ssl.py",
+        "score": 991.9207763671875
+      },
+      {
+        "docid": "Lib/doctest.py",
+        "score": 968.7315063476562
+      },
+      {
+        "docid": "Lib/rexec.py",
+        "score": 955.3834228515625
+      },
+      {
+        "docid": "Lib/os.py",
+        "score": 931.5947265625
+      },
+      {
+        "docid": "Lib/logging/handlers.py",
+        "score": 926.5443115234375
+      },
+      {
+        "docid": "Lib/distutils/dist.py",
+        "score": 921.8726196289062
+      },
+      {
+        "docid": "Lib/logging/__init__.py",
+        "score": 908.0568237304688
+      }
+    ],
+    "function_summary": "I don't see a specific code snippet provided in your request - only the full `Lib/shutil.py` file is shown. However, I can summarize the main functionality of this Python standard library module:\n\nThe `shutil` module provides high-level file and directory operations utilities. Key functionalities include:\n\n**File Operations:**\n- `copyfile()`, `copy()`, `copy2()` - Copy files with varying levels of metadata preservation\n- `copyfileobj()` - Copy data between file-like objects\n- `copymode()`, `copystat()` - Copy file permissions and metadata\n\n**Directory Operations:**\n- `copytree()` - Recursively copy entire directory trees with optional ignore patterns\n- `rmtree()` - Recursively delete directory trees with error handling options\n- `move()` - Move files/directories (similar to Unix `mv` command)\n\n**Archive Operations:**\n- `make_archive()` - Create archives in various formats (tar, zip, gztar, bztar)\n- Archive format registration system for extensibility\n- Support for compressed archives when zlib/bz2 are available\n\n**Utility Functions:**\n- `ignore_patterns()` - Generate ignore functions for `copytree()`\n- Cross-platform file comparison and path handling\n- Error handling with custom exception classes\n\nThe module handles platform differences and provides robust error handling for common file system operations that are more complex than basic `os` module functions."
+  },
+  {
+    "instance_id": "tsinghua_core_cve_2020_10254",
+    "hits": [
+      {
+        "docid": "apps/files_sharing/ajax/publicpreview.php",
+        "score": 1090.68896484375
+      },
+      {
+        "docid": "apps/files_trashbin/ajax/preview.php",
+        "score": 654.584228515625
+      },
+      {
+        "docid": "apps/files_sharing/lib/Helper.php",
+        "score": 640.6987915039062
+      },
+      {
+        "docid": "lib/base.php",
+        "score": 577.6381225585938
+      },
+      {
+        "docid": "lib/private/Preview.php",
+        "score": 553.1207275390625
+      },
+      {
+        "docid": "apps/files_sharing/lib/Controllers/ShareController.php",
+        "score": 462.3387145996094
+      },
+      {
+        "docid": "lib/private/Share/Share.php",
+        "score": 426.0911865234375
+      },
+      {
+        "docid": "apps/files_sharing/ajax/shareinfo.php",
+        "score": 402.0423889160156
+      },
+      {
+        "docid": "apps/files_sharing/ajax/external.php",
+        "score": 401.931884765625
+      },
+      {
+        "docid": "lib/private/Share20/Manager.php",
+        "score": 399.5430908203125
+      },
+      {
+        "docid": "lib/private/legacy/api.php",
+        "score": 392.8298034667969
+      },
+      {
+        "docid": "lib/private/legacy/util.php",
+        "score": 388.4024963378906
+      },
+      {
+        "docid": "lib/private/legacy/response.php",
+        "score": 381.1868896484375
+      },
+      {
+        "docid": "apps/files_sharing/lib/Controller/Share20OcsController.php",
+        "score": 377.6120910644531
+      },
+      {
+        "docid": "lib/private/legacy/app.php",
+        "score": 377.0884094238281
+      },
+      {
+        "docid": "remote.php",
+        "score": 376.1589050292969
+      },
+      {
+        "docid": "apps/dav/lib/Connector/Sabre/File.php",
+        "score": 374.8597106933594
+      },
+      {
+        "docid": "public.php",
+        "score": 370.4331970214844
+      },
+      {
+        "docid": "lib/public/Util.php",
+        "score": 369.3568115234375
+      },
+      {
+        "docid": "lib/private/Files/View.php",
+        "score": 363.99139404296875
+      }
+    ],
+    "function_summary": "This code snippet handles token validation and share retrieval for generating public file previews in an ownCloud file sharing system. Here's what it does:\n\n1. **Parameter Processing**: Sets the `$keepAspect` flag based on whether the 'a' parameter exists in the GET request.\n\n2. **Token Validation**: Checks if a token parameter was provided. If empty, it returns a 400 Bad Request status and logs an error.\n\n3. **Share Retrieval**: Uses the ShareManager service to retrieve the shared item associated with the token. If the token is invalid (ShareNotFound exception), it returns a 404 Not Found status.\n\n4. **Owner Validation**: Extracts the share owner's user ID from the linked item. If the owner is null, it returns a 500 Internal Server Error, indicating the token is valid but incomplete.\n\n5. **User Existence Check**: Verifies that the share owner user exists in the system.\n\n6. **File Node Retrieval**: Attempts to get the actual file/folder node from the share. If the file is not found, it returns a 404 status.\n\nThis snippet is part of a larger system that generates preview images for publicly shared files, ensuring proper authentication and file access validation before proceeding with preview generation."
+  },
+  {
+    "instance_id": "tsinghua_phpipam_phpipam_cve_2022_1223",
+    "hits": [
+      {
+        "docid": "app/subnets/addresses/export-subnet.php",
+        "score": 1730.7430419921875
+      },
+      {
+        "docid": "app/admin/import-export/generate-xls.php",
+        "score": 1112.896728515625
+      },
+      {
+        "docid": "app/tools/search/search-results-export.php",
+        "score": 1085.793701171875
+      },
+      {
+        "docid": "app/admin/import-export/export-ipaddr.php",
+        "score": 918.5474853515625
+      },
+      {
+        "docid": "app/tools/logs/export.php",
+        "score": 813.19091796875
+      },
+      {
+        "docid": "app/admin/import-export/export-subnets.php",
+        "score": 747.5427856445312
+      },
+      {
+        "docid": "app/admin/import-export/import-template.php",
+        "score": 737.0285034179688
+      },
+      {
+        "docid": "app/admin/import-export/export-vlan.php",
+        "score": 696.7044067382812
+      },
+      {
+        "docid": "app/subnets/import-subnet/import-template.php",
+        "score": 663.322021484375
+      },
+      {
+        "docid": "functions/classes/class.Subnets.php",
+        "score": 651.3668823242188
+      },
+      {
+        "docid": "app/admin/import-export/export-devices.php",
+        "score": 631.33642578125
+      },
+      {
+        "docid": "functions/classes/class.Tools.php",
+        "score": 594.9176025390625
+      },
+      {
+        "docid": "app/subnets/addresses/print-address-table.php",
+        "score": 540.47802734375
+      },
+      {
+        "docid": "app/admin/import-export/export-vrf.php",
+        "score": 536.5255737304688
+      },
+      {
+        "docid": "app/admin/import-export/export-devtype.php",
+        "score": 528.0145874023438
+      },
+      {
+        "docid": "app/admin/import-export/export-l2dom.php",
+        "score": 526.3703002929688
+      },
+      {
+        "docid": "app/admin/import-export/import-ipaddr-check.php",
+        "score": 508.9494934082031
+      },
+      {
+        "docid": "functions/classes/class.Log.php",
+        "score": 502.94378662109375
+      },
+      {
+        "docid": "functions/classes/class.Addresses.php",
+        "score": 493.23388671875
+      },
+      {
+        "docid": "functions/PEAR/Spreadsheet/Excel/Writer/Workbook.php",
+        "score": 468.1918029785156
+      }
+    ],
+    "function_summary": "This code snippet performs data retrieval operations to gather information needed for subnet export functionality. Here's what it does:\n\n1. **Fetches subnet details**: Retrieves subnet information from the database using the subnet ID passed via GET parameter (`$_GET['subnetId']`) and converts the result to an array.\n\n2. **Retrieves IP addresses**: Gets all IP addresses belonging to the specified subnet, sorted by IP address in ascending order. If no addresses are found or the result isn't an array, it initializes an empty array as a fallback.\n\n3. **Gets custom fields**: Fetches any custom field definitions that have been configured for IP addresses in the system.\n\nThis snippet appears to be part of a larger Excel export function (as evidenced by the file path and surrounding code context). It's gathering the three main data components needed to generate a comprehensive subnet export:\n- The subnet metadata\n- All IP addresses within that subnet\n- Custom field configurations to include additional user-defined data columns\n\nThe code includes basic error handling by ensuring the addresses variable is always an array, preventing potential issues in subsequent processing steps where the data will be written to an Excel spreadsheet."
+  },
+  {
+    "instance_id": "tsinghua_phpipam_phpipam_cve_2022_1224",
+    "hits": [
+      {
+        "docid": "app/tools/logs/show-logs.php",
+        "score": 535.3663940429688
+      },
+      {
+        "docid": "functions/classes/class.Log.php",
+        "score": 339.90618896484375
+      },
+      {
+        "docid": "app/tools/logs/detail-popup.php",
+        "score": 295.0508117675781
+      },
+      {
+        "docid": "app/dashboard/widgets/access_logs.php",
+        "score": 267.6971130371094
+      },
+      {
+        "docid": "app/dashboard/widgets/error_logs.php",
+        "score": 266.39239501953125
+      },
+      {
+        "docid": "js/magic.js",
+        "score": 242.84609985351562
+      },
+      {
+        "docid": "app/subnets/addresses/print-address-table.php",
+        "score": 235.9362030029297
+      },
+      {
+        "docid": "functions/classes/class.Addresses.php",
+        "score": 228.51829528808594
+      },
+      {
+        "docid": "functions/classes/class.Tools.php",
+        "score": 228.26890563964844
+      },
+      {
+        "docid": "app/admin/circuits/edit-logical-circuit.php",
+        "score": 227.52459716796875
+      },
+      {
+        "docid": "functions/classes/class.Common.php",
+        "score": 223.78990173339844
+      },
+      {
+        "docid": "app/admin/subnets/edit.php",
+        "score": 219.8582000732422
+      },
+      {
+        "docid": "app/subnets/addresses/address-modify.php",
+        "score": 217.80670166015625
+      },
+      {
+        "docid": "functions/classes/class.FirewallZones.php",
+        "score": 216.7958984375
+      },
+      {
+        "docid": "functions/classes/class.Subnets.php",
+        "score": 215.36599731445312
+      },
+      {
+        "docid": "app/subnets/scan/subnet-scan-execute-snmp-mac.php",
+        "score": 215.01220703125
+      },
+      {
+        "docid": "functions/classes/class.User.php",
+        "score": 211.83389282226562
+      },
+      {
+        "docid": "app/admin/vlans/vlans-scan-execute.php",
+        "score": 210.83590698242188
+      },
+      {
+        "docid": "app/subnets/subnet-details/subnet-details.php",
+        "score": 208.23330688476562
+      },
+      {
+        "docid": "app/admin/vrf/vrf-scan-execute.php",
+        "score": 207.09030151367188
+      }
+    ],
+    "function_summary": "This code snippet performs initialization and default configuration for a log viewing interface:\n\n**Key Operations:**\n\n1. **Object Initialization**: Creates `Result` and `Logging` objects, with the `Logging` object receiving a database connection for log operations.\n\n2. **User Authentication**: Calls `check_user_session()` to verify that the current user is properly logged in before allowing access to the logs.\n\n3. **Default Filter Configuration**: Implements a fallback mechanism for log severity filtering. If no specific log severity levels are selected via POST data (`Informational`, `Notice`, or `Warning`), it automatically enables all three severity levels by default.\n\nThis ensures that when users first access the log viewer without specifying any filters, they will see logs from all severity levels rather than an empty display. The logic uses `empty()` checks to determine if any severity filters were explicitly set, and if none were provided, it populates the POST array with all available options.\n\nThis snippet essentially sets up the foundational requirements (authentication and default viewing preferences) needed before the main log retrieval and display logic executes later in the script."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1711",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "score": 2099.457275390625
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/EditorUi.js",
+        "score": 1038.7520751953125
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Editor.js",
+        "score": 950.885009765625
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/App.js",
+        "score": 880.7000732421875
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/AbsAuthServlet.java",
+        "score": 857.9722290039062
+      },
+      {
+        "docid": "src/main/webapp/js/app.min.js",
+        "score": 857.890380859375
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/Graph.js",
+        "score": 839.2227172851562
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ConverterServlet.java",
+        "score": 801.202392578125
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/DriveClient.js",
+        "score": 799.5086059570312
+      },
+      {
+        "docid": "src/main/webapp/js/integrate.min.js",
+        "score": 786.0208129882812
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Dialogs.js",
+        "score": 759.7905883789062
+      },
+      {
+        "docid": "src/main/webapp/js/viewer.min.js",
+        "score": 757.9210815429688
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/EmbedServlet2.java",
+        "score": 756.844970703125
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/vsdx/importer.js",
+        "score": 717.2625732421875
+      },
+      {
+        "docid": "src/main/webapp/js/extensions.min.js",
+        "score": 695.1704711914062
+      },
+      {
+        "docid": "src/main/webapp/js/viewer-static.min.js",
+        "score": 679.586181640625
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/EditorUi.js",
+        "score": 657.35498046875
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Menus.js",
+        "score": 641.2755737304688
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/OneDriveClient.js",
+        "score": 632.4644165039062
+      },
+      {
+        "docid": "src/main/webapp/electron.js",
+        "score": 610.7468872070312
+      }
+    ],
+    "function_summary": "This code snippet is part of a method called `getCorsDomain` that determines the appropriate CORS (Cross-Origin Resource Sharing) domain header based on the HTTP referer and user agent.\n\nThe method:\n\n1. **Initializes** a domain variable (`dom`) to null\n2. **Validates referer URLs** against specific domain patterns using regex matching\n3. **Extracts domain portions** from valid referers for CORS headers\n\nKey functionality:\n- **First condition**: Checks if the referer matches the pattern for `draw.io` domains (including subdomains like `app.draw.io`, `test.draw.io`, etc.)\n- **Second condition**: Checks if the referer matches the pattern for `diagrams.net` domains\n- **Domain extraction**: When a match is found, it extracts the base domain portion (e.g., \"https://app.draw.io\" from a full URL)\n\nThe regex patterns `https?://([a-z0-9,-]+[.])*draw[.]io/.*` and `https?://([a-z0-9,-]+[.])*diagrams[.]net/.*` allow for:\n- HTTP or HTTPS protocols\n- Optional subdomains with alphanumeric characters, hyphens, and commas\n- The main domain (draw.io or diagrams.net)\n- Any path after the domain\n\nThis is a security mechanism to ensure the proxy only serves requests from authorized domains and sets appropriate CORS headers for cross-origin requests."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1713",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "score": 2589.918701171875
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/EditorUi.js",
+        "score": 1040.5123291015625
+      },
+      {
+        "docid": "src/main/webapp/js/app.min.js",
+        "score": 969.2951049804688
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Editor.js",
+        "score": 935.7603149414062
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/App.js",
+        "score": 879.7664184570312
+      },
+      {
+        "docid": "src/main/webapp/js/integrate.min.js",
+        "score": 878.9594116210938
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/AbsAuthServlet.java",
+        "score": 872.5830078125
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/Graph.js",
+        "score": 864.4688720703125
+      },
+      {
+        "docid": "src/main/webapp/js/viewer.min.js",
+        "score": 807.9713745117188
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/DriveClient.js",
+        "score": 807.4537963867188
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Dialogs.js",
+        "score": 806.2149047851562
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ConverterServlet.java",
+        "score": 805.7022705078125
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/EmbedServlet2.java",
+        "score": 794.9141235351562
+      },
+      {
+        "docid": "src/main/webapp/js/viewer-static.min.js",
+        "score": 747.2069091796875
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/vsdx/importer.js",
+        "score": 732.8176879882812
+      },
+      {
+        "docid": "src/main/webapp/js/extensions.min.js",
+        "score": 724.2305297851562
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/EditorUi.js",
+        "score": 680.5651245117188
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Menus.js",
+        "score": 640.0322265625
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/Sidebar.js",
+        "score": 633.4160766601562
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/OneDriveClient.js",
+        "score": 621.8814697265625
+      }
+    ],
+    "function_summary": "This code snippet implements security validation logic for a proxy servlet that filters out potentially dangerous URLs to prevent Server-Side Request Forgery (SSRF) attacks.\n\nThe main functionality includes:\n\n1. **Private Network Blocking**: The code blocks access to private IP address ranges including:\n   - Localhost addresses (127.x.x.x)\n   - Private networks (10.x.x.x, 172.16-31.x.x, 192.168.x.x)\n   - Link-local addresses (169.254.x.x)\n   - Special-use addresses (0.x.x.x, 192.0.0.x, 198.18-19.x.x)\n   - Internal domains (.internal, .local, localhost)\n   - Reverse DNS domains (.arpa)\n\n2. **Content Whitelisting**: The `contentAlwaysAllowed()` method bypasses content validation for trusted domains like Trello attachments and Google Docs.\n\n3. **CORS Domain Resolution**: The `getCorsDomain()` method determines appropriate Cross-Origin Resource Sharing headers based on the referer, supporting specific domains like draw.io, diagrams.net, and quipelements.com, as well as Confluence/Jira integration.\n\nThis security layer ensures the proxy only accesses external, public resources while preventing malicious requests to internal infrastructure or sensitive network ranges."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1722",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "score": 2119.172607421875
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/EditorUi.js",
+        "score": 1049.2982177734375
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Editor.js",
+        "score": 950.26318359375
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/App.js",
+        "score": 916.6090698242188
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/AbsAuthServlet.java",
+        "score": 885.3657836914062
+      },
+      {
+        "docid": "src/main/webapp/js/app.min.js",
+        "score": 866.5601196289062
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/Graph.js",
+        "score": 844.1154174804688
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/DriveClient.js",
+        "score": 821.288818359375
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ConverterServlet.java",
+        "score": 815.6818237304688
+      },
+      {
+        "docid": "src/main/webapp/js/integrate.min.js",
+        "score": 787.5535278320312
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Dialogs.js",
+        "score": 783.3762817382812
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/EmbedServlet2.java",
+        "score": 773.9179077148438
+      },
+      {
+        "docid": "src/main/webapp/js/viewer.min.js",
+        "score": 762.64208984375
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/vsdx/importer.js",
+        "score": 711.9304809570312
+      },
+      {
+        "docid": "src/main/webapp/js/viewer-static.min.js",
+        "score": 684.3823852539062
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/EditorUi.js",
+        "score": 679.8469848632812
+      },
+      {
+        "docid": "src/main/webapp/js/extensions.min.js",
+        "score": 677.850830078125
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Menus.js",
+        "score": 661.327880859375
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/OneDriveClient.js",
+        "score": 646.2600708007812
+      },
+      {
+        "docid": "src/main/webapp/electron.js",
+        "score": 617.9611206054688
+      }
+    ],
+    "function_summary": "This code snippet shows the beginning of the `getCorsDomain` method, which determines the appropriate CORS (Cross-Origin Resource Sharing) domain header for proxy requests.\n\n**Key functionality:**\n\n1. **Purpose**: Returns a CORS domain string to allow cross-origin requests from trusted domains, or null to deny the request.\n\n2. **Domain validation**: Uses regex pattern matching to validate if the referer URL comes from authorized domains:\n   - **draw.io domains**: Matches URLs like `https://subdomain.draw.io/...` \n   - **diagrams.net domains**: Matches URLs like `https://subdomain.diagrams.net/...`\n\n3. **Domain extraction**: For valid referers, it extracts the base domain portion (e.g., `https://app.draw.io` from `https://app.draw.io/editor`) to use as the CORS header value.\n\n4. **Security mechanism**: This acts as a whitelist approach, only allowing proxy requests from known, trusted diagram editing applications while blocking unauthorized cross-origin access.\n\nThe method processes the HTTP referer header to determine if the requesting page is from an authorized domain, then returns the appropriate domain string that will be set in the `Access-Control-Allow-Origin` response header to enable CORS for legitimate requests."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1723",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/EmbedServlet2.java",
+        "score": 3462.787109375
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Editor.js",
+        "score": 1926.4346923828125
+      },
+      {
+        "docid": "src/main/webapp/js/app.min.js",
+        "score": 1509.4659423828125
+      },
+      {
+        "docid": "src/main/webapp/js/viewer.min.js",
+        "score": 1454.800048828125
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/EditorUi.js",
+        "score": 1423.1976318359375
+      },
+      {
+        "docid": "src/main/webapp/js/integrate.min.js",
+        "score": 1405.5501708984375
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/Graph.js",
+        "score": 1360.321044921875
+      },
+      {
+        "docid": "src/main/webapp/js/viewer-static.min.js",
+        "score": 1308.4359130859375
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/App.js",
+        "score": 1264.44482421875
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/AbsAuthServlet.java",
+        "score": 1186.719482421875
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Dialogs.js",
+        "score": 1164.2037353515625
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/sidebar/Sidebar.js",
+        "score": 1118.01123046875
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/vsdx/importer.js",
+        "score": 1082.2261962890625
+      },
+      {
+        "docid": "src/main/webapp/js/extensions.min.js",
+        "score": 1011.8402099609375
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "score": 988.08642578125
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/EditorUi.js",
+        "score": 951.0023193359375
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/DriveClient.js",
+        "score": 939.5026245117188
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Extensions.js",
+        "score": 929.5438842773438
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/Utils.java",
+        "score": 903.4979858398438
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Menus.js",
+        "score": 902.4744873046875
+      }
+    ],
+    "function_summary": "This code snippet is part of a URL fetching and caching mechanism within a servlet that generates JavaScript for embedding diagrams. Here's what it does:\n\n**Main Functionality:**\n1. **Iterates through URLs** provided in the request parameters (`urls` array)\n2. **Prevents duplicate fetching** by checking if each URL has already been processed using a `completed` HashSet\n3. **Fetches external content** by opening a URLConnection to each unique URL and reading its content into a ByteArrayOutputStream\n4. **Generates JavaScript caching code** that stores the fetched content in a client-side cache\n\n**Key Operations:**\n- Downloads content from external URLs synchronously\n- Properly encodes the content using URI encoding and JavaScript escaping to prevent injection attacks\n- Builds a JavaScript string (`setCachedUrls`) that will populate a `GraphViewer.cachedUrls` object on the client side\n- Uses `StringEscapeUtils.escapeEcmaScript()` for safe JavaScript string embedding\n- Handles UTF-8 encoding for the downloaded content\n\n**Purpose:** This appears to be part of a diagram embedding system where external resources (likely diagram data or configurations) are pre-fetched server-side and embedded as cached content in the generated JavaScript, allowing the client-side viewer to access these resources without making additional HTTP requests."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1767",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "score": 2049.882568359375
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/EditorUi.js",
+        "score": 1004.7139892578125
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Editor.js",
+        "score": 923.8975830078125
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/App.js",
+        "score": 858.2780151367188
+      },
+      {
+        "docid": "src/main/webapp/js/app.min.js",
+        "score": 846.6743774414062
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/AbsAuthServlet.java",
+        "score": 824.5317993164062
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/Graph.js",
+        "score": 821.8662719726562
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ConverterServlet.java",
+        "score": 796.930908203125
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/DriveClient.js",
+        "score": 772.7203979492188
+      },
+      {
+        "docid": "src/main/webapp/js/integrate.min.js",
+        "score": 772.3212890625
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/EmbedServlet2.java",
+        "score": 745.0479125976562
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Dialogs.js",
+        "score": 732.0181884765625
+      },
+      {
+        "docid": "src/main/webapp/js/viewer.min.js",
+        "score": 728.84228515625
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/vsdx/importer.js",
+        "score": 709.3634033203125
+      },
+      {
+        "docid": "src/main/webapp/js/extensions.min.js",
+        "score": 672.6522216796875
+      },
+      {
+        "docid": "src/main/webapp/js/viewer-static.min.js",
+        "score": 658.1027221679688
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/EditorUi.js",
+        "score": 645.292724609375
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/OneDriveClient.js",
+        "score": 609.334228515625
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/Utils.java",
+        "score": 604.5236206054688
+      },
+      {
+        "docid": "src/main/webapp/electron.js",
+        "score": 603.2230224609375
+      }
+    ],
+    "function_summary": "This code snippet implements a method called `getCorsDomain` that determines the appropriate CORS (Cross-Origin Resource Sharing) domain header based on the HTTP referer header. The method takes two parameters: `referer` and `userAgent`.\n\nThe main functionality involves:\n\n1. **Domain validation**: It checks if the referer URL matches specific trusted domain patterns using regular expressions\n2. **Supported domains**: The method recognizes three main domain families:\n   - `draw.io` and its subdomains\n   - `diagrams.net` and its subdomains  \n   - `quipelements.com` and its subdomains\n\n3. **Domain extraction**: For each matching pattern, it extracts the base domain portion from the referer URL by:\n   - Converting to lowercase\n   - Finding the position of the domain suffix (e.g., \".draw.io/\")\n   - Extracting the substring up to and including the domain\n\n4. **Security mechanism**: By validating referers against known trusted domains, this prevents unauthorized cross-origin requests while allowing legitimate requests from the specified drawing/diagramming applications.\n\nThe method returns the extracted domain string if a match is found, or `null` if the referer doesn't match any trusted patterns, effectively controlling CORS access to the proxy servlet."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1784",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "score": 2101.447998046875
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/EditorUi.js",
+        "score": 1047.1451416015625
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Editor.js",
+        "score": 927.6868896484375
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/App.js",
+        "score": 906.7083740234375
+      },
+      {
+        "docid": "src/main/webapp/js/app.min.js",
+        "score": 889.3319702148438
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/AbsAuthServlet.java",
+        "score": 849.96630859375
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/Graph.js",
+        "score": 825.0537109375
+      },
+      {
+        "docid": "src/main/webapp/js/integrate.min.js",
+        "score": 807.202880859375
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/DriveClient.js",
+        "score": 804.5816040039062
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ConverterServlet.java",
+        "score": 799.1984252929688
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Dialogs.js",
+        "score": 770.2509155273438
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/EmbedServlet2.java",
+        "score": 767.9354248046875
+      },
+      {
+        "docid": "src/main/webapp/js/viewer.min.js",
+        "score": 742.0529174804688
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/vsdx/importer.js",
+        "score": 705.4293823242188
+      },
+      {
+        "docid": "src/main/webapp/js/viewer-static.min.js",
+        "score": 674.4766845703125
+      },
+      {
+        "docid": "src/main/webapp/js/extensions.min.js",
+        "score": 670.7761840820312
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/Menus.js",
+        "score": 650.4285888671875
+      },
+      {
+        "docid": "src/main/webapp/js/diagramly/OneDriveClient.js",
+        "score": 645.8278198242188
+      },
+      {
+        "docid": "src/main/webapp/js/grapheditor/EditorUi.js",
+        "score": 640.2833251953125
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/Utils.java",
+        "score": 626.5714721679688
+      }
+    ],
+    "function_summary": "This code snippet is part of a CORS (Cross-Origin Resource Sharing) domain validation method that determines which domains are allowed to make proxy requests. \n\nThe method examines the HTTP referer header and user agent to identify legitimate requesting domains and returns an appropriate CORS domain string:\n\n1. **draw.io domains**: Matches URLs from draw.io subdomains (e.g., app.draw.io, www.draw.io) and extracts the base domain portion for the CORS header.\n\n2. **diagrams.net domains**: Similar validation for diagrams.net subdomains, which appears to be an alternative domain for the same service.\n\n3. **quipelements.com domains**: Validates requests from quipelements.com subdomains.\n\n4. **Confluence/Jira integration**: Special handling for enterprise integrations by checking for either:\n   - A specific referer string \"draw.io Proxy Confluence Server\"\n   - A hardcoded Firefox user agent string (for backward compatibility with older server versions)\n\nFor valid domains, it returns the appropriate domain string to be used in the `Access-Control-Allow-Origin` header. For Confluence/Jira cases, it returns an empty string (which typically allows the requesting origin). If no matches are found, it returns null, effectively denying the CORS request.\n\nThis security mechanism ensures only authorized domains can use the proxy service while maintaining compatibility with enterprise integrations."
+  },
+  {
+    "instance_id": "tsinghua_core_cve_2023_39008",
+    "hits": [
+      {
+        "docid": "src/opnsense/service/templates/OPNsense/IDS/suricata.yaml",
+        "score": 169.25599670410156
+      },
+      {
+        "docid": "src/opnsense/mvc/app/controllers/OPNsense/Cron/forms/dialogEdit.xml",
+        "score": 133.37049865722656
+      },
+      {
+        "docid": "src/opnsense/mvc/app/controllers/OPNsense/Cron/Api/SettingsController.php",
+        "score": 113.47850036621094
+      },
+      {
+        "docid": "src/opnsense/service/conf/actions.d/actions_interface.conf",
+        "score": 105.1593017578125
+      },
+      {
+        "docid": "src/opnsense/service/templates/OPNsense/Proxy/squid.conf",
+        "score": 102.86489868164062
+      },
+      {
+        "docid": "src/opnsense/service/conf/actions.d/actions_firmware.conf",
+        "score": 100.79660034179688
+      },
+      {
+        "docid": "src/www/widgets/widgets/ntp_status.widget.php",
+        "score": 99.57939910888672
+      },
+      {
+        "docid": "src/www/interfaces.php",
+        "score": 98.7406005859375
+      },
+      {
+        "docid": "contrib/simplepie/library/SimplePie.php",
+        "score": 96.96859741210938
+      },
+      {
+        "docid": "src/opnsense/scripts/dhcp/unbound_watcher.py",
+        "score": 94.46080017089844
+      },
+      {
+        "docid": "src/opnsense/mvc/app/models/OPNsense/Cron/Cron.xml",
+        "score": 94.07649993896484
+      },
+      {
+        "docid": "src/opnsense/service/conf/actions.d/actions_filter.conf",
+        "score": 89.66300201416016
+      },
+      {
+        "docid": "src/opnsense/service/modules/processhandler.py",
+        "score": 88.77140045166016
+      },
+      {
+        "docid": "src/www/firewall_schedule_edit.php",
+        "score": 84.66909790039062
+      },
+      {
+        "docid": "src/www/system_usermanager.php",
+        "score": 83.57530212402344
+      },
+      {
+        "docid": "contrib/IXR/IXR_Library.php",
+        "score": 80.96179962158203
+      },
+      {
+        "docid": "contrib/simplepie/idn/idna_convert.class.php",
+        "score": 80.5791015625
+      },
+      {
+        "docid": "src/wizard/openvpn.xml",
+        "score": 80.22989654541016
+      },
+      {
+        "docid": "src/opnsense/scripts/proxy/fetchACLs.py",
+        "score": 78.49610137939453
+      },
+      {
+        "docid": "src/www/system_certmanager.php",
+        "score": 77.30609893798828
+      }
+    ],
+    "function_summary": "This code snippet generates cron job entries for an OPNsense firewall configuration. It creates a formatted cron line that includes:\n\n1. **Comment line**: Adds a descriptive comment showing the job's origin and description for documentation purposes.\n\n2. **Cron schedule**: Uses template variables to set the timing fields (minutes, hours, days, months, weekdays) that define when the job runs.\n\n3. **Command execution**: All jobs execute through `/usr/local/sbin/configctl -d` followed by the specified command, which appears to be OPNsense's configuration control utility with a detached execution flag.\n\n4. **Parameter handling**: If the job has parameters, it safely processes them by:\n   - Splitting the parameters using shell lexical parsing (`shlex_split`)\n   - Properly quoting each parameter (`shlex_quote`) to prevent shell injection vulnerabilities\n   - Appending each quoted parameter to the command line\n\nThe snippet ensures secure command execution by properly escaping parameters and uses a standardized execution method through the configctl utility, which is typical for OPNsense's centralized configuration management system. This template-based approach allows dynamic generation of cron entries from configuration data while maintaining security and consistency."
+  },
+  {
+    "instance_id": "tsinghua_lunary_ai_lunary_cve_2024_1738",
+    "hits": [
+      {
+        "docid": "packages/backend/src/api/v1/evaluations/index.ts",
+        "score": 848.9644775390625
+      },
+      {
+        "docid": "packages/backend/src/api/v1/evaluations/utils.ts",
+        "score": 446.9197998046875
+      },
+      {
+        "docid": "packages/backend/src/api/v1/datasets/index.ts",
+        "score": 331.1993103027344
+      },
+      {
+        "docid": "packages/backend/src/api/v1/runs/index.ts",
+        "score": 292.2182922363281
+      },
+      {
+        "docid": "packages/backend/src/checks/index.ts",
+        "score": 288.9977111816406
+      },
+      {
+        "docid": "packages/backend/src/api/v1/runs/ingest.ts",
+        "score": 277.84368896484375
+      },
+      {
+        "docid": "packages/backend/src/api/v1/radars.ts",
+        "score": 272.58648681640625
+      },
+      {
+        "docid": "packages/frontend/pages/evaluations/new.tsx",
+        "score": 259.64581298828125
+      },
+      {
+        "docid": "packages/backend/src/api/v1/orgs.ts",
+        "score": 256.8174133300781
+      },
+      {
+        "docid": "packages/backend/src/api/v1/users.ts",
+        "score": 250.63699340820312
+      },
+      {
+        "docid": "packages/backend/src/api/v1/projects/index.ts",
+        "score": 233.55250549316406
+      },
+      {
+        "docid": "packages/backend/src/api/v1/checklists.ts",
+        "score": 226.61000061035156
+      },
+      {
+        "docid": "packages/frontend/utils/dataHooks.ts",
+        "score": 220.86270141601562
+      },
+      {
+        "docid": "packages/backend/src/api/v1/auth/utils.ts",
+        "score": 213.09970092773438
+      },
+      {
+        "docid": "packages/backend/src/api/v1/datasets/utils.ts",
+        "score": 212.66329956054688
+      },
+      {
+        "docid": "packages/backend/src/api/v1/templateVersions.ts",
+        "score": 210.1875
+      },
+      {
+        "docid": "packages/backend/src/api/v1/templates.ts",
+        "score": 209.0229949951172
+      },
+      {
+        "docid": "packages/backend/src/utils/ingest.ts",
+        "score": 205.59730529785156
+      },
+      {
+        "docid": "packages/shared/checks/index.ts",
+        "score": 203.7978057861328
+      },
+      {
+        "docid": "packages/backend/src/api/v1/external-users.ts",
+        "score": 197.1107940673828
+      }
+    ],
+    "function_summary": "This code snippet defines a GET endpoint at `/result/:evaluationId` for retrieving evaluation results. Here's the main functionality:\n\n**Purpose**: Fetches detailed results for a specific evaluation by its ID.\n\n**Key Operations**:\n1. **Authorization**: Uses `checkAccess` middleware to ensure the user has \"read\" permissions for evaluations\n2. **Parameter Extraction**: Extracts the `evaluationId` from the URL parameters\n3. **Database Query**: Executes a SQL query that:\n   - Selects all fields from the `evaluation_result` table\n   - Performs LEFT JOINs with `dataset_prompt` and `dataset_prompt_variation` tables\n   - Adds `p.id as prompt_id` to include the prompt ID in results\n   - Filters results by the specified `evaluationId`\n4. **Response**: Returns the query results as the response body\n\n**Data Structure**: The query combines evaluation results with their associated prompts and prompt variations, providing a comprehensive view of how each prompt variation performed in the evaluation.\n\nThis endpoint is part of a larger evaluation system that appears to test different AI model providers against various prompt variations and datasets, allowing users to analyze the performance and results of their evaluations."
+  },
+  {
+    "instance_id": "tsinghua_lunary_cve_2024_4146",
+    "hits": [
+      {
+        "docid": "packages/backend/src/utils/authorization.ts",
+        "score": 191.5166015625
+      },
+      {
+        "docid": "packages/backend/src/api/v1/users.ts",
+        "score": 137.86849975585938
+      },
+      {
+        "docid": "packages/backend/src/api/v1/projects/index.ts",
+        "score": 132.17489624023438
+      },
+      {
+        "docid": "packages/backend/src/api/v1/auth/utils.ts",
+        "score": 126.74610137939453
+      },
+      {
+        "docid": "packages/backend/src/api/v1/auth/index.ts",
+        "score": 113.75700378417969
+      },
+      {
+        "docid": "packages/shared/types/completion.ts",
+        "score": 104.41089630126953
+      },
+      {
+        "docid": "packages/backend/src/api/v1/runs/index.ts",
+        "score": 98.62039947509766
+      },
+      {
+        "docid": "packages/backend/src/api/v1/runs/ingest.ts",
+        "score": 97.56780242919922
+      },
+      {
+        "docid": "packages/backend/src/api/v1/datasets/index.ts",
+        "score": 94.76969909667969
+      },
+      {
+        "docid": "packages/backend/src/utils/ingest.ts",
+        "score": 84.6698989868164
+      },
+      {
+        "docid": "packages/backend/src/api/v1/template-versions.ts",
+        "score": 81.96099853515625
+      },
+      {
+        "docid": "packages/frontend/pages/team.tsx",
+        "score": 81.58589935302734
+      },
+      {
+        "docid": "packages/frontend/pages/settings.tsx",
+        "score": 80.50309753417969
+      },
+      {
+        "docid": "packages/backend/src/api/v1/evaluations/index.ts",
+        "score": 80.13349914550781
+      },
+      {
+        "docid": "packages/backend/src/api/v1/orgs.ts",
+        "score": 78.53710174560547
+      },
+      {
+        "docid": "packages/backend/src/checks/index.ts",
+        "score": 78.1803970336914
+      },
+      {
+        "docid": "packages/frontend/components/layout/Sidebar.tsx",
+        "score": 77.33499908447266
+      },
+      {
+        "docid": "packages/backend/src/api/v1/auth/saml.ts",
+        "score": 75.3499984741211
+      },
+      {
+        "docid": "packages/shared/access-control/roles.ts",
+        "score": 73.1958999633789
+      },
+      {
+        "docid": "packages/frontend/pages/evaluations/new.tsx",
+        "score": 72.21880340576172
+      }
+    ],
+    "function_summary": "This code snippet defines the beginning of an async function `checkProjectAccess` that verifies whether a user has access to a specific project. The function takes two parameters: `projectId` (string) and `userId` (string).\n\nThe main functionality involves executing a SQL query that checks if a project exists within the same organization as the user. The query uses a nested SELECT statement to:\n\n1. Find the user's organization ID by looking up their account\n2. Check if there's a project with the given `projectId` that belongs to the same organization (`org_id`)\n\nThe query uses the `EXISTS` clause to return a boolean result, which is destructured into a variable called `hasAccess`. This approach efficiently determines project accessibility based on organizational membership rather than direct user-project relationships.\n\nThe TODO comment indicates this is temporary logic that should eventually be replaced with a more direct `account_project` table lookup, suggesting the current implementation is a simplified version of what will become a more robust permission system.\n\nThe function appears to be part of a larger authorization system for a multi-tenant application where users can only access projects within their organization."
+  },
+  {
+    "instance_id": "tsinghua_autogpt_cve_2025_1040",
+    "hits": [
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/text.py",
+        "score": 1439.1195068359375
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/basic.py",
+        "score": 748.1845092773438
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/llm.py",
+        "score": 648.5261840820312
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/pinecone.py",
+        "score": 501.139404296875
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/data/block.py",
+        "score": 496.0823974609375
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/google/gmail.py",
+        "score": 465.9314880371094
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/sampling.py",
+        "score": 461.9710998535156
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/time_blocks.py",
+        "score": 454.89630126953125
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/github/repo.py",
+        "score": 453.4778137207031
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/replicate_flux_advanced.py",
+        "score": 437.7774963378906
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/csv.py",
+        "score": 430.7684020996094
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/github/pull_requests.py",
+        "score": 430.76141357421875
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/code_executor.py",
+        "score": 418.21380615234375
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/github/issues.py",
+        "score": 413.900390625
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/search.py",
+        "score": 409.3611145019531
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/fal/ai_video_generator.py",
+        "score": 409.014892578125
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/google/sheets.py",
+        "score": 407.4142150878906
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/text_to_speech_block.py",
+        "score": 401.11029052734375
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/ideogram.py",
+        "score": 400.86370849609375
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/discord.py",
+        "score": 393.8908996582031
+      }
+    ],
+    "function_summary": "This code snippet is the `run` method of the `FillTextTemplateBlock` class, which implements text template formatting functionality. \n\nThe method takes input data containing a format template string and a dictionary of values to substitute into the template. Here's what it does:\n\n1. **Template preprocessing**: It uses a regex pattern `(?<!{){[ a-zA-Z0-9_]+}` to find single curly braces `{variable}` and converts them to double curly braces `{{variable}}` for Jinja2 compatibility. The negative lookbehind `(?<!{)` ensures it doesn't modify already-doubled braces `{{variable}}` (preventing them from becoming `{{{variable}}}`).\n\n2. **Template rendering**: It creates a Jinja2 template from the processed format string and renders it using the provided values dictionary.\n\n3. **Output**: It yields the rendered template as output.\n\nThis allows the block to accept both Python-style string formatting (`{variable}`) and Jinja2 syntax, making it more flexible for users. The method essentially bridges the gap between simple variable substitution and more complex Jinja2 templating features like loops and conditionals, as shown in the test cases where both simple variable replacement and loop constructs are supported."
   }
 ]

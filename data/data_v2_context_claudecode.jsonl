@@ -5587,5 +5587,718 @@
       }
     ],
     "function_summary": "This code segment closes the FilesMatch directive for .phtml files and disables CGI script execution for the directory. Line 7 closes the FilesMatch block that prevents .phtml files from being executed as server-side scripts. Line 9 disables the execution of CGI scripts in the /files directory using the Apache Options directive."
+  },
+  {
+    "instance_id": "tsinghua_cpython_cve_2015_20107",
+    "hits": [
+      {
+        "docid": "Lib/mailcap.py",
+        "startline": 159,
+        "endline": 177
+      },
+      {
+        "docid": "Lib/mailcap.py",
+        "startline": 179,
+        "endline": 190
+      },
+      {
+        "docid": "Lib/mailcap.py",
+        "startline": 192,
+        "endline": 222
+      },
+      {
+        "docid": "Lib/mailcap.py",
+        "startline": 9,
+        "endline": 14
+      },
+      {
+        "docid": "Lib/mailcap.py",
+        "startline": 3,
+        "endline": 3
+      }
+    ],
+    "function_summary": "This code segment iterates through mailcap entries retrieved by the `lookup()` function to find a matching entry for a given MIME type. For each entry, it checks if a 'test' command exists and executes it using `os.system()` to validate the entry. If the test fails (non-zero exit code), it skips to the next entry. If the test passes or no test exists, it substitutes placeholders in the command string using the `subst()` function and returns the command along with the matching entry. If no match is found, it returns (None, None). The code is part of the `findmatch()` function which begins at line 159, and lines 179-183 show the start of the `lookup()` function that is called within this segment."
+  },
+  {
+    "instance_id": "tsinghua_mosquitto_cve_2017_7650",
+    "hits": [
+      {
+        "docid": "src/security_default.c",
+        "startline": 254,
+        "endline": 293
+      },
+      {
+        "docid": "src/security_default.c",
+        "startline": 224,
+        "endline": 316
+      },
+      {
+        "docid": "lib/util_mosq.c",
+        "startline": 220,
+        "endline": 318
+      },
+      {
+        "docid": "src/mosquitto_broker.h",
+        "startline": 215,
+        "endline": 221
+      },
+      {
+        "docid": "src/mosquitto_broker.h",
+        "startline": 242,
+        "endline": 270
+      },
+      {
+        "docid": "lib/mosquitto_internal.h",
+        "startline": 153,
+        "endline": 274
+      },
+      {
+        "docid": "src/mosquitto_plugin.h",
+        "startline": 22,
+        "endline": 24
+      },
+      {
+        "docid": "lib/memory_mosq.h",
+        "startline": 27,
+        "endline": 35
+      }
+    ],
+    "function_summary": "This code segment performs pattern-based ACL (Access Control List) matching by expanding topic patterns containing placeholder substitutions (%c for client ID, %u for username). It calculates the expanded length of the ACL topic pattern, allocates memory for the expanded string, replaces %c and %u placeholders with actual client ID and username values, then checks if the resulting expanded topic matches the requested topic using mosquitto_topic_matches_sub(). If a match is found and the access permissions allow the requested operation, access is granted; otherwise, it continues checking the next pattern ACL."
+  },
+  {
+    "instance_id": "tsinghua_phpipam_phpipam_cve_2022_1224",
+    "hits": [
+      {
+        "docid": "app/tools/logs/show-logs.php",
+        "startline": 18,
+        "endline": 40
+      },
+      {
+        "docid": "functions/classes/class.User.php",
+        "startline": 1,
+        "endline": 1778
+      },
+      {
+        "docid": "functions/classes/class.User.php",
+        "startline": 125,
+        "endline": 154
+      },
+      {
+        "docid": "functions/classes/class.User.php",
+        "startline": 360,
+        "endline": 407
+      },
+      {
+        "docid": "functions/classes/class.Tools.php",
+        "startline": 1,
+        "endline": 63
+      },
+      {
+        "docid": "functions/classes/class.Log.php",
+        "startline": 1,
+        "endline": 299
+      }
+    ],
+    "function_summary": "Lines 28-40 initialize core PHP objects and verify user authentication. If required objects ($User, $Database, $Tools, $Result, $Log) are not already instantiated, the code requires the functions.php bootstrap file, instantiates a PDO database connection, creates User, Tools, Result, and Logging objects with the database dependency, and calls check_user_session() to verify the user is logged in. After initialization, if no POST parameters for log severity levels (Informational, Notice, Warning) are provided, it defaults all three to be displayed by setting their POST values."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1722",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 250,
+        "endline": 286
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 64,
+        "endline": 195
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 32,
+        "endline": 51
+      }
+    ],
+    "function_summary": "This code segment (lines 250-265) implements CORS (Cross-Origin Resource Sharing) domain validation for proxy requests. It examines the HTTP referer header to determine if the request originates from a trusted domain (draw.io or diagrams.net subdomains), and if so, extracts and returns the appropriate CORS domain string that should be included in the Access-Control-Allow-Origin response header. The method returns null for untrusted domains (which prevents CORS responses), a specific domain substring for trusted domains, or an empty string for Confluence/Jira proxy requests identified by either a specific referer or user-agent."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1723",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/EmbedServlet2.java",
+        "startline": 390,
+        "endline": 410
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/EmbedServlet2.java",
+        "startline": 385,
+        "endline": 388
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/EmbedServlet2.java",
+        "startline": 420,
+        "endline": 431
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/EmbedServlet2.java",
+        "startline": 250,
+        "endline": 252
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/EmbedServlet2.java",
+        "startline": 224,
+        "endline": 248
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/Utils.java",
+        "startline": 192,
+        "endline": 217
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/Utils.java",
+        "startline": 135,
+        "endline": 157
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/Utils.java",
+        "startline": 42,
+        "endline": 42
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/Utils.java",
+        "startline": 47,
+        "endline": 47
+      }
+    ],
+    "function_summary": "This code segment (lines 390-410) implements URL content fetching and caching for the GraphViewer. It iterates through an array of URLs from the \"fetch\" request parameter, downloads the content from each URL, URL-encodes it, and generates JavaScript code that stores the fetched content in the GraphViewer.cachedUrls object. It uses a HashSet to prevent duplicate URL fetches, handles exceptions silently, and builds a JavaScript string (setCachedUrls) that assigns decoded content to the cachedUrls cache using double-encoded URI components with escape sequences for JavaScript safety."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1767",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 247,
+        "endline": 282
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 64,
+        "endline": 202
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 32,
+        "endline": 51
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 208,
+        "endline": 234
+      }
+    ],
+    "function_summary": "This code segment (lines 247-269) implements CORS (Cross-Origin Resource Sharing) domain validation logic for a proxy servlet. It examines the HTTP referer header and user agent to determine if the request originates from authorized domains (draw.io, diagrams.net, quipelements.com, or Confluence/Jira servers). If the referer matches specific regex patterns, it extracts and returns the appropriate CORS domain string; otherwise, it returns null to deny the request. The function uses case-insensitive matching and substring extraction to construct the allowed origin for the Access-Control-Allow-Origin header."
+  },
+  {
+    "instance_id": "tsinghua_core_cve_2023_39008",
+    "hits": [
+      {
+        "docid": "src/opnsense/service/modules/template.py",
+        "startline": 64,
+        "endline": 65
+      },
+      {
+        "docid": "src/opnsense/service/modules/addons/template_helpers.py",
+        "startline": 55,
+        "endline": 123
+      },
+      {
+        "docid": "src/opnsense/mvc/app/models/OPNsense/Cron/Cron.xml",
+        "startline": 1,
+        "endline": 72
+      }
+    ],
+    "function_summary": "Lines 12-16 generate a cron job entry for each enabled job by: (1) outputting a comment line with the job's origin and description; (2) outputting the cron schedule fields (minutes, hours, days, months, weekdays); (3) invoking /usr/local/sbin/configctl with the -d flag and the job's command; (4) if parameters exist, splitting them using shell lexer rules (shlex_split), then iterating through each parameter and appending it to the command line with proper shell escaping (shlex_quote)."
+  },
+  {
+    "instance_id": "tsinghua_lunary_ai_lunary_cve_2024_1738",
+    "hits": [
+      {
+        "docid": "packages/backend/src/api/v1/evaluations/index.ts",
+        "startline": 120,
+        "endline": 139
+      },
+      {
+        "docid": "packages/backend/src/utils/authorization.ts",
+        "startline": 19,
+        "endline": 42
+      },
+      {
+        "docid": "packages/backend/src/utils/koa.ts",
+        "startline": 8,
+        "endline": 12
+      },
+      {
+        "docid": "packages/backend/src/utils/db.ts",
+        "startline": 1,
+        "endline": 44
+      },
+      {
+        "docid": "packages/shared/access-control/roles.ts",
+        "startline": 1,
+        "endline": 23
+      },
+      {
+        "docid": "packages/shared/access-control/roles.ts",
+        "startline": 411,
+        "endline": 421
+      }
+    ],
+    "function_summary": "This code defines a GET endpoint `/evaluations/result/:evaluationId` that retrieves all evaluation results for a specific evaluation. It performs an access control check to verify the user has \"read\" permission for the \"evaluations\" resource, then executes a SQL query that joins three tables (evaluation_result, dataset_prompt, and dataset_prompt_variation) to fetch all results associated with the given evaluation ID. The query returns all columns from all three tables, with an aliased prompt_id field, and sends the results as JSON in the response body."
+  },
+  {
+    "instance_id": "tsinghua_lunary_cve_2024_4146",
+    "hits": [
+      {
+        "docid": "packages/backend/src/utils/authorization.ts",
+        "startline": 7,
+        "endline": 17
+      },
+      {
+        "docid": "packages/backend/src/utils/db.ts",
+        "startline": 1,
+        "endline": 43
+      },
+      {
+        "docid": "packages/shared/access-control/roles.ts",
+        "startline": 1,
+        "endline": 421
+      },
+      {
+        "docid": "packages/backend/src/utils/koa.ts",
+        "startline": 1,
+        "endline": 14
+      },
+      {
+        "docid": "packages/db/0001-init.sql",
+        "startline": 25,
+        "endline": 36
+      },
+      {
+        "docid": "packages/db/0001-init.sql",
+        "startline": 85,
+        "endline": 91
+      },
+      {
+        "docid": "packages/db/0001-init.sql",
+        "startline": 71,
+        "endline": 82
+      },
+      {
+        "docid": "packages/db/0001-init.sql",
+        "startline": 232,
+        "endline": 241
+      }
+    ],
+    "function_summary": "This code segment defines an async function `checkProjectAccess` that verifies whether a user has access to a specific project by checking if the project belongs to the same organization as the user. It executes a SQL query that checks if a project with the given `projectId` exists within the organization associated with the `userId`, returning a boolean indicating access permission."
+  },
+  {
+    "instance_id": "tsinghua_owncloud_cve_2012_4392",
+    "hits": [
+      {
+        "docid": "index.php",
+        "startline": 74,
+        "endline": 105
+      },
+      {
+        "docid": "lib/user.php",
+        "startline": 196,
+        "endline": 210
+      },
+      {
+        "docid": "lib/user.php",
+        "startline": 217,
+        "endline": 220
+      },
+      {
+        "docid": "lib/user.php",
+        "startline": 353,
+        "endline": 363
+      },
+      {
+        "docid": "lib/user.php",
+        "startline": 369,
+        "endline": 374
+      },
+      {
+        "docid": "lib/user.php",
+        "startline": 379,
+        "endline": 386
+      },
+      {
+        "docid": "lib/preferences.php",
+        "startline": 115,
+        "endline": 126
+      },
+      {
+        "docid": "lib/preferences.php",
+        "startline": 139,
+        "endline": 153
+      },
+      {
+        "docid": "lib/util.php",
+        "startline": 325,
+        "endline": 337
+      },
+      {
+        "docid": "lib/log.php",
+        "startline": 16,
+        "endline": 39
+      },
+      {
+        "docid": "lib/helper.php",
+        "startline": 596,
+        "endline": 621
+      },
+      {
+        "docid": "lib/config.php",
+        "startline": 70,
+        "endline": 78
+      },
+      {
+        "docid": "lib/base.php",
+        "startline": 28,
+        "endline": 80
+      },
+      {
+        "docid": "lib/app.php",
+        "startline": 51,
+        "endline": 74
+      }
+    ],
+    "function_summary": "This code segment handles the \"remember me\" functionality and user login authentication for the ownCloud application. It performs two main operations: (1) Automatic login via cookies - checks if \"remember login\" cookies exist (oc_remember_login, oc_token, oc_username), validates the stored token against the user's preferences in the database, and if valid, logs the user in and redirects to the default page; otherwise clears the cookies. (2) Form-based login - validates POST login requests by checking CSRF tokens (sectoken), authenticating username/password via OC_User::login(), and if \"remember_login\" checkbox was selected, generates a new token (MD5 hash of username+time+password), stores it in user preferences, and sets magic cookies for future auto-login; finally redirects to the default page or sets an error flag if authentication fails."
+  },
+  {
+    "instance_id": "tsinghua_phpipam_phpipam_cve_2022_1223",
+    "hits": [
+      {
+        "docid": "app/subnets/addresses/export-subnet.php",
+        "startline": 28,
+        "endline": 33
+      },
+      {
+        "docid": "functions/classes/class.Tools.php",
+        "startline": 719,
+        "endline": 748
+      },
+      {
+        "docid": "functions/classes/class.Common.php",
+        "startline": 1,
+        "endline": 850
+      },
+      {
+        "docid": "functions/classes/class.Addresses.php",
+        "startline": 1323,
+        "endline": 1354
+      }
+    ],
+    "function_summary": "Lines 28-35 of app/subnets/addresses/export-subnet.php perform data retrieval operations for subnet export functionality. The code: (1) fetches subnet details from the database using the 'subnetId' from $_GET parameter via Tools->fetch_object(); (2) retrieves all IP addresses belonging to that subnet using Addresses->fetch_subnet_addresses() with ascending order by IP address; (3) initializes an empty array if no addresses are found; (4) fetches custom field definitions for IP addresses from the database using Tools->fetch_custom_fields()."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1711",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 250,
+        "endline": 286
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 64,
+        "endline": 195
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 1,
+        "endline": 60
+      }
+    ],
+    "function_summary": "This code segment implements CORS (Cross-Origin Resource Sharing) domain validation logic for proxy requests. The getCorsDomain method examines the HTTP referer and user-agent headers to determine if the request originates from authorized domains (draw.io, diagrams.net, quipelements.com, or Confluence/Jira servers). If the referer matches specific domain patterns using regex, it extracts and returns the appropriate CORS domain string. For Confluence/Jira proxy requests, it checks for either a specific referer value or a hardcoded legacy Firefox user-agent string, returning an empty string to allow cross-origin access. If no patterns match, it returns null, indicating the request should not receive CORS headers."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1784",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 250,
+        "endline": 282
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 32,
+        "endline": 60
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 64,
+        "endline": 202
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 1,
+        "endline": 27
+      }
+    ],
+    "function_summary": "This code segment is the `getCorsDomain` method that determines the appropriate Cross-Origin Resource Sharing (CORS) domain header value based on the HTTP referer and user-agent headers. It uses regex pattern matching to validate if the request originates from trusted domains (draw.io, diagrams.net, or quipelements.com) and extracts the appropriate subdomain prefix. For Confluence/Jira proxy requests, it identifies them through specific referer or user-agent strings and returns an empty string to allow CORS. The method returns null if no trusted domain pattern matches, which signals that CORS should not be allowed."
+  },
+  {
+    "instance_id": "tsinghua_lucene_solr_cve_2017_7660",
+    "hits": [
+      {
+        "docid": "solr/core/src/java/org/apache/solr/security/PKIAuthenticationPlugin.java",
+        "startline": 62,
+        "endline": 68
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/security/PKIAuthenticationPlugin.java",
+        "startline": 196,
+        "endline": 220
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/security/PKIAuthenticationPlugin.java",
+        "startline": 322,
+        "endline": 324
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/core/CoreContainer.java",
+        "startline": 1410,
+        "endline": 1412
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/update/UpdateShardHandler.java",
+        "startline": 52,
+        "endline": 177
+      },
+      {
+        "docid": "solr/solrj/src/java/org/apache/solr/client/solrj/impl/HttpClientUtil.java",
+        "startline": 69,
+        "endline": 478
+      },
+      {
+        "docid": "solr/solrj/src/java/org/apache/solr/common/cloud/ZkStateReader.java",
+        "startline": 926,
+        "endline": 942
+      },
+      {
+        "docid": "solr/core/src/java/org/apache/solr/util/CryptoKeys.java",
+        "startline": 260,
+        "endline": 268
+      },
+      {
+        "docid": "solr/solrj/src/java/org/apache/solr/common/util/Utils.java",
+        "startline": 100,
+        "endline": 112
+      }
+    ],
+    "function_summary": "This code segment implements the getRemotePublicKey method which fetches a remote node's RSA public key from ZooKeeper for PKI authentication. The method: (1) retrieves the base URL for the given node name from ZooKeeper state, (2) constructs an HTTP GET request to the remote node's /admin/info/key endpoint, (3) executes the request using the update shard handler's HTTP client, (4) parses the JSON response to extract the public key string, (5) deserializes the X.509 encoded public key, (6) caches it in the keyCache map, and (7) returns the PublicKey object. If any exception occurs during the process, it logs an error and returns null."
+  },
+  {
+    "instance_id": "tsinghua_core_cve_2020_10254",
+    "hits": [
+      {
+        "docid": "apps/files_sharing/ajax/publicpreview.php",
+        "startline": 35,
+        "endline": 73
+      },
+      {
+        "docid": "lib/public/Share/IManager.php",
+        "startline": 186,
+        "endline": 194
+      },
+      {
+        "docid": "lib/public/Share/IShare.php",
+        "startline": 92,
+        "endline": 98
+      },
+      {
+        "docid": "lib/public/Share/IShare.php",
+        "startline": 125,
+        "endline": 132
+      },
+      {
+        "docid": "lib/public/Share/IShare.php",
+        "startline": 255,
+        "endline": 261
+      },
+      {
+        "docid": "lib/private/legacy/response.php",
+        "startline": 31,
+        "endline": 105
+      },
+      {
+        "docid": "lib/public/JSON.php",
+        "startline": 189,
+        "endline": 196
+      },
+      {
+        "docid": "lib/private/legacy/json.php",
+        "startline": 122,
+        "endline": 132
+      },
+      {
+        "docid": "lib/public/Util.php",
+        "startline": 149,
+        "endline": 158
+      },
+      {
+        "docid": "lib/private/Server.php",
+        "startline": 1314,
+        "endline": 1318
+      },
+      {
+        "docid": "lib/public/IServerContainer.php",
+        "startline": 311,
+        "endline": 316
+      },
+      {
+        "docid": "lib/private/legacy/user.php",
+        "startline": 257,
+        "endline": 259
+      },
+      {
+        "docid": "lib/base.php",
+        "startline": 1,
+        "endline": 50
+      }
+    ],
+    "function_summary": "This code segment validates and retrieves a shared item based on a public share token. First, it checks if the token parameter is empty (line 42-46), returning a 400 error if missing. Then it retrieves the share manager from the server container (line 48) and attempts to fetch the share by token (lines 49-55), catching ShareNotFound exceptions and returning a 404 error if the token is invalid. Next, it extracts the share owner's user ID from the share object (line 57-62), returning a 500 error if the owner is null. Finally, it verifies the user exists (line 64) and attempts to retrieve the file node associated with the share (lines 67-73), returning a 404 error if the file cannot be found."
+  },
+  {
+    "instance_id": "tsinghua_ganglia_web_cve_2015_6816",
+    "hits": [
+      {
+        "docid": "lib/GangliaAuth.php",
+        "startline": 40,
+        "endline": 46
+      },
+      {
+        "docid": "lib/GangliaAuth.php",
+        "startline": 78,
+        "endline": 81
+      },
+      {
+        "docid": "lib/GangliaAuth.php",
+        "startline": 5,
+        "endline": 7
+      },
+      {
+        "docid": "lib/GangliaAuth.php",
+        "startline": 84,
+        "endline": 89
+      },
+      {
+        "docid": "lib/GangliaAuth.php",
+        "startline": 34,
+        "endline": 39
+      },
+      {
+        "docid": "lib/GangliaAuth.php",
+        "startline": 25,
+        "endline": 32
+      },
+      {
+        "docid": "lib/GangliaAuth.php",
+        "startline": 47,
+        "endline": 50
+      }
+    ],
+    "function_summary": "This code segment validates the authentication cookie data structure and verifies the authentication token. It first unserializes the cookie value into a data array (line 40), then checks if the array contains exactly the expected keys 'user', 'group', and 'token' in that exact order (lines 42-44), returning false if the structure is invalid. Finally, it verifies the authentication token by comparing the token from the cookie against a computed token using the username (line 46), and if valid, sets the authentication state and stores the user and group information (lines 47-49)."
+  },
+  {
+    "instance_id": "tsinghua_drawio_cve_2022_1713",
+    "hits": [
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 233,
+        "endline": 282
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 41,
+        "endline": 41
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 65,
+        "endline": 196
+      },
+      {
+        "docid": "src/main/java/com/mxgraph/online/ProxyServlet.java",
+        "startline": 287,
+        "endline": 292
+      }
+    ],
+    "function_summary": "This code segment validates URL parameters to prevent Server-Side Request Forgery (SSRF) attacks by blocking access to private/internal IP address ranges and local hostnames. It parses the input URL string, extracts the protocol and hostname, then checks that: (1) the protocol is HTTP or HTTPS, and (2) the hostname does not match any private IP address ranges (including 10.0.0.0/8, 127.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, and various other reserved ranges), localhost, or internal/local domain names. Returns true if the URL is safe to proxy, false otherwise."
+  },
+  {
+    "instance_id": "tsinghua_autogpt_cve_2025_1040",
+    "hits": [
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/text.py",
+        "startline": 1,
+        "endline": 1
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/text.py",
+        "startline": 4,
+        "endline": 4
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/text.py",
+        "startline": 10,
+        "endline": 10
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/text.py",
+        "startline": 121,
+        "endline": 161
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/data/block.py",
+        "startline": 33,
+        "endline": 36
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/data/block.py",
+        "startline": 67,
+        "endline": 106
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/data/model.py",
+        "startline": 116,
+        "endline": 149
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/basic.py",
+        "startline": 1,
+        "endline": 1
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/basic.py",
+        "startline": 4,
+        "endline": 4
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/basic.py",
+        "startline": 10,
+        "endline": 10
+      },
+      {
+        "docid": "autogpt_platform/backend/backend/blocks/basic.py",
+        "startline": 300,
+        "endline": 313
+      }
+    ],
+    "function_summary": "Lines 156-161 implement the `run` method of the `FillTextTemplateBlock` class. This method transforms a format string to support both Python-style string formatting syntax (single braces `{var}`) and Jinja2 template syntax (double braces `{{var}}`), then renders the template using Jinja2 with the provided values dictionary. The regex substitution `re.sub(r\"(?<!{){[ a-zA-Z0-9_]+}\", r\"{\\g<0>}\", input_data.format)` wraps all single-brace variable references with an additional set of braces (converting `{var}` to `{{var}}`), while preserving existing double-brace references to avoid creating triple braces. The rendered output is then yielded with the name \"output\"."
   }
 ]

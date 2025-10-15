@@ -228,15 +228,3 @@ def clone_repo(repo, repo_dir, token, logger):
         logger.info(f"Cloning {repo} (pid={os.getpid()})")
         Repo.clone_from(repo_url, repo_dir)
     return repo_dir
-
-def clone_repo(repo, repo_dir):
-    if not repo_dir.exists():
-
-        # 如果 repo 是 gitlab 地址，则使用 gitlab 地址
-        if repo.startswith("https://gitlab"):
-            repo_url = repo
-        else:
-            repo_url = f"https://github.com/{repo}.git"
-        print(f"Cloning {repo} (pid={os.getpid()})")
-        Repo.clone_from(repo_url, repo_dir)
-    return repo_dir

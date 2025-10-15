@@ -66,7 +66,6 @@ def process_instance(instance, model_name, base_url, api_key, max_context_token,
         # 调用 LLM 生成代码
         response = generate_code.call_llm(base_url, api_key, model_name, system_message, user_message, 
                                           max_gen_token, **model_args)
-        
         # save raw response
         with open(os.path.join(repo_dir, "response.txt"), "w") as f:
             f.write(response)

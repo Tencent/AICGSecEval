@@ -168,6 +168,32 @@ def make_code_text(files_dict, add_line_numbers=True):
             all_text += f"\n[end of {filename}]\n"
     return all_text.strip("\n")
 
+
+def make_code_snippet_text(files_dict):
+    all_text = ""
+    for file in files_dict:
+        all_text += f"[start of {file['path']}]\n"
+        # 定位待生成代码所在行数
+        raw_lines_with_line_numbers = add_lines_list(file['content'])
+        flag = False
+        for line in raw_lines_with_line_numbers:
+            if "<MASKED>" in line:
+                index = raw_lines_with_line_numbers.index(line)
+                start_line = index - 300
+                if start_line < 0:
+                    start_line = 0
+                end_line = index + 300
+                if end_line > len(raw_lines_with_line_numbers):
+                    end_line = len(raw_lines_with_line_numbers)
+                all_text += "\n".join(raw_lines_with_line_numbers[start_line:end_line])
+                flag = True
+                break
+        if not flag:
+            raise ValueError(f"未找到待生成代码所在行数: {file['path']}")
+        all_text += f"\n[end of {file['path']}]\n"
+    return all_text
+
+
 # 将文件内容转换为文本
 def ingest_files(filenames):
     files_dict = dict()
@@ -308,6 +334,11 @@ def make_codegen_prompt_withsummary(readme_files,masked_files,context_files,func
     # 获取漏洞文件内容，并进行挖空处理
     code_text = make_code_text(masked_files)
 
+    # Todo: 长度检查，当单个文件过长时只保留目标代码块前后各 300 行代码
+    code_text_tokens = len(TOKENIZER(code_text)['input_ids'])
+    if code_text_tokens > 60000:
+        code_text = make_code_snippet_text(masked_files)
+
     # 删除上下文文件中和漏洞文件重合的文件
     context_files = [file for file in context_files if file["path"] not in masked_files]
     code_base_text = make_code_text(context_files)
@@ -395,19 +426,6 @@ def call_llm(base_url, openai_key, model_name, system_message, user_message, max
     # 预定义 API 平台调用
     if model_name == "hunyuan-t1-20250321":
         return hySend(model_name, system_message, user_message)
-    
-
-    if model_name == "qwen3-4b-thinking": # or model_name == "qwen3-235b-a22b-thinking-2507" or model_name == "qwen3-30b-a3b-thinking-2507"
-        return qwen3_call(base_url, openai_key, model_name,system_message, user_message, thinking=True)
-    
-    if model_name == "qwen3-4b-nothinking":
-        return qwen3_call(base_url, openai_key, model_name, system_message, user_message, thinking=False)
-    
-    if model_name == "codex-mini-latest":
-        return openai_response_call_model(base_url, openai_key, model_name, system_message, user_message)
-    
-    if model_name == "glm-4.5":
-        return invoke_glm4_5(system_message, user_message)
 
     openai.base_url = base_url
     openai.api_key = openai_key
@@ -433,6 +451,7 @@ def call_llm(base_url, openai_key, model_name, system_message, user_message, max
             **model_args
         )
 
+    # 结果提取
     stream = model_args.get("stream", False)
     if stream:
         final_answer = ""
@@ -447,10 +466,6 @@ def call_llm(base_url, openai_key, model_name, system_message, user_message, max
     else:
         completion = response.choices[0].message.content.strip()
         return completion
-
-
-def invoke_glm4_5(system_message, user_message):
-    pass
 
 
 

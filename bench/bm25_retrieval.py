@@ -322,7 +322,7 @@ def get_index_paths(
         A dictionary mapping instance IDs to index paths.
     """
     all_index_paths = dict()
-    error_file = Path("data", "bm25_error.log")
+    error_file = Path("outputs", "bm25_error.log")
     for instance in tqdm(remaining_instances, desc="Indexing"):
         try:
             instance_id, index_path = get_index_paths_worker(
