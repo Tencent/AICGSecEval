@@ -196,7 +196,7 @@ async def process(instance, agent_name, agent_class, agent_args, github_token, r
             logger.error(f"处理实例 {instance_id} 失败: {str(e)}")
             print(traceback.format_exc())
             # 将错误信息追加到 error.log 文件中
-            with open("error.log", "a", encoding="utf-8") as error_file:
+            with open("agent_gencode_error.log", "a", encoding="utf-8") as error_file:
                 error_file.write(
                     f"[{datetime.datetime.now()}] 处理实例 {instance_id} 失败: {str(e)}\n")
                 error_file.write(f"模型: {agent_name}, 周期: {cycle}\n")

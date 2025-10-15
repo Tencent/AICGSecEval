@@ -5,6 +5,7 @@ import logging
 from pathlib import Path
 import time
 import traceback
+from filelock import FileLock
 from git import Repo
 from tqdm import tqdm
 import shutil
@@ -255,10 +256,11 @@ def process(instance, model_name, base_url, api_key, github_token, raw_repo_dir,
             logger.error(f"处理实例 {instance_id} 失败: {str(e)}")
             print(traceback.format_exc())
             # 将错误信息追加到 error.log 文件中
-            with open("error.log", "a", encoding="utf-8") as error_file:
-                error_file.write(f"[{datetime.datetime.now()}] 处理实例 {instance_id} 失败: {str(e)}\n")
-                error_file.write(f"模型: {model_name}, 周期: {cycle}\n")
-                error_file.write(f"详细错误: {traceback.format_exc()}\n\n")
+            with FileLock("llm_gencode_error.log.lock"):
+                with open("llm_gencode_error.log", "a", encoding="utf-8") as error_file:
+                    error_file.write(f"[{datetime.datetime.now()}] 处理实例 {instance_id} 失败: {str(e)}\n")
+                    error_file.write(f"模型: {model_name}, 周期: {cycle}\n")
+                    error_file.write(f"详细错误: {traceback.format_exc()}\n\n")
         finally:
             # 清理无关文件，节省存储
             clean_unnecessary_files(cycle_dir)

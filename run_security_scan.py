@@ -356,7 +356,7 @@ def security_scan(generated_code_dir, llm_name, batchid, dataset_file, max_worke
     except Exception as e:
         traceback.print_exc()
         # 将报错详情追加到 error.log 文件中
-        with open("error.log", "a") as f:
+        with open("security_scan_error.log", "a") as f:
             f.write(f"{llm_name}__{batchid} 安全扫描失败: {e}\n")
             f.write(traceback.format_exc())
             f.write("\n")
