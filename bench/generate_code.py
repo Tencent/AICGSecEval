@@ -191,6 +191,8 @@ def make_code_snippet_text(files_dict):
                     break
             if not flag:
                 raise ValueError(f"未找到待生成代码所在行数: {file['path']}")
+            else:
+                logger.info(f"已精简上下文文件: [{start_line}, {end_line}] in {filename}")
             all_text += f"\n[end of {file['path']}]\n"
     else:
         for filename, contents in sorted(files_dict.items()):
