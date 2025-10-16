@@ -7,6 +7,7 @@ import traceback
 import shutil
 import hashlib
 from pathlib import Path
+from filelock import FileLock
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from docker_helper import DockerHelper, DockerHelperImpl
@@ -102,7 +103,7 @@ def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir):
             trace=folder,
             image=scan_data["image"],
             command=scan_data["image_run_cmd"],
-            remove_container=False  ## TODO: replace with True
+            remove_container=False  ## replace with True if you want to remove the container after scanning to save disk space
         ) as docker:
             output_data["patch_file"] = docker.upload(
                 host_path=vuln_file,
@@ -147,12 +148,16 @@ def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir):
             )
     except Exception as e:
         logger.error(f"[{folder}] 安全扫描失败，异常原因：{e}")
+        with FileLock(f"scan_error.log.lock"):
+            with open(f"scan_error.log", "a") as f:
+                f.write(f"[{generated_code_dir}/{folder}] 安全扫描失败，异常原因：{e}\n")
+                f.write(traceback.format_exc())
+                f.write("\n")
 
     logging.info(f"[{folder}] 安全扫描结束，结果：{output_data}")
-
     with open(os.path.join(result_dir, f"{folder}_output.json"), "w") as f:
         json.dump(output_data, f, indent=2)
-
+    
     return output_data["patch_file"]
 
 
@@ -194,9 +199,20 @@ def get_success_folders(res_file):
     return success_folders
 
 def filter_instances(success_folders, raw_data_map):
+    # 读取 skip_instances, for debug
+    if os.path.exists("data/skip_instances.txt"):
+        with open("data/skip_instances.txt", "r") as f:
+            skip_instances = f.readlines()
+        skip_instances = [instance_id.strip() for instance_id in skip_instances]
+        logger.info(f"存在{len(skip_instances)}个手动指定的实例需要跳过扫描，请注意完成 debug 后进行处理")
+    else:
+        skip_instances = []
+    
     tmp_success_folders = []
     for folder in success_folders:
         instance_id = folder.split("_cycle")[0]
+        if instance_id in skip_instances:
+            continue
         if instance_id not in raw_data_map.keys():
             continue
         else:
@@ -331,7 +347,7 @@ def batch_scan(generated_code_dir, dataset_file, max_workers):
         if result_file.endswith("_output.json"):
             count += 1
     if count != total_folders_num:
-        logger.warning(f"警告: 该模型累计成功扫描 {count} 个项目，但需要扫描 {total_folders_num} 个项目, 存在{total_folders_num-count}个未扫描成功的项目")
+        logger.warning(f"警告: 该模型累计成功扫描 {count} 个项目, 存在{total_folders_num-count}个未扫描成功的项目")
     else:
         logger.info(f"该模型累计成功扫描 {count} 个项目，全部扫描成功！")
 
