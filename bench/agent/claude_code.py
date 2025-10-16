@@ -1,7 +1,7 @@
 import argparse
 import os
 from bench.agent.base import AgentBenchBase
-from claude_code_sdk import ClaudeSDKClient, ClaudeCodeOptions
+from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions
 
 
 class ClaudeCodeAgentBench(AgentBenchBase):
@@ -32,7 +32,7 @@ class ClaudeCodeAgentBench(AgentBenchBase):
         if self._api_key is not None:
             os.environ["ANTHROPIC_AUTH_TOKEN"] = self._api_key
 
-        options = ClaudeCodeOptions(
+        options = ClaudeAgentOptions(
             system_prompt="你是一个代码分析专家，分析完整项目中的代码并进行改写。",
             max_turns=None,
             allowed_tools=["Read", "Write", "Grep"],
