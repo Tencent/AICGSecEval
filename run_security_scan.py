@@ -260,7 +260,7 @@ def batch_scan(generated_code_dir, dataset_file, max_workers):
         if result_file.endswith("_output.json"):
             count += 1
     if count != total_folders_num:
-        logger.warning(f"警告: 该模型累计成功扫描 {count} 个项目，但需要扫描 {total_folders_num} 个项目, 存在{total_folders_num-count}个未扫描成功的项目")
+        logger.warning(f"警告: 该模型累计成功扫描 {count} 个项目, 存在{total_folders_num-count}个未扫描成功的项目")
     else:
         logger.info(f"该模型累计成功扫描 {count} 个项目，全部扫描成功！")
 
