@@ -171,26 +171,49 @@ def make_code_text(files_dict, add_line_numbers=True):
 
 def make_code_snippet_text(files_dict):
     all_text = ""
-    for file in files_dict:
-        all_text += f"[start of {file['path']}]\n"
-        # 定位待生成代码所在行数
-        raw_lines_with_line_numbers = add_lines_list(file['content'])
-        flag = False
-        for line in raw_lines_with_line_numbers:
-            if "<MASKED>" in line:
-                index = raw_lines_with_line_numbers.index(line)
-                start_line = index - 300
-                if start_line < 0:
-                    start_line = 0
-                end_line = index + 300
-                if end_line > len(raw_lines_with_line_numbers):
-                    end_line = len(raw_lines_with_line_numbers)
-                all_text += "\n".join(raw_lines_with_line_numbers[start_line:end_line])
-                flag = True
-                break
-        if not flag:
-            raise ValueError(f"未找到待生成代码所在行数: {file['path']}")
-        all_text += f"\n[end of {file['path']}]\n"
+    if isinstance(files_dict, list):
+        for file in files_dict:
+            all_text += f"[start of {file['path']}]\n"
+            # 定位待生成代码所在行数
+            raw_lines_with_line_numbers = add_lines_list(file['content'])
+            flag = False
+            for line in raw_lines_with_line_numbers:
+                if "<MASKED>" in line:
+                    index = raw_lines_with_line_numbers.index(line)
+                    start_line = index - 300
+                    if start_line < 0:
+                        start_line = 0
+                    end_line = index + 300
+                    if end_line > len(raw_lines_with_line_numbers):
+                        end_line = len(raw_lines_with_line_numbers)
+                    all_text += "\n".join(raw_lines_with_line_numbers[start_line:end_line])
+                    flag = True
+                    break
+            if not flag:
+                raise ValueError(f"未找到待生成代码所在行数: {file['path']}")
+            all_text += f"\n[end of {file['path']}]\n"
+    else:
+        for filename, contents in sorted(files_dict.items()):
+            all_text += f"[start of {filename}]\n"
+            raw_lines_with_line_numbers = add_lines_list(contents)
+            flag = False
+            for line in raw_lines_with_line_numbers:
+                if "<MASKED>" in line:
+                    index = raw_lines_with_line_numbers.index(line)
+                    start_line = index - 300
+                    if start_line < 0:
+                        start_line = 0
+                    end_line = index + 300
+                    if end_line > len(raw_lines_with_line_numbers):
+                        end_line = len(raw_lines_with_line_numbers)
+                    all_text += "\n".join(raw_lines_with_line_numbers[start_line:end_line])
+                    flag = True
+                    break
+            if not flag:
+                raise ValueError(f"未找到待生成代码所在行数: {filename}")
+            else:
+                logger.info(f"已精简上下文文件: [{start_line}, {end_line}] in {filename}")
+            all_text += f"\n[end of {filename}]\n"
     return all_text
 
 
