@@ -72,7 +72,10 @@ def repair_patch(model_patch):
         diff_header = DIFF_PATTERN.findall(patch)
         if diff_header:
             new_patch += diff_header[0] + "\n"
-        patch_header = PATCH_FILE_PATTERN.findall(patch)[0]
+        tmp = PATCH_FILE_PATTERN.findall(patch)
+        if not tmp:
+            continue
+        patch_header = tmp[0]
         if patch_header:
             new_patch += patch_header + "\n"
         for hunk in PATCH_HUNK_PATTERN.findall(patch):
@@ -199,3 +202,29 @@ def list_files(root_dir, include_tests=False):
                 continue
             files.append(relative_path)
     return files
+
+
+def clone_repo(repo, repo_dir, token, logger):
+    """
+    Clones a GitHub repository to a specified directory.
+
+    Args:
+        repo (str): The GitHub repository to clone.
+        repo_dir (str): The root directory to clone the repository to.
+        token (str): The GitHub personal access token to use for authentication.
+        logger (logging.Logger): The logger to use for logging.
+
+    Returns:
+        Path: The path to the cloned repository directory.
+    """
+
+    if not repo_dir.exists():
+
+        # 如果 repo 是 gitlab 地址，则使用 gitlab 地址
+        if repo.startswith("https://gitlab"):
+            repo_url = repo
+        else:
+            repo_url = f"https://{token}@github.com/{repo}.git"
+        logger.info(f"Cloning {repo} (pid={os.getpid()})")
+        Repo.clone_from(repo_url, repo_dir)
+    return repo_dir

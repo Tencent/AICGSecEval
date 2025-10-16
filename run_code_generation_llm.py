@@ -5,6 +5,7 @@ import logging
 from pathlib import Path
 import time
 import traceback
+from filelock import FileLock
 from git import Repo
 from tqdm import tqdm
 import shutil
@@ -12,7 +13,7 @@ import shutil
 from bench import generate_code
 from bench.generate_code import make_codegen_prompt
 from bench.context_manager import ContextManager
-from bench.utils import extract_diff, repair_patch
+from bench.utils import extract_diff, repair_patch, clone_repo
 
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -22,40 +23,55 @@ logger = logging.getLogger(__name__)
 def load_data(file_path):
     data = []
     with open(file_path, 'r', encoding='utf-8') as f:
-        for line in f:
-            if line.strip():  # 跳过空行
-                data.append(json.loads(line))
+        content = f.read()
+        data = json.loads(content)
     return data
-
-
-def clone_repo(repo, save_repo_dir, token):
-    if not save_repo_dir.exists():
-        repo_url = f"https://{token}@github.com/{repo}.git"
-        logger.info(f"Cloning {repo} {os.getpid()}")
-        Repo.clone_from(repo_url, save_repo_dir)
-    return save_repo_dir
 
 
 def process_instance(instance, model_name, base_url, api_key, max_context_token, max_gen_token, **model_args):
     repo_dir = instance["repo_dir"]
     hits = instance["hits"]
     function_summary = instance["function_summary"]
+    if "branch_origin" in instance:
+        branch_origin = instance["branch_origin"]
+    else:
+        branch_origin = None
     
-    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"]) as cm:
+    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
         # 获取 instance 中的 system_message 和 user_message
         readme_files = cm.get_readme_files()
         # 修改磁盘上的文件
         masked_vulnerability_file = cm.get_masked_vulnerability_file()
         
-        context_files = generate_code.ingest_files([os.path.join(repo_dir, x["docid"]) for x in hits])
+        context_file_contents = generate_code.ingest_files([os.path.join(repo_dir, x["docid"]) for x in hits])
+        context_files = []
+
+        for hit in hits:
+            hit_path = hit["docid"]
+            hit_abspath = os.path.join(repo_dir, hit["docid"])
+            if hit_abspath not in context_file_contents:
+                continue
+            if "startline" in hit and "endline" in hit:
+                hit_content = "\n".join(context_file_contents[hit_abspath].splitlines()[hit["startline"]-1:hit["endline"]])
+            else:
+                hit_content = context_file_contents[hit_abspath]
+            context_files.append({
+                "path": hit_path,
+                "abspath": hit_abspath,
+                "content": hit_content,
+            })
+
         system_message, user_message = make_codegen_prompt(max_context_token, readme_files, 
                                                            masked_vulnerability_file, context_files, function_summary)
         
         # 调用 LLM 生成代码
         response = generate_code.call_llm(base_url, api_key, model_name, system_message, user_message, 
                                           max_gen_token, **model_args)
-        model_patch = extract_diff(response)
+        # save raw response
+        with open(os.path.join(repo_dir, "response.txt"), "w") as f:
+            f.write(response)
 
+        model_patch = extract_diff(response)
         if model_patch is None or len(model_patch)==0:
             logger.error(f"模型生成补丁为空")
             print(response)
@@ -81,7 +97,11 @@ def try_patch(model_patch, repo_dir, cm, instance):
 
     # 如果第二次尝试失败，则重置项目，修复补丁，并尝试第三次
     cm.reset_repo(instance["raw_repo_dir"], repo_dir)
-    logger.info(f"原始应用补丁失败，尝试修复补丁")
+    # save raw patch
+    with open(os.path.join(repo_dir, "raw_patch.diff"), "w") as f:
+        f.write(model_patch)
+
+    logger.info(f"原始应用补丁失败，尝试修复补丁")    
     repaired_patch = repair_patch(model_patch)
     if len(repaired_patch)==0:
         logger.error(f"修复后补丁为空")
@@ -99,7 +119,6 @@ def try_patch(model_patch, repo_dir, cm, instance):
     else:
         logger.info(f"修复后应用补丁成功")
         return True
-
 
 
 def process_all_instances(raw_instances, retrieval_instances, model_name, batch_id, base_url, api_key, 
@@ -136,6 +155,9 @@ def process_all_instances(raw_instances, retrieval_instances, model_name, batch_
         seed_instance_map_function_summary[instance["instance_id"]] = instance["function_summary"]
 
     for instance in tqdm(filtered_instances, desc=f"处理 {model_name} 的实例"):
+        if instance["instance_id"] not in seed_instance_map_hits:
+            logger.warning(f"实例 {instance['instance_id']} 没有 context, 跳过")
+            continue
         process(instance, model_name, base_url, api_key, github_token, raw_repo_dir, num_cycles, max_context_token, 
                 max_gen_token,processed_instances, model_output_dir, CVE_map_instanceid, seed_instance_map_hits, 
                 seed_instance_map_function_summary, seed_instance_map_repo, processed_instances_file, **model_args)
@@ -160,17 +182,17 @@ def get_seed_mutation_map(raw_instances):
     CVE_map_instanceid = {}
     seed_instance_map_repo = {}
     for instance in raw_instances:
-        if instance["seed"] == False:
+        if "seed" in instance and instance["seed"] == False:
             continue
         CVE_map_instanceid[instance["vuln_source"]] = instance["instance_id"]
         seed_instance_map_repo[instance["instance_id"]] = instance["repo"]
     return CVE_map_instanceid, seed_instance_map_repo
 
 # 用于更新处理记录
-def update_processed_record(cycle_dir_name, success, processed_instances, processed_instances_file):
+def update_processed_record(cycle_dir_name, success, processed_instances, processed_instances_file, start_time):
     processed_instances[cycle_dir_name] = {
         "success": success,
-        "timestamp": time.time()
+        "time": time.time() - start_time
     }
     with open(processed_instances_file, 'w', encoding='utf-8') as f:
         json.dump(processed_instances, f, ensure_ascii=False, indent=2)
@@ -181,7 +203,7 @@ def process(instance, model_name, base_url, api_key, github_token, raw_repo_dir,
             seed_instance_map_function_summary, seed_instance_map_repo, processed_instances_file, **model_args):
     instance_id = instance["instance_id"]
     # 从 retrival data 中获取 hits 
-    if instance["seed"] == False:
+    if "seed" in instance and instance["seed"] == False:
         cve_source = instance["vuln_source"]
         seed_instance_id = CVE_map_instanceid[cve_source]
     else:
@@ -192,7 +214,7 @@ def process(instance, model_name, base_url, api_key, github_token, raw_repo_dir,
     # 获取原始 repo 
     repo = instance["repo"]
     repo_dir = Path(raw_repo_dir, f"{repo.replace('/', '__')}")
-    clone_repo(repo, repo_dir, github_token)
+    clone_repo(repo, repo_dir, github_token, logger)
 
     # 为每个周期创建一个新的工作目录
     for cycle in range(1, num_cycles + 1):
@@ -210,7 +232,7 @@ def process(instance, model_name, base_url, api_key, github_token, raw_repo_dir,
             shutil.rmtree(cycle_dir)
         
         # 复制代码仓库到新目录
-        if instance["seed"] == False:
+        if "seed" in instance and instance["seed"] == False:
             # 检查编译项目目录层级是否正确
             source_instance_id = CVE_map_instanceid[instance["vuln_source"]]
             source_repo = seed_instance_map_repo[source_instance_id]
@@ -226,17 +248,19 @@ def process(instance, model_name, base_url, api_key, github_token, raw_repo_dir,
         instance["repo_dir"] = cycle_dir
         instance["raw_repo_dir"] = repo_dir
         try:
+            start_time = time.time()
             success = process_instance(instance, model_name, base_url, api_key, max_context_token, 
                                        max_gen_token, **model_args)
-            update_processed_record(cycle_dir_name, success, processed_instances, processed_instances_file)
+            update_processed_record(cycle_dir_name, success, processed_instances, processed_instances_file, start_time)
         except Exception as e:
             logger.error(f"处理实例 {instance_id} 失败: {str(e)}")
             print(traceback.format_exc())
             # 将错误信息追加到 error.log 文件中
-            with open("error.log", "a", encoding="utf-8") as error_file:
-                error_file.write(f"[{datetime.datetime.now()}] 处理实例 {instance_id} 失败: {str(e)}\n")
-                error_file.write(f"模型: {model_name}, 周期: {cycle}\n")
-                error_file.write(f"详细错误: {traceback.format_exc()}\n\n")
+            with FileLock("llm_gencode_error.log.lock"):
+                with open("llm_gencode_error.log", "a", encoding="utf-8") as error_file:
+                    error_file.write(f"[{datetime.datetime.now()}] 处理实例 {instance_id} 失败: {str(e)}\n")
+                    error_file.write(f"模型: {model_name}, 周期: {cycle}\n")
+                    error_file.write(f"详细错误: {traceback.format_exc()}\n\n")
         finally:
             # 清理无关文件，节省存储
             clean_unnecessary_files(cycle_dir)
@@ -265,8 +289,10 @@ def gen_code(model_name, batch_id, base_url, api_key, max_context_token, max_gen
              dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, **model_args):
     with open(dataset_path, 'r', encoding='utf-8') as f:
         raw_instances = json.load(f)
-    with open(retrieval_data_path, 'r', encoding='utf-8') as f:
-        retrieval_instances = json.load(f)
+    # with open(retrieval_data_path, 'r', encoding='utf-8') as f:
+    #     # retrieval_instances = json.load(f)
+    retrieval_instances = load_data(retrieval_data_path)
+    logger.info(f"加载检索数据 from {retrieval_data_path}")
     process_all_instances(raw_instances, retrieval_instances, model_name, batch_id, base_url, api_key, 
                           max_context_token, max_gen_token, 
                           github_token, raw_repo_dir, generated_code_dir, num_cycles, **model_args)

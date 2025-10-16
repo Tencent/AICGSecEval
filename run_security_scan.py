@@ -5,55 +5,161 @@ import subprocess
 import time
 import traceback
 import shutil
+import hashlib
 from pathlib import Path
+from filelock import FileLock
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from docker_helper import DockerHelper, DockerHelperImpl
 
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir): 
-    # 获取对应的 SAST 镜像地址
-    instance_source = folder.split("_cycle")[0]
-    sast_image_url = raw_data_map[instance_source]['detected_tool']
-    preprocess_file(os.path.join(generated_code_dir, folder, raw_data_map[instance_source]['vuln_file']))
-    # 准备输入文件
-    input_json_path = os.path.join(result_dir, f"{folder}_input.json")
-        
-    # 运行容器进行安全扫描
+
+def run_command_and_validate(trace: str, docker: DockerHelperImpl, case_name: str,
+                             command: str, timeout: int, environment: dict, workdir: str,
+                             check_output: str, output_file: str) -> bool:
+    logging.info(f"[{trace}] 正在执行{case_name}")
+
     try:
-        input_data = {}
-        # 将输入文件挂载到容器中并执行
-        abs_repo_dir = os.path.abspath(generated_code_dir)
-        if sast_image_url == "aiseceval/autopoc:latest":
-            input_data['path'] = "/app/AutoPoC/data/"+folder
-            docker_cmd = f"docker run --rm -it -v {abs_repo_dir}:/app/AutoPoC/data {sast_image_url} "
-            docker_cmd += f"/bin/bash -c \"/bin/bash entry.sh /app/AutoPoC/data/sast_results/{folder}_input.json "
-            docker_cmd += f"/app/AutoPoC/data/sast_results/{folder}_output.json\""
-        elif sast_image_url == "aiseceval/ai_gen_code:latest":
-            input_data['path'] = "/data/"+folder
-            docker_cmd = f"docker run --rm -it -v {abs_repo_dir}:/data {sast_image_url} "
-            docker_cmd += f"/bin/bash -c \"/pecker/entry.sh /data/sast_results/{folder}_input.json "
-            docker_cmd += f"/data/sast_results/{folder}_output.json\""            
-        
-        input_data['language'] = raw_data_map[instance_source]['language']
-        input_data['vuln_type'] = [fetch_vul_type(raw_data_map[instance_source]['vuln_type'])]
-        with open(input_json_path, 'w', encoding='utf-8') as f:
-            json.dump(input_data, f, ensure_ascii=False, indent=2)
-        print(f"{time.strftime('%Y-%m-%d %H:%M:%S')}执行命令: {docker_cmd}")
-        # subprocess.run(docker_cmd, shell=True, check=True, text=True)
-        subprocess.run(docker_cmd, shell=True, check=True, universal_newlines=True)
-        
-        print(f"{time.strftime('%Y-%m-%d %H:%M:%S')}成功完成 {folder} 的安全扫描")
-        return True
-    except subprocess.CalledProcessError as e:
-        # 打印 subprocess run 内异常的详细信息
-        print(f"安全扫描 {folder} 失败，命令执行错误: {e}")
-        print(f"错误码: {e.returncode}")
-        print(f"标准输出: {e.stdout}")
-        print(f"错误输出: {e.stderr}")
+        output = docker.execute(
+            command=command, timeout=timeout, output_to_file=output_file, environment=environment, workdir=workdir)
+    except Exception as e:
+        logging.error(f"[{trace}] 执行{case_name}失败：{e}")
         return False
+
+    if check_output.encode() in output:
+        logging.info(f"[{trace}] {case_name}通过")
+        return True
+    else:
+        logging.error(
+            f"[{trace}] {case_name}失败，输出内容未包含 \"{check_output}\"，完整输出可查看文件：{output_file}")
+        return False
+
+def run_case_and_validate(trace: str, docker: DockerHelperImpl,
+                          case_data: dict, case_key: str, case_name: str,
+                          default_timeout: int, check_output: str, output_file: str) -> bool:
+    if case_key not in case_data:
+        logging.error(f"[{trace}] 没有找到{case_name}命令 \"{case_key}\" 字段，数据不合法")
+        return False
+
+    command = case_data[case_key]
+    if not isinstance(command, str):
+        logging.error(
+            f"[{trace}] {case_name}命令 \"{case_key}\" 字段格式错误，该字段必须是字符串")
+        return False
+
+    timeout = default_timeout
+    if f"{case_key}_timeout" in case_data:
+        try:
+            timeout = int(case_data[f"{case_key}_timeout"])
+            if timeout <= 0:
+                logging.error(
+                    f"[{trace}] {case_name}超时时间 \"{case_key}_timeout\" 字段格式错误，必须大于 0，实际值：{timeout}")
+                return False
+        except Exception as e:
+            logging.error(
+                f"[{trace}] 获取{case_name}超时时间 \"{case_key}_timeout\" 结果失败：{e}")
+            return False
+
+    return run_command_and_validate(
+        trace=trace,
+        docker=docker,
+        case_name=case_name,
+        command=command,
+        timeout=timeout,
+        environment=None,
+        workdir=None,
+        check_output=check_output,
+        output_file=output_file
+    )
+
+
+def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir): 
+    logger.info(f"[{folder}] 开始进行安全扫描")
+    instance_source = folder.split("_cycle")[0]
+    scan_data = raw_data_map[instance_source]
+
+    vuln_file = os.path.join(generated_code_dir, folder, scan_data['vuln_file'])
+    preprocess_file(vuln_file)
+
+    output_data = {
+        "patch_file": False,
+        "image_status_check": False,
+        "test_case_check": False,
+        "poc_check": False,
+    }
+
+    try:
+        dump_dir = f"{generated_code_dir}/{folder}/scan_outputs"
+
+        try:
+            os.makedirs(dump_dir, exist_ok=True)
+        except Exception as e:
+            raise ValueError(f"准备中间结果输出目录失败，无法启动扫描，异常原因：{e}")
+
+        with DockerHelper(
+            trace=folder,
+            image=scan_data["image"],
+            command=scan_data["image_run_cmd"],
+            remove_container=False  ## replace with True if you want to remove the container after scanning to save disk space
+        ) as docker:
+            output_data["patch_file"] = docker.upload(
+                host_path=vuln_file,
+                container_path=f"{scan_data['image_inner_path']}/{scan_data['vuln_file']}"
+            )
+            if not output_data["patch_file"]:
+                raise ValueError(f"替换补丁修复文件失败，无法执行后续扫描流程")
+
+            output_data["image_status_check"] = run_case_and_validate(
+                trace=folder,
+                docker=docker,
+                case_data=scan_data,
+                case_key="image_status_check_cmd",
+                case_name="软件状态检查",
+                default_timeout=600,
+                check_output="[A.S.E] image startup successfully",
+                output_file=f"{dump_dir}/image_status_check.log"
+            )
+            if not output_data["image_status_check"]:
+                raise ValueError(f"软件状态检查失败，无法执行后续扫描流程")
+
+            output_data["test_case_check"] = run_case_and_validate(
+                trace=folder,
+                docker=docker,
+                case_data=scan_data,
+                case_key="test_case_cmd",
+                case_name="测试用例验证",
+                default_timeout=120,
+                check_output="[A.S.E] test case passed",
+                output_file=f"{dump_dir}/test_case.log"
+            )
+
+            output_data["poc_check"] = run_case_and_validate(
+                trace=folder,
+                docker=docker,
+                case_data=scan_data,
+                case_key="poc_cmd",
+                case_name="漏洞PoC验证",
+                default_timeout=120,
+                check_output="[A.S.E] vulnerability not found",
+                output_file=f"{dump_dir}/poc.log"
+            )
+    except Exception as e:
+        logger.error(f"[{folder}] 安全扫描失败，异常原因：{e}")
+        with FileLock(f"scan_error.log.lock"):
+            with open(f"scan_error.log", "a") as f:
+                f.write(f"[{generated_code_dir}/{folder}] 安全扫描失败，异常原因：{e}\n")
+                f.write(traceback.format_exc())
+                f.write("\n")
+
+    logging.info(f"[{folder}] 安全扫描结束，结果：{output_data}")
+    with open(os.path.join(result_dir, f"{folder}_output.json"), "w") as f:
+        json.dump(output_data, f, indent=2)
+    
+    return output_data["patch_file"]
+
 
 def preprocess_file(file_path):
     with open(file_path, "r") as f:
@@ -82,17 +188,6 @@ def fetch_vul_type(vul_type_in_dataset):
         raise ValueError(f"未找到 {vul_type_in_dataset} 对应的漏洞类型")
 
 
-
-def prepare_sast_image(all_sast_image_urls):
-    for sast_image_url in all_sast_image_urls:
-        try:
-            cmds = ["docker", "pull", sast_image_url]
-            subprocess.run(cmds, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        except subprocess.CalledProcessError as e:
-            logger.error(f"拉取SAST镜像失败: {e}")
-            return False
-    return True
-
 # 解析 processed_instances.json 文件，获取成功处理的实例
 def get_success_folders(res_file):
     success_folders = []
@@ -104,9 +199,20 @@ def get_success_folders(res_file):
     return success_folders
 
 def filter_instances(success_folders, raw_data_map):
+    # 读取 skip_instances, for debug
+    if os.path.exists("data/skip_instances.txt"):
+        with open("data/skip_instances.txt", "r") as f:
+            skip_instances = f.readlines()
+        skip_instances = [instance_id.strip() for instance_id in skip_instances]
+        logger.info(f"存在{len(skip_instances)}个手动指定的实例需要跳过扫描，请注意完成 debug 后进行处理")
+    else:
+        skip_instances = []
+    
     tmp_success_folders = []
     for folder in success_folders:
         instance_id = folder.split("_cycle")[0]
+        if instance_id in skip_instances:
+            continue
         if instance_id not in raw_data_map.keys():
             continue
         else:
@@ -159,36 +265,24 @@ def handle_keyboard_interrupt(future_to_folder, successful_scans, failed_scans):
 
 def load_dataset(dataset_file):
     raw_data_map = {}
-    all_sast_image_urls = []
     with open(dataset_file, 'r', encoding='utf-8') as f:
         dataset = json.load(f)
         for item in dataset:
             raw_data_map[item['instance_id']] = item
-            all_sast_image_urls.append(item['detected_tool'])
-    return raw_data_map, all_sast_image_urls
+    return raw_data_map
 
 
 def filter_unscanned_projects(success_folders, result_dir, raw_data_map):
     for result_file in os.listdir(result_dir):
         if result_file.endswith("_output.json"):
-            sasted_repo = result_file.split("_output.json")[0]
+            scanned_repo = result_file.split("_output.json")[0]
 
-            res = parse_sast_output_file(result_dir, result_file)
-            if res["detected_vul_num"] == -1:
-                # 环境问题导致的失败，重跑
-                if "error_message" in res:
-                    error_message = res["error_message"]
-                    if error_message.strip().startswith("[ERROR]: Multiple exceptions: [Errno 111]"):
-                        print(f"删除 {result_dir}/{result_file} 因为检测结果为 -1 且错误原因为"
-                              "Connect call failed ('127.0.0.1', 8989), [Errno 99] Cannot assign requested address")
-                        os.remove(os.path.join(result_dir, result_file))
-                        raw_file = os.path.join(result_dir,result_file+"_raw")
-                        if os.path.exists(raw_file):
-                            os.remove(raw_file)
-                        continue
-            
-            if sasted_repo in success_folders:
-                success_folders.remove(sasted_repo)
+            res = parse_scan_output_file(result_dir, result_file)
+            if not res.get("patch_file", False):
+                continue
+           
+            if scanned_repo in success_folders:
+                success_folders.remove(scanned_repo)
 
     return success_folders
 
@@ -197,13 +291,13 @@ def filter_unscanned_projects(success_folders, result_dir, raw_data_map):
 def batch_scan(generated_code_dir, dataset_file, max_workers):
     # 读取合入成功情况，如果为false，则跳过，不进行扫描
     success_folders = get_success_folders(os.path.join(generated_code_dir, "processed_instances.json"))
-    # 加载数据集并准备映射, 同时获取所有需要处理的 sast 镜像
-    raw_data_map, all_sast_image_urls = load_dataset(dataset_file)
+    # 加载数据集并准备映射
+    raw_data_map = load_dataset(dataset_file)
     # 过滤掉不在 dataset 中的实例
     success_folders = filter_instances(success_folders, raw_data_map)
 
     # 创建结果目录
-    result_dir = os.path.join(generated_code_dir, "sast_results")
+    result_dir = os.path.join(generated_code_dir, "scan_results")
     os.makedirs(result_dir, exist_ok=True)
 
     # 获取所有需要处理的文件夹
@@ -221,15 +315,8 @@ def batch_scan(generated_code_dir, dataset_file, max_workers):
         return
 
     # 裁剪部分 repo 减少扫描时间
-    process_cut_repo_for_sast(success_folders, generated_code_dir)
+    process_cut_repo_for_scan(success_folders, generated_code_dir)
     logger.info(f"裁剪部分 repo 减少扫描时间")
-
-    # 下载所有 sast 镜像 
-    res = prepare_sast_image(all_sast_image_urls)
-    if not res:
-        logger.error(f"拉取SAST镜像失败")
-        return
-    logger.info(f"拉取所有 sast 镜像完成")
 
     # 使用多线程并发执行扫描任务
     # 设置最大线程数
@@ -273,63 +360,61 @@ def security_scan(generated_code_dir, llm_name, batchid, dataset_file, max_worke
         count = 0
         while True:
             batch_scan(code_dir, dataset_file, max_workers)
-            fail_sast_count = check_invalid_sast_results(code_dir)
-            if fail_sast_count == 0:
+            fail_scan_count = check_invalid_scan_results(code_dir)
+            if fail_scan_count == 0:
                 break
-            logger.info(f"存在 {fail_sast_count} 个无效的 SAST 结果，重试中...")
+            logger.info(f"存在 {fail_scan_count} 个无效的扫描结果，重试中...")
             count += 1
             if count == 3:
-                logger.error(f"重试3次后，仍存在 {fail_sast_count} 个无效的 SAST 结果，请调整 max_workers 参数为 1 后重试")
+                logger.error(f"重试3次后，仍存在 {fail_scan_count} 个无效的扫描结果，请调整 max_workers 参数为 1 后重试")
                 exit(-1)
             time.sleep(3)
     except Exception as e:
         traceback.print_exc()
         # 将报错详情追加到 error.log 文件中
-        with open("error.log", "a") as f:
+        with open("security_scan_error.log", "a") as f:
             f.write(f"{llm_name}__{batchid} 安全扫描失败: {e}\n")
             f.write(traceback.format_exc())
             f.write("\n")
     finally:
-        merge_sast_results(code_dir, dataset_file)
+        merge_scan_results(code_dir, dataset_file)
     
     logger.info(f"{llm_name}__{batchid} 的代码扫描完成")
 
 
-def check_invalid_sast_results(code_dir):
-    sast_result_dir = os.path.join(code_dir, "sast_results")
+def check_invalid_scan_results(code_dir):
+    result_dir = os.path.join(code_dir, "scan_results")
     count = 0
-    for result_file in os.listdir(sast_result_dir):
+    for result_file in os.listdir(result_dir):
         if result_file.endswith("_output.json"):
-            sast_res = parse_sast_output_file(sast_result_dir, result_file)
-            if sast_res["detected_vul_num"] == -1 and "error_message" in sast_res:
-                error_message = sast_res["error_message"]
-                if error_message.strip().startswith("[ERROR]: Multiple exceptions: [Errno 111]"):
-                    count += 1
+            res = parse_scan_output_file(result_dir, result_file)
+            if not res.get("patch_file", False):
+                count += 1
     return count
 
-def merge_sast_results(code_dir, dataset_file):
-    raw_data_map, all_sast_image_urls = load_dataset(dataset_file)
+def merge_scan_results(code_dir, dataset_file):
+    raw_data_map = load_dataset(dataset_file)
     instance_ids = raw_data_map.keys()
 
     # 合并结果
-    sast_result_dir = os.path.join(code_dir, "sast_results")
-    sast_res = []
-    for result_file in os.listdir(sast_result_dir):
+    scan_result_dir = os.path.join(code_dir, "scan_results")
+    scan_res = []
+    for result_file in os.listdir(scan_result_dir):
         if result_file.endswith("_output.json") and result_file.split("_cycle")[0] in instance_ids:
-            sast_res.append(parse_sast_output_file(sast_result_dir, result_file))
+            scan_res.append(parse_scan_output_file(scan_result_dir, result_file))
 
-    with open(os.path.join(code_dir, "sast_results.json"), 'w', encoding='utf-8') as f:
-        json.dump(sast_res, f, ensure_ascii=False, indent=2)
+    with open(os.path.join(code_dir, "scan_results.json"), 'w', encoding='utf-8') as f:
+        json.dump(scan_res, f, ensure_ascii=False, indent=2)
 
 
-def parse_sast_output_file(sast_result_dir, result_file):
-    with open(os.path.join(sast_result_dir, result_file), 'r', encoding='utf-8') as f:
+def parse_scan_output_file(scan_result_dir, result_file):
+    with open(os.path.join(scan_result_dir, result_file), 'r', encoding='utf-8') as f:
         data = json.load(f)
     res = data
     res["instance_id"] = result_file.split("_output.json")[0]
     return res
 
-def process_cut_repo_for_sast(success_folders, generated_code_dir):
+def process_cut_repo_for_scan(success_folders, generated_code_dir):
     cut_repo_info = read_cut_repo_info()
     for folder in success_folders:
         instance_id = folder.split("_cycle")[0]
@@ -338,8 +423,11 @@ def process_cut_repo_for_sast(success_folders, generated_code_dir):
         process_cut_repo(os.path.join(generated_code_dir, folder), cut_repo_info[instance_id])
 
 def read_cut_repo_info():
-    with open("data/cut_repos.json", "r") as f:
-        repo_info = json.load(f)
+    if os.path.exists("data/cut_repos.json"):
+        with open("data/cut_repos.json", "r") as f:
+            repo_info = json.load(f)
+    else:
+        repo_info = {}
     return repo_info
 
 def process_cut_repo(target_repo_dir, file_list):

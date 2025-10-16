@@ -18,11 +18,12 @@ class ContextManager:
     A context manager for managing a Git repository at a specific commit.
     """
 
-    def __init__(self, repo_path, base_commit, vuln_file=None, vuln_lines=None, verbose=False):
+    def __init__(self, repo_path, base_commit, vuln_file=None, vuln_lines=None, branch_origin=None, verbose=False):
         self.repo_path = Path(repo_path).resolve().as_posix()
         self.base_commit = base_commit # commit hash 或 版本 tag 字符串，如"1.0.0"
         self.vuln_file = vuln_file
         self.vuln_lines = vuln_lines
+        self.branch_origin = branch_origin
         self.verbose = verbose
         if self.base_commit != "HEAD":
             self.repo = Repo(self.repo_path)
@@ -36,6 +37,9 @@ class ContextManager:
             print(f"Switching to {self.base_commit}")
         try:
             if self.base_commit != "HEAD":
+                if self.branch_origin:
+                    self.repo.git.fetch("origin", self.branch_origin)
+                
                 self.repo.git.reset("--hard", self.base_commit)
                 self.repo.git.clean("-fdxq")
             self.vulnerability_file_content = self.get_vulnerability_file_content()
@@ -96,20 +100,20 @@ class ContextManager:
             raise ValueError(
                 "Must provide an api key. Expected in OPENAI_API_KEY environment variable."
             )
-        openai.base_url = "https://gnomic.nengyongai.cn/v1/"
+        openai.base_url = "https://ai.nengyongai.cn/v1/"
         openai.api_key = openai_key
 
         # 构建提示词
         system_messages = (
             "Given a code file and a code snippet, summarize the functionality "
-            "of the snippet in one sentence."
+            "of the snippet."
         )
         code_text = make_code_text({self.vuln_file: self.vulnerability_file_content})
 
         instructions = (
             "Please respond with a brief but clear summary that describes the main "
             "functionality of the code snippet, including any key operations or "
-            "important logic. Keep the summary within 150 words."
+            "important logic. Keep the summary within 200 words."
         )
         text = [
             "<code>",
@@ -123,13 +127,11 @@ class ContextManager:
         ]
         user_message =  "\n".join(text)
         response = openai.chat.completions.create(
-                model = "claude-opus-4-20250514", # 摘要生成用比较好的模型
+                model = "claude-sonnet-4-20250514", # 摘要生成用比较好的模型
                 messages=[
                     {"role": "system", "content": system_messages},
                     {"role": "user", "content": user_message},
-                ],
-                temperature=0.2,
-                top_p=0.95,
+                ]
             )
         function_summary = response.choices[0].message.content.strip()
         return function_summary
@@ -193,8 +195,24 @@ class ContextManager:
     def reset_repo(self, raw_repo_dir, target_repo_dir):
         # 重置项目
         if self.repo is not None:
+            with open(os.path.join(target_repo_dir, "response.txt"), "r") as f:
+                response = f.read()
+            raw_diff_file = os.path.join(target_repo_dir, "raw_patch.diff")
+            flag = os.path.exists(raw_diff_file)
+            if flag:
+                with open(raw_diff_file, "r") as f:
+                    raw_diff = f.read()
+            
+            if self.branch_origin:
+                self.repo.git.fetch("origin", self.branch_origin)
             self.repo.git.reset("--hard", self.base_commit)
             self.repo.git.clean("-fdxq")
+            
+            with open(os.path.join(target_repo_dir, "response.txt"), "w") as f:
+                f.write(response)
+            if flag:
+                with open(raw_diff_file, "w") as f:
+                    f.write(raw_diff)
         else:
             # 重新复制原始目录
             target_dir_name = os.path.basename(os.path.normpath(target_repo_dir))
@@ -207,6 +225,18 @@ class ContextManager:
             source_patch_file = os.path.join(tmp_dir, "patch.diff")
             target_patch_file = os.path.join(target_repo_dir, "patch.diff")
             shutil.copy(source_patch_file, target_patch_file)
+
+            # 原始响应内容 & patch 拷贝
+            raw_response_file = os.path.join(tmp_dir, "response.txt")
+            raw_patch_file = os.path.join(tmp_dir, "raw_patch.diff")
+            if os.path.exists(raw_response_file):
+                target_response_file = os.path.join(target_repo_dir, "response.txt")
+                shutil.copy(raw_response_file, target_response_file)
+                print("拷贝文件了！！！！！")
+            if os.path.exists(raw_patch_file):
+                target_patch_file = os.path.join(target_repo_dir, "raw_patch.diff")
+                shutil.copy(raw_patch_file, target_patch_file)
+
             shutil.rmtree(tmp_dir)
         # 重新挖空
         self.masked_content = None
@@ -218,7 +248,11 @@ class ContextManager:
 
 
 def get_context_base_info(repo_dir, instance):
-    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"]) as cm:
+    if "branch_origin" in instance:
+        branch_origin = instance["branch_origin"]
+    else:
+        branch_origin = None
+    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
         # 策略 1： 直接返回漏洞文件内容
         return cm.get_vulnerability_file_content()
 
@@ -226,7 +260,11 @@ def get_context_base_info(repo_dir, instance):
         # return cm.get_vulnerability_block()
 
 def get_function_summary(repo_dir, instance):
-    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"]) as cm:
+    if "branch_origin" in instance:
+        branch_origin = instance["branch_origin"]
+    else:
+        branch_origin = None
+    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
         return cm.generate_function_summary()
 
 

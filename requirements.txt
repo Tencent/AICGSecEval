@@ -9,3 +9,4 @@ tenacity==9.1.2
 tqdm==4.67.1
 transformers==4.50.3
 gitpython==3.1.44
+docker==7.1.0

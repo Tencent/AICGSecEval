@@ -11,7 +11,7 @@ from pathlib import Path
 from bench import bm25_retrieval
 
 
-def main(dataset_path,output_dir="data/tmp"):
+def main(dataset_path, output_dir, github_token):
       
     # 创建输出目录
     output_dir = Path(output_dir)
@@ -28,11 +28,11 @@ def main(dataset_path,output_dir="data/tmp"):
     with open(dataset_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
         for instance in data:
-            if instance["seed"] == True:
+            if "seed" not in instance or instance["seed"] == True:
                 instances.append(instance)
 
     document_encoding_style = "file_name_and_contents"
-    token = os.environ.get("GITHUB_TOKEN", "git")
+    token = github_token
     # 执行代码索引和搜索
     bm25_retrieval.main(dataset_name, instances, document_encoding_style, token, output_dir, False)
 
@@ -47,6 +47,10 @@ if __name__ == "__main__":
     # main(args.input_file, args.output_dir)
 
     # 标注的数据集
-    dataset_path = "data/test.json"
-    main(dataset_path)
+    dataset_path = "data/data_v2.json"
+    output_dir = "./outputs/data_retrieval_bm25"
+    github_token = os.environ.get("GITHUB_TOKEN", "git")
+    main(dataset_path, output_dir, github_token)
+
+
 
