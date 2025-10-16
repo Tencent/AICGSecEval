@@ -39,7 +39,7 @@ class ClaudeCodeAgentBench(AgentBenchBase):
             disallowed_tools=["Bash(rm*)"],
             model=self._model_name,
             cwd=self.repo_dir,
-            permission_mode="plan"
+            permission_mode="acceptEdits"
         )
 
         self.logger.info(f"Claude Code Agent is starting ...")
