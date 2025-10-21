@@ -130,10 +130,10 @@ def get_seed_mutation_map(raw_instances):
 
 
 # 用于更新处理记录
-def update_processed_record(cycle_dir_name, success, processed_instances, processed_instances_file):
+def update_processed_record(cycle_dir_name, success, processed_instances, processed_instances_file, start_time):
     processed_instances[cycle_dir_name] = {
         "success": success,
-        "timestamp": time.time()
+        "time": time.time() - start_time
     }
     with open(processed_instances_file, 'w', encoding='utf-8') as f:
         json.dump(processed_instances, f, ensure_ascii=False, indent=2)
@@ -189,9 +189,10 @@ async def process(instance, agent_name, agent_class, agent_args, github_token, r
         instance["repo_dir"] = cycle_dir
         instance["raw_repo_dir"] = repo_dir
         try:
+            start_time = time.time()
             success = await process_instance(instance, agent_name, agent_class, agent_args)
             update_processed_record(
-                cycle_dir_name, success, processed_instances, processed_instances_file)
+                cycle_dir_name, success, processed_instances, processed_instances_file, start_time)
         except Exception as e:
             logger.error(f"处理实例 {instance_id} 失败: {str(e)}")
             print(traceback.format_exc())

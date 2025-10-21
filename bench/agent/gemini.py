@@ -1,6 +1,7 @@
 import argparse
 import os
 import subprocess
+import time
 from bench.agent.base import AgentBenchBase
 
 
@@ -38,24 +39,42 @@ class GeminiAgentBench(AgentBenchBase):
         if self._api_key is not None:
             os.environ["GEMINI_API_KEY"] = self._api_key
 
-        args = ["gemini", "--yolo", "-p", prompt]
+        args = ["gemini", "--yolo", "-d", "-p", prompt]
         if self._model_name is not None:
             args.extend(["-m", self._model_name])
 
-        output = None
-
         try:
-            output = subprocess.run(
+            process = subprocess.Popen(
                 args=args,
                 cwd=self.repo_dir,
-                capture_output=True,
-                text=True,
-                check=True
+                stdin=None,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
             )
 
-            self.logger.info(f"Gemini output: {output.stdout}")
-            return True
+            os.set_blocking(process.stdout.fileno(), False)
+            os.set_blocking(process.stderr.fileno(), False)
+
+            while process.poll() is None:
+                while True:
+                    stdout = process.stdout.read()
+                    if not stdout:
+                        break
+                    self.logger.info(
+                        f"Gemini output: {stdout.decode().strip()}")
+                while True:
+                    stderr = process.stderr.read()
+                    if not stderr:
+                        break
+                    self.logger.info(
+                        f"Gemini output error: {stderr.decode().strip()}")
+                time.sleep(0.1)
+
+            exitcode = process.returncode
+
+            self.logger.info(f"Gemini run finish, exitcode: {exitcode}")
+            return exitcode == 0
 
         except Exception as e:
-            self.logger.error(f"Gemini error: {e}, output: {output}")
+            self.logger.error(f"Gemini run error: {e}")
             return False
