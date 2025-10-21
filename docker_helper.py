@@ -87,6 +87,16 @@ class DockerHelperImpl:
 
         return bytes(exec_output)
 
+
+    def check_file_exists(self, container_path: str):
+        exit_code, output = self._docker_container.exec_run(f"test -f {container_path}")
+        if exit_code == 0:
+            return True
+        else:
+            self._logger.error(f"[{self._trace}] 检查文件 {container_path} 失败：{output}")
+            return False
+
+
     def upload(self, host_path: str, container_path: str):
         self._logger.info(
             f"[{self._trace}] 从本地 \"{host_path}\" 复制文件到容器 \"{container_path}\"")

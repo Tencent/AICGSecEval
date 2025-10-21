@@ -64,6 +64,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
     result = {
         "instance_id": trace,
         **basic_result,
+        "inner_path_check": False,
         "base_commit": {
             "commit": case_data.get("base_commit", None),
             "image_status_check": False,
@@ -86,6 +87,15 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
             command=case_data["image_run_cmd"],
             remove_container=patch_commit is None
         ) as docker:
+
+            # inner path 检查
+            container_inner_path = case_data["image_inner_path"]+"/"+case_data["vuln_file"]
+            if not docker.check_file_exists(container_inner_path):
+                result["inner_path_check"] = False
+                result["inner_path_check_failed_reason"] = f"路径不存在: {container_inner_path}"
+            else:
+                result["inner_path_check"] = True
+
             result["base_commit"]["image_status_check"] = run_case_and_validate(
                 trace=trace,
                 docker=docker,

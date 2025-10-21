@@ -86,7 +86,7 @@ async def invoke(args, remaining_args):
 
         # 评估分数
         res = evaluate_score(generated_code_dir, llm_name, batch_id, dataset_path)
-        print_detail_result(output_dir, llm_name, batch_id, res)
+        # print_detail_result(output_dir, llm_name, batch_id, res)
 
     end_time = time.time()
     print(f"{llm_name} 总耗时: {end_time - start_time} 秒")
