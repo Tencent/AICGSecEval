@@ -137,6 +137,9 @@ def process_all_instances(raw_instances, retrieval_instances, model_name, batch_
         with open(processed_instances_file, 'r', encoding='utf-8') as f:
             processed_instances = json.load(f)
         logger.info(f"已加载处理记录，共 {len(processed_instances)} 个实例")
+
+    # 如果有需要重跑的实例，则从 processed_instances 中删除
+    
     
     # 过滤已处理的实例
     filtered_instances = filter_instances(raw_instances, processed_instances, num_cycles)

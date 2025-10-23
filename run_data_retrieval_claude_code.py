@@ -183,6 +183,20 @@ async def main(dataset_path: str, retrieval_data_path: str, temp_dir: str, model
     finish_instance_id = set([instance["instance_id"]
                              for instance in retrieval_data])
 
+    rerun_instance_ids = []
+    if os.path.exists("data/rerun_instances.txt"):
+        with open("data/rerun_instances.txt", "r") as f:
+            rerun_instance_ids = f.readlines()
+        rerun_instance_ids = [instance_id.strip() for instance_id in rerun_instance_ids]
+        if len(rerun_instance_ids) > 0:
+            logging.info(f"Found {len(rerun_instance_ids)} instances to rerun.")
+            for instance_id in rerun_instance_ids:
+                if instance_id in finish_instance_id:
+                    finish_instance_id.remove(instance_id)
+            rerun_instances = [instance for instance in retrieval_data if instance["instance_id"] in rerun_instance_ids]
+            for instance in rerun_instances:
+                retrieval_data.remove(instance)
+
     dataset = []
     with open(dataset_path, "r") as f:
         for instance in json.load(f):

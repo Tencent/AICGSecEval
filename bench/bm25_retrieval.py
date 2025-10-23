@@ -175,15 +175,22 @@ def get_remaining_instances(instances, output_file):
         content = f.read()
         data = json.loads(content)
     instance_ids = {item["instance_id"] for item in data}
-
     if instance_ids:
-        logger.warning(
-            f"Found {len(instance_ids)} existing instances in {output_file}. Will skip them."
-        )
+        logger.info(f"Found {len(instance_ids)} existing instances in {output_file}. Will skip them.")
     
     # 过滤出未处理的实例
-    return [instance for instance in instances if instance["instance_id"] not in instance_ids]
+    res =  [instance for instance in instances if instance["instance_id"] not in instance_ids]
 
+    # 读取 rerun_instances.txt 文件
+    if os.path.exists("data/rerun_instances.txt"):
+        with open("data/rerun_instances.txt", "r") as f:
+            rerun_instance_ids = f.readlines()
+        rerun_instance_ids = [instance_id.strip() for instance_id in rerun_instance_ids]
+        if len(rerun_instance_ids) > 0:
+            logger.info(f"Found {len(rerun_instance_ids)} instances to rerun.")
+            rerun_instances = [instance for instance in instances if instance["instance_id"] in rerun_instance_ids]
+            res += rerun_instances
+    return res
 
 def search(instance, index_path):
     """

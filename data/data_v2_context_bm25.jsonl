@@ -2482,172 +2482,172 @@
     "hits": [
       {
         "docid": "mlflow/server/handlers.py",
-        "score": 9950.9775390625
+        "score": 9932.0576171875
       },
       {
         "docid": "mlflow/server/auth/__init__.py",
-        "score": 3321.16650390625
+        "score": 3283.265625
       },
       {
         "docid": "mlflow/tracking/fluent.py",
-        "score": 2592.621826171875
+        "score": 2556.435546875
       },
       {
         "docid": "mlflow/store/tracking/sqlalchemy_store.py",
-        "score": 2556.191162109375
+        "score": 2527.23779296875
       },
       {
         "docid": "mlflow/tracking/client.py",
-        "score": 2414.69921875
+        "score": 2377.55810546875
       },
       {
         "docid": "mlflow/store/tracking/file_store.py",
-        "score": 2397.424072265625
+        "score": 2355.68994140625
       },
       {
         "docid": "mlflow/tracking/_tracking_service/client.py",
-        "score": 2348.292724609375
+        "score": 2312.192626953125
       },
       {
         "docid": "mlflow/transformers/__init__.py",
-        "score": 2246.3017578125
+        "score": 2239.54541015625
       },
       {
         "docid": "mlflow/cli.py",
-        "score": 2190.863037109375
-      },
-      {
-        "docid": "mlflow/store/_unity_catalog/registry/rest_store.py",
-        "score": 2181.582275390625
-      },
-      {
-        "docid": "mlflow/models/evaluation/base.py",
-        "score": 2168.027587890625
+        "score": 2169.021240234375
       },
       {
         "docid": "mlflow/pyfunc/scoring_server/__init__.py",
-        "score": 2164.6376953125
+        "score": 2147.7998046875
+      },
+      {
+        "docid": "mlflow/store/_unity_catalog/registry/rest_store.py",
+        "score": 2143.73193359375
+      },
+      {
+        "docid": "mlflow/models/evaluation/base.py",
+        "score": 2137.856201171875
       },
       {
         "docid": "mlflow/pyfunc/__init__.py",
-        "score": 2159.397705078125
+        "score": 2131.435302734375
       },
       {
         "docid": "mlflow/sklearn/__init__.py",
-        "score": 2137.165771484375
+        "score": 2109.420654296875
       },
       {
         "docid": "mlflow/sagemaker/__init__.py",
-        "score": 2124.92333984375
+        "score": 2105.892333984375
       },
       {
         "docid": "mlflow/store/artifact/databricks_artifact_repo.py",
-        "score": 2067.990478515625
-      },
-      {
-        "docid": "mlflow/pyspark/ml/__init__.py",
-        "score": 2059.132568359375
+        "score": 2048.062255859375
       },
       {
         "docid": "mlflow/store/tracking/rest_store.py",
-        "score": 2034.3546142578125
+        "score": 2025.916748046875
+      },
+      {
+        "docid": "mlflow/pyspark/ml/__init__.py",
+        "score": 2018.254150390625
       },
       {
         "docid": "mlflow/tensorflow/__init__.py",
-        "score": 2022.6722412109375
+        "score": 1989.7408447265625
       },
       {
         "docid": "mlflow/java/client/src/main/java/org/mlflow/api/proto/Service.java",
-        "score": 1977.421142578125
+        "score": 1939.5638427734375
       }
     ],
-    "function_summary": "This code snippet contains HTTP request handlers for MLflow's tracking server APIs. The main functionality includes:\n\n**Core Operations:**\n- **Experiment Management**: Create, get, delete, restore, update, and search experiments\n- **Run Management**: Create, update, delete, restore runs, and search runs with filtering/pagination\n- **Metrics & Parameters**: Log individual metrics/parameters and batch logging operations\n- **Artifacts**: List and manage run artifacts, including support for proxied artifact storage\n- **Tags**: Set and delete tags for experiments and runs\n- **Dataset Management**: Log dataset inputs and search datasets across experiments\n\n**Key Features:**\n- **Request Processing**: Uses `_get_request_message()` to parse and validate incoming requests with schema validation\n- **Error Handling**: All handlers are wrapped with `@catch_mlflow_exception` decorator for consistent error responses\n- **Security**: Validates artifact paths and query strings to prevent security vulnerabilities\n- **Artifact Proxying**: Supports proxied artifact storage through HTTP/HTTPS/mlflow-artifacts schemes\n- **Bulk Operations**: Handles bulk metric history retrieval with sampling and interval-based queries\n\n**Response Format**: All handlers return JSON responses using protobuf message serialization. The code includes comprehensive input validation, parameter checking, and proper HTTP status codes for different scenarios.\n\nThis forms the core REST API layer for MLflow's experiment tracking functionality."
+    "function_summary": "This code snippet is the `_create_experiment()` handler function for creating a new MLflow experiment via the REST API. Here's what it does:\n\n1. **Request Validation**: Parses and validates the incoming request message using a schema that requires:\n   - `name` (required string)\n   - `artifact_location` (optional string) \n   - `tags` (optional array)\n\n2. **Tag Processing**: Converts the request tags into `ExperimentTag` objects by extracting key-value pairs from the protobuf message.\n\n3. **Security Validation**: Performs a security check by parsing the artifact location URL and validating its query string to prevent potential attacks.\n\n4. **Experiment Creation**: Calls the tracking store to create the experiment with the provided name, artifact location, and tags, receiving back a unique experiment ID.\n\n5. **Response Generation**: Creates a properly formatted JSON response containing the new experiment ID and returns it with the appropriate MIME type.\n\nThe function is decorated with `@catch_mlflow_exception` for error handling and `@_disable_if_artifacts_only` to ensure it's disabled when the server runs in artifacts-only mode. This is a core API endpoint that enables users to programmatically create new experiments in MLflow's tracking system."
   },
   {
     "instance_id": "sjtu_CVE-2024-1483",
     "hits": [
       {
         "docid": "mlflow/server/handlers.py",
-        "score": 9931.20703125
+        "score": 9937.951171875
       },
       {
         "docid": "mlflow/server/auth/__init__.py",
-        "score": 3306.767333984375
+        "score": 3268.477294921875
       },
       {
         "docid": "mlflow/tracking/fluent.py",
-        "score": 2570.3896484375
+        "score": 2569.7275390625
       },
       {
         "docid": "mlflow/store/tracking/sqlalchemy_store.py",
-        "score": 2538.97900390625
+        "score": 2502.525634765625
       },
       {
         "docid": "mlflow/tracking/client.py",
-        "score": 2397.858642578125
+        "score": 2400.383056640625
       },
       {
         "docid": "mlflow/store/tracking/file_store.py",
-        "score": 2385.316162109375
+        "score": 2377.9716796875
       },
       {
         "docid": "mlflow/tracking/_tracking_service/client.py",
-        "score": 2324.640625
+        "score": 2333.96875
       },
       {
         "docid": "mlflow/transformers/__init__.py",
-        "score": 2237.48486328125
+        "score": 2264.780029296875
       },
       {
         "docid": "mlflow/pyfunc/__init__.py",
-        "score": 2208.527099609375
+        "score": 2235.972412109375
       },
       {
         "docid": "mlflow/cli.py",
-        "score": 2190.337158203125
-      },
-      {
-        "docid": "mlflow/store/_unity_catalog/registry/rest_store.py",
-        "score": 2166.909423828125
-      },
-      {
-        "docid": "mlflow/pyfunc/scoring_server/__init__.py",
-        "score": 2154.046630859375
+        "score": 2211.165283203125
       },
       {
         "docid": "mlflow/models/evaluation/base.py",
-        "score": 2150.557861328125
+        "score": 2177.88916015625
+      },
+      {
+        "docid": "mlflow/store/_unity_catalog/registry/rest_store.py",
+        "score": 2170.68603515625
       },
       {
         "docid": "mlflow/sklearn/__init__.py",
-        "score": 2123.196044921875
+        "score": 2155.0458984375
+      },
+      {
+        "docid": "mlflow/pyfunc/scoring_server/__init__.py",
+        "score": 2139.367431640625
       },
       {
         "docid": "mlflow/sagemaker/__init__.py",
-        "score": 2107.8037109375
+        "score": 2126.33544921875
       },
       {
         "docid": "mlflow/store/artifact/databricks_artifact_repo.py",
-        "score": 2053.10498046875
+        "score": 2083.51953125
       },
       {
         "docid": "mlflow/pyspark/ml/__init__.py",
-        "score": 2036.8377685546875
-      },
-      {
-        "docid": "mlflow/store/tracking/rest_store.py",
-        "score": 2032.1982421875
+        "score": 2038.3602294921875
       },
       {
         "docid": "mlflow/tensorflow/__init__.py",
-        "score": 2006.9857177734375
+        "score": 2030.109619140625
       },
       {
-        "docid": "mlflow/java/client/src/main/java/org/mlflow/api/proto/Service.java",
-        "score": 1952.1229248046875
+        "docid": "mlflow/store/tracking/rest_store.py",
+        "score": 1980.6019287109375
+      },
+      {
+        "docid": "mlflow/spark/__init__.py",
+        "score": 1978.51953125
       }
     ],
-    "function_summary": "This code snippet contains handler functions for MLflow's tracking server API endpoints. The main functionality includes:\n\n**Experiment Management:**\n- Creating experiments with validation of names, artifact locations, and tags\n- Getting experiments by ID or name\n- Deleting, restoring, and updating experiments\n- Searching experiments with filtering and pagination\n\n**Run Management:**\n- Creating, updating, deleting, and restoring ML runs\n- Logging metrics, parameters, tags, and model inputs to runs\n- Searching runs with complex filtering capabilities\n- Retrieving run details and metric history\n\n**Key Features:**\n- **Request validation**: Uses schema-based validation to ensure required fields are present and have correct types\n- **Error handling**: Wrapped with `@catch_mlflow_exception` decorator for consistent error responses\n- **Security**: Validates artifact locations and paths to prevent malicious attacks\n- **Artifact integration**: Handles both local and proxied artifact storage\n- **Backward compatibility**: Supports legacy `run_uuid` parameter alongside `run_id`\n\nThe handlers process HTTP requests, validate input parameters, interact with the tracking store backend, and return JSON responses. They support both REST API and AJAX endpoints, with proper content-type validation and response formatting using protocol buffer message serialization."
+    "function_summary": "This code snippet is part of a validation function `_validate_source` that performs security checks on model version source paths in MLflow. \n\nThe main functionality includes:\n\n1. **Local URI Validation**: When the source is a local file URI, it checks if a `run_id` is provided. If so, it:\n   - Retrieves the run from the tracking store\n   - Resolves both the source path and the run's artifact directory to absolute paths\n   - Verifies that the source path is contained within the run's artifact directory hierarchy\n   - Returns successfully if the path is valid\n\n2. **Security Enforcement**: If the local path validation fails (missing run_id or path outside artifact directory), it raises an `MlflowException` explaining that local paths must be associated with a valid run and contained within that run's artifact directory.\n\n3. **Non-Local URI Security Check**: For non-local URIs, it calls `_validate_non_local_source_contains_relative_paths(source)` to check for potentially malicious relative path components (like `../`) that could be used for directory traversal attacks.\n\nThis validation ensures that model sources either follow proper local path containment rules or don't contain dangerous path traversal patterns, preventing unauthorized file system access."
   },
   {
     "instance_id": "GioldDiorld_CVE-2017-9988",
