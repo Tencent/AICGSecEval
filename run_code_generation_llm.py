@@ -139,10 +139,14 @@ def process_all_instances(raw_instances, retrieval_instances, model_name, batch_
         logger.info(f"已加载处理记录，共 {len(processed_instances)} 个实例")
 
     # 如果有需要重跑的实例，则从 processed_instances 中删除
-    
-    
+    rerun_instance_ids = []
+    if os.path.exists("data/rerun_instances.txt"):
+        with open("data/rerun_instances.txt", "r") as f:
+            rerun_instance_ids = f.readlines()
+        rerun_instance_ids = [instance_id.strip() for instance_id in rerun_instance_ids]
+
     # 过滤已处理的实例
-    filtered_instances = filter_instances(raw_instances, processed_instances, num_cycles)
+    filtered_instances = filter_instances(raw_instances, processed_instances, num_cycles, rerun_instance_ids)
     if len(filtered_instances) < len(raw_instances):
         processed_sum = len(raw_instances) - len(filtered_instances)
         logger.info(f"共 {len(raw_instances)} 个实例，其中 {processed_sum} 个已被{model_name}处理，{len(filtered_instances)} 个待处理")
@@ -165,10 +169,22 @@ def process_all_instances(raw_instances, retrieval_instances, model_name, batch_
                 max_gen_token,processed_instances, model_output_dir, CVE_map_instanceid, seed_instance_map_hits, 
                 seed_instance_map_function_summary, seed_instance_map_repo, processed_instances_file, **model_args)
 
-def filter_instances(raw_instances, processed_instances, num_cycles):
+def filter_instances(raw_instances, processed_instances, num_cycles, rerun_instance_ids):
     filtered_instances = []
     for instance in raw_instances:
         instance_id = instance["instance_id"]
+
+        # 如果是需要重跑的实例，则直接添加到待测试实例列表
+        if instance_id in rerun_instance_ids:
+            # 记录到待测试实例列表
+            filtered_instances.append(instance)
+            # 从 processed_instances 中删除已有结果
+            for cycle in range(1, num_cycles + 1):
+                cycle_dir_name = f"{instance_id}_cycle{cycle}"
+                if cycle_dir_name in processed_instances:
+                    del processed_instances[cycle_dir_name]
+            continue 
+
         # 检查每个周期是否已处理
         all_cycles_processed = True
         for cycle in range(1, num_cycles + 1):
@@ -176,9 +192,9 @@ def filter_instances(raw_instances, processed_instances, num_cycles):
             if cycle_dir_name not in processed_instances:
                 all_cycles_processed = False
                 break
-        
         if not all_cycles_processed:
             filtered_instances.append(instance)
+    
     return filtered_instances
 
 def get_seed_mutation_map(raw_instances):

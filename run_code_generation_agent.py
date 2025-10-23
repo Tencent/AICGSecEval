@@ -10,6 +10,7 @@ import shutil
 from bench.agent.manager import AgentBenchManager
 from bench.context_manager import ContextManager
 from bench.utils import clone_repo
+from run_code_generation_llm import filter_instances
 
 # 设置日志
 logging.basicConfig(level=logging.INFO,
@@ -76,9 +77,16 @@ async def process_all_instances(raw_instances, retrieval_instances, agent_name, 
             processed_instances = json.load(f)
         logger.info(f"已加载处理记录，共 {len(processed_instances)} 个实例")
 
+    # 如果有需要重跑的实例，则从 processed_instances 中删除
+    rerun_instance_ids = []
+    if os.path.exists("data/rerun_instances.txt"):
+        with open("data/rerun_instances.txt", "r") as f:
+            rerun_instance_ids = f.readlines()
+        rerun_instance_ids = [instance_id.strip() for instance_id in rerun_instance_ids]
+
     # 过滤已处理的实例
     filtered_instances = filter_instances(
-        raw_instances, processed_instances, num_cycles)
+        raw_instances, processed_instances, num_cycles, rerun_instance_ids)
     if len(filtered_instances) < len(raw_instances):
         processed_sum = len(raw_instances) - len(filtered_instances)
         logger.info(
@@ -100,22 +108,6 @@ async def process_all_instances(raw_instances, retrieval_instances, agent_name, 
         await process(instance, agent_name, agent_class, agent_args, github_token, raw_repo_dir, num_cycles, processed_instances, agent_output_dir,
                       CVE_map_instanceid, seed_instance_map_hits, seed_instance_map_function_summary, seed_instance_map_repo, processed_instances_file)
 
-
-def filter_instances(raw_instances, processed_instances, num_cycles):
-    filtered_instances = []
-    for instance in raw_instances:
-        instance_id = instance["instance_id"]
-        # 检查每个周期是否已处理
-        all_cycles_processed = True
-        for cycle in range(1, num_cycles + 1):
-            cycle_dir_name = f"{instance_id}_cycle{cycle}"
-            if cycle_dir_name not in processed_instances:
-                all_cycles_processed = False
-                break
-
-        if not all_cycles_processed:
-            filtered_instances.append(instance)
-    return filtered_instances
 
 
 def get_seed_mutation_map(raw_instances):
