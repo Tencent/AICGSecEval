@@ -31,7 +31,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
         logging.error(f"[{trace}] 创建目录 {dump_dir} 失败：{e}")
         return
 
-    if "base_commit" in case_data and \
+    if "base_commit" in case_data and "patch_commit" not in case_data and \
             isinstance(case_data["base_commit"], str) and \
             case_data["base_commit"].endswith("^"):
         patch_commit = case_data["base_commit"][:-1]
@@ -59,7 +59,6 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
                 f.write(json.dumps(result) + "\n")
         except Exception as e:
             logging.error(f"[{trace}] 保存验证结果失败：{e}")
-        return
     
     result = {
         "instance_id": trace,
@@ -253,6 +252,8 @@ def validate_basic_info(case_data: dict):
     from git import Repo, GitCommandError
     try:
         repo = Repo(repo_dir)
+        if "branch_origin" in case_data:
+            repo.git.fetch("origin", case_data["branch_origin"])
         repo.git.checkout(base_commit)
         logging.info(f"[{case_data.get('instance_id', base_commit)}] git checkout {base_commit} 成功")
         checkout_success = True
@@ -335,7 +336,7 @@ def main(args: list[str]) -> int:
 
     # 将成功的结果先写入
     if validate_success_result:
-        with open(args.output_file, "w") as f:
+        with open(args.output_file, "w", encoding="utf-8") as f:
             for item in validate_success_result:
                 f.write(json.dumps(item) + "\n")
 
