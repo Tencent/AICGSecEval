@@ -75,6 +75,9 @@ class ContextManager:
     # 获取漏洞代码块
     def get_vulnerability_block(self):
         all_lines = self.vulnerability_file_content.split('\n')
+
+        if len(self.vuln_lines) != 2:
+            raise ValueError("漏洞行信息出错，无法进行挖空处理")
         
         context_start = self.vuln_lines[0]
         context_end = self.vuln_lines[-1]

@@ -200,7 +200,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
     logging.info(f"[{trace}] 验证结束：{result}")
 
     try:
-        with open(output_file, "a") as f:
+        with open(output_file, "a", encoding="utf-8") as f:
             fcntl.flock(f.fileno(), fcntl.LOCK_EX)
             f.write(json.dumps(result) + "\n")
     except Exception as e:

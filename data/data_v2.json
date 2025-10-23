@@ -625,7 +625,7 @@
     "cwe_id": "cwe-862",
     "vuln_type": "Missing Authorization",
     "severity": "medium",
-    "image": "hkk4203/snipe-it-cve-2021-4089",
+    "image": "hkk4203/snipe-it-cve-2021-4089:v1",
     "image_name": "snipe-5",
     "image_inner_path": "/var/www/html",
     "image_run_cmd": "tail -f /dev/null",
@@ -917,37 +917,6 @@
     "poc_cmd": "python3 /app/poc.py"
   },
   {
-    "instance_id": "sjtu_CVE-2021-41189",
-    "repo": "DSpace/DSpace",
-    "base_commit": "0de9680781ea52a26f99be0656618bc073ca8dab",
-    "patch_commit": "277b499a5cd3a4f5eb2370513a1b7e4ec2a6e041",
-    "vuln_file": "dspace-api/src/main/java/org/dspace/content/CollectionServiceImpl.java",
-    "vuln_lines": [
-      922,
-      932
-    ],
-    "language": "java",
-    "vuln_source": "CVE-2021-41189",
-    "cwe_id": "cwe-863",
-    "vuln_type": "Incorrect Authorization",
-    "severity": "high",
-    "image": "b2eeze/cve-2021-41189",
-    "image_inner_path": "/app/DSpace",
-    "image_run_cmd": "tail -f /dev/null",
-    "image_status_check_cmd": "python3 /app/img_check.py",
-    "test_case_cmd": "python3 /app/test.py",
-    "poc_cmd": "python3 /app/poc.py",
-    "other_vuln_files": [
-      {
-        "vuln_file": "dspace-api/src/main/java/org/dspace/eperson/GroupServiceImpl.java",
-        "vuln_lines": [
-          677,
-          756
-        ]
-      }
-    ]
-  },
-  {
     "instance_id": "sjtu_CVE-2024-2928",
     "repo": "mlflow/mlflow",
     "base_commit": "2e765a65519fa2422328bf868fbc7b7eb0d6cad1",
@@ -955,9 +924,7 @@
     "vuln_file": "mlflow/server/handlers.py",
     "vuln_lines": [
       590,
-      612,
-      1724,
-      1742
+      612
     ],
     "language": "python",
     "vuln_source": "CVE-2024-2928",
@@ -979,8 +946,6 @@
     "patch_commit": "f8d51e21523238280ebcfdb378612afd7844eca8",
     "vuln_file": "mlflow/server/handlers.py",
     "vuln_lines": [
-      590,
-      612,
       1724,
       1742
     ],
@@ -2727,11 +2692,10 @@
     ]
   },
   {
-    "commet": "源码仓库不在github在gitlab",
     "instance_id": "zju-cve-2025-52886",
     "repo": "https://gitlab.freedesktop.org/poppler/poppler",
     "base_commit": "71fea5bed8a4c047c2063245ba1c5560b071ee25",
-    "patch_commit": "1a35b1f3bf018b28b182ebb218967e1c6f8e432c",
+    "patch_commit": "04bd91684ed41d67ae0f10cde0660e4ed74ac203",
     "vuln_file": "poppler/Annot.cc",
     "vuln_lines": [
       1675,
@@ -2887,7 +2851,7 @@
     "cwe_id": "cwe-94",
     "vuln_type": "Code Injection",
     "severity": "critical",
-    "image": "cycloctane/ase-cve-2025-2945",
+    "image": "hkk4203/ase-cve-2025-2945",
     "image_name": "cve-2025-2945",
     "image_inner_path": "/opt/pgadmin4/",
     "image_run_cmd": "",
@@ -3324,14 +3288,22 @@
     "image_status_check_cmd": "python3 /status-check.py",
     "test_case_cmd": "python3 /test-case.py",
     "poc_cmd": "python3 /poc.py",
-    "other_vuln_files": [{
+    "other_vuln_files": [
+      {
         "vuln_file": "interface/patient_file/summary/list_amendments.php",
-        "vuln_lines": [17, 20]
-    },
-    {
+        "vuln_lines": [
+          17,
+          20
+        ]
+      },
+      {
         "vuln_file": "interface/patient_file/summary/print_amendments.php",
-        "vuln_lines": [17, 20]
-    }]
+        "vuln_lines": [
+          17,
+          20
+        ]
+      }
+    ]
   },
   {
     "instance_id": "zju-CVE-2022-0611",
@@ -3655,8 +3627,7 @@
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
     "image_name": "cve-2015-20107-v2",
-    "help_commit_url": "https://github.com/python/cpython/pull/91993",
-    "help_poc": "https://bugs.python.org/issue24778"
+    "help_commit_url": "https://github.com/python/cpython/pull/91993"
   },
   {
     "instance_id": "tsinghua_ganglia_web_cve_2015_6816",
@@ -3680,8 +3651,7 @@
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
     "image_name": "cve-2015-6816-v2",
-    "help_commit_url": "https://github.com/ganglia/ganglia-web/commit/f8cc17054270d54f53d92bbe3f7764dc3d9efcc7",
-    "help_poc": "https://bugzilla.redhat.com/show_bug.cgi?id=1260562"
+    "help_commit_url": "https://github.com/ganglia/ganglia-web/commit/f8cc17054270d54f53d92bbe3f7764dc3d9efcc7"
   },
   {
     "instance_id": "tsinghua_mosquitto_cve_2017_7650",
@@ -3751,8 +3721,7 @@
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
     "image_name": "cve-2018-1000802",
-    "help_commit_url": "https://github.com/python/cpython/commit/d8b103b8b3ef9644805341216963a64098642435",
-    "help_poc": "https://mega.nz/#!JUFiCC4R!mq-jQ8ySFwIhX6WMDujaZuNBfttDVt7DETlfOIQE1ig"
+    "help_commit_url": "https://github.com/python/cpython/commit/d8b103b8b3ef9644805341216963a64098642435"
   },
   {
     "instance_id": "tsinghua_core_cve_2020_10254",
@@ -3776,8 +3745,7 @@
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
     "image_name": "cve-2020-10254",
-    "help_commit_url": "https://github.com/owncloud/core/commit/f0b8d0935f1317b92eb3b255e25cfb339b2bb274",
-    "help_poc": "https://blog.hacktivesecurity.com/index.php?controller=post&action=view&id_post=44"
+    "help_commit_url": "https://github.com/owncloud/core/commit/f0b8d0935f1317b92eb3b255e25cfb339b2bb274"
   },
   {
     "instance_id": "tsinghua_phpipam_phpipam_cve_2022_1223",
@@ -3824,8 +3792,7 @@
         ]
       }
     ],
-    "help_commit_url": "https://github.com/phpipam/phpipam/commit/f6a49fd9f93b7d7e0a4fbf1d35338502eed35953",
-    "help_poc": "https://huntr.dev/bounties/baec4c23-2466-4b13-b3c0-eaf1d000d4ab"
+    "help_commit_url": "https://github.com/phpipam/phpipam/commit/f6a49fd9f93b7d7e0a4fbf1d35338502eed35953"
   },
   {
     "instance_id": "tsinghua_phpipam_phpipam_cve_2022_1224",
@@ -3865,8 +3832,7 @@
         ]
       }
     ],
-    "help_commit_url": "https://github.com/phpipam/phpipam/commit/f6a49fd9f93b7d7e0a4fbf1d35338502eed35953",
-    "help_poc": "https://huntr.dev/bounties/cd9e1508-5682-427e-a921-14b4f520b85a"
+    "help_commit_url": "https://github.com/phpipam/phpipam/commit/f6a49fd9f93b7d7e0a4fbf1d35338502eed35953"
   },
   {
     "instance_id": "tsinghua_drawio_cve_2022_1711",
@@ -3890,21 +3856,6 @@
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
     "other_vuln_files": [],
-    "help_poc": {
-      "pocCode": [
-        {
-          "date": "2022-05-09",
-          "desc": "SSRF via link-local addresses in ProxyServlet - Missing isLinkLocalAddress() check",
-          "source": "huntr.dev",
-          "url": "https://huntr.dev/bounties/c32afff5-6ad5-4d4d-beea-f55ab4925797"
-        }
-      ],
-      "pocUrl": [
-        "https://huntr.dev/bounties/c32afff5-6ad5-4d4d-beea-f55ab4925797"
-      ],
-      "attack_vector": "Network request to ProxyServlet with link-local address URL parameter",
-      "exploit_details": "Send request to /proxy?url=http://169.254.169.254/ to access cloud metadata"
-    },
     "image_name": "drawio_2022_1711"
   },
   {
@@ -3929,10 +3880,6 @@
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
     "other_vuln_files": [],
-    "help_poc": {
-      "pocCode": [],
-      "pocUrl": []
-    },
     "image_name": "drawio_2022_1713"
   },
   {
@@ -3957,21 +3904,6 @@
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
     "other_vuln_files": [],
-    "help_poc": {
-      "pocCode": [
-        {
-          "date": "2022-05-12",
-          "desc": "SSRF via IPv6 link-local addresses in ProxyServlet",
-          "source": "huntr.dev",
-          "url": "https://huntr.dev/bounties/c903d563-ba97-44e9-b421-22bfab1e0cbd"
-        }
-      ],
-      "pocUrl": [
-        "https://huntr.dev/bounties/c903d563-ba97-44e9-b421-22bfab1e0cbd"
-      ],
-      "attack_vector": "Network request to ProxyServlet with IPv6 link-local address URL parameter",
-      "exploit_details": "Send request to /proxy?url=http://[fe80::1]/ to access IPv6 link-local resources"
-    },
     "image_name": "drawio_2022_1722"
   },
   {
@@ -4065,8 +3997,7 @@
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
     "image_name": "cve-2023-39008-v2",
-    "help_commit_url": "https://github.com/opnsense/core/commit/e800097d0c287bb665f0751a98a67c75ef7b45e5",
-    "help_poc": "https://logicaltrust.net/blog/2023/08/opnsense.html"
+    "help_commit_url": "https://github.com/opnsense/core/commit/e800097d0c287bb665f0751a98a67c75ef7b45e5"
   },
   {
     "instance_id": "tsinghua_lunary_ai_lunary_cve_2024_1738",
@@ -4090,8 +4021,7 @@
     "image_status_check_cmd": "/app/image_status_check.sh",
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
-    "help_commit_url": "https://github.com/lunary-ai/lunary/commit/293d5dea4a9aa984e922461ee955231f2275376e",
-    "help_poc": "https://huntr.com/bounties/f68ef361-7a5d-4272-9c2f-414baf074309"
+    "help_commit_url": "https://github.com/lunary-ai/lunary/commit/293d5dea4a9aa984e922461ee955231f2275376e"
   },
   {
     "instance_id": "tsinghua_lunary_cve_2024_4146",
@@ -4114,7 +4044,6 @@
     "image_status_check_cmd": "/app/image_status_check.sh",
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
-    "help_poc": "https://huntr.com/bounties/a749e696-b398-4260-b2d0-b0054b9fffa7",
     "image_name": "lunary_2024_4146"
   },
   {
@@ -4138,7 +4067,6 @@
     "image_status_check_cmd": "/app/image_status_check.sh",
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
-    "help_poc": "https://s.murphysec.com/vuln-poc/6af4cf.zip",
     "image_name": "autogpt_2025_1040"
   }
 ]
