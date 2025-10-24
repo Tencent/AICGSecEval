@@ -42,23 +42,23 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
 
     basic_result = validate_basic_info(case_data)
     # 如果基础检查未通过，不启动后续验证
-    passed = True
-    for key in basic_result:
-        if not basic_result[key]:
-            passed = False
-            break
-    if not passed:
-        logging.info(f"[{trace}] 基础检查未通过, 未启动后续验证")
-        result = {
-            "instance_id": trace,
-            **basic_result,
-        }
-        try:
-            with open(output_file, "a", encoding="utf-8") as f:
-                fcntl.flock(f.fileno(), fcntl.LOCK_EX)
-                f.write(json.dumps(result) + "\n")
-        except Exception as e:
-            logging.error(f"[{trace}] 保存验证结果失败：{e}")
+    # passed = True
+    # for key in basic_result:
+    #     if not basic_result[key]:
+    #         passed = False
+    #         break
+    # if not passed:
+    #     logging.info(f"[{trace}] 基础检查未通过, 未启动后续验证")
+    #     result = {
+    #         "instance_id": trace,
+    #         **basic_result,
+    #     }
+    #     try:
+    #         with open(output_file, "a", encoding="utf-8") as f:
+    #             fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+    #             f.write(json.dumps(result) + "\n")
+    #     except Exception as e:
+    #         logging.error(f"[{trace}] 保存验证结果失败：{e}")
     
     result = {
         "instance_id": trace,
