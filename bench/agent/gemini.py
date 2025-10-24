@@ -10,18 +10,22 @@ class GeminiAgentBench(AgentBenchBase):
         super().__init__(logger, repo_dir, agent_args)
         self._api_key = agent_args.gemini_api_key
         self._model_name = agent_args.gemini_model
+        self._no_sandbox = agent_args.gemini_no_sandbox
 
     @staticmethod
     def parse_args(args):
         parser = argparse.ArgumentParser(
             description='配置 Gemini 用于 Agent 评测',
-            usage="...other_args... --agent --agent_name gemini [--gemini_api_key <API_KEY> --gemini_model <MODEL>]",
+            usage="...other_args... --agent --agent_name gemini " +
+                  "[--gemini_api_key <API_KEY> --gemini_model <MODEL> --gemini_no_sandbox]",
             add_help=False
         )
         parser.add_argument("--gemini_api_key", type=str,
                             help="API密钥，如果不提供则从环境变量GEMINI_API_KEY获取")
         parser.add_argument("--gemini_model", type=str,
                             default=None, help="模型名称")
+        parser.add_argument("--gemini_no_sandbox",
+                            default=False, action="store_true", help="是否关闭沙箱")
         return parser.parse_args(args)
 
     async def start(self):
@@ -36,12 +40,19 @@ class GeminiAgentBench(AgentBenchBase):
         self.logger.info(
             f"Gemini is generating code, prompt: {prompt}")
 
+        args = ["gemini", "-d", "--yolo"]
+
         if self._api_key is not None:
             os.environ["GEMINI_API_KEY"] = self._api_key
-
-        args = ["gemini", "--yolo", "-d", "-p", prompt]
+        if not self._no_sandbox:
+            os.environ["SANDBOX_SET_UID_GID"] = "true"
+            args.append("--sandbox")
         if self._model_name is not None:
             args.extend(["-m", self._model_name])
+
+        args.extend(["-p", prompt])
+
+        self.logger.info(f"Gemini run command: {args[0:-1]} ...prompt...")
 
         try:
             process = subprocess.Popen(
