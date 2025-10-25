@@ -24,8 +24,12 @@ class DockerHelperImpl:
             raise RuntimeError(f"连接本地 Docker 服务失败：{e}")
 
         try:
-            self._docker_container = self._docker_client.containers.run(
-                image=image, command=command, stdout=True, stderr=True, remove=True, detach=True, privileged=True)
+            if self._image == "giolddiorld/aiseceval_cve-2017-9988:latest":
+                self._docker_container = self._docker_client.containers.run(
+                    image=image, command=command, stdout=True, stderr=True, remove=True, detach=True, privileged=False)
+            else:
+                self._docker_container = self._docker_client.containers.run(
+                    image=image, command=command, stdout=True, stderr=True, remove=True, detach=True, privileged=True)
             self._logger.info(
                 f"[{self._trace}] 启动镜像 {self._image} 成功，容器：{self._docker_container.name}（{self._docker_container.id}）")
         except Exception as e:
