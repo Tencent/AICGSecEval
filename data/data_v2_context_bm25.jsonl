@@ -11157,5 +11157,521 @@
       }
     ],
     "function_summary": "This code snippet is the `run` method of the `FillTextTemplateBlock` class, which implements text template formatting functionality. \n\nThe method takes input data containing a format template string and a dictionary of values to substitute into the template. Here's what it does:\n\n1. **Template preprocessing**: It uses a regex pattern `(?<!{){[ a-zA-Z0-9_]+}` to find single curly braces `{variable}` and converts them to double curly braces `{{variable}}` for Jinja2 compatibility. The negative lookbehind `(?<!{)` ensures it doesn't modify already-doubled braces `{{variable}}` (preventing them from becoming `{{{variable}}}`).\n\n2. **Template rendering**: It creates a Jinja2 template from the processed format string and renders it using the provided values dictionary.\n\n3. **Output**: It yields the rendered template as output.\n\nThis allows the block to accept both Python-style string formatting (`{variable}`) and Jinja2 syntax, making it more flexible for users. The method essentially bridges the gap between simple variable substitution and more complex Jinja2 templating features like loops and conditionals, as shown in the test cases where both simple variable replacement and loop constructs are supported."
+  },
+  {
+    "instance_id": "fd_CVE-2018-7602",
+    "hits": [
+      {
+        "docid": "core/lib/Drupal/Core/Security/RequestSanitizer.php",
+        "score": 855.4509887695312
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Form/FormBuilder.php",
+        "score": 329.1795959472656
+      },
+      {
+        "docid": "core/modules/simpletest/src/WebTestBase.php",
+        "score": 327.3523864746094
+      },
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "score": 313.5903015136719
+      },
+      {
+        "docid": "core/lib/Drupal/Component/Utility/UrlHelper.php",
+        "score": 307.42919921875
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Form/FormState.php",
+        "score": 303.3919982910156
+      },
+      {
+        "docid": "core/lib/Drupal/Component/Utility/Html.php",
+        "score": 301.8326110839844
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Form/FormStateInterface.php",
+        "score": 297.6680908203125
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Database/Connection.php",
+        "score": 291.6675109863281
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Form/FormBuilderInterface.php",
+        "score": 290.8660888671875
+      },
+      {
+        "docid": "core/modules/views/src/ViewExecutable.php",
+        "score": 289.68109130859375
+      },
+      {
+        "docid": "core/lib/Drupal/Core/EventSubscriber/RedirectResponseSubscriber.php",
+        "score": 288.4960021972656
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Url.php",
+        "score": 280.24749755859375
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Render/Renderer.php",
+        "score": 279.6669921875
+      },
+      {
+        "docid": "core/misc/ajax.es6.js",
+        "score": 279.1109924316406
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Render/Element/RenderElement.php",
+        "score": 276.7106018066406
+      },
+      {
+        "docid": "core/lib/Drupal/Component/Utility/Xss.php",
+        "score": 275.6965026855469
+      },
+      {
+        "docid": "core/modules/views/src/Plugin/views/field/FieldPluginBase.php",
+        "score": 271.8096008300781
+      },
+      {
+        "docid": "core/modules/file/src/Element/ManagedFile.php",
+        "score": 268.644287109375
+      },
+      {
+        "docid": "core/core.api.php",
+        "score": 267.885009765625
+      }
+    ],
+    "function_summary": "This code snippet implements the `sanitize` method of Drupal's `RequestSanitizer` class, which removes potentially dangerous keys from HTTP request data for security purposes.\n\n**Main functionality:**\n\n1. **Prevents duplicate sanitization** - Checks if the request is already sanitized using a request attribute flag\n2. **Sanitizes three data sources:**\n   - Query string parameters (GET)\n   - Request body parameters (POST) \n   - Cookie parameters\n3. **Removes dangerous keys** - Uses `stripDangerousValues()` to filter out keys that start with '#' (unless whitelisted), as these can be exploited in Drupal's form API\n4. **Optional logging** - If enabled, logs any removed keys using `trigger_error()` for debugging/monitoring\n5. **Updates globals** - Calls `overrideGlobals()` if any keys were sanitized to ensure PHP's superglobals reflect the cleaned data\n6. **Marks as sanitized** - Sets a flag to prevent re-processing the same request\n\nThe method protects against form API injection attacks where malicious users could submit form elements with special keys (like `#type`, `#access`, etc.) that could alter Drupal's form rendering behavior. It returns the sanitized request object while preserving all safe data."
+  },
+  {
+    "instance_id": "fd_CVE-2019-6339",
+    "hits": [
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "score": 7507.318359375
+      },
+      {
+        "docid": "core/modules/simpletest/src/KernelTestBase.php",
+        "score": 3462.9130859375
+      },
+      {
+        "docid": "sites/default/default.settings.php",
+        "score": 3306.211181640625
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Extension/ExtensionDiscovery.php",
+        "score": 2921.218994140625
+      },
+      {
+        "docid": "core/core.api.php",
+        "score": 2886.608642578125
+      },
+      {
+        "docid": "core/modules/simpletest/src/WebTestBase.php",
+        "score": 2786.484130859375
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Site/Settings.php",
+        "score": 2770.267822265625
+      },
+      {
+        "docid": "core/modules/simpletest/src/TestBase.php",
+        "score": 2757.0224609375
+      },
+      {
+        "docid": "core/modules/simpletest/src/InstallerTestBase.php",
+        "score": 2636.958251953125
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Extension/ModuleInstaller.php",
+        "score": 2604.63671875
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Extension/ModuleHandler.php",
+        "score": 2562.71142578125
+      },
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernelInterface.php",
+        "score": 2559.0751953125
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Command/InstallCommand.php",
+        "score": 2556.484619140625
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Form/FormBuilder.php",
+        "score": 2555.71923828125
+      },
+      {
+        "docid": "core/lib/Drupal.php",
+        "score": 2543.494140625
+      },
+      {
+        "docid": "core/modules/system/src/Controller/DbUpdateController.php",
+        "score": 2532.5048828125
+      },
+      {
+        "docid": "core/modules/simpletest/src/TestDiscovery.php",
+        "score": 2478.617919921875
+      },
+      {
+        "docid": "core/modules/file/src/Plugin/rest/resource/FileUploadResource.php",
+        "score": 2426.963623046875
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Theme/Registry.php",
+        "score": 2402.862060546875
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Database/Connection.php",
+        "score": 2375.697509765625
+      }
+    ],
+    "function_summary": "This code snippet shows the `boot()` method of Drupal's kernel, which is responsible for initializing the core system. The method performs several key operations:\n\n1. **Early validation**: Checks if the kernel is already booted and ensures the site path is set before proceeding.\n\n2. **File cache configuration**: Sets up the FileCacheFactory component with configuration from Settings. It automatically configures APCu as the default cache backend if the `apcu_fetch` function is available.\n\n3. **Bootstrap container creation**: Creates a minimal bootstrap container using either custom settings or default definitions. This container provides essential services (database, cache) needed during the early boot process.\n\n4. **Container initialization**: Calls `initializeContainer()` to set up the full dependency injection container with all services.\n\nThe method returns early if already booted, preventing duplicate initialization. It throws an exception if the site path hasn't been set, which is required for proper bootstrapping. The file cache setup is done here rather than in the component itself because it needs access to Drupal's Settings object. This method is a critical part of Drupal's startup sequence, preparing the foundation for the entire application."
+  },
+  {
+    "instance_id": "fd_CVE-2019-6341",
+    "hits": [
+      {
+        "docid": "core/lib/Drupal/Core/File/FileSystem.php",
+        "score": 4043.295654296875
+      },
+      {
+        "docid": "core/lib/Drupal/Core/File/FileSystemInterface.php",
+        "score": 2566.003173828125
+      },
+      {
+        "docid": "core/modules/migrate/src/Plugin/migrate/process/FileCopy.php",
+        "score": 1948.3450927734375
+      },
+      {
+        "docid": "core/lib/Drupal/Core/StreamWrapper/LocalStream.php",
+        "score": 1627.3565673828125
+      },
+      {
+        "docid": "core/modules/file/src/Plugin/rest/resource/FileUploadResource.php",
+        "score": 1548.167724609375
+      },
+      {
+        "docid": "core/modules/image/src/Entity/ImageStyle.php",
+        "score": 1525.614990234375
+      },
+      {
+        "docid": "core/lib/Drupal/Core/FileTransfer/FileTransfer.php",
+        "score": 1489.606201171875
+      },
+      {
+        "docid": "core/modules/migrate/src/Plugin/migrate/process/Download.php",
+        "score": 1378.5596923828125
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Updater/Updater.php",
+        "score": 1323.85888671875
+      },
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "score": 1250.3297119140625
+      },
+      {
+        "docid": "core/modules/media/src/Plugin/media/Source/OEmbed.php",
+        "score": 1209.357421875
+      },
+      {
+        "docid": "core/modules/system/src/Plugin/ImageToolkit/GDToolkit.php",
+        "score": 1200.5489501953125
+      },
+      {
+        "docid": "core/lib/Drupal/Component/PhpStorage/FileStorage.php",
+        "score": 1180.9691162109375
+      },
+      {
+        "docid": "core/lib/Drupal/Component/PhpStorage/MTimeProtectedFastFileStorage.php",
+        "score": 1180.692138671875
+      },
+      {
+        "docid": "core/lib/Drupal/Core/FileTransfer/Local.php",
+        "score": 1138.7425537109375
+      },
+      {
+        "docid": "core/modules/simpletest/src/TestBase.php",
+        "score": 1134.289306640625
+      },
+      {
+        "docid": "core/lib/Drupal/Core/StreamWrapper/ReadOnlyStream.php",
+        "score": 1103.9129638671875
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Asset/LibraryDiscoveryParser.php",
+        "score": 1103.0009765625
+      },
+      {
+        "docid": "core/modules/image/src/Controller/ImageStyleDownloadController.php",
+        "score": 1089.0970458984375
+      },
+      {
+        "docid": "core/modules/system/src/Form/ThemeSettingsForm.php",
+        "score": 1074.0672607421875
+      }
+    ],
+    "function_summary": "This code snippet contains two related methods from Drupal's FileSystem class that handle file destination management:\n\n**`getDestinationFilename()`** - Determines the final destination filename based on a replacement strategy when a file already exists at the target location. It supports three behaviors:\n- `EXISTS_REPLACE`: Overwrites the existing file\n- `EXISTS_RENAME`: Creates a unique filename by calling `createFilename()`\n- `EXISTS_ERROR`: Returns FALSE to indicate failure\n\n**`createFilename()`** - Generates a safe, unique filename by:\n1. Sanitizing the basename by replacing control characters (ASCII < 32) with underscores\n2. On Windows systems, replacing invalid characters (`:*?\"<>|`) with underscores\n3. Properly constructing the full path by handling directory separators\n4. If a file already exists at the destination, it automatically generates an alternative filename by appending an incrementing counter (e.g., `file_0.txt`, `file_1.txt`) while preserving the file extension\n\nTogether, these methods ensure file operations can handle naming conflicts gracefully while maintaining filesystem compatibility across different operating systems. They're commonly used in file upload and copy operations where destination filename conflicts need to be resolved automatically."
+  },
+  {
+    "instance_id": "fd_cve-2016-3088",
+    "hits": [
+      {
+        "docid": "activemq-fileserver/src/main/java/org/apache/activemq/util/RestFilter.java",
+        "score": 1272.3736572265625
+      },
+      {
+        "docid": "activemq-web/src/main/java/org/apache/activemq/web/MessageServlet.java",
+        "score": 402.9154052734375
+      },
+      {
+        "docid": "activemq-web/src/main/java/org/apache/activemq/web/MessageListenerServlet.java",
+        "score": 390.5939025878906
+      },
+      {
+        "docid": "activemq-http/src/main/java/org/apache/activemq/transport/http/HttpTunnelServlet.java",
+        "score": 341.0705871582031
+      },
+      {
+        "docid": "activemq-web-console/src/main/java/org/apache/activemq/web/filter/ApplicationContextFilter.java",
+        "score": 336.3275146484375
+      },
+      {
+        "docid": "activemq-fileserver/src/main/java/org/apache/activemq/util/FilenameGuardFilter.java",
+        "score": 335.7398986816406
+      },
+      {
+        "docid": "activemq-web/src/main/java/org/apache/activemq/web/AjaxServlet.java",
+        "score": 279.6502990722656
+      },
+      {
+        "docid": "activemq-http/src/main/java/org/apache/activemq/transport/http/HttpClientTransport.java",
+        "score": 277.0762939453125
+      },
+      {
+        "docid": "activemq-web/src/main/java/org/apache/activemq/web/QueueBrowseServlet.java",
+        "score": 276.3554992675781
+      },
+      {
+        "docid": "activemq-web/src/main/java/org/apache/activemq/web/MessageServletSupport.java",
+        "score": 267.1791076660156
+      },
+      {
+        "docid": "activemq-client/src/main/java/org/apache/activemq/ActiveMQConnection.java",
+        "score": 265.5429992675781
+      },
+      {
+        "docid": "activemq-web-demo/src/main/webapp/mqtt/mqttws31.js",
+        "score": 260.0940856933594
+      },
+      {
+        "docid": "assembly/src/release/examples/mqtt/websocket/js/mqttws31.js",
+        "score": 260.089111328125
+      },
+      {
+        "docid": "activemq-kahadb-store/src/main/java/org/apache/activemq/store/kahadb/MessageDatabase.java",
+        "score": 257.60528564453125
+      },
+      {
+        "docid": "activemq-broker/src/main/java/org/apache/activemq/security/SimpleCachedLDAPAuthorizationMap.java",
+        "score": 255.59860229492188
+      },
+      {
+        "docid": "activemq-web/src/main/java/org/apache/activemq/web/AuditFilter.java",
+        "score": 236.83999633789062
+      },
+      {
+        "docid": "activemq-client/src/main/java/org/apache/activemq/ActiveMQSession.java",
+        "score": 235.33880615234375
+      },
+      {
+        "docid": "activemq-web/src/main/java/org/apache/activemq/web/PortfolioPublishServlet.java",
+        "score": 233.9906005859375
+      },
+      {
+        "docid": "activemq-web/src/main/java/org/apache/activemq/web/view/RssMessageRenderer.java",
+        "score": 233.7281951904297
+      },
+      {
+        "docid": "activemq-broker/src/main/java/org/apache/activemq/network/DemandForwardingBridgeSupport.java",
+        "score": 228.05099487304688
+      }
+    ],
+    "function_summary": "This code snippet implements the `doMove` method, which handles HTTP MOVE requests in a RESTful file server filter. Here's what it does:\n\n**Main Functionality:**\n- Processes HTTP MOVE operations to relocate files on the server\n- Logs debug information about the incoming MOVE request\n\n**Key Operations:**\n1. **Authorization Check**: Verifies if the user has the required write permission role; returns HTTP 403 Forbidden if unauthorized\n\n2. **File Location**: Uses `locateFile()` to determine the source file based on the request path\n\n3. **Destination Validation**: Extracts the destination from the \"Destination\" HTTP header; returns HTTP 400 Bad Request if missing\n\n4. **File Move Operation**: \n   - Parses the destination header as a URL\n   - Copies the source file to the destination location using `IOHelper.copyFile()`\n   - Deletes the original source file using `IOHelper.deleteFile()`\n\n5. **Error Handling**: Returns HTTP 500 Internal Server Error if the file operation fails\n\n6. **Success Response**: Returns HTTP 204 No Content when the move operation completes successfully\n\nThis method essentially implements a file move/rename operation through HTTP, providing proper authentication, validation, and error handling for RESTful file management."
+  },
+  {
+    "instance_id": "fd_cve-2022-41678",
+    "hits": [
+      {
+        "docid": "assembly/src/release/conf/jolokia-access.xml",
+        "score": 254.00320434570312
+      },
+      {
+        "docid": "activemq-console/src/main/java/org/apache/activemq/console/command/QueryCommand.java",
+        "score": 133.4783935546875
+      },
+      {
+        "docid": "activemq-broker/src/main/java/org/apache/activemq/broker/jmx/ManagementContext.java",
+        "score": 119.11039733886719
+      },
+      {
+        "docid": "activemq-client/src/main/java/org/apache/activemq/ActiveMQSession.java",
+        "score": 113.58699798583984
+      },
+      {
+        "docid": "activemq-web-console/src/main/webapp/js/prettify.js",
+        "score": 101.47149658203125
+      },
+      {
+        "docid": "activemq-console/src/main/java/org/apache/activemq/console/filter/MBeansAttributeQueryFilter.java",
+        "score": 99.81649780273438
+      },
+      {
+        "docid": "activemq-broker/src/main/java/org/apache/activemq/broker/BrokerService.java",
+        "score": 96.07520294189453
+      },
+      {
+        "docid": "activemq-web-demo/src/main/webapp/mqtt/mqttws31.js",
+        "score": 94.29989624023438
+      },
+      {
+        "docid": "assembly/src/release/examples/mqtt/websocket/js/mqttws31.js",
+        "score": 94.29530334472656
+      },
+      {
+        "docid": "activemq-client/src/main/java/org/apache/activemq/ActiveMQConnection.java",
+        "score": 92.60420227050781
+      },
+      {
+        "docid": "activemq-console/src/main/java/org/apache/activemq/console/util/JmxMBeansUtil.java",
+        "score": 90.74810028076172
+      },
+      {
+        "docid": "activemq-web/src/main/resources/org/apache/activemq/web/prototype.js",
+        "score": 89.9625015258789
+      },
+      {
+        "docid": "activemq-broker/src/main/java/org/apache/activemq/plugin/SubQueueSelectorCacheBroker.java",
+        "score": 89.15779876708984
+      },
+      {
+        "docid": "activemq-broker/src/main/java/org/apache/activemq/security/SimpleCachedLDAPAuthorizationMap.java",
+        "score": 89.0436019897461
+      },
+      {
+        "docid": "activemq-broker/src/main/java/org/apache/activemq/network/DemandForwardingBridgeSupport.java",
+        "score": 81.9374008178711
+      },
+      {
+        "docid": "activemq-client/src/main/java/org/apache/activemq/transport/tcp/TcpTransport.java",
+        "score": 81.38619995117188
+      },
+      {
+        "docid": "activemq-web-demo/src/main/webapp/js/prototype.js",
+        "score": 80.64179992675781
+      },
+      {
+        "docid": "activemq-broker/src/main/java/org/apache/activemq/broker/jmx/DestinationViewMBean.java",
+        "score": 80.63500213623047
+      },
+      {
+        "docid": "activemq-console/src/main/java/org/apache/activemq/console/command/ShutdownCommand.java",
+        "score": 80.2842025756836
+      },
+      {
+        "docid": "activemq-broker/src/main/java/org/apache/activemq/network/LdapNetworkConnector.java",
+        "score": 80.12830352783203
+      }
+    ],
+    "function_summary": "This code snippet defines security restrictions for Jolokia, a JMX-HTTP bridge that allows remote access to Java Management Extensions (JMX) MBeans over HTTP.\n\n**Main Functionality:**\nThe snippet creates a `<deny>` block that explicitly prohibits access to two critical JVM diagnostic MBeans:\n\n1. **DiagnosticCommand MBean** (`com.sun.management:type=DiagnosticCommand`) - Blocks all attributes and operations\n2. **HotSpotDiagnostic MBean** (`com.sun.management:type=HotSpotDiagnostic`) - Blocks all attributes and operations\n\n**Purpose:**\nThis is a security measure that prevents remote clients from accessing potentially sensitive diagnostic functionality through Jolokia. These MBeans can expose internal JVM state, trigger garbage collection, perform heap dumps, and execute other diagnostic commands that could:\n- Reveal sensitive system information\n- Impact application performance\n- Potentially be exploited for unauthorized system access\n\n**Key Operations:**\n- Uses wildcard (`*`) to deny all attributes and operations on the specified MBeans\n- Provides comprehensive blocking rather than selective restrictions\n\nThis configuration ensures that while Jolokia allows remote JMX access for monitoring purposes, it prevents access to powerful diagnostic tools that could compromise security or stability."
+  },
+  {
+    "instance_id": "fd_cve-2023-37582",
+    "hits": [
+      {
+        "docid": "remoting/src/main/java/org/apache/rocketmq/remoting/Configuration.java",
+        "score": 1538.583740234375
+      },
+      {
+        "docid": "common/src/main/java/org/apache/rocketmq/common/MixAll.java",
+        "score": 359.7419128417969
+      },
+      {
+        "docid": "client/src/main/java/org/apache/rocketmq/client/impl/consumer/ProcessQueue.java",
+        "score": 340.4236145019531
+      },
+      {
+        "docid": "namesrv/src/main/java/org/apache/rocketmq/namesrv/kvconfig/KVConfigManager.java",
+        "score": 332.1448974609375
+      },
+      {
+        "docid": "namesrv/src/main/java/org/apache/rocketmq/namesrv/routeinfo/RouteInfoManager.java",
+        "score": 320.63018798828125
+      },
+      {
+        "docid": "openmessaging/src/main/java/io/openmessaging/rocketmq/consumer/LocalMessageCache.java",
+        "score": 316.5443115234375
+      },
+      {
+        "docid": "acl/src/main/java/org/apache/rocketmq/acl/plain/PlainPermissionManager.java",
+        "score": 313.4888916015625
+      },
+      {
+        "docid": "store/src/main/java/org/apache/rocketmq/store/CommitLog.java",
+        "score": 312.8547058105469
+      },
+      {
+        "docid": "client/src/main/java/org/apache/rocketmq/client/impl/consumer/DefaultLitePullConsumerImpl.java",
+        "score": 304.34161376953125
+      },
+      {
+        "docid": "store/src/main/java/org/apache/rocketmq/store/index/IndexService.java",
+        "score": 297.4397888183594
+      },
+      {
+        "docid": "openmessaging/src/main/java/io/openmessaging/rocketmq/utils/BeanUtils.java",
+        "score": 297.4175109863281
+      },
+      {
+        "docid": "store/src/main/java/org/apache/rocketmq/store/MappedFileQueue.java",
+        "score": 296.5849914550781
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+        "score": 294.3454895019531
+      },
+      {
+        "docid": "common/src/main/java/org/apache/rocketmq/common/UtilAll.java",
+        "score": 293.80718994140625
+      },
+      {
+        "docid": "client/src/main/java/org/apache/rocketmq/client/impl/factory/MQClientInstance.java",
+        "score": 287.38751220703125
+      },
+      {
+        "docid": "client/src/main/java/org/apache/rocketmq/client/producer/DefaultMQProducer.java",
+        "score": 282.09478759765625
+      },
+      {
+        "docid": "common/src/main/java/org/apache/rocketmq/common/utils/ServiceProvider.java",
+        "score": 266.62188720703125
+      },
+      {
+        "docid": "container/src/main/java/org/apache/rocketmq/container/BrokerContainerStartup.java",
+        "score": 262.627685546875
+      },
+      {
+        "docid": "tools/src/main/java/org/apache/rocketmq/tools/command/export/ExportMetricsCommand.java",
+        "score": 260.8279113769531
+      },
+      {
+        "docid": "store/src/main/java/org/apache/rocketmq/store/dledger/DLedgerCommitLog.java",
+        "score": 260.5928955078125
+      }
+    ],
+    "function_summary": "This code snippet implements a thread-safe method `getStorePath()` that retrieves the storage path for configuration data. The method uses a read-write lock to ensure thread safety during access.\n\n**Key functionality:**\n\n1. **Thread-safe access**: Uses `readWriteLock.readLock()` to allow concurrent reads while preventing writes during the operation.\n\n2. **Dual path resolution**: The method can retrieve the storage path from two sources:\n   - **Default path**: Returns the instance variable `this.storePath`\n   - **Dynamic path**: If `storePathFromConfig` flag is true, it uses reflection to dynamically retrieve the path from a specified field (`storePathField`) of a configuration object (`storePathObject`)\n\n3. **Error handling**: Includes exception handling for:\n   - `IllegalAccessException` when accessing the reflected field\n   - `InterruptedException` when acquiring the lock\n   - Both exceptions are logged with appropriate error messages\n\n4. **Reflection-based retrieval**: When configured to use dynamic paths, it employs Java reflection to access a field value from another object, providing flexibility in configuration management.\n\nThe method returns the resolved storage path as a String, defaulting to null if errors occur during lock acquisition."
   }
 ]
