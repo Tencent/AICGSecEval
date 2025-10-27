@@ -6841,5 +6841,274 @@
       }
     ],
     "function_summary": "This code segment implements the decompilation of SWF (Flash) SetTarget actions. It processes ActionScript bytecode that sets the target context for subsequent actions (similar to Flash's tellTarget functionality). The function handles both SETTARGET (type 1) and SETTARGET2 (type 2) opcodes. It determines the target name (either from the structure's TargetName field or by popping a value from the stack), then generates output in the form \"tellTarget('targetName') { ... }\" with proper indentation. The loop scans forward through the action list to find related actions that should be included within the tellTarget block, stopping when it encounters another SETTARGET, SETTARGET2, DEFINEFUNCTION, DEFINEFUNCTION2, or END opcode. Finally, it recursively decompiles the enclosed actions with increased indentation and returns the count of actions processed."
+  },
+  {
+    "instance_id": "fd_CVE-2020-23079",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/mail/AbstractMailService.java",
+        "startline": 140,
+        "endline": 150
+      },
+      {
+        "docid": "src/main/java/run/halo/app/mail/AbstractMailService.java",
+        "startline": 185,
+        "endline": 200
+      },
+      {
+        "docid": "src/main/java/run/halo/app/exception/EmailException.java",
+        "startline": 1,
+        "endline": 18
+      },
+      {
+        "docid": "src/main/java/run/halo/app/mail/MailService.java",
+        "startline": 44,
+        "endline": 46
+      },
+      {
+        "docid": "src/main/java/run/halo/app/mail/MailSenderFactory.java",
+        "startline": 1,
+        "endline": 51
+      },
+      {
+        "docid": "src/main/java/run/halo/app/mail/MailProperties.java",
+        "startline": 1,
+        "endline": 61
+      },
+      {
+        "docid": "src/main/java/run/halo/app/exception/ServiceException.java",
+        "startline": 1,
+        "endline": 24
+      },
+      {
+        "docid": "src/main/java/run/halo/app/mail/AbstractMailService.java",
+        "startline": 32,
+        "endline": 34
+      }
+    ],
+    "function_summary": "This code segment implements a method to test the connection to an email server. It retrieves a JavaMailSender instance, checks if it's an instance of JavaMailSenderImpl, and then calls the testConnection() method on it. If the connection test fails, it catches the MessagingException and wraps it in a custom EmailException with a Chinese error message indicating the connection failure and suggesting to check the email configuration."
+  },
+  {
+    "instance_id": "fd_CVE-2021-43659",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/LocalFileHandler.java",
+        "startline": 86,
+        "endline": 167
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/LocalFileHandler.java",
+        "startline": 208,
+        "endline": 232
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/LocalFileHandler.java",
+        "startline": 39,
+        "endline": 68
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/FileHandler.java",
+        "startline": 1,
+        "endline": 120
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/support/UploadResult.java",
+        "startline": 1,
+        "endline": 35
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/FilenameUtils.java",
+        "startline": 1,
+        "endline": 107
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/HaloUtils.java",
+        "startline": 234,
+        "endline": 237
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/ImageUtils.java",
+        "startline": 1,
+        "endline": 53
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/OptionProvideService.java",
+        "startline": 383,
+        "endline": 388
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/support/HaloConst.java",
+        "startline": 64,
+        "endline": 64
+      },
+      {
+        "docid": "src/main/java/run/halo/app/exception/FileOperationException.java",
+        "startline": 1,
+        "endline": 17
+      },
+      {
+        "docid": "src/main/java/run/halo/app/exception/ServiceException.java",
+        "startline": 1,
+        "endline": 24
+      },
+      {
+        "docid": "src/main/java/run/halo/app/exception/AbstractHaloException.java",
+        "startline": 1,
+        "endline": 53
+      }
+    ],
+    "function_summary": "This code segment implements the file upload functionality for a local file storage handler. It receives a multipart file, generates a timestamped directory structure (year/month), creates a unique filename by appending a random UUID to the original basename, saves the file to the local filesystem, and optionally generates a thumbnail for image files. The method returns an UploadResult object containing metadata about the uploaded file including file path, size, media type, dimensions (for images), and thumbnail path."
+  },
+  {
+    "instance_id": "fd_CVE-2022-26619",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "startline": 230,
+        "endline": 235
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "startline": 201,
+        "endline": 208
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "startline": 47,
+        "endline": 59
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/FileHandlers.java",
+        "startline": 50,
+        "endline": 54
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/HaloUtils.java",
+        "startline": 157,
+        "endline": 161
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/support/UploadResult.java",
+        "startline": 1,
+        "endline": 35
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/entity/Attachment.java",
+        "startline": 1,
+        "endline": 129
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/enums/AttachmentType.java",
+        "startline": 1,
+        "endline": 71
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/OptionProvideService.java",
+        "startline": 269,
+        "endline": 272
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/properties/AttachmentProperties.java",
+        "startline": 1,
+        "endline": 61
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/base/AbstractCrudService.java",
+        "startline": 196,
+        "endline": 200
+      },
+      {
+        "docid": "src/main/java/run/halo/app/repository/AttachmentRepository.java",
+        "startline": 43,
+        "endline": 43
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "startline": 215,
+        "endline": 223
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/support/HaloConst.java",
+        "startline": 64,
+        "endline": 64
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/AttachmentService.java",
+        "startline": 42,
+        "endline": 43
+      }
+    ],
+    "function_summary": "This code segment implements the file upload method for attachments in the Halo blog system. It accepts a MultipartFile, determines the storage type (LOCAL, cloud storage, etc.) from system configuration, delegates the actual file upload to the appropriate file handler, maps the upload result to an Attachment entity, and persists it to the database. The method performs the following steps: (1) validates input; (2) retrieves the configured attachment storage type; (3) logs upload start; (4) delegates upload to FileHandlers; (5) creates an Attachment entity and populates it with data from UploadResult (filename, path with URL separator conversion, file key, thumbnail path, media type, suffix, dimensions, size, and type); (6) logs the attachment being created; (7) persists the entity via the create method."
+  },
+  {
+    "instance_id": "fd_CVE-2022-28074",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/OptionServiceImpl.java",
+        "startline": 85,
+        "endline": 128
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/base/AbstractCrudService.java",
+        "startline": 59,
+        "endline": 62
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/base/AbstractCrudService.java",
+        "startline": 195,
+        "endline": 212
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/base/AbstractCrudService.java",
+        "startline": 238,
+        "endline": 242
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/ServiceUtils.java",
+        "startline": 88,
+        "endline": 102
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/ValidationUtils.java",
+        "startline": 70,
+        "endline": 86
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/params/OptionParam.java",
+        "startline": 1,
+        "endline": 27
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/entity/Option.java",
+        "startline": 1,
+        "endline": 78
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/dto/base/InputConverter.java",
+        "startline": 1,
+        "endline": 54
+      },
+      {
+        "docid": "src/main/java/run/halo/app/event/options/OptionUpdatedEvent.java",
+        "startline": 1,
+        "endline": 21
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/OptionService.java",
+        "startline": 33,
+        "endline": 39
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/OptionServiceImpl.java",
+        "startline": 59,
+        "endline": 76
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/entity/BaseEntity.java",
+        "startline": 1,
+        "endline": 64
+      }
+    ],
+    "function_summary": "This code segment implements a batch save/update operation for system options in the Halo blogging platform. It accepts a map of option key-value pairs, compares them with existing options in the database, and determines which options need to be created (new) or updated (changed values). It performs validation on each option parameter, executes batch create/update operations through the repository, and publishes an OptionUpdatedEvent if any changes occurred. The method is transactional and gracefully handles empty input by returning early."
   }
 ]

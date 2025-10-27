@@ -12103,5 +12103,349 @@
       }
     ],
     "function_summary": "This code snippet implements the `fetch` method of a `ZipThemeFetcher` class, which downloads and processes theme files from remote ZIP archives.\n\n**Key functionality:**\n\n1. **HTTP Download**: Creates an HTTP GET request to download a ZIP file from a remote URL (provided as the `source` parameter), with a 2-minute timeout.\n\n2. **Stream Processing**: Uses the configured `HttpClient` to send the request and receives the response as an `InputStream` to handle potentially large files efficiently.\n\n3. **ZIP Extraction**: Wraps the input stream in a `ZipInputStream` and extracts the contents to a temporary directory using a utility method.\n\n4. **Theme Property Resolution**: Scans the extracted directory using `ThemePropertyScanner` to locate and parse theme configuration files, returning a `ThemeProperty` object.\n\n5. **Error Handling**: Catches `InterruptedException` and `IOException`, wrapping them in a `RuntimeException` with a Chinese error message. Also throws a `ThemePropertyMissingException` if no valid theme configuration is found.\n\nThe method essentially orchestrates the complete workflow of fetching a remote theme ZIP file, extracting it locally, and validating its structure to ensure it contains the required theme configuration files."
+  },
+  {
+    "instance_id": "fd_CVE-2020-23079",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/mail/AbstractMailService.java",
+        "score": 1340.81103515625
+      },
+      {
+        "docid": "src/main/java/run/halo/app/mail/MailSenderFactory.java",
+        "score": 366.1673889160156
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AdminServiceImpl.java",
+        "score": 244.53309631347656
+      },
+      {
+        "docid": "src/main/java/run/halo/app/controller/admin/api/MailController.java",
+        "score": 233.19720458984375
+      },
+      {
+        "docid": "src/main/java/run/halo/app/mail/MailService.java",
+        "score": 217.66090393066406
+      },
+      {
+        "docid": "src/main/java/run/halo/app/mail/MailServiceImpl.java",
+        "score": 217.27920532226562
+      },
+      {
+        "docid": "src/main/java/run/halo/app/listener/StartedListener.java",
+        "score": 197.2200927734375
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/ThemeServiceImpl.java",
+        "score": 193.06869506835938
+      },
+      {
+        "docid": "src/main/java/run/halo/app/security/filter/AbstractAuthenticationFilter.java",
+        "score": 182.70399475097656
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/SmmsFileHandler.java",
+        "score": 180.99989318847656
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/BaseCommentServiceImpl.java",
+        "score": 172.5594940185547
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/TwoFactorAuthUtils.java",
+        "score": 165.76870727539062
+      },
+      {
+        "docid": "src/main/java/run/halo/app/mail/MailProperties.java",
+        "score": 163.5177001953125
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/properties/EmailProperties.java",
+        "score": 159.69900512695312
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/LocalFileHandler.java",
+        "score": 153.68609619140625
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/UserService.java",
+        "score": 151.1074981689453
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/QiniuOssFileHandler.java",
+        "score": 150.154296875
+      },
+      {
+        "docid": "src/main/java/run/halo/app/listener/post/AbstractVisitEventListener.java",
+        "score": 148.856201171875
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/HuaweiObsFileHandler.java",
+        "score": 147.62539672851562
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/UpOssFileHandler.java",
+        "score": 144.87049865722656
+      }
+    ],
+    "function_summary": "This code snippet implements a method to test the connection to an email server. Here's what it does:\n\n**Main Functionality:**\n- Tests whether the application can successfully connect to the configured email server\n- Serves as a validation mechanism for email configuration settings\n\n**Key Operations:**\n1. **Retrieves Mail Sender**: Calls `getMailSender()` to obtain the configured JavaMailSender instance\n2. **Type Check**: Verifies if the mail sender is an instance of `JavaMailSenderImpl` (Spring's concrete implementation)\n3. **Connection Test**: Executes `testConnection()` method on the mail sender to attempt a connection to the email server\n4. **Error Handling**: Catches any `MessagingException` that occurs during the connection attempt and wraps it in a custom `EmailException` with a Chinese error message\n\n**Important Logic:**\n- Only performs the test if the mail sender is of the expected type (`JavaMailSenderImpl`)\n- Provides localized error messaging in Chinese, indicating connection failure and suggesting users check their email configuration\n- Re-throws exceptions as application-specific `EmailException` for consistent error handling throughout the application\n\nThis method is typically used during email configuration setup or troubleshooting to verify that the SMTP settings are correct and the email server is reachable."
+  },
+  {
+    "instance_id": "fd_CVE-2021-43659",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/LocalFileHandler.java",
+        "score": 1232.351318359375
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/QiniuOssFileHandler.java",
+        "score": 502.4189147949219
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/UpOssFileHandler.java",
+        "score": 497.9287109375
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/FileHandler.java",
+        "score": 463.74371337890625
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/MinioFileHandler.java",
+        "score": 454.8328857421875
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/BaiduBosFileHandler.java",
+        "score": 442.7344970703125
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/HuaweiObsFileHandler.java",
+        "score": 439.9796142578125
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/TencentCosFileHandler.java",
+        "score": 435.29949951171875
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/AliOssFileHandler.java",
+        "score": 434.97930908203125
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/SmmsFileHandler.java",
+        "score": 413.6549072265625
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/BackupServiceImpl.java",
+        "score": 369.2945861816406
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/StaticStorageServiceImpl.java",
+        "score": 344.7799987792969
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/FileUtils.java",
+        "score": 341.8175964355469
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/ThemeServiceImpl.java",
+        "score": 319.6164855957031
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "score": 315.673095703125
+      },
+      {
+        "docid": "src/main/java/run/halo/app/controller/admin/api/BackupController.java",
+        "score": 294.8385009765625
+      },
+      {
+        "docid": "src/main/java/run/halo/app/listener/StartedListener.java",
+        "score": 290.9707946777344
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/HaloUtils.java",
+        "score": 232.99240112304688
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/entity/Attachment.java",
+        "score": 228.65829467773438
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/FileHandlers.java",
+        "score": 227.5695037841797
+      }
+    ],
+    "function_summary": "This code snippet implements a file upload method for a local file handler in what appears to be a blog/CMS application. Here's what it does:\n\n**Main Functionality:**\n- Accepts a MultipartFile and uploads it to the local file system\n- Creates a date-based directory structure using current year and month (e.g., `upload/2023/03/`)\n- Generates a unique filename by appending a random UUID to the original basename\n- Preserves the original file extension\n\n**Key Operations:**\n1. **Path Generation**: Creates organized storage paths based on upload date\n2. **File Processing**: Extracts filename components and generates unique identifiers to prevent naming conflicts\n3. **Directory Creation**: Automatically creates necessary parent directories\n4. **File Transfer**: Saves the uploaded file to the generated path\n5. **Thumbnail Generation**: For image files, attempts to create thumbnails using the `handleImageMetadata` method\n6. **Result Building**: Constructs an `UploadResult` object containing file metadata (filename, path, size, media type, etc.)\n\n**Error Handling:**\n- Validates input file is not null\n- Catches IOException and throws custom `FileOperationException`\n- Gracefully handles thumbnail generation failures\n\nThe method returns an `UploadResult` containing all relevant file information for further processing by the application."
+  },
+  {
+    "instance_id": "fd_CVE-2022-26619",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "score": 1139.063232421875
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/AttachmentService.java",
+        "score": 450.0755920410156
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/BackupServiceImpl.java",
+        "score": 424.93701171875
+      },
+      {
+        "docid": "src/main/java/run/halo/app/controller/admin/api/AttachmentController.java",
+        "score": 395.0317077636719
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/FileHandlers.java",
+        "score": 384.3099060058594
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/FileHandler.java",
+        "score": 381.86920166015625
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/PostServiceImpl.java",
+        "score": 354.9036865234375
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/BaseCommentServiceImpl.java",
+        "score": 338.63531494140625
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/LocalFileHandler.java",
+        "score": 333.6611022949219
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/entity/Attachment.java",
+        "score": 320.7640075683594
+      },
+      {
+        "docid": "src/main/resources/admin/js/app.65e71bb9.js",
+        "score": 313.2615051269531
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/OptionServiceImpl.java",
+        "score": 305.5892028808594
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/SmmsFileHandler.java",
+        "score": 297.9385070800781
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/QiniuOssFileHandler.java",
+        "score": 295.7831115722656
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/JournalServiceImpl.java",
+        "score": 282.3099060058594
+      },
+      {
+        "docid": "src/main/java/run/halo/app/repository/AttachmentRepository.java",
+        "score": 262.69061279296875
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/UpOssFileHandler.java",
+        "score": 262.2626037597656
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/PhotoServiceImpl.java",
+        "score": 261.635498046875
+      },
+      {
+        "docid": "src/main/java/run/halo/app/controller/admin/api/BackupController.java",
+        "score": 261.4194030761719
+      },
+      {
+        "docid": "src/main/resources/admin/js/chunk-2564bce0.158b58a8.js",
+        "score": 255.03460693359375
+      }
+    ],
+    "function_summary": "This code snippet implements the `upload` method for handling file uploads in an attachment service. Here's what it does:\n\n**Main Functionality:**\n- Accepts a `MultipartFile` and processes it for upload to the system\n- Validates the input file is not null\n- Determines the attachment type from system configuration\n- Delegates the actual file upload to `fileHandlers.upload()` which returns an `UploadResult`\n\n**Key Operations:**\n1. **File Upload**: Uses file handlers to upload the file based on the configured attachment type\n2. **Attachment Entity Creation**: Creates a new `Attachment` object and populates it with metadata from the upload result, including:\n   - Filename, file path (with URL separator conversion)\n   - File key, thumbnail path, media type, and file suffix\n   - Image dimensions (width/height) and file size\n   - Attachment type\n3. **Persistence**: Saves the attachment entity to the database via the `create()` method\n4. **Logging**: Provides debug logging throughout the process for troubleshooting\n\n**Important Logic:**\n- Converts file path separators to URL-compatible format using `HaloUtils`\n- Extracts comprehensive file metadata from the upload result\n- Returns the persisted attachment entity with database-generated fields\n\nThe method essentially bridges file upload handling with database persistence for attachment management."
+  },
+  {
+    "instance_id": "fd_CVE-2022-28074",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/OptionServiceImpl.java",
+        "score": 1901.3812255859375
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/OptionProvideService.java",
+        "score": 814.0703125
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/PostServiceImpl.java",
+        "score": 554.6148071289062
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/BaseCommentServiceImpl.java",
+        "score": 520.2374877929688
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/ThemeSettingServiceImpl.java",
+        "score": 429.37298583984375
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/OptionService.java",
+        "score": 424.3387145996094
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "score": 404.1706848144531
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/BasePostServiceImpl.java",
+        "score": 402.1296081542969
+      },
+      {
+        "docid": "src/main/java/run/halo/app/controller/admin/api/OptionController.java",
+        "score": 401.5534973144531
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/CategoryServiceImpl.java",
+        "score": 382.6859130859375
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/ThemeServiceImpl.java",
+        "score": 379.7901916503906
+      },
+      {
+        "docid": "src/main/java/run/halo/app/repository/ThemeRepositoryImpl.java",
+        "score": 369.4075012207031
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/JournalServiceImpl.java",
+        "score": 365.8591003417969
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/BackupServiceImpl.java",
+        "score": 364.0851135253906
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/PhotoServiceImpl.java",
+        "score": 357.4147033691406
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/FileUtils.java",
+        "score": 335.147705078125
+      },
+      {
+        "docid": "src/main/resources/admin/js/app.70043560.js",
+        "score": 332.2554016113281
+      },
+      {
+        "docid": "src/main/resources/admin/js/428.3f56cc65.js",
+        "score": 324.1885986328125
+      },
+      {
+        "docid": "src/main/resources/admin/js/chunk-vendors.ab83c46c.js",
+        "score": 324.1536865234375
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/ClientOptionServiceImpl.java",
+        "score": 323.29681396484375
+      }
+    ],
+    "function_summary": "This code snippet implements a method to save configuration options in a transactional manner. Here's what it does:\n\n**Main Functionality:**\n- Takes a map of option key-value pairs and saves them to the database\n- Performs an \"upsert\" operation (create new options or update existing ones)\n\n**Key Operations:**\n1. **Early Exit**: Returns immediately if the input map is empty\n2. **Data Preparation**: Retrieves all existing options and creates a lookup map by key\n3. **Classification**: Iterates through input options and categorizes them into:\n   - Options to create (new keys)\n   - Options to update (existing keys with different values)\n4. **Validation**: Validates each option parameter before processing\n5. **Batch Operations**: Performs bulk updates and creates for efficiency\n6. **Event Publishing**: Publishes an `OptionUpdatedEvent` if any changes were made\n\n**Important Logic:**\n- Only processes options that are new or have changed values (avoids unnecessary database operations)\n- Uses batch operations for better performance\n- Converts input values to strings and validates them\n- Maintains transactional integrity with the `@Transactional` annotation\n- Publishes events to notify other parts of the system about option changes\n\nThis method is essential for managing application configuration settings efficiently."
   }
 ]
