@@ -191,7 +191,7 @@
   {
     "instance_id": "GioldDiorld_CVE-2018-11225",
     "repo": "libming/libming",
-    "base_commit": "fbbb6f82199de42110c0299e50c5b2f81d8897f4^",
+    "base_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba^",
     "vuln_file": "util/decompile.c",
     "vuln_lines": [
       3192,
@@ -210,7 +210,7 @@
     "test_case_cmd": "./test_case.sh",
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [],
-    "patch_commit": "fbbb6f82199de42110c0299e50c5b2f81d8897f4"
+    "patch_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba"
   },
   {
     "instance_id": "GioldDiorld_CVE-2018-7868",
@@ -428,7 +428,7 @@
   {
     "instance_id": "GioldDiorld_CVE-2018-11226",
     "repo": "libming/libming",
-    "base_commit": "fbbb6f82199de42110c0299e50c5b2f81d8897f4^",
+    "base_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba^",
     "vuln_file": "util/decompile.c",
     "vuln_lines": [
       3192,
@@ -447,7 +447,7 @@
     "test_case_cmd": "./test_case.sh",
     "poc_cmd": "./poc.sh",
     "other_vuln_files": [],
-    "patch_commit": "fbbb6f82199de42110c0299e50c5b2f81d8897f4"
+    "patch_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba"
   },
   {
     "instance_id": "Choser_CVE-2018-11813",
