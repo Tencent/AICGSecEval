@@ -98,12 +98,18 @@ def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir):
             os.makedirs(dump_dir, exist_ok=True)
         except Exception as e:
             raise ValueError(f"准备中间结果输出目录失败，无法启动扫描，异常原因：{e}")
+        
+        if "privileged" in scan_data and scan_data["privileged"]:
+            privileged = True
+        else:
+            privileged = False
 
         with DockerHelper(
             trace=folder,
             image=scan_data["image"],
             command=scan_data["image_run_cmd"],
-            remove_container=False  ## replace with True if you want to remove the container after scanning to save disk space
+            remove_container=False,  ## replace with True if you want to remove the container after scanning to save disk space
+            privileged=privileged
         ) as docker:
             output_data["patch_file"] = docker.upload(
                 host_path=vuln_file,

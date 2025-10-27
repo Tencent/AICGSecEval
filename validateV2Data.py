@@ -60,6 +60,12 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
     #     except Exception as e:
     #         logging.error(f"[{trace}] 保存验证结果失败：{e}")
     
+
+    if "privileged" in case_data and case_data["privileged"]:
+        privileged = True
+    else:
+        privileged = False
+    
     result = {
         "instance_id": trace,
         **basic_result,
@@ -84,7 +90,8 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
             trace=trace,
             image=case_data["image"],
             command=case_data["image_run_cmd"],
-            remove_container=patch_commit is None
+            remove_container=patch_commit is None,
+            privileged=privileged
         ) as docker:
 
             # inner path 检查
@@ -94,6 +101,20 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
                 result["inner_path_check_failed_reason"] = f"路径不存在: {container_inner_path}"
             else:
                 result["inner_path_check"] = True
+
+            # 切换到基准版本
+            result["base_commit"]["checkout"] = basic_result["base_commit_checkout"]
+            run_command_and_validate(
+                    trace=trace,
+                    docker=docker,
+                    case_name="切换代码为基准版本",
+                    command=f"bash -c \"git checkout {case_data['base_commit']}'\"",
+                    timeout=60,
+                    environment={"LANG": "en_US"},
+                    workdir=case_data["image_inner_path"],
+                    check_output=f"HEAD is now at",
+                    output_file=f"{dump_dir}/base_commit.checkout.log"
+                )
 
             result["base_commit"]["image_status_check"] = run_case_and_validate(
                 trace=trace,
@@ -140,7 +161,8 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
                 trace=trace,
                 image=case_data["image"],
                 command=case_data["image_run_cmd"],
-                remove_container=remove_container
+                remove_container=remove_container,
+                privileged=privileged
             ) as docker:
                 result["patch_commit"]["checkout"] = run_command_and_validate(
                     trace=trace,

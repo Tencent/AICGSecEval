@@ -12,11 +12,12 @@ class DockerHelperImpl:
     _docker_client: docker.DockerClient = None
     _docker_container: docker.models.containers.Container = None
 
-    def __init__(self, trace: str, image: str, command: str, remove_container: bool):
+    def __init__(self, trace: str, image: str, command: str, remove_container: bool, privileged: bool):
         self._logger = logging.getLogger()
         self._trace = trace
         self._image = image
         self._remove_container = remove_container
+        self._privileged = privileged
 
         try:
             self._docker_client = docker.from_env()
@@ -24,12 +25,8 @@ class DockerHelperImpl:
             raise RuntimeError(f"连接本地 Docker 服务失败：{e}")
 
         try:
-            if self._image == "giolddiorld/aiseceval_cve-2017-9988:latest":
-                self._docker_container = self._docker_client.containers.run(
-                    image=image, command=command, stdout=True, stderr=True, remove=True, detach=True, privileged=False)
-            else:
-                self._docker_container = self._docker_client.containers.run(
-                    image=image, command=command, stdout=True, stderr=True, remove=True, detach=True, privileged=True)
+            self._docker_container = self._docker_client.containers.run(
+                image=image, command=command, stdout=True, stderr=True, remove=True, detach=True, privileged=self._privileged)
             self._logger.info(
                 f"[{self._trace}] 启动镜像 {self._image} 成功，容器：{self._docker_container.name}（{self._docker_container.id}）")
         except Exception as e:
