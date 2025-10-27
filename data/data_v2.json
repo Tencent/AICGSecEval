@@ -4088,7 +4088,7 @@
     "severity": "CRITICAL",
     "image": "aiseceval/cve-2016-3088:latest",
     "image_name": "cve-2016-3088-image",
-    "image_inner_path": "/app/",
+    "image_inner_path": "/app/activemq",
     "image_run_cmd": "tail -f /dev/null",
     "image_status_check_cmd": "python3 /app/start.py",
     "test_case_cmd": "python3 /app/func.py",
@@ -4109,7 +4109,7 @@
     "severity": "HIGH",
     "image": "aiseceval/cve-2022-41678:latest",
     "image_name": "cve-2022-41678-image",
-    "image_inner_path": "/app/",
+    "image_inner_path": "/app/activemq",
     "image_run_cmd": "tail -f /dev/null",
     "image_status_check_cmd": "python3 /app/start.py",
     "test_case_cmd": "python3 /app/func.py",
@@ -4227,8 +4227,8 @@
     "poc_cmd": "python3 /opt/poc.py",
     "other_vuln_files": [],
     "patch_commit": "bb6d396609600d1169da29456ba3db59abae4b7e"
-},
-{
+ },
+ {
     "instance_id": "fd_CVE-2019-6339",
     "repo": "drupal/drupal",
     "base_commit": "7e1a53c1f9dc874390abf22fb7388dd593415ef2",
@@ -4248,8 +4248,8 @@
     "poc_cmd": "python3 /opt/poc.py",
     "other_vuln_files": [],
     "patch_commit": "fe32f7790e6ebff1ca55397c328c28805bc7315a"
-},
-{
+ },
+ {
     "instance_id": "fd_CVE-2019-6341",
     "repo": "drupal/drupal",
     "base_commit": "8e162d631640da8c40d6cac4eac901b82531d929",
