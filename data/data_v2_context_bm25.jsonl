@@ -11673,5 +11673,435 @@
       }
     ],
     "function_summary": "This code snippet implements a thread-safe method `getStorePath()` that retrieves the storage path for configuration data. The method uses a read-write lock to ensure thread safety during access.\n\n**Key functionality:**\n\n1. **Thread-safe access**: Uses `readWriteLock.readLock()` to allow concurrent reads while preventing writes during the operation.\n\n2. **Dual path resolution**: The method can retrieve the storage path from two sources:\n   - **Default path**: Returns the instance variable `this.storePath`\n   - **Dynamic path**: If `storePathFromConfig` flag is true, it uses reflection to dynamically retrieve the path from a specified field (`storePathField`) of a configuration object (`storePathObject`)\n\n3. **Error handling**: Includes exception handling for:\n   - `IllegalAccessException` when accessing the reflected field\n   - `InterruptedException` when acquiring the lock\n   - Both exceptions are logged with appropriate error messages\n\n4. **Reflection-based retrieval**: When configured to use dynamic paths, it employs Java reflection to access a field value from another object, providing flexibility in configuration management.\n\nThe method returns the resolved storage path as a String, defaulting to null if errors occur during lock acquisition."
+  },
+  {
+    "instance_id": "fd_cve-2023-33246",
+    "hits": [
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/filtersrv/FilterServerManager.java",
+        "score": 686.4158935546875
+      },
+      {
+        "docid": "namesrv/src/main/java/org/apache/rocketmq/namesrv/routeinfo/RouteInfoManager.java",
+        "score": 218.18359375
+      },
+      {
+        "docid": "client/src/main/java/org/apache/rocketmq/client/impl/factory/MQClientInstance.java",
+        "score": 212.5457000732422
+      },
+      {
+        "docid": "remoting/src/main/java/org/apache/rocketmq/remoting/netty/NettyRemotingClient.java",
+        "score": 211.7512969970703
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/client/ConsumerGroupInfo.java",
+        "score": 206.35699462890625
+      },
+      {
+        "docid": "remoting/src/main/java/org/apache/rocketmq/remoting/netty/NettyRemotingAbstract.java",
+        "score": 200.74070739746094
+      },
+      {
+        "docid": "remoting/src/main/java/org/apache/rocketmq/remoting/netty/NettyRemotingServer.java",
+        "score": 197.47659301757812
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/processor/PopMessageProcessor.java",
+        "score": 186.3459930419922
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/client/ProducerManager.java",
+        "score": 177.2191925048828
+      },
+      {
+        "docid": "container/src/main/java/org/apache/rocketmq/container/BrokerContainer.java",
+        "score": 176.814697265625
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/client/ConsumerManager.java",
+        "score": 174.56500244140625
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+        "score": 170.2082977294922
+      },
+      {
+        "docid": "controller/src/main/java/org/apache/rocketmq/controller/impl/DefaultBrokerHeartbeatManager.java",
+        "score": 169.86740112304688
+      },
+      {
+        "docid": "proxy/src/main/java/org/apache/rocketmq/proxy/ProxyStartup.java",
+        "score": 167.49200439453125
+      },
+      {
+        "docid": "container/src/main/java/org/apache/rocketmq/container/BrokerContainerStartup.java",
+        "score": 166.90370178222656
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/processor/PullMessageProcessor.java",
+        "score": 164.16799926757812
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/BrokerStartup.java",
+        "score": 163.30349731445312
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/processor/AdminBrokerProcessor.java",
+        "score": 163.29530334472656
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/client/net/Broker2Client.java",
+        "score": 163.10079956054688
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/processor/NotificationProcessor.java",
+        "score": 162.3751983642578
+      }
+    ],
+    "function_summary": "This code snippet is part of the `buildStartCommand()` method that constructs a command-line string for starting filter servers in Apache RocketMQ. \n\nThe snippet specifically handles the addition of the name server address parameter to the command. It checks if the broker configuration contains a name server address (`getNamesrvAddr()`), and if it's not null, it appends the `-n` flag followed by the name server address to the existing `config` string using string formatting.\n\nThis is a conditional parameter addition - the name server address is only included in the startup command if it has been configured. The `-n` flag is a standard command-line option in RocketMQ that specifies the name server address that the filter server should connect to for service discovery and coordination.\n\nThis snippet is part of the larger functionality that dynamically builds platform-specific startup commands for filter server processes, ensuring they have the necessary configuration parameters (like name server connectivity) to properly integrate with the RocketMQ cluster."
+  },
+  {
+    "instance_id": "fd_CVE-2014-3704",
+    "hits": [
+      {
+        "docid": "modules/system/system.api.php",
+        "score": 5930.94873046875
+      },
+      {
+        "docid": "sites/default/default.settings.php",
+        "score": 5282.46044921875
+      },
+      {
+        "docid": "modules/node/node.api.php",
+        "score": 4757.98583984375
+      },
+      {
+        "docid": "modules/field/field.api.php",
+        "score": 4573.47021484375
+      },
+      {
+        "docid": "modules/user/user.api.php",
+        "score": 3808.789794921875
+      },
+      {
+        "docid": "modules/search/search.api.php",
+        "score": 3674.261962890625
+      },
+      {
+        "docid": "modules/overlay/overlay-parent.js",
+        "score": 3546.81982421875
+      },
+      {
+        "docid": "update.php",
+        "score": 3541.17431640625
+      },
+      {
+        "docid": "misc/drupal.js",
+        "score": 3391.732177734375
+      },
+      {
+        "docid": "misc/ajax.js",
+        "score": 3306.2568359375
+      },
+      {
+        "docid": "misc/tabledrag.js",
+        "score": 3098.7158203125
+      },
+      {
+        "docid": "modules/block/block.api.php",
+        "score": 3025.861083984375
+      },
+      {
+        "docid": "modules/filter/filter.api.php",
+        "score": 2867.002197265625
+      },
+      {
+        "docid": "misc/states.js",
+        "score": 2561.305419921875
+      },
+      {
+        "docid": "modules/image/image.api.php",
+        "score": 2472.523681640625
+      },
+      {
+        "docid": "modules/system/form.api.php",
+        "score": 2284.88916015625
+      },
+      {
+        "docid": "modules/system/theme.api.php",
+        "score": 2284.386474609375
+      },
+      {
+        "docid": "modules/field_ui/field_ui.js",
+        "score": 2099.0947265625
+      },
+      {
+        "docid": "modules/taxonomy/taxonomy.api.php",
+        "score": 1964.277587890625
+      },
+      {
+        "docid": "modules/system/language.api.php",
+        "score": 1926.103271484375
+      }
+    ],
+    "function_summary": "This code snippet implements the `expandArguments` method, which handles automatic expansion of array-valued placeholders in SQL queries. Here's what it does:\n\n**Main Functionality:**\n- Takes SQL query strings with placeholders and their corresponding argument arrays\n- Identifies placeholders that have array values (using `array_filter($args, 'is_array')`)\n- Automatically expands array placeholders into multiple individual placeholders\n\n**Key Operations:**\n1. **Array Detection**: Finds all arguments that are arrays\n2. **Placeholder Generation**: For each array value, creates new numbered placeholders (e.g., `:example` becomes `:example_0`, `:example_1`, etc.)\n3. **Query Modification**: Uses regex (`preg_replace`) to replace the original array placeholder with a comma-separated list of the new individual placeholders\n4. **Argument Update**: Removes the original array argument and adds the new individual key-value pairs\n\n**Important Logic:**\n- Uses word boundary regex (`\\b`) to prevent accidental replacement of similar placeholder names (e.g., `:foo` vs `:foobar`)\n- Modifies both the query string and arguments array by reference\n- Returns a boolean indicating whether any modifications were made\n\nThis allows developers to use array values in SQL queries (like `WHERE id IN (:ids)`) and have them automatically expanded to proper SQL syntax (`WHERE id IN (:ids_0, :ids_1, :ids_2)`)."
+  },
+  {
+    "instance_id": "fd_CVE-2018-7600",
+    "hits": [
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "score": 7235.88232421875
+      },
+      {
+        "docid": "core/modules/simpletest/src/KernelTestBase.php",
+        "score": 3368.5244140625
+      },
+      {
+        "docid": "sites/default/default.settings.php",
+        "score": 3299.019287109375
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Extension/ExtensionDiscovery.php",
+        "score": 2855.96337890625
+      },
+      {
+        "docid": "core/core.api.php",
+        "score": 2837.986572265625
+      },
+      {
+        "docid": "core/modules/simpletest/src/WebTestBase.php",
+        "score": 2718.190673828125
+      },
+      {
+        "docid": "core/modules/simpletest/src/TestBase.php",
+        "score": 2667.34130859375
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Site/Settings.php",
+        "score": 2564.177978515625
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Extension/ModuleInstaller.php",
+        "score": 2562.55859375
+      },
+      {
+        "docid": "core/modules/simpletest/src/InstallerTestBase.php",
+        "score": 2556.906005859375
+      },
+      {
+        "docid": "core/lib/Drupal.php",
+        "score": 2521.7451171875
+      },
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernelInterface.php",
+        "score": 2521.4169921875
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Form/FormBuilder.php",
+        "score": 2497.86962890625
+      },
+      {
+        "docid": "core/modules/system/src/Controller/DbUpdateController.php",
+        "score": 2489.01708984375
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Extension/ModuleHandler.php",
+        "score": 2477.24658203125
+      },
+      {
+        "docid": "core/modules/simpletest/src/TestDiscovery.php",
+        "score": 2411.825927734375
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Theme/Registry.php",
+        "score": 2346.6484375
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Update/UpdateKernel.php",
+        "score": 2344.006103515625
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Render/theme.api.php",
+        "score": 2321.466064453125
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Form/FormState.php",
+        "score": 2319.031982421875
+      }
+    ],
+    "function_summary": "This code snippet shows the `preHandle` method from Drupal's `DrupalKernel` class, which prepares the system to handle an HTTP request. The method performs several critical initialization steps in sequence:\n\n1. **Loads legacy includes** - Includes necessary PHP files for backward compatibility\n2. **Loads all enabled modules** - Uses the module handler service to load all active modules\n3. **Registers stream wrappers** - Sets up custom stream wrappers for file handling\n4. **Initializes legacy request globals** - Sets up global variables like `$_GET`, `$_POST` for backward compatibility\n5. **Manages request stack** - Pushes the current request onto Symfony's request stack for proper request handling\n6. **Configures URL protocols** - Sets allowed URL protocols (http, https, etc.) from configuration\n7. **Overrides MIME type detection** - Registers Drupal's MIME type guesser with Symfony's system\n\nFinally, it sets the `$prepared` flag to `TRUE`, indicating that essential services have been properly initialized. This method is crucial for ensuring that all necessary components are ready before the kernel processes the actual HTTP request, bridging Drupal's legacy systems with modern Symfony components."
+  },
+  {
+    "instance_id": "fd_CVE-2022-32994",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "score": 1017.1126098632812
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/AttachmentService.java",
+        "score": 471.5910949707031
+      },
+      {
+        "docid": "src/main/java/run/halo/app/controller/admin/api/AttachmentController.java",
+        "score": 377.9927978515625
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/FileHandlers.java",
+        "score": 373.1465148925781
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/FileHandler.java",
+        "score": 342.02099609375
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/BackupServiceImpl.java",
+        "score": 324.09381103515625
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/entity/Attachment.java",
+        "score": 314.4953918457031
+      },
+      {
+        "docid": "src/main/java/run/halo/app/repository/AttachmentRepository.java",
+        "score": 271.8197021484375
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/LocalFileHandler.java",
+        "score": 265.5151062011719
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/PhotoServiceImpl.java",
+        "score": 264.460205078125
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/BaseCommentServiceImpl.java",
+        "score": 250.31610107421875
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/OptionServiceImpl.java",
+        "score": 244.5343017578125
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/JournalServiceImpl.java",
+        "score": 241.85940551757812
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/QiniuOssFileHandler.java",
+        "score": 237.8372039794922
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/PostServiceImpl.java",
+        "score": 237.36880493164062
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/SmmsFileHandler.java",
+        "score": 235.12669372558594
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/dto/AttachmentDTO.java",
+        "score": 220.9897003173828
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/UpOssFileHandler.java",
+        "score": 214.70889282226562
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/MinioFileHandler.java",
+        "score": 209.05149841308594
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/AliOssFileHandler.java",
+        "score": 206.89370727539062
+      }
+    ],
+    "function_summary": "This code snippet implements the `upload` method for handling file uploads in the AttachmentServiceImpl class. Here's what it does:\n\n**Main Functionality:**\n- Accepts a `MultipartFile` and uploads it to create an `Attachment` entity\n\n**Key Operations:**\n1. **Validation**: Ensures the input file is not null\n2. **Configuration**: Retrieves the attachment type from system options (e.g., LOCAL, cloud storage)\n3. **File Upload**: Delegates actual file upload to `fileHandlers.upload()` which returns an `UploadResult`\n4. **Entity Creation**: Builds a new `Attachment` object by mapping properties from the upload result:\n   - File name, path (with URL separator conversion), and file key\n   - Thumbnail path and media type\n   - File metadata: suffix, dimensions (width/height), and size\n   - Attachment type\n5. **Persistence**: Saves the attachment to the database via `create()` method\n6. **Logging**: Provides debug logging throughout the process\n\n**Important Logic:**\n- Uses `HaloUtils.changeFileSeparatorToUrlSeparator()` to ensure consistent URL formatting\n- The method abstracts file storage implementation through the `fileHandlers` component\n- Returns the persisted `Attachment` entity for further use\n\nThis is a typical file upload service method that handles both the physical file storage and database record creation."
+  },
+  {
+    "instance_id": "fd_CVE-2022-32995",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/theme/ZipThemeFetcher.java",
+        "score": 425.9963073730469
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/MultipartZipFileThemeFetcher.java",
+        "score": 231.85440063476562
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/ThemeServiceImpl.java",
+        "score": 204.49200439453125
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/GitThemeFetcher.java",
+        "score": 204.24339294433594
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/FileUtils.java",
+        "score": 172.75390625
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/GitThemeUpdater.java",
+        "score": 145.0655975341797
+      },
+      {
+        "docid": "src/main/java/run/halo/app/repository/ThemeRepositoryImpl.java",
+        "score": 127.67009735107422
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/ThemeService.java",
+        "score": 114.14009857177734
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/ThemePropertyScanner.java",
+        "score": 113.0519027709961
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/BackupServiceImpl.java",
+        "score": 108.47959899902344
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/MultipartFileThemeUpdater.java",
+        "score": 108.2780990600586
+      },
+      {
+        "docid": "src/main/java/run/halo/app/listener/StartedListener.java",
+        "score": 104.15160369873047
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/ThemeUpdater.java",
+        "score": 98.80580139160156
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/ThemeFetcher.java",
+        "score": 96.24400329589844
+      },
+      {
+        "docid": "src/main/java/run/halo/app/config/HaloMvcConfiguration.java",
+        "score": 94.841796875
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/GithubUtils.java",
+        "score": 94.17729949951172
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/ThemeMetaLocator.java",
+        "score": 93.72239685058594
+      },
+      {
+        "docid": "src/main/java/run/halo/app/controller/admin/api/ThemeController.java",
+        "score": 87.07510375976562
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/LocalFileHandler.java",
+        "score": 86.30660247802734
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/ThemeFetcherComposite.java",
+        "score": 86.12039947509766
+      }
+    ],
+    "function_summary": "This code snippet implements the `fetch` method of a `ZipThemeFetcher` class, which downloads and processes theme files from remote ZIP archives.\n\n**Key functionality:**\n\n1. **HTTP Download**: Creates an HTTP GET request to download a ZIP file from a remote URL (provided as the `source` parameter), with a 2-minute timeout.\n\n2. **Stream Processing**: Uses the configured `HttpClient` to send the request and receives the response as an `InputStream` to handle potentially large files efficiently.\n\n3. **ZIP Extraction**: Wraps the input stream in a `ZipInputStream` and extracts the contents to a temporary directory using a utility method.\n\n4. **Theme Property Resolution**: Scans the extracted directory using `ThemePropertyScanner` to locate and parse theme configuration files, returning a `ThemeProperty` object.\n\n5. **Error Handling**: Catches `InterruptedException` and `IOException`, wrapping them in a `RuntimeException` with a Chinese error message. Also throws a `ThemePropertyMissingException` if no valid theme configuration is found.\n\nThe method essentially orchestrates the complete workflow of fetching a remote theme ZIP file, extracting it locally, and validating its structure to ensure it contains the required theme configuration files."
   }
 ]

@@ -6290,5 +6290,541 @@
       }
     ],
     "function_summary": "This code segment validates the `source` parameter for model version creation in MLflow's model registry. It performs a two-step validation:\n\n1. **Local URI validation (lines 1724-1738)**: If the source is a local file URI, it verifies that:\n   - A `run_id` is provided\n   - The local path is contained within the artifact directory of the specified run\n   - If validation fails, it raises an `MlflowException` with an error message explaining the requirement\n\n2. **Non-local URI validation (lines 1740-1742)**: For non-local URIs (http, https, mlflow-artifacts, etc.), it delegates to `_validate_non_local_source_contains_relative_paths()` to check for path traversal attacks by detecting relative path components like `../` in the source URI."
+  },
+  {
+    "instance_id": "fd_cve-2016-3088",
+    "hits": [
+      {
+        "docid": "activemq-fileserver/src/main/java/org/apache/activemq/util/RestFilter.java",
+        "startline": 53,
+        "endline": 53
+      },
+      {
+        "docid": "activemq-fileserver/src/main/java/org/apache/activemq/util/RestFilter.java",
+        "startline": 55,
+        "endline": 55
+      },
+      {
+        "docid": "activemq-fileserver/src/main/java/org/apache/activemq/util/RestFilter.java",
+        "startline": 62,
+        "endline": 62
+      },
+      {
+        "docid": "activemq-fileserver/src/main/java/org/apache/activemq/util/RestFilter.java",
+        "startline": 71,
+        "endline": 73
+      },
+      {
+        "docid": "activemq-fileserver/src/main/java/org/apache/activemq/util/RestFilter.java",
+        "startline": 103,
+        "endline": 136
+      },
+      {
+        "docid": "activemq-fileserver/src/main/java/org/apache/activemq/util/IOHelper.java",
+        "startline": 101,
+        "endline": 105
+      },
+      {
+        "docid": "activemq-fileserver/src/main/java/org/apache/activemq/util/IOHelper.java",
+        "startline": 57,
+        "endline": 64
+      },
+      {
+        "docid": "activemq-fileserver/src/main/java/org/apache/activemq/util/IOHelper.java",
+        "startline": 107,
+        "endline": 119
+      },
+      {
+        "docid": "activemq-fileserver/src/main/java/org/apache/activemq/util/IOHelper.java",
+        "startline": 32,
+        "endline": 32
+      }
+    ],
+    "function_summary": "The doMove method (lines 103-136) implements the HTTP MOVE operation for a RESTful file server. It handles moving files from one location to another based on the HTTP MOVE request. The method performs the following operations:\n\n1. Logs the MOVE request for debugging purposes\n2. Checks if the user has the required write permission role, returning HTTP 403 Forbidden if not authorized\n3. Locates the source file based on the request path\n4. Extracts the destination path from the \"Destination\" HTTP header\n5. Validates that the Destination header is present, returning HTTP 400 Bad Request if missing\n6. Attempts to copy the source file to the destination URL path and then delete the original file\n7. Returns HTTP 500 Internal Server Error if the file operations fail\n8. Returns HTTP 204 No Content on successful completion"
+  },
+  {
+    "instance_id": "fd_cve-2022-41678",
+    "hits": [
+      {
+        "docid": "assembly/src/release/webapps/api/WEB-INF/web.xml",
+        "startline": 39,
+        "endline": 66
+      },
+      {
+        "docid": "assembly/src/release/bin/activemq",
+        "startline": 128,
+        "endline": 131
+      },
+      {
+        "docid": "assembly/src/release/bin/activemq",
+        "startline": 371,
+        "endline": 371
+      },
+      {
+        "docid": "assembly/src/release/bin/activemq",
+        "startline": 385,
+        "endline": 385
+      },
+      {
+        "docid": "assembly/src/release/bin/activemq.bat",
+        "startline": 95,
+        "endline": 99
+      },
+      {
+        "docid": "assembly/src/test/java/org/apache/activemq/config/ValidateXMLConfigTest.java",
+        "startline": 44,
+        "endline": 59
+      }
+    ],
+    "function_summary": "This XML configuration segment defines security restrictions for Jolokia JMX-HTTP bridge by denying access to two potentially dangerous JVM diagnostic MBeans. Specifically, it blocks all attribute reads and operation invocations on `com.sun.management:type=DiagnosticCommand` and `com.sun.management:type=HotSpotDiagnostic` MBeans to prevent security vulnerabilities from remote management access."
+  },
+  {
+    "instance_id": "fd_cve-2023-33246",
+    "hits": [
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/filtersrv/FilterServerManager.java",
+        "startline": 78,
+        "endline": 97
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/filtersrv/FilterServerManager.java",
+        "startline": 40,
+        "endline": 53
+      },
+      {
+        "docid": "common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+        "startline": 26,
+        "endline": 32
+      },
+      {
+        "docid": "common/src/main/java/org/apache/rocketmq/common/BrokerConfig.java",
+        "startline": 747,
+        "endline": 753
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+        "startline": 168,
+        "endline": 169
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/BrokerController.java",
+        "startline": 404,
+        "endline": 406
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/BrokerStartup.java",
+        "startline": 44,
+        "endline": 47
+      },
+      {
+        "docid": "broker/src/main/java/org/apache/rocketmq/broker/BrokerStartup.java",
+        "startline": 270,
+        "endline": 297
+      }
+    ],
+    "function_summary": "Lines 84-86 in FilterServerManager.java check if the nameserver address (namesrvAddr) is configured in the broker configuration. If it is not null, the code appends a formatted string \" -n %s\" (where %s is replaced with the namesrvAddr value) to the existing config string, which is used to build a command-line argument for starting a filter server process."
+  },
+  {
+    "instance_id": "fd_CVE-2014-3704",
+    "hits": [
+      {
+        "docid": "includes/database/database.inc",
+        "startline": 718,
+        "endline": 765
+      },
+      {
+        "docid": "includes/database/database.inc",
+        "startline": 667,
+        "endline": 716
+      },
+      {
+        "docid": "includes/database/database.inc",
+        "startline": 187,
+        "endline": 240
+      },
+      {
+        "docid": "includes/database/database.inc",
+        "startline": 376,
+        "endline": 383
+      },
+      {
+        "docid": "includes/database/database.inc",
+        "startline": 479,
+        "endline": 484
+      },
+      {
+        "docid": "includes/database/database.inc",
+        "startline": 1239,
+        "endline": 1270
+      },
+      {
+        "docid": "includes/database/database.inc",
+        "startline": 608,
+        "endline": 650
+      }
+    ],
+    "function_summary": "The `expandArguments()` method expands array-valued placeholder arguments in prepared SQL statements into multiple individual placeholders. When a placeholder in `$args` contains an array (e.g., `:ids` => [1, 2, 3]), this function converts it into multiple numbered placeholders (`:ids_0`, `:ids_1`, `:ids_2`) and updates both the query string and the arguments array accordingly. This enables SQL IN clauses and similar array-based operations to work with Drupal's prepared statement system. The function uses `preg_replace` with word boundaries to ensure only exact placeholder matches are replaced, preventing conflicts with similarly-named placeholders (e.g., `:foo` vs `:foobar`)."
+  },
+  {
+    "instance_id": "fd_CVE-2018-7602",
+    "hits": [
+      {
+        "docid": "core/lib/Drupal/Core/Security/RequestSanitizer.php",
+        "startline": 84,
+        "endline": 97
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Security/RequestSanitizer.php",
+        "startline": 15,
+        "endline": 15
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Site/Settings.php",
+        "startline": 86,
+        "endline": 88
+      },
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "startline": 545,
+        "endline": 551
+      }
+    ],
+    "function_summary": "This code segment (lines 27-69) is the static `sanitize()` method of the RequestSanitizer class. It strips potentially dangerous keys from incoming HTTP request parameters to prevent security vulnerabilities. The method processes three parameter bags in the Symfony Request object (query string/GET, request body/POST, and cookies) by removing any array keys that start with '#' (unless whitelisted), as these keys have special meaning in Drupal's render system and could be exploited for code injection. The method also optionally logs removed keys using PHP's trigger_error() function. If any keys are sanitized, it updates PHP's superglobals to reflect the cleaned request. The method marks the request as sanitized using a request attribute to prevent duplicate processing. It returns the sanitized Request object."
+  },
+  {
+    "instance_id": "fd_CVE-2019-6339",
+    "hits": [
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "startline": 1,
+        "endline": 246
+      },
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "startline": 440,
+        "endline": 501
+      },
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "startline": 869,
+        "endline": 981
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Site/Settings.php",
+        "startline": 1,
+        "endline": 184
+      },
+      {
+        "docid": "core/lib/Drupal/Component/FileCache/FileCacheFactory.php",
+        "startline": 1,
+        "endline": 119
+      },
+      {
+        "docid": "core/lib/Drupal/Component/FileCache/ApcuFileCacheBackend.php",
+        "startline": 1,
+        "endline": 31
+      },
+      {
+        "docid": "core/lib/Drupal/Component/DependencyInjection/PhpArrayContainer.php",
+        "startline": 1,
+        "endline": 268
+      },
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernelInterface.php",
+        "startline": 1,
+        "endline": 153
+      }
+    ],
+    "function_summary": "This code segment (lines 440-477) is part of the DrupalKernel::boot() method, which performs the initial bootstrapping of the Drupal kernel. Specifically, lines 440-477 encompass:\n\n1. **getAppRoot() method (440-442)**: Returns the application root directory path stored in the $root property.\n\n2. **boot() method (447-477)**: Initializes the Drupal kernel by:\n   - Checking if already booted and returning early if so\n   - Validating that the site path is set, throwing an exception if not\n   - Configuring the FileCacheFactory component with settings from Settings::get('file_cache'), defaulting to APCu cache backend if the apcu_fetch() function exists\n   - Setting the FileCacheFactory prefix using Settings::getApcuPrefix()\n   - Instantiating a bootstrap container using the $bootstrapContainerClass property (defaults to PhpArrayContainer) with either custom or default bootstrap container definition\n   - Calling initializeContainer() to initialize the main dependency injection container\n\nThe code is responsible for the critical early-stage initialization of Drupal's caching and dependency injection infrastructure before the full kernel boot process can continue."
+  },
+  {
+    "instance_id": "fd_CVE-2022-32995",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/theme/ZipThemeFetcher.java",
+        "startline": 1,
+        "endline": 75
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/ThemeFetcher.java",
+        "startline": 1,
+        "endline": 28
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/theme/config/support/ThemeProperty.java",
+        "startline": 1,
+        "endline": 165
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/FileUtils.java",
+        "startline": 121,
+        "endline": 153
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/FileUtils.java",
+        "startline": 509,
+        "endline": 513
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/ThemePropertyScanner.java",
+        "startline": 86,
+        "endline": 118
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/ThemeMetaLocator.java",
+        "startline": 59,
+        "endline": 73
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/FileUtils.java",
+        "startline": 298,
+        "endline": 363
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/theme/config/impl/YamlThemePropertyResolver.java",
+        "startline": 1,
+        "endline": 27
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/theme/config/ThemePropertyResolver.java",
+        "startline": 1,
+        "endline": 23
+      },
+      {
+        "docid": "src/main/java/run/halo/app/theme/YamlResolver.java",
+        "startline": 1,
+        "endline": 34
+      },
+      {
+        "docid": "src/main/java/run/halo/app/exception/ThemePropertyMissingException.java",
+        "startline": 1,
+        "endline": 18
+      },
+      {
+        "docid": "src/main/java/run/halo/app/exception/BadRequestException.java",
+        "startline": 1,
+        "endline": 24
+      }
+    ],
+    "function_summary": "This code segment implements the `fetch` method of the `ThemeFetcher` interface. It downloads a theme ZIP file from a remote URL, unzips it to a temporary directory, scans for the theme property configuration file, and returns the parsed ThemeProperty object. The method performs the following steps: (1) builds an HTTP GET request with a 2-minute timeout, (2) sends the request to download the ZIP file as an InputStream, (3) wraps the InputStream in a ZipInputStream, (4) creates a temporary directory and unzips the content to it, (5) scans the temporary directory for theme metadata (theme.yaml/theme.yml) and parses it into a ThemeProperty object, (6) throws ThemePropertyMissingException if no theme configuration file is found, and (7) wraps any IOException or InterruptedException in a RuntimeException."
+  },
+  {
+    "instance_id": "fd_cve-2023-37582",
+    "hits": [
+      {
+        "docid": "remoting/src/main/java/org/apache/rocketmq/remoting/Configuration.java",
+        "startline": 1,
+        "endline": 345
+      },
+      {
+        "docid": "common/src/main/java/org/apache/rocketmq/common/MixAll.java",
+        "startline": 184,
+        "endline": 224
+      },
+      {
+        "docid": "remoting/src/main/java/org/apache/rocketmq/remoting/protocol/DataVersion.java",
+        "startline": 1,
+        "endline": 124
+      }
+    ],
+    "function_summary": "The `getStorePath()` method retrieves the storage path for configuration persistence. It uses a read lock to safely access either the directly set `storePath` field or, if `storePathFromConfig` is true, dynamically retrieves the path via reflection from the `storePathField` of the `storePathObject`. This allows the storage path to be either statically configured or dynamically obtained from a configuration object's field at runtime."
+  },
+  {
+    "instance_id": "fd_CVE-2019-6341",
+    "hits": [
+      {
+        "docid": "core/lib/Drupal/Core/File/FileSystem.php",
+        "startline": 570,
+        "endline": 635
+      },
+      {
+        "docid": "core/lib/Drupal/Core/File/FileSystem.php",
+        "startline": 18,
+        "endline": 65
+      },
+      {
+        "docid": "core/lib/Drupal/Core/File/FileSystem.php",
+        "startline": 141,
+        "endline": 150
+      },
+      {
+        "docid": "core/lib/Drupal/Core/File/FileSystem.php",
+        "startline": 155,
+        "endline": 171
+      },
+      {
+        "docid": "core/lib/Drupal/Core/File/FileSystemInterface.php",
+        "startline": 10,
+        "endline": 23
+      },
+      {
+        "docid": "core/lib/Drupal/Core/File/FileSystemInterface.php",
+        "startline": 445,
+        "endline": 462
+      },
+      {
+        "docid": "core/lib/Drupal/Core/File/FileSystemInterface.php",
+        "startline": 428,
+        "endline": 443
+      },
+      {
+        "docid": "core/lib/Drupal/Core/StreamWrapper/StreamWrapperManagerInterface.php",
+        "startline": 1,
+        "endline": 172
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Site/Settings.php",
+        "startline": 1,
+        "endline": 184
+      }
+    ],
+    "function_summary": "The code segment (lines 570-635) implements two public methods of the FileSystem class:\n\n1. **getDestinationFilename()** (lines 573-592): Determines the final destination path for a file based on a replace strategy. If the destination file exists, it handles three scenarios: (a) EXISTS_REPLACE - returns the destination as-is to overwrite; (b) EXISTS_RENAME - generates a unique filename by calling createFilename(); (c) EXISTS_ERROR - returns FALSE. If the file doesn't exist, returns the destination unchanged.\n\n2. **createFilename()** (lines 597-635): Creates a unique filename in a given directory by sanitizing the basename and handling collisions. It strips control characters (ASCII 0-31) and Windows-incompatible characters (: * ? \" < > |). It constructs the full path by joining directory and basename with appropriate separator. If a file with that name exists, it splits the basename into name and extension, then appends an incrementing counter (starting at 0) until finding a unique filename in the pattern: name_0.ext, name_1.ext, etc."
+  },
+  {
+    "instance_id": "fd_CVE-2022-32994",
+    "hits": [
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "startline": 107,
+        "endline": 140
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "startline": 48,
+        "endline": 61
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "startline": 218,
+        "endline": 225
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "startline": 232,
+        "endline": 240
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/impl/AttachmentServiceImpl.java",
+        "startline": 247,
+        "endline": 252
+      },
+      {
+        "docid": "src/main/java/run/halo/app/handler/file/FileHandlers.java",
+        "startline": 50,
+        "endline": 54
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/support/UploadResult.java",
+        "startline": 1,
+        "endline": 35
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/entity/Attachment.java",
+        "startline": 1,
+        "endline": 129
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/enums/AttachmentType.java",
+        "startline": 1,
+        "endline": 71
+      },
+      {
+        "docid": "src/main/java/run/halo/app/utils/HaloUtils.java",
+        "startline": 141,
+        "endline": 145
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/support/HaloConst.java",
+        "startline": 59,
+        "endline": 61
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/OptionService.java",
+        "startline": 260,
+        "endline": 271
+      },
+      {
+        "docid": "src/main/java/run/halo/app/model/properties/AttachmentProperties.java",
+        "startline": 1,
+        "endline": 61
+      },
+      {
+        "docid": "src/main/java/run/halo/app/service/base/AbstractCrudService.java",
+        "startline": 195,
+        "endline": 200
+      },
+      {
+        "docid": "src/main/java/run/halo/app/repository/AttachmentRepository.java",
+        "startline": 1,
+        "endline": 44
+      },
+      {
+        "docid": "src/main/java/run/halo/app/exception/AlreadyExistsException.java",
+        "startline": 1,
+        "endline": 18
+      }
+    ],
+    "function_summary": "This code segment implements a file upload method that handles the complete workflow of uploading a file attachment to storage and persisting it to the database. The method: (1) validates the input file is not null, (2) retrieves the configured attachment storage type (LOCAL, QINIUOSS, ALIOSS, etc.) from system options, (3) delegates the actual file upload to the appropriate storage handler based on type, (4) transforms the upload result into an Attachment entity by mapping all file metadata fields (filename, path, thumbnail, media type, dimensions, size, etc.), (5) converts file path separators to URL-compatible format, and (6) persists the attachment entity to the database via the inherited create method which also validates that the file path doesn't already exist."
+  },
+  {
+    "instance_id": "fd_CVE-2018-7600",
+    "hits": [
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "startline": 1,
+        "endline": 567
+      },
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "startline": 52,
+        "endline": 242
+      },
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "startline": 525,
+        "endline": 539
+      },
+      {
+        "docid": "core/lib/Drupal/Core/DrupalKernel.php",
+        "startline": 559,
+        "endline": 589
+      },
+      {
+        "docid": "core/lib/Drupal/Core/Extension/ModuleHandlerInterface.php",
+        "startline": 1,
+        "endline": 30
+      },
+      {
+        "docid": "core/lib/Drupal/Core/StreamWrapper/StreamWrapperManagerInterface.php",
+        "startline": 1,
+        "endline": 172
+      },
+      {
+        "docid": "core/lib/Drupal/Component/Utility/UrlHelper.php",
+        "startline": 1,
+        "endline": 412
+      },
+      {
+        "docid": "core/lib/Drupal/Component/Utility/UrlHelper.php",
+        "startline": 297,
+        "endline": 304
+      },
+      {
+        "docid": "core/lib/Drupal/Core/File/MimeType/MimeTypeGuesser.php",
+        "startline": 1,
+        "endline": 126
+      },
+      {
+        "docid": "core/lib/Drupal/Core/File/MimeType/MimeTypeGuesser.php",
+        "startline": 119,
+        "endline": 124
+      },
+      {
+        "docid": "core/core.services.yml",
+        "startline": 22,
+        "endline": 35
+      }
+    ],
+    "function_summary": "This code segment (lines 541-567 of DrupalKernel.php) implements the `preHandle()` method, which performs essential system initialization before handling HTTP requests. The method: (1) loads legacy Drupal include files; (2) loads all enabled modules via the module handler; (3) registers stream wrappers with PHP; (4) initializes legacy global request variables ($base_url, $base_path, etc.); (5) pushes the request onto the request stack; (6) configures allowed URL protocols from container parameters; (7) registers Drupal's custom MIME type guesser with Symfony's singleton guesser; and (8) sets the $prepared flag to TRUE to indicate initialization completion."
   }
 ]
