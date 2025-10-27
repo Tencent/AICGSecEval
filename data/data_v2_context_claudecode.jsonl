@@ -245,82 +245,6 @@
     "function_summary": "Reads the length field of a JPEG block segment (2 bytes in big-endian format), prints the length value, then skips over the remaining block data by reading and discarding (length - 2) bytes."
   },
   {
-    "instance_id": "GioldDiorld_CVE-2018-11225",
-    "hits": [
-      {
-        "docid": "util/decompile.c",
-        "startline": 3189,
-        "endline": 3217
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 805,
-        "endline": 821
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 304,
-        "endline": 417
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 419,
-        "endline": 489
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 678,
-        "endline": 694
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 186,
-        "endline": 202
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 2729,
-        "endline": 2739
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 195,
-        "endline": 195
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 210,
-        "endline": 223
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 48,
-        "endline": 50
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 804,
-        "endline": 804
-      },
-      {
-        "docid": "util/swftypes.h",
-        "startline": 105,
-        "endline": 110
-      },
-      {
-        "docid": "util/swftypes.h",
-        "startline": 121,
-        "endline": 136
-      },
-      {
-        "docid": "util/swftypes.h",
-        "startline": 50,
-        "endline": 54
-      }
-    ],
-    "function_summary": "This code segment implements the decompileSETTARGET function, which handles the decompilation of Flash ActionScript \"tellTarget\" statements. The function determines how many subsequent actions belong to the tellTarget block by scanning forward until it encounters specific terminating actions (SETTARGET, SETTARGET2, DEFINEFUNCTION, DEFINEFUNCTION2, or END). It retrieves the target name either from the stack (for type2) or from the action structure, outputs the formatted \"tellTarget\" statement with its opening brace, recursively decompiles the enclosed actions with increased indentation, outputs the closing brace, and returns the count of actions processed within the tellTarget block."
-  },
-  {
     "instance_id": "GioldDiorld_CVE-2018-8962",
     "hits": [
       {
@@ -432,92 +356,6 @@
       }
     ],
     "function_summary": "This code segment is the `getInt()` function that extracts integer values from SWF ActionScript push parameters. It converts different data types (PUSH_FLOAT, PUSH_NULL, PUSH_REGISTER, PUSH_DOUBLE, PUSH_INT) stored in a `struct SWF_ACTIONPUSHPARAM` structure to their integer equivalents. The function handles type conversion, including casting floating-point numbers to integers, returning 0 for NULL, recursively resolving register values, and directly returning integer values. If the type is unrecognized, it prints an error message and returns 0."
-  },
-  {
-    "instance_id": "GioldDiorld_CVE-2018-11226",
-    "hits": [
-      {
-        "docid": "util/decompile.c",
-        "startline": 3189,
-        "endline": 3217
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 105,
-        "endline": 110
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 818,
-        "endline": 821
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 195,
-        "endline": 195
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 210,
-        "endline": 223
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 985,
-        "endline": 1001
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 304,
-        "endline": 417
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 678,
-        "endline": 695
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 805,
-        "endline": 806
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 804,
-        "endline": 804
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 48,
-        "endline": 50
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 54,
-        "endline": 54
-      },
-      {
-        "docid": "util/swftypes.h",
-        "startline": 105,
-        "endline": 110
-      },
-      {
-        "docid": "util/swftypes.h",
-        "startline": 121,
-        "endline": 136
-      },
-      {
-        "docid": "util/swftypes.h",
-        "startline": 460,
-        "endline": 532
-      },
-      {
-        "docid": "util/decompile.c",
-        "startline": 3245,
-        "endline": 3393
-      }
-    ],
-    "function_summary": "This code segment implements the decompilation of Flash ActionScript \"SetTarget\" and \"SetTarget2\" actions (lines 3192-3216 of util/decompile.c). It outputs ActionScript code in the form of `tellTarget('target_name') { ... }` blocks. The function retrieves the target name (either from the stack for type2 or from the action structure for type1), then scans forward to count how many subsequent actions belong to the tellTarget block (stopping when it encounters another SetTarget, DefineFunction, or End action). It then recursively decompiles those actions with increased indentation and returns the count of actions processed, allowing the caller to skip them."
   },
   {
     "instance_id": "Choser_CVE-2018-11813",
@@ -6826,5 +6664,182 @@
       }
     ],
     "function_summary": "This code segment (lines 541-567 of DrupalKernel.php) implements the `preHandle()` method, which performs essential system initialization before handling HTTP requests. The method: (1) loads legacy Drupal include files; (2) loads all enabled modules via the module handler; (3) registers stream wrappers with PHP; (4) initializes legacy global request variables ($base_url, $base_path, etc.); (5) pushes the request onto the request stack; (6) configures allowed URL protocols from container parameters; (7) registers Drupal's custom MIME type guesser with Symfony's singleton guesser; and (8) sets the $prepared flag to TRUE to indicate initialization completion."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2018-11225",
+    "hits": [
+      {
+        "docid": "util/decompile.c",
+        "startline": 3192,
+        "endline": 3216
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 195,
+        "endline": 195
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 210,
+        "endline": 223
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 305,
+        "endline": 417
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 419,
+        "endline": 489
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 678,
+        "endline": 695
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 804,
+        "endline": 806
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 818,
+        "endline": 821
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 985,
+        "endline": 1001
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 48,
+        "endline": 50
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 54,
+        "endline": 54
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 105,
+        "endline": 110
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 121,
+        "endline": 136
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 295,
+        "endline": 297
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 460,
+        "endline": 532
+      },
+      {
+        "docid": "util/action.h",
+        "startline": 21,
+        "endline": 30
+      },
+      {
+        "docid": "src/blocks/error.h",
+        "startline": 1,
+        "endline": 50
+      }
+    ],
+    "function_summary": "This code segment implements a decompiler function for Flash SWF ActionScript \"SetTarget\" operations (SWFACTION_SETTARGET and SWFACTION_SETTARGET2). It generates a \"tellTarget()\" statement from the binary action data, which is used to change the execution target for subsequent Flash actions. The function extracts the target name (either from a stack pop for type2 or from the action structure's TargetName field), and if the target name is non-empty, it: (1) prints the opening \"tellTarget('name') {\" statement with proper indentation, (2) scans forward through the action array to count how many subsequent actions should be included within this tellTarget block (stopping when it encounters another SetTarget, a DefineFunction, or an End action), (3) recursively decompiles those nested actions with increased indentation, and (4) prints the closing \"}\" with proper indentation. The function returns the number of actions that were consumed/processed within the tellTarget block."
+  },
+  {
+    "instance_id": "GioldDiorld_CVE-2018-11226",
+    "hits": [
+      {
+        "docid": "util/decompile.c",
+        "startline": 3189,
+        "endline": 3226
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 804,
+        "endline": 806
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 48,
+        "endline": 50
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 54,
+        "endline": 54
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 195,
+        "endline": 195
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 210,
+        "endline": 223
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 304,
+        "endline": 417
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 419,
+        "endline": 489
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 678,
+        "endline": 695
+      },
+      {
+        "docid": "util/decompile.c",
+        "startline": 985,
+        "endline": 1001
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 104,
+        "endline": 109
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 295,
+        "endline": 297
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 49,
+        "endline": 53
+      },
+      {
+        "docid": "util/swftypes.h",
+        "startline": 460,
+        "endline": 532
+      },
+      {
+        "docid": "src/actiontypes.h",
+        "startline": 1,
+        "endline": 150
+      },
+      {
+        "docid": "util/action.h",
+        "startline": 21,
+        "endline": 30
+      }
+    ],
+    "function_summary": "This code segment implements the decompilation of SWF (Flash) SetTarget actions. It processes ActionScript bytecode that sets the target context for subsequent actions (similar to Flash's tellTarget functionality). The function handles both SETTARGET (type 1) and SETTARGET2 (type 2) opcodes. It determines the target name (either from the structure's TargetName field or by popping a value from the stack), then generates output in the form \"tellTarget('targetName') { ... }\" with proper indentation. The loop scans forward through the action list to find related actions that should be included within the tellTarget block, stopping when it encounters another SETTARGET, SETTARGET2, DEFINEFUNCTION, DEFINEFUNCTION2, or END opcode. Finally, it recursively decompiles the enclosed actions with increased indentation and returns the count of actions processed."
   }
 ]

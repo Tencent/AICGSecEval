@@ -191,6 +191,7 @@
   {
     "instance_id": "GioldDiorld_CVE-2018-11225",
     "repo": "libming/libming",
+    "branch_origin": "pull/145/head:pr-145",
     "base_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba^",
     "vuln_file": "util/decompile.c",
     "vuln_lines": [
@@ -428,6 +429,7 @@
   {
     "instance_id": "GioldDiorld_CVE-2018-11226",
     "repo": "libming/libming",
+    "branch_origin": "pull/145/head:pr-145",
     "base_commit": "6c24ac45b8524516547d78a6fe463d4ff4b856ba^",
     "vuln_file": "util/decompile.c",
     "vuln_lines": [

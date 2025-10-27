@@ -9033,86 +9033,86 @@
     "hits": [
       {
         "docid": "docs/perl/SWF::Movie.html",
-        "score": 2693.388671875
+        "score": 2690.58349609375
       },
       {
         "docid": "docs/perl/SWF::VideoStream.html",
-        "score": 2614.034912109375
+        "score": 2607.859375
       },
       {
         "docid": "py_ext/ming.py",
-        "score": 2072.817626953125
+        "score": 2070.19140625
       },
       {
         "docid": "java_ext/SWFButtonI.java",
-        "score": 1752.8348388671875
+        "score": 1749.6968994140625
       },
       {
         "docid": "docs/perl/SWF::MovieClip.html",
-        "score": 1690.35791015625
+        "score": 1680.9136962890625
       },
       {
         "docid": "docs/perl/SWF::Button.html",
-        "score": 1621.7703857421875
+        "score": 1617.2392578125
       },
       {
         "docid": "docs/perl/SWF::DisplayItem.html",
-        "score": 1578.6734619140625
+        "score": 1571.1781005859375
       },
       {
         "docid": "java_ext/SWFObject.java",
-        "score": 1560.76611328125
-      },
-      {
-        "docid": "util/swftoperl.html",
-        "score": 1378.8509521484375
+        "score": 1559.11865234375
       },
       {
         "docid": "java_ext/SWFTextFieldI.java",
-        "score": 1371.857177734375
+        "score": 1374.035400390625
+      },
+      {
+        "docid": "util/swftoperl.html",
+        "score": 1372.7421875
       },
       {
         "docid": "docs/libming/SWFAction_compile.html",
-        "score": 1338.7650146484375
+        "score": 1329.4339599609375
       },
       {
         "docid": "docs/libming/SWFAction_getByteCode.html",
-        "score": 1325.7750244140625
+        "score": 1316.75244140625
       },
       {
         "docid": "docs/perl/SWF::Action.html",
-        "score": 1179.6829833984375
+        "score": 1177.4046630859375
       },
       {
         "docid": "docs/perl/SWF::TextField.html",
-        "score": 1150.7984619140625
+        "score": 1141.746826171875
       },
       {
         "docid": "docs/libming/readMP3Header.html",
-        "score": 1098.107421875
+        "score": 1106.037353515625
       },
       {
         "docid": "java_ext/SWFShape.java",
-        "score": 1091.7530517578125
+        "score": 1093.5367431640625
       },
       {
         "docid": "docs/perl/SWF.html",
-        "score": 1070.2281494140625
+        "score": 1069.5833740234375
       },
       {
         "docid": "java_ext/SWFMovie.java",
-        "score": 1065.6590576171875
-      },
-      {
-        "docid": "docs/perl/SWF::Text.html",
-        "score": 1014.56787109375
+        "score": 1064.87451171875
       },
       {
         "docid": "py_ext/Zwiff/__init__.py",
         "score": 1013.1107788085938
+      },
+      {
+        "docid": "docs/perl/SWF::Text.html",
+        "score": 1012.5128173828125
       }
     ],
-    "function_summary": "This code snippet implements the `decompileSETTARGET` function, which decompiles Flash ActionScript bytecode for setting target operations (both SETTARGET and SETTARGET2 types).\n\n**Key functionality:**\n\n1. **Target name extraction**: Determines the target name either by popping a value from the stack (for type2) or using the stored `TargetName` from the action structure.\n\n2. **Block detection**: If the target name is non-empty, it scans forward through the action array to find the end of the target block by looking for specific terminating opcodes (SETTARGET, SETTARGET2, DEFINEFUNCTION, DEFINEFUNCTION2, or END).\n\n3. **Code generation**: Outputs a `tellTarget` block in the decompiled ActionScript format:\n   ```actionscript\n   tellTarget('targetName') {\n       // decompiled actions within the block\n   }\n   ```\n\n4. **Recursive decompilation**: Calls `decompileActions` to recursively decompile all actions within the target block with increased indentation.\n\n5. **Return value**: Returns the count of actions that were processed within the target block, allowing the caller to skip over these already-processed actions.\n\nThis function essentially converts Flash bytecode target operations into readable ActionScript `tellTarget` statements, which are used to execute code within the context of a specific movie clip or object."
+    "function_summary": "This code snippet implements the `decompileSETTARGET` function, which handles the decompilation of Flash ActionScript `SETTARGET` operations into readable code.\n\n**Key functionality:**\n\n1. **Target name extraction**: Determines the target name either by popping a value from the stack (for type2) or using the stored `TargetName` from the action structure.\n\n2. **Conditional processing**: Only proceeds if the target name is non-empty (checking `*name`).\n\n3. **Code block detection**: Scans forward through the action array to find the end of the target block by looking for terminating opcodes like:\n   - `SWFACTION_SETTARGET`/`SWFACTION_SETTARGET2` \n   - `SWFACTION_DEFINEFUNCTION`/`SWFACTION_DEFINEFUNCTION2`\n   - `SWFACTION_END`\n\n4. **Output generation**: \n   - Generates indented `tellTarget('targetname') {` syntax\n   - Recursively decompiles all actions within the target block with increased indentation\n   - Closes the block with a matching `}`\n\n5. **Return value**: Returns the count of actions that were part of the target block, allowing the caller to skip over these already-processed actions.\n\nThis function essentially converts Flash's target-setting mechanism into the more readable `tellTarget()` block syntax used in ActionScript."
   },
   {
     "instance_id": "GioldDiorld_CVE-2018-9132",
@@ -9205,86 +9205,86 @@
     "hits": [
       {
         "docid": "docs/perl/SWF::Movie.html",
-        "score": 2699.35205078125
+        "score": 2687.2421875
       },
       {
         "docid": "docs/perl/SWF::VideoStream.html",
-        "score": 2610.727783203125
+        "score": 2606.715087890625
       },
       {
         "docid": "py_ext/ming.py",
-        "score": 2074.03857421875
+        "score": 2069.24853515625
       },
       {
         "docid": "java_ext/SWFButtonI.java",
-        "score": 1758.3095703125
+        "score": 1752.8348388671875
       },
       {
         "docid": "docs/perl/SWF::MovieClip.html",
-        "score": 1693.3995361328125
+        "score": 1685.3233642578125
       },
       {
         "docid": "docs/perl/SWF::Button.html",
-        "score": 1623.40380859375
+        "score": 1618.867431640625
       },
       {
         "docid": "docs/perl/SWF::DisplayItem.html",
-        "score": 1576.175048828125
+        "score": 1572.003173828125
       },
       {
         "docid": "java_ext/SWFObject.java",
-        "score": 1561.8289794921875
+        "score": 1564.3385009765625
       },
       {
         "docid": "java_ext/SWFTextFieldI.java",
-        "score": 1376.0333251953125
+        "score": 1376.06005859375
       },
       {
         "docid": "util/swftoperl.html",
-        "score": 1369.795654296875
+        "score": 1366.264892578125
       },
       {
         "docid": "docs/libming/SWFAction_compile.html",
-        "score": 1333.5897216796875
+        "score": 1334.1036376953125
       },
       {
         "docid": "docs/libming/SWFAction_getByteCode.html",
-        "score": 1329.4886474609375
+        "score": 1319.3966064453125
       },
       {
         "docid": "docs/perl/SWF::Action.html",
-        "score": 1183.4281005859375
+        "score": 1173.31201171875
       },
       {
         "docid": "docs/perl/SWF::TextField.html",
-        "score": 1144.88427734375
+        "score": 1142.292236328125
       },
       {
         "docid": "docs/libming/readMP3Header.html",
-        "score": 1098.3841552734375
+        "score": 1101.00634765625
       },
       {
         "docid": "java_ext/SWFShape.java",
-        "score": 1092.3963623046875
+        "score": 1094.2869873046875
       },
       {
         "docid": "java_ext/SWFMovie.java",
-        "score": 1075.3070068359375
+        "score": 1069.8056640625
       },
       {
         "docid": "docs/perl/SWF.html",
-        "score": 1074.9222412109375
+        "score": 1065.96484375
       },
       {
         "docid": "py_ext/Zwiff/__init__.py",
-        "score": 1013.8402709960938
+        "score": 1012.8958129882812
       },
       {
         "docid": "docs/perl/SWF::Text.html",
-        "score": 1009.77197265625
+        "score": 1010.4232177734375
       }
     ],
-    "function_summary": "This code snippet implements the `decompileSETTARGET` function, which decompiles ActionScript bytecode for `SETTARGET` operations in Flash/SWF files. \n\n**Main functionality:**\n1. **Target name extraction**: Gets the target name either by popping from the stack (for type2) or from the action structure's `TargetName` field\n2. **tellTarget block generation**: If a target name exists, it outputs a `tellTarget('name') {` statement with proper indentation\n3. **Action counting loop**: Iterates through subsequent actions to determine where the tellTarget block should end, stopping when it encounters:\n   - Another SETTARGET/SETTARGET2 operation\n   - Function definitions (DEFINEFUNCTION/DEFINEFUNCTION2)\n   - END action\n4. **Nested decompilation**: Recursively decompiles all actions within the tellTarget block with increased indentation\n5. **Block closure**: Outputs the closing brace and returns the count of processed actions\n\nThe function essentially converts low-level ActionScript bytecode back into readable ActionScript syntax, specifically handling the `tellTarget()` construct which was used in older Flash versions to direct actions toward specific movie clip instances. The returned action count allows the calling code to skip over the already-processed nested actions."
+    "function_summary": "This code snippet implements the `decompileSETTARGET` function, which handles the decompilation of Flash ActionScript `SETTARGET` and `SETTARGET2` opcodes into readable code.\n\n**Key functionality:**\n\n1. **Target name extraction**: Determines the target name either by popping a value from the stack (`is_type2` case) or using the stored `TargetName` from the action structure.\n\n2. **Target block detection**: If a valid target name exists, it outputs a `tellTarget()` block structure with proper indentation.\n\n3. **Action boundary detection**: Scans forward through subsequent actions to find the end of the target block by looking for specific terminating opcodes:\n   - `SWFACTION_SETTARGET`/`SWFACTION_SETTARGET2` (nested targets)\n   - `SWFACTION_DEFINEFUNCTION`/`SWFACTION_DEFINEFUNCTION2` (function definitions)\n   - `SWFACTION_END` (end marker)\n\n4. **Recursive decompilation**: Calls `decompileActions()` to process all actions within the target block with increased indentation.\n\n5. **Block closure**: Outputs the closing brace with proper indentation.\n\nThe function returns the count of actions processed within the target block, allowing the caller to skip over these already-processed actions. This implements Flash's `tellTarget()` functionality, which allows code to execute in the context of a specific movie clip or object."
   },
   {
     "instance_id": "Choser_CVE-2020-13790",

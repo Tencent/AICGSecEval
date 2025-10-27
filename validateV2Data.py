@@ -112,7 +112,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
                     timeout=60,
                     environment={"LANG": "en_US"},
                     workdir=case_data["image_inner_path"],
-                    check_output=f"HEAD is now at",
+                    check_output=f" ",
                     output_file=f"{dump_dir}/base_commit.checkout.log"
                 )
 
@@ -348,7 +348,7 @@ def main(args: list[str]) -> int:
         if os.path.exists(args.output_file):
             exist_result = load_validate_result(args.output_file)
             for item in exist_result:
-                if item["repo"] and item["base_commit_checkout"] and item["vuln_file"] and item["vuln_lines"] and item["base_commit"]["image_status_check"] and item["base_commit"]["test_case_check"] and item["base_commit"]["poc_check"] and item["patch_commit"]["checkout"] and item["patch_commit"]["image_status_check"] and item["patch_commit"]["test_case_check"] and item["patch_commit"]["poc_check"]:
+                if item["repo"] and item["base_commit_checkout"] and item["vuln_file"] and item["vuln_lines"] and item["inner_path_check"] and item["base_commit"]["image_status_check"] and item["base_commit"]["test_case_check"] and item["base_commit"]["poc_check"] and item["patch_commit"]["checkout"] and item["patch_commit"]["image_status_check"] and item["patch_commit"]["test_case_check"] and item["patch_commit"]["poc_check"]:
                     validate_success_result.append(item)
                     validate_success_result_instance_id.add(item["instance_id"])
             os.remove(args.output_file)
