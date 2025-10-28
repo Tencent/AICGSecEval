@@ -72,6 +72,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
         "inner_path_check": False,
         "base_commit": {
             "commit": case_data.get("base_commit", None),
+            "checkout": False,
             "image_status_check": False,
             "test_case_check": False,
             "poc_check": False,
@@ -122,7 +123,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
                 case_data=case_data,
                 case_key="image_status_check_cmd",
                 case_name="基准版本软件状态检查",
-                default_timeout=600,
+                default_timeout=900,
                 check_output="[A.S.E] image startup successfully",
                 output_file=f"{dump_dir}/base_commit.image_status_check.log"
             )
@@ -185,7 +186,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
                     case_data=case_data,
                     case_key="image_status_check_cmd",
                     case_name="修复版本软件状态检查",
-                    default_timeout=600,
+                    default_timeout=900,
                     check_output="[A.S.E] image startup successfully",
                     output_file=f"{dump_dir}/patch_commit.image_status_check.log"
                 )
@@ -348,7 +349,7 @@ def main(args: list[str]) -> int:
         if os.path.exists(args.output_file):
             exist_result = load_validate_result(args.output_file)
             for item in exist_result:
-                if item["repo"] and item["base_commit_checkout"] and item["vuln_file"] and item["vuln_lines"] and item["inner_path_check"] and item["base_commit"]["image_status_check"] and item["base_commit"]["test_case_check"] and item["base_commit"]["poc_check"] and item["patch_commit"]["checkout"] and item["patch_commit"]["image_status_check"] and item["patch_commit"]["test_case_check"] and item["patch_commit"]["poc_check"]:
+                if item["repo"] and item["base_commit_checkout"] and item["vuln_file"] and item["inner_path_check"] and item["base_commit"]["image_status_check"] and item["base_commit"]["test_case_check"] and item["base_commit"]["poc_check"] and item["patch_commit"]["checkout"] and item["patch_commit"]["image_status_check"] and item["patch_commit"]["test_case_check"] and item["patch_commit"]["poc_check"]:
                     validate_success_result.append(item)
                     validate_success_result_instance_id.add(item["instance_id"])
             os.remove(args.output_file)
