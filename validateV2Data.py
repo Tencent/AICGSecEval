@@ -173,7 +173,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
                     timeout=60,
                     environment={"LANG": "en_US"},
                     workdir=case_data["image_inner_path"],
-                    check_output=f"[A.S.E]{patch_commit}",
+                    check_output=f"{patch_commit}", # 不检查 [A.S.E] tag, 只检查 commit hash，因为有些数据使用的 hash 不完整
                     output_file=f"{dump_dir}/patch_commit.checkout.log"
                 )
 
