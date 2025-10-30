@@ -371,7 +371,7 @@ def fetch_instances_by_group(instances, group_name):
         group_name = group_name.lower()
         result = []
         for instance in instances:
-            if instance["vuln_type"].lower() == group_name:
+            if instance["cwe_id"].lower() == group_name:
                 result.append(instance)
         logger.info(f"基于 {group_name} 获取了 {len(result)} 个实例")
         return result
