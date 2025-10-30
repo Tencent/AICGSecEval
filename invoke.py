@@ -62,6 +62,7 @@ async def invoke(args, remaining_args):
             from run_code_generation_agent import gen_code as gen_code_agent
 
             agent_name = args.agent_name
+            sleep_time = args.sleep_time
             agent_class = agent_bench_map[agent_name]
 
             try:
@@ -70,7 +71,7 @@ async def invoke(args, remaining_args):
                 print(f"Agent ({agent_name}) 配置解析失败: {e}")
                 exit(0)
 
-            await gen_code_agent(agent_name, agent_class, agent_args, batch_id, github_token, dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles)
+            await gen_code_agent(agent_name, agent_class, agent_args, batch_id, github_token, dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, sleep_time)
 
     gen_time = time.time()
     print(f"{llm_name} 生成代码耗时: {gen_time - start_time} 秒")
@@ -130,6 +131,7 @@ def parse_args():
 
     codegen_agent_group = parser.add_argument_group('Agent模式代码生成（指定 --agent 时）选项')
     codegen_agent_group.add_argument('--agent_name', type=str, choices=list(agent_bench_map.keys()), help='Agent名称')
+    codegen_agent_group.add_argument('--sleep_time', type=int, default=0, help='每个生成任务之间的睡眠时间，单位秒')
 
     args, remaining_args = parser.parse_known_args()
 
