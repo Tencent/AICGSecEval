@@ -12447,5 +12447,177 @@
       }
     ],
     "function_summary": "This code snippet implements a method to save configuration options in a transactional manner. Here's what it does:\n\n**Main Functionality:**\n- Takes a map of option key-value pairs and saves them to the database\n- Performs an \"upsert\" operation (create new options or update existing ones)\n\n**Key Operations:**\n1. **Early Exit**: Returns immediately if the input map is empty\n2. **Data Preparation**: Retrieves all existing options and creates a lookup map by key\n3. **Classification**: Iterates through input options and categorizes them into:\n   - Options to create (new keys)\n   - Options to update (existing keys with different values)\n4. **Validation**: Validates each option parameter before processing\n5. **Batch Operations**: Performs bulk updates and creates for efficiency\n6. **Event Publishing**: Publishes an `OptionUpdatedEvent` if any changes were made\n\n**Important Logic:**\n- Only processes options that are new or have changed values (avoids unnecessary database operations)\n- Uses batch operations for better performance\n- Converts input values to strings and validates them\n- Maintains transactional integrity with the `@Transactional` annotation\n- Publishes events to notify other parts of the system about option changes\n\nThis method is essential for managing application configuration settings efficiently."
+  },
+  {
+    "instance_id": "cve-2019-9082",
+    "hits": [
+      {
+        "docid": "library/think/App.php",
+        "score": 2836.8408203125
+      },
+      {
+        "docid": "library/think/Route.php",
+        "score": 1563.7373046875
+      },
+      {
+        "docid": "library/think/Request.php",
+        "score": 1531.814697265625
+      },
+      {
+        "docid": "library/think/Loader.php",
+        "score": 1270.3658447265625
+      },
+      {
+        "docid": "helper.php",
+        "score": 1210.9180908203125
+      },
+      {
+        "docid": "library/think/Url.php",
+        "score": 1096.333251953125
+      },
+      {
+        "docid": "library/think/Template.php",
+        "score": 1044.7232666015625
+      },
+      {
+        "docid": "convention.php",
+        "score": 970.471923828125
+      },
+      {
+        "docid": "lang/zh-cn.php",
+        "score": 959.6016845703125
+      },
+      {
+        "docid": "library/think/db/Query.php",
+        "score": 953.2846069335938
+      },
+      {
+        "docid": "library/think/db/Connection.php",
+        "score": 941.6502075195312
+      },
+      {
+        "docid": "library/think/Model.php",
+        "score": 901.4683227539062
+      },
+      {
+        "docid": "library/think/Build.php",
+        "score": 836.9415283203125
+      },
+      {
+        "docid": "library/think/view/driver/Think.php",
+        "score": 831.272216796875
+      },
+      {
+        "docid": "library/think/view/driver/Php.php",
+        "score": 797.8787841796875
+      },
+      {
+        "docid": "library/think/Validate.php",
+        "score": 772.92041015625
+      },
+      {
+        "docid": "library/think/Controller.php",
+        "score": 757.5272827148438
+      },
+      {
+        "docid": "library/think/Log.php",
+        "score": 754.671875
+      },
+      {
+        "docid": "library/think/Config.php",
+        "score": 751.8759765625
+      },
+      {
+        "docid": "library/think/View.php",
+        "score": 750.5399780273438
+      }
+    ],
+    "function_summary": "This code snippet is part of a controller name processing mechanism within a PHP application framework. Here's what it does:\n\n1. **Extracts controller name**: It retrieves the controller name from `$result[1]` (likely from a URL path array). If no controller is specified, it falls back to a default controller defined in the configuration (`$config['default_controller']`).\n\n2. **Sanitizes input**: The `strip_tags()` function removes any HTML/XML tags from the controller name for security purposes, preventing potential XSS attacks or malformed input.\n\n3. **Applies naming convention**: Based on the `$convert` flag, it either:\n   - Converts the controller name to lowercase if `$convert` is true (following lowercase naming conventions)\n   - Keeps the original case if `$convert` is false\n\nThis snippet is part of the framework's URL routing system where it processes incoming requests to determine which controller should handle the request. The conversion logic allows the framework to be flexible with URL naming conventions while maintaining consistent internal controller naming standards. This is typically used in MVC (Model-View-Controller) frameworks where URLs need to be mapped to specific controller classes."
+  },
+  {
+    "instance_id": "cve-2022-1033",
+    "hits": [
+      {
+        "docid": "_ide_helper.php",
+        "score": 170.36680603027344
+      },
+      {
+        "docid": "app/Http/Requests/UploadExpenseReceiptRequest.php",
+        "score": 136.1197052001953
+      },
+      {
+        "docid": "resources/scripts/locales/ja.json",
+        "score": 132.73739624023438
+      },
+      {
+        "docid": "resources/scripts/locales/en.json",
+        "score": 132.57229614257812
+      },
+      {
+        "docid": "resources/scripts/locales/pt.json",
+        "score": 132.57229614257812
+      },
+      {
+        "docid": "resources/scripts/locales/sl.json",
+        "score": 131.88290405273438
+      },
+      {
+        "docid": "resources/scripts/locales/id.json",
+        "score": 131.50270080566406
+      },
+      {
+        "docid": "resources/scripts/locales/fa.json",
+        "score": 131.1654052734375
+      },
+      {
+        "docid": "app/Http/Requests/AvatarRequest.php",
+        "score": 131.1118927001953
+      },
+      {
+        "docid": "resources/scripts/locales/ro.json",
+        "score": 131.03109741210938
+      },
+      {
+        "docid": "resources/scripts/locales/lt.json",
+        "score": 129.6334991455078
+      },
+      {
+        "docid": "resources/scripts/locales/hi.json",
+        "score": 127.24800109863281
+      },
+      {
+        "docid": "resources/scripts/locales/ru.json",
+        "score": 125.45249938964844
+      },
+      {
+        "docid": "resources/scripts/locales/lv.json",
+        "score": 123.09159851074219
+      },
+      {
+        "docid": "resources/scripts/locales/tr.json",
+        "score": 120.63569641113281
+      },
+      {
+        "docid": "public/build/assets/main.465728e1.js",
+        "score": 119.74030303955078
+      },
+      {
+        "docid": "app/Http/Requests/CompanyLogoRequest.php",
+        "score": 119.13729858398438
+      },
+      {
+        "docid": "resources/lang/en/validation.php",
+        "score": 112.28089904785156
+      },
+      {
+        "docid": "resources/scripts/locales/sv.json",
+        "score": 111.59549713134766
+      },
+      {
+        "docid": "resources/scripts/locales/sr.json",
+        "score": 110.30650329589844
+      }
+    ],
+    "function_summary": "This code snippet defines validation rules for an expense receipt upload request in a Laravel application. The `rules()` method returns an array that specifies validation constraints for the `upload_receipt` field.\n\n**Key validation rules:**\n\n1. **`'nullable'`** - The upload_receipt field is optional, meaning it can be empty or null without causing validation to fail.\n\n2. **`new Base64Mime(['gif', 'jpg', 'png'])`** - This applies a custom validation rule that:\n   - Expects the uploaded file to be in Base64 encoded format\n   - Restricts the file type to only three image formats: GIF, JPG, and PNG\n   - Uses the `Base64Mime` custom rule class to validate both the encoding format and MIME type\n\nThe validation ensures that when users upload expense receipts, they can either skip the upload entirely (due to nullable) or provide a valid Base64-encoded image file in one of the three supported formats. This is commonly used in APIs where files are transmitted as Base64 strings rather than traditional multipart form uploads, providing a secure way to handle receipt images while maintaining strict format controls."
   }
 ]

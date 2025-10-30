@@ -7110,5 +7110,67 @@
       }
     ],
     "function_summary": "This code segment implements a batch save/update operation for system options in the Halo blogging platform. It accepts a map of option key-value pairs, compares them with existing options in the database, and determines which options need to be created (new) or updated (changed values). It performs validation on each option parameter, executes batch create/update operations through the repository, and publishes an OptionUpdatedEvent if any changes occurred. The method is transactional and gracefully handles empty input by returning early."
+  },
+  {
+    "instance_id": "cve-2019-9082",
+    "hits": [
+      {
+        "docid": "library/think/App.php",
+        "startline": 494,
+        "endline": 607
+      },
+      {
+        "docid": "library/think/App.php",
+        "startline": 549,
+        "endline": 562
+      },
+      {
+        "docid": "convention.php",
+        "startline": 52,
+        "endline": 53
+      },
+      {
+        "docid": "convention.php",
+        "startline": 97,
+        "endline": 98
+      },
+      {
+        "docid": "library/think/Loader.php",
+        "startline": 611,
+        "endline": 621
+      },
+      {
+        "docid": "library/think/Route.php",
+        "startline": 1578,
+        "endline": 1591
+      }
+    ],
+    "function_summary": "Lines 553-554 retrieve and process the controller name from the routing result array. Line 553 extracts the controller name from `$result[1]` (defaulting to the configured default controller if empty), then applies `strip_tags()` to remove HTML/PHP tags for security. Line 554 conditionally converts the controller name to lowercase based on the `$convert` flag (which is determined by the `url_convert` configuration setting)."
+  },
+  {
+    "instance_id": "cve-2022-1033",
+    "hits": [
+      {
+        "docid": "app/Http/Requests/UploadExpenseReceiptRequest.php",
+        "startline": 27,
+        "endline": 32
+      },
+      {
+        "docid": "app/Rules/Base64Mime.php",
+        "startline": 1,
+        "endline": 88
+      },
+      {
+        "docid": "app/Http/Controllers/V1/Admin/Expense/UploadReceiptController.php",
+        "startline": 1,
+        "endline": 38
+      },
+      {
+        "docid": "app/Http/Requests/UploadExpenseReceiptRequest.php",
+        "startline": 1,
+        "endline": 34
+      }
+    ],
+    "function_summary": "This code segment defines validation rules for the 'upload_receipt' field in an HTTP request. It specifies that the field is optional (nullable) and, if present, must be a JSON object containing base64-encoded image data with one of the allowed MIME types: GIF, JPG, or PNG. The validation is performed using a custom Base64Mime validation rule."
   }
 ]
