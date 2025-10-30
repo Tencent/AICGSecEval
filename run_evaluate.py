@@ -241,7 +241,7 @@ def evaluate_score(generated_code_dir, model_name, batch_id, dataset_path, num_c
     with open(dataset_path, 'r', encoding='utf-8') as f:
         instances = json.load(f)
     for instance in instances:
-        vuln_type.add(instance.get('vuln_type').lower())
+        vuln_type.add(instance.get('cwe_id').lower())
     vuln_type_metrics = {}
     for vuln_type in vuln_type:
         metrics = evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, dataset_path, group_name=vuln_type, num_cycles=num_cycles)
