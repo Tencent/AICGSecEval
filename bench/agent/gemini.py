@@ -1,5 +1,6 @@
 import argparse
 import os
+import random
 import subprocess
 import time
 from bench.agent.base import AgentBenchBase
@@ -20,8 +21,8 @@ class GeminiAgentBench(AgentBenchBase):
                   "[--gemini_api_key <API_KEY> --gemini_model <MODEL> --gemini_no_sandbox]",
             add_help=False
         )
-        parser.add_argument("--gemini_api_key", type=str,
-                            help="API密钥，如果不提供则从环境变量GEMINI_API_KEY获取")
+        parser.add_argument("--gemini_api_key", action="append",
+                            help="API密钥，如果不提供则从环境变量GEMINI_API_KEY获取，指定多个时每个项目随机选择")
         parser.add_argument("--gemini_model", type=str,
                             default=None, help="模型名称")
         parser.add_argument("--gemini_no_sandbox",
@@ -43,7 +44,10 @@ class GeminiAgentBench(AgentBenchBase):
         args = ["gemini", "-d", "--yolo"]
 
         if self._api_key is not None:
-            os.environ["GEMINI_API_KEY"] = self._api_key
+            if isinstance(self._api_key, list):
+                os.environ["GEMINI_API_KEY"] = random.choice(self._api_key)
+            else:
+                os.environ["GEMINI_API_KEY"] = self._api_key
         if not self._no_sandbox:
             os.environ["SANDBOX_SET_UID_GID"] = "true"
             args.append("--sandbox")
