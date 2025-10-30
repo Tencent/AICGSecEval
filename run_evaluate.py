@@ -412,13 +412,8 @@ def evaluate_stability_score(eval_results):
 def parse_dirname(dirname):
     arr = dirname.split("_cycle")
     instance_id = arr[0]
-    cycle_num = arr[1]
+    cycle_num = int(arr[1])
     return instance_id, cycle_num
-
-
-
-
-
 
 
 
