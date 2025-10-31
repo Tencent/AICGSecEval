@@ -47,11 +47,11 @@
   </a>
   <!-- A.S.E 官网 -->
   <a href="https://aicgseceval.tencent.com/home">
-    <img src="https://img.shields.io/badge/🌐-A.S.E 官网-blue?style=flat&logo= & logoColor=white" alt="访问官网">
+    <img src="https://img.shields.io/badge/🌐-A.S.E 官网-blue?style=flat&logo=&logoColor=white" alt="访问官网">
   </a>
   <!-- 评测结果 -->
   <a href="https://aicgseceval.tencent.com/home">
-    <img src="https://img.shields.io/badge/📊-评测结果-success?style=flat&logo=tencent& logoColor=white" alt="评测结果">
+    <img src="https://img.shields.io/badge/📊-评测结果-success?style=flat&logo=tencent&logoColor=white" alt="评测结果">
   </a>
   <!-- 最新动态 -->
   <a href="https://aicgseceval.tencent.com/home">
