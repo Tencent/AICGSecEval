@@ -86,8 +86,9 @@
 
 ## ✨ A.S.E 框架设计
 
+<p align="center>
  <img src="./img/arch_cn.svg" style="display: block; margin-left: auto; margin-right: auto;">
-
+</p>
 
 ## 🧱 2.0 重磅升级
 
