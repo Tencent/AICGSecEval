@@ -185,7 +185,6 @@ A.S.E 致力于构建一个 开放、可复现、持续进化 的 AI 生成代�
 * 💭 提出问题或建议：请通过 [Issues](https://github.com/Tencent/AICGSecEval/issues)￼
 * 💡 头脑风暴与讨论：欢迎加入 [Discussions](https://github.com/Tencent/AICGSecEval/discussions)￼
 
-<br>
 您的关注与参与将帮助 A.S.E 更快迭代、覆盖更广场景，共同推动 AI 编程安全评测的开放标准化进程。
 
 <br>
