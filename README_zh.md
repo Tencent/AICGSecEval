@@ -86,7 +86,7 @@
 
 ## ✨ A.S.E 框架设计
 
-<p align="center>
+<p align="center">
  <img src="./img/arch_cn.svg" style="display: block; margin-left: auto; margin-right: auto;">
 </p>
 
@@ -214,7 +214,9 @@ A.S.E​ 由腾讯安全平台部悟空代码安全团队联合以下学术单�
 
 ## 📱 加入社群
 
-<img src="./img/wechat.jpg">
+<p align="center">
+  <img src="./img/wechat.jpg">
+</p>
 
 
 ## 📄 开源协议
