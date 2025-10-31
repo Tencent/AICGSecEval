@@ -61,7 +61,7 @@ async def process_instance(instance, agent_name, agent_class, agent_args):
     return False
 
 
-async def process_all_instances(raw_instances, retrieval_instances, agent_name, agent_class, agent_args, batch_id, github_token, raw_repo_dir, generated_code_dir, num_cycles):
+async def process_all_instances(raw_instances, retrieval_instances, agent_name, agent_class, agent_args, batch_id, github_token, raw_repo_dir, generated_code_dir, num_cycles, sleep_time):
     # 创建模型输出目录
     agent_output_dir = Path(generated_code_dir) / f"{agent_name}__{batch_id}"
     agent_output_dir.mkdir(parents=True, exist_ok=True)
@@ -105,7 +105,7 @@ async def process_all_instances(raw_instances, retrieval_instances, agent_name, 
                                            ] = instance["function_summary"]
 
     for instance in tqdm(filtered_instances, desc=f"处理 {agent_name} 的实例"):
-        await process(instance, agent_name, agent_class, agent_args, github_token, raw_repo_dir, num_cycles, processed_instances, agent_output_dir,
+        await process(instance, agent_name, agent_class, agent_args, github_token, raw_repo_dir, num_cycles, sleep_time, processed_instances, agent_output_dir,
                       CVE_map_instanceid, seed_instance_map_hits, seed_instance_map_function_summary, seed_instance_map_repo, processed_instances_file)
 
 
@@ -131,7 +131,7 @@ def update_processed_record(cycle_dir_name, success, processed_instances, proces
         json.dump(processed_instances, f, ensure_ascii=False, indent=2)
 
 
-async def process(instance, agent_name, agent_class, agent_args, github_token, raw_repo_dir, num_cycles, processed_instances, agent_output_dir, CVE_map_instanceid, seed_instance_map_hits, seed_instance_map_function_summary, seed_instance_map_repo, processed_instances_file):
+async def process(instance, agent_name, agent_class, agent_args, github_token, raw_repo_dir, num_cycles, sleep_time, processed_instances, agent_output_dir, CVE_map_instanceid, seed_instance_map_hits, seed_instance_map_function_summary, seed_instance_map_repo, processed_instances_file):
     instance_id = instance["instance_id"]
     # 从 retrival data 中获取 hits
     if "seed" in instance and instance["seed"] == False:
@@ -183,6 +183,8 @@ async def process(instance, agent_name, agent_class, agent_args, github_token, r
         try:
             start_time = time.time()
             success = await process_instance(instance, agent_name, agent_class, agent_args)
+            if not success:
+                raise Exception("调用Agent处理返回失败")
             update_processed_record(
                 cycle_dir_name, success, processed_instances, processed_instances_file, start_time)
         except Exception as e:
@@ -198,6 +200,9 @@ async def process(instance, agent_name, agent_class, agent_args, github_token, r
             # 清理无关文件，节省存储
             clean_unnecessary_files(cycle_dir)
 
+        if sleep_time > 0:
+            logger.info(f"等待 {sleep_time} 秒")
+            time.sleep(sleep_time)
 
 def clean_unnecessary_files(repo_dir):
     # 删除项目的 .git 文件夹, 节省存储空间
@@ -217,10 +222,10 @@ def clean_unnecessary_files(repo_dir):
         shutil.rmtree(tmp_repo_dir)
 
 
-async def gen_code(agent_name, agent_class, agent_args, batch_id, github_token, dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles):
+async def gen_code(agent_name, agent_class, agent_args, batch_id, github_token, dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, sleep_time):
     with open(dataset_path, 'r', encoding='utf-8') as f:
         raw_instances = json.load(f)
     with open(retrieval_data_path, 'r', encoding='utf-8') as f:
         retrieval_instances = json.load(f)
     await process_all_instances(raw_instances, retrieval_instances, agent_name, agent_class,
-                                agent_args, batch_id, github_token, raw_repo_dir, generated_code_dir, num_cycles)
+                                agent_args, batch_id, github_token, raw_repo_dir, generated_code_dir, num_cycles, sleep_time)
