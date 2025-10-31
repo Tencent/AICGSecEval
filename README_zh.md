@@ -1,16 +1,75 @@
-# A.S.E (AI Code Generation Security Evaluation)
+<p align="center">
+    <h1 align="center"><img vertical-align=“middle” width="400px" src="img/title_header.png" alt="A.S.E"/></h1>
+</p>
 
-腾讯安全平台部悟空代码安全团队推出的业内首个项目级 AI 生成代码安全性评测框架。
+<h4 align="center">
+    <p>
+        <!-- <a href="https://tencent.github.io/xxxx/">Documentation</a> | -->
+        <a href="#">中文</a> |
+        <a href="./README.md">English</a>
+    <p>
+</h4>
 
-当前版本: 2.0
+<p align="center">
+  <a href="https://github.com/Tencent/AICGSecEval">
+        <img alt="Release" src="https://img.shields.io/github/v/release/Tencent/AICGSecEval?color=green">
+    </a>
+    <a href="https://github.com/Tencent/AICGSecEval">
+        <img alt="GitHub Stars" src="https://img.shields.io/github/stars/Tencent/AICGSecEval?color=gold">
+    </a>
+    <a href="https://github.com/Tencent/AICGSecEval">
+        <img alt="GitHub Stars" src="https://img.shields.io/github/forks/Tencent/AICGSecEval?color=gold">
+    </a>
+    <!-- <a href="https://github.com/Tencent/AICGSecEval">
+        <img alt="GitHub downloads" src="https://img.shields.io/github/downloads/Tencent/AICGSecEval/total">
+    </a> -->
+</p>
 
-**用户反馈问卷**：https://doc.weixin.qq.com/forms/AJEAIQdfAAoARwAuganAD0CN2ZD20i6Sf
-> 为了打造更加全面、可靠、科学的 AI 生成代码安全性评测基准，吸引更多用户共建，在此特别邀请您参与一个2分钟的用户需求调研，对于有价值的反馈我们后续将会安排寄送腾讯精美礼品，感谢大家的关注与支持。
+
+<br>
+<p align="center">
+    <h3 align="center">🚀 「腾讯悟空代码安全团队」推出的行业首个项目级 AI 生成代码安全性评测框架</h3>
+</p>
+
+
+**A.S.E（AICGSecEval）** 提供了全新的项目级 AI 生成代码安全评测基准，旨在通过模拟真实世界 AI 编程过程，评估 AI 生成代码在安全性方面的表现：
+* **代码生成任务**源自真实世界 GitHub 项目与权威 CVE 漏洞，确保评测任务的实战性和安全敏感性；
+* **代码生成过程**自动提取项目级代码上下文，精准模拟真实 AI 编程场景；
+* **代码安全评估**集成了动静态协同的评估套件，兼顾检测广度与验证精度，显著提升安全评测的科学性与实用价值。
+
+<p>
+我们致力于将 A.S.E（AICGSecEval）打造成开放、可复现、持续进化的社区项目，欢迎通过 Star、Fork、Issue、Pull Request 参与数据扩展与评测改进，共同推动项目迭代与完善。您的关注与贡献将助力 A.S.E 持续成长，促进大模型在 AI 编程安全领域的产业落地与学术研究。
+</p>
+
+<p align="center">
+  <a href="https://github.com/Tencent/AICGSecEval">
+      <img src="https://img.shields.io/badge/⭐-点亮 Star-yellow?style=flat&logo=github" alt="点亮Star">
+  </a>
+  <!-- A.S.E 官网 -->
+  <a href="https://aicgseceval.tencent.com/home">
+    <img src="https://img.shields.io/badge/🌐-A.S.E 官网-blue?style=flat&logo= & logoColor=white" alt="访问官网">
+  </a>
+  <!-- 评测结果 -->
+  <a href="https://aicgseceval.tencent.com/home">
+    <img src="https://img.shields.io/badge/📊-评测结果-success?style=flat&logo=tencent& logoColor=white" alt="评测结果">
+  </a>
+  <!-- 最新动态 -->
+  <a href="https://aicgseceval.tencent.com/home">
+    <img src="https://img.shields.io/badge/📰-A.S.E 最新动态-orange?style=flat&logo=&logoColor=white" alt="最新动态">
+  </a>
+  <a href="https://arxiv.org/abs/2508.18106" target="_blank">
+    <img src="https://img.shields.io/badge/📄-学术论文-red?style=flat-rounded&logo=arxiv&logoColor=white" alt="学术论文">
+  </a>
+  <!-- HuggingFace 数据集 -->
+  <!-- <a href="https://huggingface.co/datasets/tencent/AICGSecEval" target="_blank">
+    <img src="https://img.shields.io/badge/🤗-数据集-yellow?style=flat-rounded&logo=huggingface&logoColor=black" alt="Hugging Face 数据集"> -->
+  <!-- </a> -->
+</p>
+
 
 
 ## 目录
-
-- [📖 项目概述](#-项目概述)
+- [🧱 评测框架](#-评测框架)
 - [✨ 亮点设计](#-亮点设计)
 - [🚀 使用 A.S.E](#-使用-ase)
   - [运行环境配置](#运行环境配置)
@@ -23,12 +82,13 @@
 - [📄 许可证](#-许可证)
 
 
+## ✨ 关键设计
 
-## 📖 项目概述
+| 关键模块 | 设计原则 |
+|:--------|:------------|
+| 代码生成任务 | 设计原则 |
 
-A.S.E (AI Code Generation Security Evaluation) 提供了一种全新的**项目级AI生成代码安全性**评测基准，旨在通过模拟真实世界AI编程过程，评估大语言模型（LLM）生成代码在安全性方面的表现。
 
-不同于传统安全评测集所使用的片段级（函数或文件级）代码生成场景，A.S.E 借鉴行业前沿 [SWE-Bench](https://github.com/SWE-bench/SWE-bench) 代码生成方法，从真实世界 **GitHub 项目**中构建**项目级代码生成场景**，模拟 AI IDE（如 Cursor）在实际开发中结合项目上下文生成代码的工作模式。为了保证生成代码的安全敏感性，项目评测集源自安全专家精选的真实世界 **CVE 漏洞**，基于专家标注的关键漏洞代码设计代码生成任务。 
 
 A.S.E 构建了多维度评估体系，全面检测 LLM 的代码生成能力：
 * **代码安全性**：专家级定制检测，由安全专家为每个 CVE 定制专属漏洞检测规则，保障评估的准确性与针对性。
@@ -36,9 +96,33 @@ A.S.E 构建了多维度评估体系，全面检测 LLM 的代码生成能力：
 * **生成稳定性**：多轮输出一致性测试，每条测试数据会在相同输入条件下生成三轮结果进行对比分析。
 
 
-> 🏆 [榜单传送门](https://aicgseceval.tencent.com/rank)
+## 🧱 评测框架
 
-<img src="./img/arch.svg" style="display: block; margin-left: auto; margin-right: auto;">
+ <img src="./img/arch_cn.svg" style="display: block; margin-left: auto; margin-right: auto;">
+
+
+## 📦 数据集
+
+
+
+## 🚀 快速开始
+
+## 引用
+
+如果您的研究工作使用或参考了 A.S.E 及其评测结果，请按照以下方式引用：
+```bibtex
+@misc{lian2025aserepositorylevelbenchmarkevaluating,
+      title={A.S.E: A Repository-Level Benchmark for Evaluating Security in AI-Generated Code}, 
+      author={Keke Lian and Bin Wang and Lei Zhang and Libo Chen and Junjie Wang and Ziming Zhao and Yujiu Yang and Miaoqian Lin and Haotong Duan and Haoran Zhao and Shuang Liao and Mingda Guo and Jiazheng Quan and Yilu Zhong and Chenhao He and Zichuan Chen and Jie Wu and Haoling Li and Zhaoxuan Li and Jiongchi Yu and Hui Li and Dong Zhang},
+      year={2025},
+      eprint={2508.18106},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2508.18106}, 
+}
+```
+
+## 共建指南
 
 
 
@@ -109,30 +193,14 @@ python invoke.py \
 本项目目前支持符合 OpenAI API 标准的 LLM 服务。如需使用其他定制化的 LLM 调用方式，可修改 `bench/generate_code.py` 中的 `call_llm()` 函数来实现自定义调用逻辑。
 
 
-### 加入排行榜
-如果您有兴趣将您的模型提交到我们的排行榜，请按照 [TencentAISec/experiments](https://github.com/TencentAISec/experiments/blob/main/README_zh.md) 中发布的指令操作。
+<!-- ### 加入排行榜
+如果您有兴趣将您的模型评测结果提交到我们的官网，请按照 [TencentAISec/experiments](https://github.com/TencentAISec/experiments/blob/main/README_zh.md) 中发布的指令操作。 -->
 
 
 
-## 💭 未来计划
-
-我们将持续优化和提升项目功能，未来的优化规划包括但不限于以下内容，欢迎大家积极讨论和提出建议。
-* 数据集扩充：支持更多的漏洞类型（例如 OWASP Top 10），开发语言和应用场景。
-* 数据集分级：引入科学的分类方法对数据集进行层次化分级。
-* 评测方案优化：
-  * 引入更先进的代码上下文提取算法（当前使用的算法：BM25）。
-  * 引入基于动态 PoC 验证的安全评估方案，以提高评估准确性。
-* 榜单优化：支持更多维度和粒度的模型能力对比。
 
 
-## 🤝 贡献
-我们诚挚欢迎社区的建议与贡献！
-* 报告问题/提出建议: [提交 Issue](https://github.com/Tencent/AICGSecEval/issues)
-* 提交代码/数据：[发起 Pull Request](https://github.com/Tencent/AICGSecEval/pulls)
 
-**微信群**
-
-<img src="./img/wechat.jpg">
 
 
 ## 🙏 致谢
@@ -143,38 +211,16 @@ A.S.E​ 由腾讯安全平台部联合以下学术单位共同建设：
 * 清华大学​（杨余久教授团队）
 * 浙江大学​（赵子鸣研究员团队）
 
-感谢各方对业界首个项目级AI生成代码安全性评测基准的卓越贡献。
-
-​**✨ 诚邀共建**​
-
-欢迎更多高校、研究机构与企业加入合作！请联系 security@tencent.com 或加入微信群。
-
-
-### 贡献者
-<div align="center">
-     <a href="https://github.com/LianKee" style="text-align: center; margin: 0 10px;">
-         <img src="https://avatars.githubusercontent.com/LianKee" width="50" height="50" style="border-radius: 50%; object-fit: cover;">
-     </a>
-     <a href="https://github.com/OpenWhitzard" style="text-align: center; margin: 0 10px;">
-         <img src="https://avatars.githubusercontent.com/OpenWhitzard" width="50" height="50" style="border-radius: 50%; object-fit: cover;">
-     </a>
-     <a href="https://github.com/TheBinKing" style="text-align: center; margin: 0 10px;">
-         <img src="https://avatars.githubusercontent.com/TheBinKing" width="50" height="50" style="border-radius: 50%; object-fit: cover;">
-     </a>
-     <a href="https://github.com/jzquan" style="text-align: center; margin: 0 10px;">
-         <img src="https://avatars.githubusercontent.com/jzquan" width="50" height="50" style="border-radius: 50%; object-fit: cover;">
-     </a>
-     <a href="https://github.com/YilZhong" style="text-align: center; margin: 0 10px;">
-         <img src="https://avatars.githubusercontent.com/YilZhong" width="50" height="50" style="border-radius: 50%; object-fit: cover;">
-     </a>
-</div>
+感谢各方对 A.S.E 的卓越贡献。
 
 
 
+## 加入社区
 
-## 📄 许可证
+<img src="./img/wechat.jpg">
+
+## 📄 开源协议
 本项目基于 Apache-2.0 许可证开源，详细信息请查阅 [License.txt](./License.txt) 文件。
-
 
 
 ---
