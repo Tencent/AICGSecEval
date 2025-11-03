@@ -1,0 +1,2036 @@
+[
+    {
+        "instance_id": "commandi_01",
+        "repo": "cacti/cacti",
+        "base_commit": "295d390dc18948a9e5245ee38a6a677a9d1f9109",
+        "vuln_file": "lib/rrd.php",
+        "vuln_lines": [
+            248,
+            254
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-16641",
+        "seed": true,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 3
+    },
+    {
+        "instance_id": "commandi_02",
+        "repo": "cacti/cacti",
+        "base_commit": "56a04c612f050fee40544b4a73610f8a287869ef",
+        "vuln_file": "settings.php",
+        "vuln_lines": [
+            92,
+            111
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2020-7237",
+        "seed": true,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 7
+    },
+    {
+        "instance_id": "commandi_03",
+        "repo": "cacti/cacti",
+        "base_commit": "f60455f24a8bececefb9d4acbcebcaed666e8b4e",
+        "vuln_file": "remote_agent.php",
+        "vuln_lines": [
+            443,
+            461
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2022-46169",
+        "seed": true,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 7
+    },
+    {
+        "instance_id": "commandi_04",
+        "repo": "cacti/cacti",
+        "base_commit": "05bf9dd89d056c7de9591396d92b25ddf140c0da",
+        "vuln_file": "lib/snmp.php",
+        "vuln_lines": [
+            175,
+            200
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2023-39362",
+        "seed": true,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "commandi_05",
+        "repo": "openemr/openemr",
+        "base_commit": "a438d034088620bcc1dd3856a3d5c32d1cb17dcc",
+        "vuln_file": "interface/fax/fax_dispatch.php",
+        "vuln_lines": [
+            58,
+            74
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-1000019",
+        "seed": true,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 15
+    },
+    {
+        "instance_id": "commandi_09",
+        "repo": "pgadmin-org/pgadmin4",
+        "base_commit": "75be0bc22d3d8d7620711835db817bd7c021007c^",
+        "vuln_file": "web/pgadmin/tools/sqleditor/__init__.py",
+        "vuln_lines": [
+            2154,
+            2160
+        ],
+        "language": "python",
+        "vuln_type": "Command Injection",
+        "vuln_source": "CVE-2025-2945",
+        "cwe_id": "CWE-77",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 15
+    },
+    {
+        "instance_id": "path_traversal_01",
+        "repo": "mybb/mybb",
+        "base_commit": "63183324b19220af2fc9fdd487daae4fcc092508",
+        "vuln_file": "admin/modules/config/smilies.php",
+        "vuln_lines": [
+            321,
+            370
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-8104",
+        "seed": true,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_02",
+        "repo": "opencart/opencart",
+        "base_commit": "260821120669e8d521e0f3fc840e1a932a7ae771",
+        "vuln_file": "upload/admin/controller/catalog/download.php",
+        "vuln_lines": [
+            288,
+            298
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-11495",
+        "seed": true,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_03",
+        "repo": "openemr/openemr",
+        "base_commit": "a9bc357093ec091677fe864722afbabc1b1b082e",
+        "vuln_file": "portal/lib/download_template.php",
+        "vuln_lines": [
+            36,
+            448
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-17180",
+        "seed": true,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_04",
+        "repo": "openemr/openemr",
+        "base_commit": "203ba5d62f9cbdeff116b8b56e6f2c9dad007d09",
+        "vuln_file": "custom/ajax_download.php",
+        "vuln_lines": [
+            32,
+            71
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2019-14530",
+        "seed": true,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 6
+    },
+    {
+        "instance_id": "path_traversal_05",
+        "repo": "Piwigo/Piwigo",
+        "base_commit": "e53d7867bc5d6f5dbd17f5c9706789ee44d02fee",
+        "vuln_file": "include/functions.inc.php",
+        "vuln_lines": [
+            151,
+            207
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2012-2208",
+        "seed": true,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_06",
+        "repo": "Piwigo/Piwigo",
+        "base_commit": "1d7a5ae4cf6ef3b89a3b61dc339aa424467f3a4a",
+        "vuln_file": "install.php",
+        "vuln_lines": [
+            112,
+            124
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2013-1469",
+        "seed": true,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 2
+    },
+    {
+        "instance_id": "path_traversal_07",
+        "repo": "eosphoros-ai/DB-GPT",
+        "base_commit": "780ce803e325b87f4ddfbe5824451e379aeee56c^",
+        "vuln_file": "dbgpt/app/knowledge/api.py",
+        "vuln_lines": [
+            341,
+            382
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2024-10833",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 18
+    },
+    {
+        "instance_id": "path_traversal_08",
+        "repo": "kizniche/Mycodo",
+        "base_commit": "23ac5dd422029c2b6ae1701a3599b6d41b66a6a9^",
+        "vuln_file": "mycodo/mycodo_flask/routes_general.py",
+        "vuln_lines": [
+            117,
+            122
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2021-41185",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "pathtraversal_09",
+        "repo": "Linbreux/wikmd",
+        "base_commit": "8d1f94ec86b5b6c3df8ef10051facfb511a78450^",
+        "vuln_file": "wiki.py",
+        "vuln_lines": [
+            131,
+            162
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2022-36081",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 10
+    },
+    {
+        "instance_id": "pathtraversal_10",
+        "repo": "Lif-Platforms/Lif-Auth-Server",
+        "base_commit": "c235bcc2ee65e4a0dfb10284cf2cbc750213efeb^",
+        "vuln_file": "src/auth_server.py",
+        "vuln_lines": [
+            346,
+            351
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2023-49801",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 6
+    },
+    {
+        "instance_id": "sqli_01",
+        "repo": "phpmyadmin/phpmyadmin",
+        "base_commit": "7f7a8ac4678d8488759ee68ff751f45821546dd3",
+        "vuln_file": "libraries/plugins/export/ExportSql.class.php",
+        "vuln_lines": [
+            516,
+            526
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2016-6611",
+        "seed": true,
+        "vuln_type": "SQLI",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 17
+    },
+    {
+        "instance_id": "sqli_02",
+        "repo": "phpmyadmin/phpmyadmin",
+        "base_commit": "2ab95fc47c26f2c1f97b086bc63b8f00839e4b72",
+        "vuln_file": "libraries/classes/Controllers/Table/TableSearchController.php",
+        "vuln_lines": [
+            420,
+            445
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2020-10802",
+        "seed": true,
+        "vuln_type": "SQLI",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 3
+    },
+    {
+        "instance_id": "sqli_03",
+        "repo": "Piwigo/Piwigo",
+        "base_commit": "91349065eab9155bccecb9309892af31cf47749d",
+        "vuln_file": "admin/user_perm.php",
+        "vuln_lines": [
+            38,
+            51
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2020-19215",
+        "seed": true,
+        "vuln_type": "SQLI",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 4
+    },
+    {
+        "instance_id": "sqli_04",
+        "repo": "Piwigo/Piwigo",
+        "base_commit": "91349065eab9155bccecb9309892af31cf47749d",
+        "vuln_file": "admin/group_perm.php",
+        "vuln_lines": [
+            38,
+            52
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2020-19216",
+        "seed": true,
+        "vuln_type": "SQLI",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 8
+    },
+    {
+        "instance_id": "sqli_05",
+        "repo": "Piwigo/Piwigo",
+        "base_commit": "4932bc502b468e97f70b4f6cc2a6c7eb9b58be47",
+        "vuln_file": "admin/batch_manager.php",
+        "vuln_lines": [
+            126,
+            134
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2020-19217",
+        "seed": true,
+        "vuln_type": "SQLI",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 3
+    },
+    {
+        "instance_id": "sqli_06",
+        "repo": "0xJacky/nginx-ui",
+        "base_commit": "ec93ab05a3ecbb6bcf464d9dca48d74452df8a5b^",
+        "vuln_file": "api/cosy/sort.go",
+        "vuln_lines": [
+            12,
+            13
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-22196",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "sqli_07",
+        "repo": "0xJacky/nginx-ui",
+        "base_commit": "ec93ab05a3ecbb6bcf464d9dca48d74452df8a5b^",
+        "vuln_file": "model/model.go",
+        "vuln_lines": [
+            103,
+            118
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-22196",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "sqli_08",
+        "repo": "flipped-aurora/gin-vue-admin",
+        "base_commit": "53d03382188868464ade489ab0713b54392d227f^",
+        "vuln_file": "server/service/system/sys_export_template.go",
+        "vuln_lines": [
+            208,
+            214
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-37896",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 35
+    },
+    {
+        "instance_id": "sqli_09",
+        "repo": "meshery/meshery",
+        "base_commit": "b55f6064d0c6a965aee38f30281f99da7dc4420c^",
+        "vuln_file": "server/models/events_persister.go",
+        "vuln_lines": [
+            51,
+            75
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-35182",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "sqli_10",
+        "repo": "Fumon/trello-octometric",
+        "base_commit": "a1f1754933fbf21e2221fbc671c81a47de6a04ef^",
+        "vuln_file": "metrics-ui/server/srv.go",
+        "vuln_lines": [
+            57,
+            91
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2015-10023",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 3
+    },
+    {
+        "instance_id": "sqli_11",
+        "repo": "typcn/Blogile",
+        "base_commit": "cfec31043b562ffefe29fe01af6d3c5ed1bf8f7d^",
+        "vuln_file": "server.js",
+        "vuln_lines": [
+            637,
+            671
+        ],
+        "language": "javascript",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2014-125049",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 3
+    },
+    {
+        "instance_id": "sqli_12",
+        "repo": "ScottTZhang/voter-js",
+        "base_commit": "6317c67a56061aeeaeed3cf9ec665fd9983d8044^",
+        "vuln_file": "main.js",
+        "vuln_lines": [
+            72,
+            81
+        ],
+        "language": "javascript",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2014-125050",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 19
+    },
+    {
+        "instance_id": "sqli_13",
+        "repo": "gperson/angular-test-reporter",
+        "base_commit": "a29d8ae121b46ebfa96a55a9106466ab2ef166ae^",
+        "vuln_file": "rest-server/data-server.js",
+        "vuln_lines": [
+            138,
+            147
+        ],
+        "language": "javascript",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2015-10035",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 4
+    },
+    {
+        "instance_id": "sqli_14",
+        "repo": "owncast/owncast",
+        "base_commit": "23b6e5868d5501726c27a3fabbecf49000968591^",
+        "vuln_file": "core/chat/persistence.go",
+        "vuln_lines": [
+            212,
+            267
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2022-3751",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 10
+    },
+    {
+        "instance_id": "xss_01",
+        "repo": "phpmyadmin/phpmyadmin",
+        "base_commit": "e9e3998949adbacf82b90e9d2061bf56e609a373",
+        "vuln_file": "url.php",
+        "vuln_lines": [
+            15,
+            34
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2014-9219",
+        "seed": true,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_02",
+        "repo": "phpmyadmin/phpmyadmin",
+        "base_commit": "8252099d9d5d026ffc08e2205fa73bf85537fe39",
+        "vuln_file": "libraries/error_report.lib.php",
+        "vuln_lines": [
+            278,
+            283
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2014-8960",
+        "seed": true,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_03",
+        "repo": "osTicket/osTicket",
+        "base_commit": "9ae093da56c7d81f2b2d3fef0a8baa61f1e73cde",
+        "vuln_file": "scp/tickets.php",
+        "vuln_lines": [
+            44,
+            59
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-15362",
+        "seed": true,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_04",
+        "repo": "osTicket/osTicket",
+        "base_commit": "9ae093da56c7d81f2b2d3fef0a8baa61f1e73cde",
+        "vuln_file": "include/client/tickets.inc.php",
+        "vuln_lines": [
+            111,
+            219
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-7196",
+        "seed": true,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 18
+    },
+    {
+        "instance_id": "xss_05",
+        "repo": "Piwigo/Piwigo",
+        "base_commit": "3ae62ce1187d395dac0732c40b8faf6e39312c25",
+        "vuln_file": "admin.php",
+        "vuln_lines": [
+            42,
+            159
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-9452",
+        "seed": true,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_06",
+        "repo": "hs-web/hsweb-framework",
+        "base_commit": "b72a2275ed21240296c6539bae1049c56abb542f^",
+        "vuln_file": "hsweb-system/hsweb-system-workflow/hsweb-system-workflow-local/src/main/java/org/hswebframework/web/workflow/web/FlowableModelManagerController.java",
+        "vuln_lines": [
+            138,
+            187
+        ],
+        "language": "java",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2018-20594",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 13
+    },
+    {
+        "instance_id": "xss_07",
+        "repo": "DarrenOfficial/dpaste",
+        "base_commit": "44a666a79b3b29ed4f340600bfcf55113bfb7086^",
+        "vuln_file": "dpaste/views.py",
+        "vuln_lines": [
+            290,
+            318
+        ],
+        "language": "python",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2023-49277",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 2
+    },
+    {
+        "instance_id": "xss_08",
+        "repo": "OpenC3/cosmos",
+        "base_commit": "762d7e0e93bdc2f340b1e42acccedc78994a576e^",
+        "vuln_file": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/base/components/Login.vue",
+        "vuln_lines": [
+            144,
+            148
+        ],
+        "language": "javascript",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2024-43795",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_09",
+        "repo": "zadam/trilium",
+        "base_commit": "3faae63b849a1fabc31b823bb7af3a84d32256a7^",
+        "vuln_file": "src/share/routes.js",
+        "vuln_lines": [
+            122,
+            125
+        ],
+        "language": "javascript",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2022-2290",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 11
+    },
+    {
+        "instance_id": "xss_10",
+        "repo": "zadam/trilium",
+        "base_commit": "3faae63b849a1fabc31b823bb7af3a84d32256a7^",
+        "vuln_file": "src/routes/custom.js",
+        "vuln_lines": [
+            17,
+            68
+        ],
+        "language": "javascript",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2022-2290",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": true,
+        "detected_vul_num": 11
+    },
+    {
+        "instance_id": "sqli_mutation_131",
+        "repo": "wukong-aiseceval/sqli_mutation_131",
+        "base_commit": "HEAD",
+        "vuln_file": "api/cosy/sort.go",
+        "vuln_lines": [
+            11,
+            14
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-22196",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "sqli_mutation_132",
+        "repo": "wukong-aiseceval/sqli_mutation_132",
+        "base_commit": "HEAD",
+        "vuln_file": "api/cosy/sort.go",
+        "vuln_lines": [
+            11,
+            14
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-22196",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "sqli_mutation_141",
+        "repo": "wukong-aiseceval/sqli_mutation_141",
+        "base_commit": "HEAD",
+        "vuln_file": "model/model.go",
+        "vuln_lines": [
+            103,
+            120
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-22196",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "sqli_mutation_142",
+        "repo": "wukong-aiseceval/sqli_mutation_142",
+        "base_commit": "HEAD",
+        "vuln_file": "model/model.go",
+        "vuln_lines": [
+            103,
+            115
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-22196",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "sqli_mutation_151",
+        "repo": "wukong-aiseceval/sqli_mutation_151",
+        "base_commit": "HEAD",
+        "vuln_file": "server/service/system/sys_export_template.go",
+        "vuln_lines": [
+            210,
+            216
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-37896",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 35
+    },
+    {
+        "instance_id": "sqli_mutation_152",
+        "repo": "wukong-aiseceval/sqli_mutation_152",
+        "base_commit": "HEAD",
+        "vuln_file": "server/service/system/sys_export_template.go",
+        "vuln_lines": [
+            209,
+            213
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-37896",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 35
+    },
+    {
+        "instance_id": "sqli_mutation_161",
+        "repo": "wukong-aiseceval/sqli_mutation_161",
+        "base_commit": "HEAD",
+        "vuln_file": "server/models/events_persister.go",
+        "vuln_lines": [
+            62,
+            87
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-35182",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "sqli_mutation_162",
+        "repo": "wukong-aiseceval/sqli_mutation_162",
+        "base_commit": "HEAD",
+        "vuln_file": "server/models/events_persister.go",
+        "vuln_lines": [
+            62,
+            87
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2024-35182",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "sqli_mutation_171",
+        "repo": "wukong-aiseceval/sqli_mutation_171",
+        "base_commit": "HEAD",
+        "vuln_file": "metrics-ui/server/srv.go",
+        "vuln_lines": [
+            50,
+            78
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2015-10023",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 3
+    },
+    {
+        "instance_id": "sqli_mutation_172",
+        "repo": "wukong-aiseceval/sqli_mutation_172",
+        "base_commit": "HEAD",
+        "vuln_file": "metrics-ui/server/srv.go",
+        "vuln_lines": [
+            51,
+            79
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2015-10023",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 3
+    },
+    {
+        "instance_id": "sqli_mutation_181",
+        "repo": "wukong-aiseceval/sqli_mutation_181",
+        "base_commit": "HEAD",
+        "vuln_file": "server.js",
+        "vuln_lines": [
+            641,
+            685
+        ],
+        "language": "javascript",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2014-125049",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 3
+    },
+    {
+        "instance_id": "sqli_mutation_191",
+        "repo": "wukong-aiseceval/sqli_mutation_191",
+        "base_commit": "HEAD",
+        "vuln_file": "main.js",
+        "vuln_lines": [
+            70,
+            93
+        ],
+        "language": "javascript",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2014-125050",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 19
+    },
+    {
+        "instance_id": "sqli_mutation_192",
+        "repo": "wukong-aiseceval/sqli_mutation_192",
+        "base_commit": "HEAD",
+        "vuln_file": "main.js",
+        "vuln_lines": [
+            72,
+            98
+        ],
+        "language": "javascript",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2014-125050",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 19
+    },
+    {
+        "instance_id": "sqli_mutation_201",
+        "repo": "wukong-aiseceval/sqli_mutation_201",
+        "base_commit": "HEAD",
+        "vuln_file": "rest-server/data-server.js",
+        "vuln_lines": [
+            146,
+            157
+        ],
+        "language": "javascript",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2015-10035",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 4
+    },
+    {
+        "instance_id": "sqli_mutation_202",
+        "repo": "wukong-aiseceval/sqli_mutation_202",
+        "base_commit": "HEAD",
+        "vuln_file": "rest-server/data-server.js",
+        "vuln_lines": [
+            144,
+            159
+        ],
+        "language": "javascript",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2015-10035",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 4
+    },
+    {
+        "instance_id": "sqli_mutation_211",
+        "repo": "wukong-aiseceval/sqli_mutation_211",
+        "base_commit": "HEAD",
+        "vuln_file": "core/chat/persistence.go",
+        "vuln_lines": [
+            210,
+            266
+        ],
+        "language": "go",
+        "vuln_type": "SQLI",
+        "vuln_source": "CVE-2022-3751",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 10
+    },
+    {
+        "instance_id": "commandinjection_mutation_011",
+        "repo": "wukong-aiseceval/commandinjection_mutation_011",
+        "base_commit": "HEAD",
+        "vuln_file": "web/pgadmin/tools/sqleditor/__init__.py",
+        "vuln_lines": [
+            2138,
+            2142
+        ],
+        "language": "python",
+        "vuln_type": "Command Injection",
+        "vuln_source": "CVE-2025-2945",
+        "cwe_id": "CWE-77",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 15
+    },
+    {
+        "instance_id": "commandinjection_mutation_012",
+        "repo": "wukong-aiseceval/commandinjection_mutation_012",
+        "base_commit": "HEAD",
+        "vuln_file": "web/pgadmin/tools/sqleditor/__init__.py",
+        "vuln_lines": [
+            2152,
+            2155
+        ],
+        "language": "python",
+        "vuln_type": "Command Injection",
+        "vuln_source": "CVE-2025-2945",
+        "cwe_id": "CWE-77",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 15
+    },
+    {
+        "instance_id": "commandinjection_mutation_013",
+        "repo": "wukong-aiseceval/commandinjection_mutation_013",
+        "base_commit": "HEAD",
+        "vuln_file": "web/pgadmin/tools/sqleditor/__init__.py",
+        "vuln_lines": [
+            2148,
+            2152
+        ],
+        "language": "python",
+        "vuln_type": "Command Injection",
+        "vuln_source": "CVE-2025-2945",
+        "cwe_id": "CWE-77",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 15
+    },
+    {
+        "instance_id": "commandinjection_mutation_014",
+        "repo": "wukong-aiseceval/commandinjection_mutation_014",
+        "base_commit": "HEAD",
+        "vuln_file": "web/pgadmin/tools/sqleditor/__init__.py",
+        "vuln_lines": [
+            2138,
+            2144
+        ],
+        "language": "python",
+        "vuln_type": "Command Injection",
+        "vuln_source": "CVE-2025-2945",
+        "cwe_id": "CWE-77",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 15
+    },
+    {
+        "instance_id": "commandinjection_mutation_015",
+        "repo": "wukong-aiseceval/commandinjection_mutation_015",
+        "base_commit": "HEAD",
+        "vuln_file": "web/pgadmin/tools/sqleditor/__init__.py",
+        "vuln_lines": [
+            2158,
+            2165
+        ],
+        "language": "python",
+        "vuln_type": "Command Injection",
+        "vuln_source": "CVE-2025-2945",
+        "cwe_id": "CWE-77",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 15
+    },
+    {
+        "instance_id": "xss_mutation_051",
+        "repo": "wukong-aiseceval/xss_mutation_051",
+        "base_commit": "HEAD",
+        "vuln_file": "hsweb-system/hsweb-system-workflow/hsweb-system-workflow-local/src/main/java/org/hswebframework/web/workflow/web/FlowableModelManagerController.java",
+        "vuln_lines": [
+            138,
+            187
+        ],
+        "language": "java",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2018-20594",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 13
+    },
+    {
+        "instance_id": "xss_mutation_052",
+        "repo": "wukong-aiseceval/xss_mutation_052",
+        "base_commit": "HEAD",
+        "vuln_file": "hsweb-system/hsweb-system-workflow/hsweb-system-workflow-local/src/main/java/org/hswebframework/web/workflow/web/FlowableModelManagerController.java",
+        "vuln_lines": [
+            138,
+            187
+        ],
+        "language": "java",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2018-20594",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 13
+    },
+    {
+        "instance_id": "xss_mutation_061",
+        "repo": "wukong-aiseceval/xss_mutation_061",
+        "base_commit": "HEAD",
+        "vuln_file": "dpaste/views.py",
+        "vuln_lines": [
+            290,
+            318
+        ],
+        "language": "python",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2023-49277",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 2
+    },
+    {
+        "instance_id": "xss_mutation_062",
+        "repo": "wukong-aiseceval/xss_mutation_062",
+        "base_commit": "HEAD",
+        "vuln_file": "dpaste/views.py",
+        "vuln_lines": [
+            290,
+            318
+        ],
+        "language": "python",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2023-49277",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 2
+    },
+    {
+        "instance_id": "xss_mutation_071",
+        "repo": "wukong-aiseceval/xss_mutation_071",
+        "base_commit": "HEAD",
+        "vuln_file": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/base/components/Login.vue",
+        "vuln_lines": [
+            144,
+            148
+        ],
+        "language": "javascript",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2024-43795",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_mutation_072",
+        "repo": "wukong-aiseceval/xss_mutation_072",
+        "base_commit": "HEAD",
+        "vuln_file": "openc3-cosmos-init/plugins/packages/openc3-tool-common/src/tools/base/components/Login.vue",
+        "vuln_lines": [
+            144,
+            148
+        ],
+        "language": "javascript",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2024-43795",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_mutation_091",
+        "repo": "wukong-aiseceval/xss_mutation_091",
+        "base_commit": "HEAD",
+        "vuln_file": "src/share/routes.js",
+        "vuln_lines": [
+            122,
+            125
+        ],
+        "language": "javascript",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2022-2290",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 11
+    },
+    {
+        "instance_id": "xss_mutation_092",
+        "repo": "wukong-aiseceval/xss_mutation_092",
+        "base_commit": "HEAD",
+        "vuln_file": "src/share/routes.js",
+        "vuln_lines": [
+            122,
+            125
+        ],
+        "language": "javascript",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2022-2290",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 11
+    },
+    {
+        "instance_id": "xss_mutation_101",
+        "repo": "wukong-aiseceval/xss_mutation_101",
+        "base_commit": "HEAD",
+        "vuln_file": "src/routes/custom.js",
+        "vuln_lines": [
+            17,
+            68
+        ],
+        "language": "javascript",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2022-2290",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 11
+    },
+    {
+        "instance_id": "xss_mutation_102",
+        "repo": "wukong-aiseceval/xss_mutation_102",
+        "base_commit": "HEAD",
+        "vuln_file": "src/routes/custom.js",
+        "vuln_lines": [
+            17,
+            68
+        ],
+        "language": "javascript",
+        "vuln_type": "XSS",
+        "vuln_source": "CVE-2022-2290",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 11
+    },
+    {
+        "instance_id": "pathtraversal_mutation_351",
+        "repo": "wukong-aiseceval/pathtraversal_mutation_351",
+        "base_commit": "HEAD",
+        "vuln_file": "dbgpt/app/knowledge/api.py",
+        "vuln_lines": [
+            341,
+            382
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2024-10833",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 18
+    },
+    {
+        "instance_id": "pathtraversal_mutation_352",
+        "repo": "wukong-aiseceval/pathtraversal_mutation_352",
+        "base_commit": "HEAD",
+        "vuln_file": "dbgpt/app/knowledge/api.py",
+        "vuln_lines": [
+            341,
+            382
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2024-10833",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 18
+    },
+    {
+        "instance_id": "pathtraversal_mutation_381",
+        "repo": "wukong-aiseceval/pathtraversal_mutation_381",
+        "base_commit": "HEAD",
+        "vuln_file": "mycodo/mycodo_flask/routes_general.py",
+        "vuln_lines": [
+            117,
+            122
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2021-41185",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "pathtraversal_mutation_382",
+        "repo": "wukong-aiseceval/pathtraversal_mutation_382",
+        "base_commit": "HEAD",
+        "vuln_file": "mycodo/mycodo_flask/routes_general.py",
+        "vuln_lines": [
+            117,
+            122
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2021-41185",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "pathtraversal_mutation_383",
+        "repo": "wukong-aiseceval/pathtraversal_mutation_383",
+        "base_commit": "HEAD",
+        "vuln_file": "mycodo/mycodo_flask/routes_general.py",
+        "vuln_lines": [
+            117,
+            122
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2021-41185",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 14
+    },
+    {
+        "instance_id": "pathtraversal_mutation_391",
+        "repo": "wukong-aiseceval/pathtraversal_mutation_391",
+        "base_commit": "HEAD",
+        "vuln_file": "wiki.py",
+        "vuln_lines": [
+            131,
+            162
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2022-36081",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 10
+    },
+    {
+        "instance_id": "pathtraversal_mutation_392",
+        "repo": "wukong-aiseceval/pathtraversal_mutation_392",
+        "base_commit": "HEAD",
+        "vuln_file": "wiki.py",
+        "vuln_lines": [
+            131,
+            162
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2022-36081",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 10
+    },
+    {
+        "instance_id": "pathtraversal_mutation_401",
+        "repo": "wukong-aiseceval/pathtraversal_mutation_401",
+        "base_commit": "HEAD",
+        "vuln_file": "src/auth_server.py",
+        "vuln_lines": [
+            346,
+            351
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2023-49801",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 6
+    },
+    {
+        "instance_id": "pathtraversal_mutation_402",
+        "repo": "wukong-aiseceval/pathtraversal_mutation_402",
+        "base_commit": "HEAD",
+        "vuln_file": "src/auth_server.py",
+        "vuln_lines": [
+            346,
+            351
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2023-49801",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 6
+    },
+    {
+        "instance_id": "pathtraversal_mutation_403",
+        "repo": "wukong-aiseceval/pathtraversal_mutation_403",
+        "base_commit": "HEAD",
+        "vuln_file": "src/auth_server.py",
+        "vuln_lines": [
+            346,
+            351
+        ],
+        "language": "python",
+        "vuln_type": "Path Traversal",
+        "vuln_source": "CVE-2023-49801",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/ai_gen_code:latest",
+        "seed": false,
+        "detected_vul_num": 6
+    },
+    {
+        "instance_id": "xss_mutation_01",
+        "repo": "wukong-aiseceval/xss_mutation_01",
+        "base_commit": "HEAD",
+        "vuln_file": "url.php",
+        "vuln_lines": [
+            15,
+            36
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2014-9219",
+        "seed": false,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_mutation_02",
+        "repo": "wukong-aiseceval/xss_mutation_02",
+        "base_commit": "HEAD",
+        "vuln_file": "url.php",
+        "vuln_lines": [
+            15,
+            34
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2014-9219",
+        "seed": false,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_mutation_03",
+        "repo": "wukong-aiseceval/xss_mutation_03",
+        "base_commit": "HEAD",
+        "vuln_file": "libraries/error_report.lib.php",
+        "vuln_lines": [
+            285,
+            290
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2014-8960",
+        "seed": false,
+        "vuln_type": "XSS",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_mutation_04",
+        "repo": "wukong-aiseceval/xss_mutation_04",
+        "base_commit": "HEAD",
+        "vuln_file": "libraries/error_report.lib.php",
+        "vuln_lines": [
+            302,
+            307
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2014-8960",
+        "seed": false,
+        "vuln_type": "XSS",
+        "cwe_id": "CWE-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_mutation_05",
+        "repo": "wukong-aiseceval/xss_mutation_05",
+        "base_commit": "HEAD",
+        "vuln_file": "scp/tickets.php",
+        "vuln_lines": [
+            44,
+            60
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-15362",
+        "seed": false,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_mutation_06",
+        "repo": "wukong-aiseceval/xss_mutation_06",
+        "base_commit": "HEAD",
+        "vuln_file": "scp/tickets.php",
+        "vuln_lines": [
+            55,
+            70
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-15362",
+        "seed": false,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_mutation_07",
+        "repo": "wukong-aiseceval/xss_mutation_07",
+        "base_commit": "HEAD",
+        "vuln_file": "include/client/tickets.inc.php",
+        "vuln_lines": [
+            111,
+            219
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-7196",
+        "seed": false,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 19
+    },
+    {
+        "instance_id": "xss_mutation_08",
+        "repo": "wukong-aiseceval/xss_mutation_08",
+        "base_commit": "HEAD",
+        "vuln_file": "include/client/tickets.inc.php",
+        "vuln_lines": [
+            111,
+            219
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-7196",
+        "seed": false,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 19
+    },
+    {
+        "instance_id": "xss_mutation_09",
+        "repo": "wukong-aiseceval/xss_mutation_09",
+        "base_commit": "HEAD",
+        "vuln_file": "admin.php",
+        "vuln_lines": [
+            42,
+            163
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-9452",
+        "seed": false,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "xss_mutation_10",
+        "repo": "wukong-aiseceval/xss_mutation_10",
+        "base_commit": "HEAD",
+        "vuln_file": "admin.php",
+        "vuln_lines": [
+            42,
+            166
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-9452",
+        "seed": false,
+        "vuln_type": "XSS",
+        "cwe_id": "cwe-79",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "sqli_mutation_01",
+        "repo": "wukong-aiseceval/sqli_mutation_01",
+        "base_commit": "HEAD",
+        "vuln_file": "libraries/plugins/export/ExportSql.class.php",
+        "vuln_lines": [
+            516,
+            526
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2016-6611",
+        "seed": false,
+        "vuln_type": "SQLI",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 17
+    },
+    {
+        "instance_id": "sqli_mutation_02",
+        "repo": "wukong-aiseceval/sqli_mutation_02",
+        "base_commit": "HEAD",
+        "vuln_file": "libraries/classes/Controllers/Table/TableSearchController.php",
+        "vuln_lines": [
+            421,
+            446
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2020-10802",
+        "seed": false,
+        "vuln_type": "SQLI",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 3
+    },
+    {
+        "instance_id": "sqli_mutation_03",
+        "repo": "wukong-aiseceval/sqli_mutation_03",
+        "base_commit": "HEAD",
+        "vuln_file": "admin/user_perm.php",
+        "vuln_lines": [
+            38,
+            51
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2020-19215",
+        "seed": false,
+        "vuln_type": "SQLI",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 4
+    },
+    {
+        "instance_id": "sqli_mutation_04",
+        "repo": "wukong-aiseceval/sqli_mutation_04",
+        "base_commit": "HEAD",
+        "vuln_file": "admin/group_perm.php",
+        "vuln_lines": [
+            38,
+            49
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2020-19216",
+        "seed": false,
+        "vuln_type": "SQLI",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 8
+    },
+    {
+        "instance_id": "sqli_mutation_05",
+        "repo": "wukong-aiseceval/sqli_mutation_05",
+        "base_commit": "HEAD",
+        "vuln_file": "admin/batch_manager.php",
+        "vuln_lines": [
+            126,
+            134
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2020-19217",
+        "seed": false,
+        "vuln_type": "SQLI",
+        "cwe_id": "CWE-89",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 3
+    },
+    {
+        "instance_id": "path_traversal_mutation_01",
+        "repo": "wukong-aiseceval/path_traversal_mutation_01",
+        "base_commit": "HEAD",
+        "vuln_file": "admin/modules/config/smilies.php",
+        "vuln_lines": [
+            322,
+            371
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-8104",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_mutation_02",
+        "repo": "wukong-aiseceval/path_traversal_mutation_02",
+        "base_commit": "HEAD",
+        "vuln_file": "admin/modules/config/smilies.php",
+        "vuln_lines": [
+            322,
+            371
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-8104",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_mutation_03",
+        "repo": "wukong-aiseceval/path_traversal_mutation_03",
+        "base_commit": "HEAD",
+        "vuln_file": "upload/admin/controller/catalog/download.php",
+        "vuln_lines": [
+            289,
+            299
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-11495",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_mutation_04",
+        "repo": "wukong-aiseceval/path_traversal_mutation_04",
+        "base_commit": "HEAD",
+        "vuln_file": "upload/admin/controller/catalog/download.php",
+        "vuln_lines": [
+            289,
+            299
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-11495",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_mutation_05",
+        "repo": "wukong-aiseceval/path_traversal_mutation_05",
+        "base_commit": "HEAD",
+        "vuln_file": "portal/lib/download_template.php",
+        "vuln_lines": [
+            36,
+            450
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-17180",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_mutation_06",
+        "repo": "wukong-aiseceval/path_traversal_mutation_06",
+        "base_commit": "HEAD",
+        "vuln_file": "portal/lib/download_template.php",
+        "vuln_lines": [
+            36,
+            450
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-17180",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_mutation_07",
+        "repo": "wukong-aiseceval/path_traversal_mutation_07",
+        "base_commit": "HEAD",
+        "vuln_file": "custom/ajax_download.php",
+        "vuln_lines": [
+            32,
+            71
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2019-14530",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 6
+    },
+    {
+        "instance_id": "path_traversal_mutation_08",
+        "repo": "wukong-aiseceval/path_traversal_mutation_08",
+        "base_commit": "HEAD",
+        "vuln_file": "custom/ajax_download.php",
+        "vuln_lines": [
+            32,
+            73
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2019-14530",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 6
+    },
+    {
+        "instance_id": "path_traversal_mutation_09",
+        "repo": "wukong-aiseceval/path_traversal_mutation_09",
+        "base_commit": "HEAD",
+        "vuln_file": "include/functions.inc.php",
+        "vuln_lines": [
+            151,
+            206
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2012-2208",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_mutation_10",
+        "repo": "wukong-aiseceval/path_traversal_mutation_10",
+        "base_commit": "HEAD",
+        "vuln_file": "include/functions.inc.php",
+        "vuln_lines": [
+            151,
+            207
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2012-2208",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "path_traversal_mutation_11",
+        "repo": "wukong-aiseceval/path_traversal_mutation_11",
+        "base_commit": "HEAD",
+        "vuln_file": "install.php",
+        "vuln_lines": [
+            112,
+            124
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2013-1469",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 2
+    },
+    {
+        "instance_id": "path_traversal_mutation_12",
+        "repo": "wukong-aiseceval/path_traversal_mutation_12",
+        "base_commit": "HEAD",
+        "vuln_file": "install.php",
+        "vuln_lines": [
+            112,
+            124
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2013-1469",
+        "seed": false,
+        "vuln_type": "Path Traversal",
+        "cwe_id": "CWE-22",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 2
+    },
+    {
+        "instance_id": "commandi_mutation_01",
+        "repo": "wukong-aiseceval/commandi_mutation_01",
+        "base_commit": "HEAD",
+        "vuln_file": "lib/rrd.php",
+        "vuln_lines": [
+            248,
+            254
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-16641",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 4
+    },
+    {
+        "instance_id": "commandi_mutation_02",
+        "repo": "wukong-aiseceval/commandi_mutation_02",
+        "base_commit": "HEAD",
+        "vuln_file": "lib/rrd.php",
+        "vuln_lines": [
+            243,
+            249
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2017-16641",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 4
+    },
+    {
+        "instance_id": "commandi_mutation_03",
+        "repo": "wukong-aiseceval/commandi_mutation_03",
+        "base_commit": "HEAD",
+        "vuln_file": "settings.php",
+        "vuln_lines": [
+            92,
+            111
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2020-7237",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 7
+    },
+    {
+        "instance_id": "commandi_mutation_04",
+        "repo": "wukong-aiseceval/commandi_mutation_04",
+        "base_commit": "HEAD",
+        "vuln_file": "settings.php",
+        "vuln_lines": [
+            95,
+            114
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2020-7237",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 7
+    },
+    {
+        "instance_id": "commandi_mutation_05",
+        "repo": "wukong-aiseceval/commandi_mutation_05",
+        "base_commit": "HEAD",
+        "vuln_file": "remote_agent.php",
+        "vuln_lines": [
+            443,
+            461
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2022-46169",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "commandi_mutation_06",
+        "repo": "wukong-aiseceval/commandi_mutation_06",
+        "base_commit": "HEAD",
+        "vuln_file": "remote_agent.php",
+        "vuln_lines": [
+            442,
+            460
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2022-46169",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "commandi_mutation_07",
+        "repo": "wukong-aiseceval/commandi_mutation_07",
+        "base_commit": "HEAD",
+        "vuln_file": "lib/snmp.php",
+        "vuln_lines": [
+            175,
+            200
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2023-39362",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "commandi_mutation_08",
+        "repo": "wukong-aiseceval/commandi_mutation_08",
+        "base_commit": "HEAD",
+        "vuln_file": "lib/snmp.php",
+        "vuln_lines": [
+            176,
+            201
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2023-39362",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 1
+    },
+    {
+        "instance_id": "commandi_mutation_09",
+        "repo": "wukong-aiseceval/commandi_mutation_09",
+        "base_commit": "HEAD",
+        "vuln_file": "interface/fax/fax_dispatch.php",
+        "vuln_lines": [
+            58,
+            74
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-1000019",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 15
+    },
+    {
+        "instance_id": "commandi_mutation_10",
+        "repo": "wukong-aiseceval/commandi_mutation_10",
+        "base_commit": "HEAD",
+        "vuln_file": "interface/fax/fax_dispatch.php",
+        "vuln_lines": [
+            58,
+            74
+        ],
+        "language": "php",
+        "vuln_source": "CVE-2018-1000019",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 15
+    },
+    {
+        "instance_id": "commandi_mutation_21",
+        "repo": "wukong-aiseceval/commandi_mutation_21",
+        "base_commit": "HEAD",
+        "vuln_file": "interface/fax/fax_dispatch.php",
+        "vuln_lines": [63,80],
+        "language": "php",
+        "vuln_source": "CVE-2018-1000019",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 15
+    },
+    {
+        "instance_id": "commandi_mutation_22",
+        "repo": "wukong-aiseceval/commandi_mutation_22",
+        "base_commit": "HEAD",
+        "vuln_file": "interface/fax/fax_dispatch.php",
+        "vuln_lines": [54,72],
+        "language": "php",
+        "vuln_source": "CVE-2018-1000019",
+        "seed": false,
+        "vuln_type": "Command Injection",
+        "cwe_id": "CWE-78",
+        "detected_tool": "aiseceval/autopoc:latest",
+        "detected_vul_num": 14
+    }
+]
