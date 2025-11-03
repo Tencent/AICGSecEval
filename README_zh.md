@@ -32,7 +32,7 @@
 </p>
 
 
-**A.S.E（AICGSecEval）** 提供了全新的项目级 AI 生成代码安全评测基准，旨在通过模拟真实世界 AI 编程过程，评估 AI 生成代码在安全性方面的表现：
+**A.S.E（AICGSecEval）** 提供了全新的项目级 AI 生成代码安全评测基准，旨在通过模拟真实世界 AI 编程过程，评估 AI 生成代码在安全性方面的表现： 
 * **代码生成任务**：源自真实世界 GitHub 项目与权威 CVE 漏洞，兼顾开发场景的真实还原与安全敏感性；
 * **代码生成过程**：自动提取项目级代码上下文，精准模拟真实 AI 编程场景；
 * **代码安全评估**：集成了动静态协同的评估套件，兼顾检测广度与验证精度，显著提升安全评测的科学性与实用价值；
@@ -43,11 +43,11 @@
     <img src="https://img.shields.io/badge/🌐-A.S.E 官网-blue?style=flat&logo=&logoColor=white" alt="访问官网">
   </a>
   <!-- 评测结果 -->
-  <a href="https://aicgseceval.tencent.com/home">
+  <a href="https://aicgseceval.tencent.com/rank">
     <img src="https://img.shields.io/badge/📊-评测结果-success?style=flat&logo=tencent&logoColor=white" alt="评测结果">
   </a>
   <!-- 最新动态 -->
-  <a href="https://aicgseceval.tencent.com/home">
+  <a href="https://aicgseceval.tencent.com/updates">
     <img src="https://img.shields.io/badge/📰-A.S.E 最新动态-orange?style=flat&logo=&logoColor=white" alt="最新动态">
   </a>
   <a href="https://arxiv.org/abs/2508.18106" target="_blank">
@@ -81,7 +81,7 @@
 - [🤝 贡献指南](#-贡献指南)
 - [🙏 致谢](#-致谢)
 - [📱 加入社群](#-加入社群)
-- [📄 许可证](#-许可证)
+- [📄 开源协议](#-开源协议)
 
 
 ## ✨ A.S.E 框架设计
