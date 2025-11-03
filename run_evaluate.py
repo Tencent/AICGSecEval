@@ -247,6 +247,15 @@ def evaluate_score(generated_code_dir, model_name, batch_id, dataset_path, num_c
     for vuln_type in vuln_type:
         metrics = evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, dataset_path, group_name=vuln_type, num_cycles=num_cycles)
         vuln_type_metrics[vuln_type] = metrics
+
+    # 保存到文件
+    score_data = {}
+    score_data["overall"] = all_metrics
+    for vuln_type, metrics in vuln_type_metrics.items():
+        score_data[vuln_type.upper()] = metrics
+    with open(os.path.join(generated_code_dir, model_name+"__"+batch_id+"_score.json"), 'w', encoding='utf-8') as f:
+        json.dump(score_data, f, ensure_ascii=False, indent=4)
+
     # 输出所有得分
     print(f"在整个数据集上的得分：{all_metrics['overall_score']} - 代码质量得分：{all_metrics['code_quality_score']} - 代码安全性得分：{all_metrics['code_security_score']} - 代码稳定性得分：{all_metrics['code_stability_score']} - 平均生成时间：{all_metrics['average_gen_code_time']}")
     for vuln_type, metrics in vuln_type_metrics.items():
@@ -287,14 +296,14 @@ def evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, data
     # 提取生成时间和补丁文件合法性检查
     with open(processed_result_file, 'r', encoding='utf-8') as f:
         processed_results = json.load(f)
-        for cycle_dir_name, cycle_result in processed_results.items():
+        for cycle_dir_name, process_result in processed_results.items():
             instance_id, cycle_num = parse_dirname(cycle_dir_name)
             if instance_id not in eval_results:
                 continue
 
             cycle_result = {
-                "time_cost": cycle_result.get('time_cost', 0),
-                "patch_merge": cycle_result.get('success', False),
+                "time_cost": process_result.get('time', 0),
+                "patch_merge": process_result.get('success', False),
                 "patch_copy": False,
                 "run_check": False,
                 "test_case_check": False,

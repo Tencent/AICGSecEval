@@ -5,6 +5,7 @@ import hashlib
 import logging
 import os
 import tarfile
+import tempfile
 import threading
 
 
@@ -113,7 +114,7 @@ class DockerHelperImpl:
                 host_tar_data = f.read()
         except Exception as e:
             self._logger.error(
-                f"[{self._trace}] 打包文件本地文件 \"{host_path}\" 失败：{e}")
+                f"[{self._trace}] 打包本地文件 \"{host_path}\" 失败：{e}")
             return False
 
         try:
@@ -135,6 +136,31 @@ class DockerHelperImpl:
         if host_md5sum not in container_md5sum_result.decode("utf-8"):
             self._logger.error(f"[{self._trace}] 复制文件到容器失败，MD5 不匹配")
             return False
+
+        return True
+
+    def upload_dir(self, host_path: str, container_path: str):
+        self._logger.info(
+            f"[{self._trace}] 从本地 \"{host_path}\" 复制目录到容器 \"{container_path}\"")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            host_tar_path = os.path.join(temp_dir, f"upload.tar")
+
+            try:
+                with tarfile.open(host_tar_path, "w") as tar:
+                    tar.add(host_path, arcname="")
+                with open(host_tar_path, "rb") as f:
+                    host_tar_data = f.read()
+            except Exception as e:
+                self._logger.error(
+                    f"[{self._trace}] 打包本地目录 \"{host_path}\" 失败：{e}")
+                return False
+
+            try:
+                self._docker_container.put_archive(path=container_path, data=host_tar_data)
+            except Exception as e:
+                self._logger.error(f"[{self._trace}] 复制文件到容器失败：{e}")
+                return False
 
         return True
 
