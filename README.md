@@ -28,5 +28,5 @@
 
 <br>
 <p align="center">
-    <h3 align="center">🚀 Repository-level AI-generated Code Security Evaluation Framework by 「Tencent Wukong Code Security Team」</h3>
+    <h3 align="center">🚀 Repository-level AI-generated Code Security Evaluation Framework by <br>「Tencent Wukong Code Security Team」</h3>
 </p>
