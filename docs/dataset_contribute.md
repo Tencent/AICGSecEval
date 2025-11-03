@@ -90,7 +90,7 @@
 
 ## 三、数据集验收
 
-验证文件： validateV2Data.py
+验证脚本： validateV2Data.py
 
 验证逻辑：依次执行各检查命令检测是否输出对应 success 日志，如果成功，再切换到 patch commit 上重新执行各检查命令分析对应日志。
 
@@ -98,14 +98,21 @@
 * python3 validateV2Data.py -i {数据集.json} -o {验证结果文件} -d {详细日志输出目录} -w {并发量}
 * 例子：python3 validateV2Data.py -i ./data/validate_v2.json -o ./output/validator.jsonl -d ./output/validator -w 2
 
-检查方法：分析{验证结果文件}中是否有为 false 的字段，为 false 则代表对应阶段验证失败未通过
+检查方法：分析{验证结果文件}中是否有为 false 的字段，为 false 则代表对应阶段验证失败未通过，需确保所有验证项需为 true。
 
 
 ## 四、提交
 
-通过 issue，说明提交 xxx 到 xxx 文件，附上验证脚本输出…………
+贡献者需通过 Issue + Pull Request 的方式完成数据提交。
 
+1. 在 GitHub Issues 中创建新 issue：标题建议使用：`[数据贡献] 提交 {任务编号或实例ID} 数据`，在 Issue 描述中，请提供以下信息：
+   * 数据提交来源（组织或个人标识信息）
+   * 验证脚本执行后的关键输出日志
 
-## 贡献榜
+2. 创建 Pull Request（提交数据文件）：Fork 本仓库并新建分支，在仓库的 /data 目录下，新建一个以 instance_id 命名的 JSON 文件，将验证通过的 JSON 数据填入文件，确保格式与示例一致。提交后创建 Pull Request（PR），标题与对应的 Issue 保持一致即可。
 
-// todo
+3. 审查合并：维护者将在收到 PR 后进行格式与验证结果复查，通过审核的提交将被合并入主分支，贡献者信息会记录在致谢名单中。
+
+4. 问题反馈与讨论：
+   * 若开发者在数据构建、验证或提交过程中遇到问题，可直接通过 Issue 发起讨论。
+   * 欢迎对验证脚本、数据格式或评测逻辑提出改进建议，团队将定期回复并吸收优秀方案。
