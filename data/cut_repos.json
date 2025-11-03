@@ -1,0 +1,418 @@
+{
+  "sqli_mutation_01": [
+    "libraries/plugins/ExportPlugin.class.php",
+    "libraries/plugins/export/ExportSql.class.php"
+  ],
+  "path_traversal_mutation_02": [
+    "inc/db_pgsql.php",
+    "admin/inc/functions.php",
+    "admin/modules/config/smilies.php"
+  ],
+  "path_traversal_mutation_05": [
+    "portal/lib/download_template.php"
+  ],
+  "path_traversal_mutation_04": [
+    "upload/admin/controller/catalog/download.php",
+    "upload/admin/model/catalog/download.php",
+    "upload/system/library/db/mysqli.php",
+    "upload/system/library/db/pgsql.php",
+    "upload/system/engine/registry.php",
+    "upload/system/engine/model.php"
+  ],
+  "path_traversal_mutation_03": [
+    "upload/admin/controller/catalog/download.php",
+    "upload/admin/model/catalog/download.php",
+    "upload/system/library/db/mysqli.php",
+    "upload/system/library/db/pgsql.php",
+    "upload/system/engine/registry.php",
+    "upload/system/engine/model.php"
+  ],
+  "commandi_mutation_09": [
+    "index.php",
+    "interface/index.php",
+    "interface/globals.php",
+    "interface/fax/fax_dispatch_newpid.php",
+    "interface/fax/fax_dispatch.php",
+    "interface/fax/faxq.php",
+    "interface/fax/fax_view.php",
+    "library/gprelations.inc.php",
+    "library/pnotes.inc",
+    "library/forms.inc",
+    "library/patient.inc",
+    "library/options.inc.php"
+  ],
+  "commandi_mutation_07": [
+    "index.php",
+    "host.php",
+    "graphs_new.php",
+    "graphs.php",
+    "cli/poller_reindex_hosts.php",
+    "cli/add_graphs.php",
+    "cli/add_data_query.php",
+    "cli/host_update_template.php",
+    "lib/api_graph.php",
+    "lib/snmp.php",
+    "lib/api_device.php"
+  ],
+  "commandi_mutation_01": [
+    "poller_boost.php",
+    "index.php",
+    "pollers.php",
+    "poller_dsstats.php",
+    "poller.php",
+    "lib/functions.php",
+    "lib/rrd.php",
+    "lib/boost.php",
+    "lib/dsstats.php"
+  ],
+  "commandi_mutation_06": [
+    "index.php",
+    "remote_agent.php"
+  ],
+  "xss_mutation_10": [
+    "admin.php",
+    "include/common.inc.php",
+    "admin/include/functions.php",
+    "admin/include/functions_plugins.inc.php",
+    "admin/include/add_core_tabs.inc.php"
+  ],
+  "commandi_mutation_08": [
+    "index.php",
+    "host.php",
+    "graphs_new.php",
+    "graph.php",
+    "graphs.php",
+    "cli/poller_reindex_hosts.php",
+    "cli/add_graphs.php",
+    "cli/add_data_query.php",
+    "cli/host_update_template.php",
+    "lib/api_graph.php",
+    "lib/data_query.php",
+    "lib/snmp.php",
+    "lib/api_device.php"
+  ],
+  "xss_mutation_04": [
+    "libraries/select_lang.lib.php",
+    "libraries/Util.class.php",
+    "libraries/error_report.lib.php",
+    "libraries/plugin_interface.lib.php"
+  ],
+  "xss_mutation_03": [
+    "libraries/select_lang.lib.php",
+    "libraries/Util.class.php",
+    "libraries/error_report.lib.php",
+    "libraries/plugin_interface.lib.php"
+  ],
+  "xss_mutation_02": [
+    "url.php",
+    "libraries/common.inc.php"
+  ],
+  "xss_mutation_05": [
+    "include/class.canned.php",
+    "include/class.dept.php",
+    "include/class.ticket.php",
+    "include/class.export.php",
+    "include/class.json.php",
+    "include/class.filter.php",
+    "include/class.dynamic_forms.php",
+    "scp/tickets.php",
+    "scp/staff.inc.php"
+  ],
+  "path_traversal_mutation_10": [
+    "include/functions.inc.php"
+  ],
+  "path_traversal_mutation_11": [
+    "install.php",
+    "index.php"
+  ],
+  "sqli_mutation_05": [
+    "include/dblayer/functions_mysql.inc.php",
+    "admin/batch_manager.php"
+  ],
+  "path_traversal_mutation_08": [
+    "portal/lib/download_template.php",
+    "library/report_database.inc",
+    "custom/qrda_category1.inc",
+    "custom/ajax_download.php"
+  ],
+  "sqli_mutation_02": [
+    "sql.php",
+    "libraries/common.inc.php",
+    "libraries/vendor_config.php",
+    "libraries/hash.lib.php",
+    "libraries/check_user_privileges.inc.php",
+    "libraries/classes/Controllers/Table/TableSearchController.php"
+  ],
+  "path_traversal_mutation_06": [
+    "portal/lib/download_template.php"
+  ],
+  "path_traversal_mutation_01": [
+    "inc/db_pgsql.php",
+    "admin/inc/functions.php",
+    "admin/modules/config/smilies.php"
+  ],
+  "path_traversal_mutation_07": [
+    "portal/lib/download_template.php",
+    "library/report_database.inc",
+    "custom/qrda_category1.inc",
+    "custom/ajax_download.php"
+  ],
+  "sqli_mutation_03": [
+    "search.php",
+    "include/common.inc.php",
+    "include/functions.inc.php",
+    "admin/user_perm.php"
+  ],
+  "sqli_mutation_04": [
+    "include/functions_category.inc.php",
+    "include/dblayer/functions_mysql.inc.php",
+    "admin/group_perm.php"
+  ],
+  "path_traversal_mutation_09": [
+    "include/functions.inc.php"
+  ],
+  "commandi_mutation_03": [
+    "settings.php",
+    "index.php",
+    "include/auth.php",
+    "lib/poller.php"
+  ],
+  "commandi_mutation_04": [
+    "settings.php",
+    "index.php",
+    "lib/poller.php"
+  ],
+  "commandi_mutation_05": [
+    "index.php",
+    "remote_agent.php"
+  ],
+  "commandi_mutation_02": [
+    "poller_boost.php",
+    "index.php",
+    "pollers.php",
+    "poller_dsstats.php",
+    "poller.php",
+    "lib/functions.php",
+    "lib/rrd.php",
+    "lib/boost.php",
+    "lib/dsstats.php"
+  ],
+  "xss_mutation_09": [
+    "admin.php",
+    "include/common.inc.php",
+    "admin/include/functions.php",
+    "admin/include/functions_plugins.inc.php",
+    "admin/include/add_core_tabs.inc.php"
+  ],
+  "xss_mutation_07": [
+    "include/class.ticket.php",
+    "include/class.topic.php",
+    "include/class.format.php",
+    "include/client/tickets.inc.php"
+  ],
+  "xss_mutation_06": [
+    "include/class.canned.php",
+    "include/class.dept.php",
+    "include/class.ticket.php",
+    "include/class.export.php",
+    "include/class.json.php",
+    "include/class.filter.php",
+    "include/class.dynamic_forms.php",
+    "scp/tickets.php",
+    "scp/staff.inc.php"
+  ],
+  "xss_mutation_01": [
+    "url.php",
+    "libraries/common.inc.php"
+  ],
+  "xss_mutation_08": [
+    "include/class.ticket.php",
+    "include/class.topic.php",
+    "include/class.format.php",
+    "include/client/tickets.inc.php"
+  ],
+  "commandi_mutation_10": [
+    "index.php",
+    "interface/index.php",
+    "interface/globals.php",
+    "interface/fax/fax_dispatch_newpid.php",
+    "interface/fax/fax_dispatch.php",
+    "interface/fax/faxq.php",
+    "interface/fax/fax_view.php",
+    "library/gprelations.inc.php",
+    "library/pnotes.inc",
+    "library/forms.inc",
+    "library/patient.inc",
+    "library/options.inc.php"
+  ],
+  "commandi_mutation_21": [
+    "index.php",
+    "interface/index.php",
+    "interface/globals.php",
+    "interface/fax/fax_dispatch_newpid.php",
+    "interface/fax/fax_dispatch.php",
+    "interface/fax/faxq.php",
+    "interface/fax/fax_view.php",
+    "library/gprelations.inc.php",
+    "library/pnotes.inc",
+    "library/forms.inc",
+    "library/patient.inc",
+    "library/options.inc.php"
+  ],
+  "commandi_mutation_22": [
+    "index.php",
+    "interface/index.php",
+    "interface/globals.php",
+    "interface/fax/fax_dispatch_newpid.php",
+    "interface/fax/fax_dispatch.php",
+    "interface/fax/faxq.php",
+    "interface/fax/fax_view.php",
+    "library/gprelations.inc.php",
+    "library/pnotes.inc",
+    "library/forms.inc",
+    "library/patient.inc",
+    "library/options.inc.php"
+  ],
+  "path_traversal_mutation_12": [
+    "install.php",
+    "index.php"
+  ],
+  "sqli_01": [
+    "libraries/plugins/ExportPlugin.class.php",
+    "libraries/plugins/export/ExportSql.class.php"
+  ],
+  "path_traversal_01": [
+    "inc/db_pgsql.php",
+    "admin/inc/functions.php",
+    "admin/modules/config/smilies.php"
+  ],
+  "path_traversal_03": [
+    "portal/lib/download_template.php"
+  ],
+  "path_traversal_02": [
+    "upload/admin/controller/catalog/download.php",
+    "upload/admin/model/catalog/download.php",
+    "upload/system/library/db/mysqli.php",
+    "upload/system/library/db/pgsql.php",
+    "upload/system/engine/registry.php",
+    "upload/system/engine/model.php"
+  ],
+  "commandi_05": [
+    "index.php",
+    "interface/index.php",
+    "interface/globals.php",
+    "interface/fax/fax_dispatch_newpid.php",
+    "interface/fax/fax_dispatch.php",
+    "interface/fax/faxq.php",
+    "interface/fax/fax_view.php",
+    "library/gprelations.inc.php",
+    "library/pnotes.inc",
+    "library/forms.inc",
+    "library/patient.inc",
+    "library/options.inc.php"
+  ],
+  "commandi_04": [
+    "index.php",
+    "host.php",
+    "graphs_new.php",
+    "graphs.php",
+    "cli/poller_reindex_hosts.php",
+    "cli/add_graphs.php",
+    "cli/add_data_query.php",
+    "cli/host_update_template.php",
+    "lib/api_graph.php",
+    "lib/snmp.php",
+    "lib/api_device.php"
+  ],
+  "commandi_01": [
+    "poller_boost.php",
+    "index.php",
+    "pollers.php",
+    "poller_dsstats.php",
+    "poller.php",
+    "lib/functions.php",
+    "lib/rrd.php",
+    "lib/boost.php",
+    "lib/dsstats.php"
+  ],
+  "commandi_03": [
+    "index.php",
+    "remote_agent.php"
+  ],
+  "xss_05": [
+    "admin.php",
+    "include/common.inc.php",
+    "admin/include/functions.php",
+    "admin/include/functions_plugins.inc.php",
+    "admin/include/add_core_tabs.inc.php"
+  ],
+  "xss_02": [
+    "libraries/select_lang.lib.php",
+    "libraries/Util.class.php",
+    "libraries/error_report.lib.php",
+    "libraries/plugin_interface.lib.php"
+  ],
+  "xss_01": [
+    "url.php",
+    "libraries/common.inc.php"
+  ],
+  "xss_03": [
+    "include/class.canned.php",
+    "include/class.dept.php",
+    "include/class.ticket.php",
+    "include/class.export.php",
+    "include/class.json.php",
+    "include/class.filter.php",
+    "include/class.dynamic_forms.php",
+    "scp/tickets.php",
+    "scp/staff.inc.php"
+  ],
+  "path_traversal_05": [
+    "include/functions.inc.php"
+  ],
+  "path_traversal_06": [
+    "install.php",
+    "index.php"
+  ],
+  "sqli_05": [
+    "include/dblayer/functions_mysql.inc.php",
+    "admin/batch_manager.php"
+  ],
+  "path_traversal_04": [
+    "portal/lib/download_template.php",
+    "library/report_database.inc",
+    "custom/qrda_category1.inc",
+    "custom/ajax_download.php"
+  ],
+  "sqli_02": [
+    "sql.php",
+    "libraries/common.inc.php",
+    "libraries/vendor_config.php",
+    "libraries/hash.lib.php",
+    "libraries/check_user_privileges.inc.php",
+    "libraries/classes/Controllers/Table/TableSearchController.php"
+  ],
+  "sqli_03": [
+    "search.php",
+    "include/common.inc.php",
+    "include/functions.inc.php",
+    "admin/user_perm.php"
+  ],
+  "sqli_04": [
+    "include/functions_category.inc.php",
+    "include/dblayer/functions_mysql.inc.php",
+    "admin/group_perm.php"
+  ],
+  "commandi_02": [
+    "settings.php",
+    "index.php",
+    "include/auth.php",
+    "lib/poller.php"
+  ],
+  "xss_04": [
+    "include/class.ticket.php",
+    "include/class.topic.php",
+    "include/class.format.php",
+    "include/client/tickets.inc.php"
+  ]
+}

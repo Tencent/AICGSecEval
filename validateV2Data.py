@@ -31,7 +31,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
         logging.error(f"[{trace}] 创建目录 {dump_dir} 失败：{e}")
         return
 
-    if "base_commit" in case_data and \
+    if "base_commit" in case_data and "patch_commit" not in case_data and \
             isinstance(case_data["base_commit"], str) and \
             case_data["base_commit"].endswith("^"):
         patch_commit = case_data["base_commit"][:-1]
@@ -42,30 +42,37 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
 
     basic_result = validate_basic_info(case_data)
     # 如果基础检查未通过，不启动后续验证
-    passed = True
-    for key in basic_result:
-        if not basic_result[key]:
-            passed = False
-            break
-    if not passed:
-        logging.info(f"[{trace}] 基础检查未通过, 未启动后续验证")
-        result = {
-            "instance_id": trace,
-            **basic_result,
-        }
-        try:
-            with open(output_file, "a", encoding="utf-8") as f:
-                fcntl.flock(f.fileno(), fcntl.LOCK_EX)
-                f.write(json.dumps(result) + "\n")
-        except Exception as e:
-            logging.error(f"[{trace}] 保存验证结果失败：{e}")
-        return
+    # passed = True
+    # for key in basic_result:
+    #     if not basic_result[key]:
+    #         passed = False
+    #         break
+    # if not passed:
+    #     logging.info(f"[{trace}] 基础检查未通过, 未启动后续验证")
+    #     result = {
+    #         "instance_id": trace,
+    #         **basic_result,
+    #     }
+    #     try:
+    #         with open(output_file, "a", encoding="utf-8") as f:
+    #             fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+    #             f.write(json.dumps(result) + "\n")
+    #     except Exception as e:
+    #         logging.error(f"[{trace}] 保存验证结果失败：{e}")
+    
+
+    if "privileged" in case_data and case_data["privileged"]:
+        privileged = True
+    else:
+        privileged = False
     
     result = {
         "instance_id": trace,
         **basic_result,
+        "inner_path_check": False,
         "base_commit": {
             "commit": case_data.get("base_commit", None),
+            "checkout": False,
             "image_status_check": False,
             "test_case_check": False,
             "poc_check": False,
@@ -84,15 +91,39 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
             trace=trace,
             image=case_data["image"],
             command=case_data["image_run_cmd"],
-            remove_container=patch_commit is None
+            remove_container=patch_commit is None,
+            privileged=privileged
         ) as docker:
+
+            # inner path 检查
+            container_inner_path = case_data["image_inner_path"]+"/"+case_data["vuln_file"]
+            if not docker.check_file_exists(container_inner_path):
+                result["inner_path_check"] = False
+                result["inner_path_check_failed_reason"] = f"路径不存在: {container_inner_path}"
+            else:
+                result["inner_path_check"] = True
+
+            # 切换到基准版本
+            result["base_commit"]["checkout"] = basic_result["base_commit_checkout"]
+            run_command_and_validate(
+                    trace=trace,
+                    docker=docker,
+                    case_name="切换代码为基准版本",
+                    command=f"bash -c \"git checkout {case_data['base_commit']}'\"",
+                    timeout=60,
+                    environment={"LANG": "en_US"},
+                    workdir=case_data["image_inner_path"],
+                    check_output=f" ",
+                    output_file=f"{dump_dir}/base_commit.checkout.log"
+                )
+
             result["base_commit"]["image_status_check"] = run_case_and_validate(
                 trace=trace,
                 docker=docker,
                 case_data=case_data,
                 case_key="image_status_check_cmd",
                 case_name="基准版本软件状态检查",
-                default_timeout=600,
+                default_timeout=900,
                 check_output="[A.S.E] image startup successfully",
                 output_file=f"{dump_dir}/base_commit.image_status_check.log"
             )
@@ -131,7 +162,8 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
                 trace=trace,
                 image=case_data["image"],
                 command=case_data["image_run_cmd"],
-                remove_container=remove_container
+                remove_container=remove_container,
+                privileged=privileged
             ) as docker:
                 result["patch_commit"]["checkout"] = run_command_and_validate(
                     trace=trace,
@@ -141,7 +173,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
                     timeout=60,
                     environment={"LANG": "en_US"},
                     workdir=case_data["image_inner_path"],
-                    check_output=f"[A.S.E]{patch_commit}",
+                    check_output=f"{patch_commit}", # 不检查 [A.S.E] tag, 只检查 commit hash，因为有些数据使用的 hash 不完整
                     output_file=f"{dump_dir}/patch_commit.checkout.log"
                 )
 
@@ -154,7 +186,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
                     case_data=case_data,
                     case_key="image_status_check_cmd",
                     case_name="修复版本软件状态检查",
-                    default_timeout=600,
+                    default_timeout=900,
                     check_output="[A.S.E] image startup successfully",
                     output_file=f"{dump_dir}/patch_commit.image_status_check.log"
                 )
@@ -190,7 +222,7 @@ def validate_single_case(case_data: dict, output_file: str, dump_dir: str, remov
     logging.info(f"[{trace}] 验证结束：{result}")
 
     try:
-        with open(output_file, "a") as f:
+        with open(output_file, "a", encoding="utf-8") as f:
             fcntl.flock(f.fileno(), fcntl.LOCK_EX)
             f.write(json.dumps(result) + "\n")
     except Exception as e:
@@ -243,6 +275,8 @@ def validate_basic_info(case_data: dict):
     from git import Repo, GitCommandError
     try:
         repo = Repo(repo_dir)
+        if "branch_origin" in case_data:
+            repo.git.fetch("origin", case_data["branch_origin"])
         repo.git.checkout(base_commit)
         logging.info(f"[{case_data.get('instance_id', base_commit)}] git checkout {base_commit} 成功")
         checkout_success = True
@@ -315,7 +349,7 @@ def main(args: list[str]) -> int:
         if os.path.exists(args.output_file):
             exist_result = load_validate_result(args.output_file)
             for item in exist_result:
-                if item["repo"] and item["base_commit_checkout"] and item["vuln_file"] and item["vuln_lines"] and item["base_commit"]["image_status_check"] and item["base_commit"]["test_case_check"] and item["base_commit"]["poc_check"] and item["patch_commit"]["checkout"] and item["patch_commit"]["image_status_check"] and item["patch_commit"]["test_case_check"] and item["patch_commit"]["poc_check"]:
+                if item["repo"] and item["base_commit_checkout"] and item["vuln_file"] and item["inner_path_check"] and item["base_commit"]["image_status_check"] and item["base_commit"]["test_case_check"] and item["base_commit"]["poc_check"] and item["patch_commit"]["checkout"] and item["patch_commit"]["image_status_check"] and item["patch_commit"]["test_case_check"] and item["patch_commit"]["poc_check"]:
                     validate_success_result.append(item)
                     validate_success_result_instance_id.add(item["instance_id"])
             os.remove(args.output_file)
@@ -325,7 +359,7 @@ def main(args: list[str]) -> int:
 
     # 将成功的结果先写入
     if validate_success_result:
-        with open(args.output_file, "w") as f:
+        with open(args.output_file, "w", encoding="utf-8") as f:
             for item in validate_success_result:
                 f.write(json.dumps(item) + "\n")
 

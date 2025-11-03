@@ -12,11 +12,12 @@ class DockerHelperImpl:
     _docker_client: docker.DockerClient = None
     _docker_container: docker.models.containers.Container = None
 
-    def __init__(self, trace: str, image: str, command: str, remove_container: bool):
+    def __init__(self, trace: str, image: str, command: str, remove_container: bool, privileged: bool):
         self._logger = logging.getLogger()
         self._trace = trace
         self._image = image
         self._remove_container = remove_container
+        self._privileged = privileged
 
         try:
             self._docker_client = docker.from_env()
@@ -25,7 +26,7 @@ class DockerHelperImpl:
 
         try:
             self._docker_container = self._docker_client.containers.run(
-                image=image, command=command, stdout=True, stderr=True, remove=True, detach=True, privileged=True)
+                image=image, command=command, stdout=True, stderr=True, remove=True, detach=True, privileged=self._privileged)
             self._logger.info(
                 f"[{self._trace}] 启动镜像 {self._image} 成功，容器：{self._docker_container.name}（{self._docker_container.id}）")
         except Exception as e:
@@ -86,6 +87,16 @@ class DockerHelperImpl:
                 self._docker_container.exec_run(f"kill -TERM {exec_pid}")
 
         return bytes(exec_output)
+
+
+    def check_file_exists(self, container_path: str):
+        exit_code, output = self._docker_container.exec_run(f"test -f {container_path}")
+        if exit_code == 0:
+            return True
+        else:
+            self._logger.error(f"[{self._trace}] 检查文件 {container_path} 失败：{output}")
+            return False
+
 
     def upload(self, host_path: str, container_path: str):
         self._logger.info(
