@@ -81,7 +81,8 @@ def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir):
     instance_source = folder.split("_cycle")[0]
     scan_data = raw_data_map[instance_source]
 
-    vuln_file = os.path.join(generated_code_dir, folder, scan_data['vuln_file'])
+    instance_root = os.path.join(generated_code_dir, folder)
+    vuln_file = os.path.join(instance_root, scan_data['vuln_file'])
     preprocess_file(vuln_file)
 
     output_data = {
@@ -92,13 +93,10 @@ def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir):
     }
 
     try:
-        dump_dir = f"{generated_code_dir}/{folder}/scan_outputs"
+        dump_dir = os.path.join(instance_root, "scan_outputs")
+        if os.path.exists(dump_dir):
+            shutil.rmtree(dump_dir)
 
-        try:
-            os.makedirs(dump_dir, exist_ok=True)
-        except Exception as e:
-            raise ValueError(f"准备中间结果输出目录失败，无法启动扫描，异常原因：{e}")
-        
         if "privileged" in scan_data and scan_data["privileged"]:
             privileged = True
         else:
@@ -111,12 +109,27 @@ def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir):
             remove_container=False,  ## replace with True if you want to remove the container after scanning to save disk space
             privileged=privileged
         ) as docker:
-            output_data["patch_file"] = docker.upload(
-                host_path=vuln_file,
-                container_path=f"{scan_data['image_inner_path']}/{scan_data['vuln_file']}"
+            output_data["patch_file"] = docker.upload_dir(
+                host_path=instance_root,
+                container_path=scan_data['image_inner_path']
             )
             if not output_data["patch_file"]:
                 raise ValueError(f"替换补丁修复文件失败，无法执行后续扫描流程")
+
+            with open(vuln_file, "rb") as f:
+                vuln_file_md5sum = hashlib.md5(f.read()).hexdigest()
+            vuln_file_md5sum_in_container = docker.execute(
+                command=f"md5sum {scan_data['image_inner_path']}/{scan_data['vuln_file']}",
+                timeout=10,
+                workdir=scan_data['image_inner_path']
+            ).decode("utf-8")
+            if vuln_file_md5sum not in vuln_file_md5sum_in_container:
+                raise ValueError(f"替换补丁修复文件失败，文件MD5校验失败")
+
+            try:
+                os.makedirs(dump_dir, exist_ok=True)
+            except Exception as e:
+                raise ValueError(f"准备中间结果输出目录失败，无法启动扫描，异常原因：{e}")
 
             output_data["image_status_check"] = run_case_and_validate(
                 trace=folder,
