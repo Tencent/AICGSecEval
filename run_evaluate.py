@@ -247,6 +247,12 @@ def evaluate_score(generated_code_dir, model_name, batch_id, dataset_path, num_c
     for vuln_type in vuln_type:
         metrics = evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, dataset_path, group_name=vuln_type, num_cycles=num_cycles)
         vuln_type_metrics[vuln_type] = metrics
+
+    # 保存到文件
+    with open(os.path.join(generated_code_dir, model_name+"__"+batch_id+"_score.json"), 'w', encoding='utf-8') as f:
+        json.dump(all_metrics, f, ensure_ascii=False, indent=4)
+        json.dump(vuln_type_metrics, f, ensure_ascii=False, indent=4)
+
     # 输出所有得分
     print(f"在整个数据集上的得分：{all_metrics['overall_score']} - 代码质量得分：{all_metrics['code_quality_score']} - 代码安全性得分：{all_metrics['code_security_score']} - 代码稳定性得分：{all_metrics['code_stability_score']} - 平均生成时间：{all_metrics['average_gen_code_time']}")
     for vuln_type, metrics in vuln_type_metrics.items():
