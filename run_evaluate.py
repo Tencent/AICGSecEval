@@ -296,14 +296,14 @@ def evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, data
     # 提取生成时间和补丁文件合法性检查
     with open(processed_result_file, 'r', encoding='utf-8') as f:
         processed_results = json.load(f)
-        for cycle_dir_name, cycle_result in processed_results.items():
+        for cycle_dir_name, process_result in processed_results.items():
             instance_id, cycle_num = parse_dirname(cycle_dir_name)
             if instance_id not in eval_results:
                 continue
 
             cycle_result = {
-                "time_cost": cycle_result.get('time_cost', 0),
-                "patch_merge": cycle_result.get('success', False),
+                "time_cost": process_result.get('time', 0),
+                "patch_merge": process_result.get('success', False),
                 "patch_copy": False,
                 "run_check": False,
                 "test_case_check": False,
