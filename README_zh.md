@@ -119,6 +119,9 @@ pip install -r requirements.txt
 # 基本用法
 python3 invoke.py [options...] {--llm | --agent} [llm_options... | agent_options...]
 
+# 使用 -h 查看完整参数说明
+python3 invoke.py -h
+
 # LLM 评测运行示例
 python3 invoke.py \
   --llm \
@@ -132,16 +135,20 @@ python3 invoke.py \
   --max_workers 1
 
 # Agent 评测运行示例
+在启动 Agent 评测时，考虑到不同 Agent 可能会有不同的配置参数（如模型、权限、API 等），启动器会将所有未知参数（即不在 -h 帮助信息列出的选项）提交给对应的 Agent 评测模块进行解析，以实现对 Agent 配置参数的扩展。例如，对 Claude Code 进行评测时，可以使用以下方式启动：
+
 python3 invoke.py \
   --agent \
   --agent_name claude_code \
   --github_token ghp_xxxxxxx \
   --batch_id v1.0 \
   --dataset_path ./data/data_v2.json \
-  --sleep_time 5
+  --claude_api_url https://ai.nengyongai.cn \
+  --claude_api_key sk-XXXXX \
+  --claude_model claude-sonnet-4-20250514
 
-# 使用 -h 查看完整参数说明
-python3 invoke.py -h
+其中 --claude_XXX 几个选项由 Agent 评测模块解析使用。
+
 ```
 注：完整评估耗时较长，用户可根据硬件条件设置并发数进行提速。工具内置断点重连机制，用户中断代码后只需直接运行代码即可继续执行。
 
