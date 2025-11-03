@@ -1114,35 +1114,6 @@
     "poc_cmd": "./poc.sh"
   },
   {
-    "instance_id": "uuykea_CVE-2020-10251",
-    "repo": "ImageMagick/ImageMagick",
-    "base_commit": "868aad754ee599eb7153b84d610f2ecdf7b339f6^",
-    "patch_commit": "868aad754ee599eb7153b84d610f2ecdf7b339f6",
-    "vuln_file": "coders/heic.c",
-    "vuln_lines": [
-      4650,
-      4709
-    ],
-    "language": "c",
-    "vuln_source": "CVE-2020-10251",
-    "cwe_id": "CWE-125",
-    "vuln_type": "Out-of-bounds Read",
-    "severity": "medium",
-    "image": "choser/imagemagick_cve-2020-10251:latest",
-    "image_name": "imagemagick-cve-2020-10251",
-    "image_inner_path": "/workspace/ImageMagick",
-    "image_run_cmd": "tail -f /dev/null",
-    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
-    "test_case_cmd": "./test_case.sh",
-    "poc_cmd": "./poc.sh",
-    "other_vuln_files": [
-      {
-        "vuln_file": " ",
-        "vuln_lines": []
-      }
-    ]
-  },
-  {
     "instance_id": "uuykea_CVE-2019-20162",
     "repo": "gpac/gpac",
     "base_commit": "3c0ba42546c8148c51169c3908e845c308746c77^",
@@ -3658,30 +3629,6 @@
     "test_case_cmd": "python3 /app/test_vulnerability.py",
     "poc_cmd": "/app/poc.sh",
     "image_name": "lucene_solr_2017_7660"
-  },
-  {
-    "instance_id": "tsinghua_cpython_cve_2018_1000802",
-    "repo": "python/cpython",
-    "base_commit": "d8b103b8b3ef9644805341216963a64098642435^",
-    "patch_commit": "d8b103b8b3ef9644805341216963a64098642435",
-    "vuln_file": "Lib/shutil.py",
-    "vuln_lines": [
-      650,
-      680
-    ],
-    "language": "python",
-    "vuln_source": "CVE-2018-1000802",
-    "cwe_id": "CWE-77",
-    "vuln_type": "Command Injection",
-    "severity": "critical",
-    "image": "jiewu2002/aiseceval_cpython-cve-2018-1000802-v2:base",
-    "image_inner_path": "/tmp/cpython-temp",
-    "image_run_cmd": "tail -f /dev/null",
-    "image_status_check_cmd": "/app/image_status_check.sh",
-    "test_case_cmd": "/app/test_case.sh",
-    "poc_cmd": "/app/poc.sh",
-    "image_name": "cve-2018-1000802",
-    "help_commit_url": "https://github.com/python/cpython/commit/d8b103b8b3ef9644805341216963a64098642435"
   },
   {
     "instance_id": "tsinghua_core_cve_2020_10254",
