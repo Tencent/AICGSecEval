@@ -1,0 +1,33 @@
+name: Update contributors in README(s)
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Select branch to update"
+        type: choice
+        required: true
+        options:
+          - master
+          - 2.0-dev
+        default: master
+
+jobs:
+  update-contributors:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout target branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Update contributors in both READMEs
+        uses: akhilmhdh/contributors-readme-action@v2.3.10
+        with:
+          # ✅ 支持多个 README，用逗号分隔
+          readme_path: "README.md, README_zh.md"
+          columns_per_row: 12
+          image_size: 80
+          commit_message: "docs: update contributors [skip ci]"
