@@ -22,9 +22,17 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.inputs.branch }}
+      - name: Sanity check for token
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -z "${GITHUB_TOKEN}" ]; then
+            echo "::error::GITHUB_TOKEN is empty. Check: Settings → Actions → General → Workflow permissions = Read and write. Also ensure this workflow file is on the default branch."
+            exit 1
+          fi
 
       - name: Update contributors in both READMEs
-        uses: akhilmhdh/contributors-readme-action@v2.3.10
+        uses: akhilmhdh/contributors-readme-action@v2.3.11
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
