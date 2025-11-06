@@ -25,6 +25,8 @@ jobs:
 
       - name: Update contributors in both READMEs
         uses: akhilmhdh/contributors-readme-action@v2.3.10
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           # ✅ 支持多个 README，用逗号分隔
           readme_path: "README.md, README_zh.md"
