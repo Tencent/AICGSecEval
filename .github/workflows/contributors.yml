@@ -32,7 +32,7 @@ jobs:
           fi
 
       - name: Update contributors in both READMEs
-        uses: akhilmhdh/contributors-readme-action@v2.3.11
+        uses: akhilmhdh/contributors-readme-action@v2.3.10
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
