@@ -29,7 +29,7 @@ jobs:
           
       - name: Sanity check for token
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_GH_PAT }}
         run: |
           if [ -z "${GITHUB_TOKEN}" ]; then
             echo "::error::GITHUB_TOKEN is empty. Check: Settings → Actions → General → Workflow permissions = Read and write. Also ensure this workflow file is on the default branch."
@@ -54,7 +54,7 @@ jobs:
       # 3) 冒烟：分支保护接口（很多 404 出在这里）
       - name: Probe branch protection API (status only)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_GH_PAT }}
         run: |
           OWNER="${{ github.repository_owner }}"
           REPO="${{ github.event.repository.name }}"
@@ -70,7 +70,7 @@ jobs:
       # 4) 冒烟：contributors 接口（确认仓库/权限是否可访问）
       - name: Probe contributors endpoint (status only)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_GH_PAT }}
         run: |
           OWNER="${{ github.repository_owner }}"
           REPO="${{ github.event.repository.name }}"
@@ -86,7 +86,7 @@ jobs:
       - name: Update contributors in both READMEs
         uses: akhilmhdh/contributors-readme-action@v2.3.10
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_GH_PAT }}
         with:
           # ✅ 支持多个 README，用逗号分隔
           readme_path: "README.md, README_zh.md"
