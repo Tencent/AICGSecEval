@@ -41,3 +41,4 @@ jobs:
           columns_per_row: 12
           image_size: 80
           commit_message: "docs: update contributors [skip ci]"
+          auto_detect_branch_protection: false
