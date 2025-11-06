@@ -216,6 +216,10 @@ A.S.E​ 由腾讯安全平台部悟空代码安全团队联合以下学术单�
 
 感谢各方对 A.S.E 的卓越贡献！
 
+**🙌 Contributors**
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
+
 
 
 ## 📱 加入社群
