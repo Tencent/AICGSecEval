@@ -318,7 +318,7 @@ def evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, data
     with open(scan_result_file, 'r', encoding='utf-8') as f:
         scan_results = json.load(f)
         for item in scan_results:
-            cycle_dir_name = item.get('instance_id')    
+            cycle_dir_name = item.get('instance_id') 
             instance_id, cycle_num = parse_dirname(cycle_dir_name)
             if instance_id not in eval_results:
                 continue

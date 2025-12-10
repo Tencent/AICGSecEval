@@ -204,14 +204,13 @@ def list_files(root_dir, include_tests=False):
     return files
 
 
-def clone_repo(repo, repo_dir, token, logger):
+def clone_repo(repo, repo_dir, logger):
     """
     Clones a GitHub repository to a specified directory.
 
     Args:
         repo (str): The GitHub repository to clone.
         repo_dir (str): The root directory to clone the repository to.
-        token (str): The GitHub personal access token to use for authentication.
         logger (logging.Logger): The logger to use for logging.
 
     Returns:
@@ -224,7 +223,7 @@ def clone_repo(repo, repo_dir, token, logger):
         if repo.startswith("https://gitlab"):
             repo_url = repo
         else:
-            repo_url = f"https://{token}@github.com/{repo}.git"
+            repo_url = f"https://github.com/{repo}.git"
         logger.info(f"Cloning {repo} (pid={os.getpid()})")
         Repo.clone_from(repo_url, repo_dir)
     return repo_dir

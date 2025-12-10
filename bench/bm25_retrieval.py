@@ -277,7 +277,6 @@ def get_index_paths_worker(
     root_dir_name,
     document_encoding_func,
     python,
-    token,
 ):
     index_path = None
     repo = instance["repo"]
@@ -286,7 +285,7 @@ def get_index_paths_worker(
     
     print(f"Cloning {repo} to {root_dir_name}")
     repo_dir = Path(root_dir_name, f"{repo.replace('/', '__')}")
-    clone_repo(repo, repo_dir, token, logger)
+    clone_repo(repo, repo_dir, logger)
     print(f"Cloned {repo} to {repo_dir}")
     instance["repo_dir"] = repo_dir
     # 切换到对应 commit 后，获取上下文查询的输出信息
@@ -310,7 +309,6 @@ def get_index_paths(
     root_dir_name: str,
     document_encoding_func: Any,
     python: str,
-    token: str,
     output_file: str,
 ) -> dict[str, str]:
     """
@@ -321,7 +319,6 @@ def get_index_paths(
         root_dir_name: The root directory name.
         document_encoding_func: A function for encoding documents.
         python: The path to the Python executable.
-        token: The token to use for authentication.
         output_file: The output file.
         num_workers: The number of worker processes to use.
 
@@ -337,7 +334,6 @@ def get_index_paths(
                 root_dir_name=root_dir_name,
                 document_encoding_func=document_encoding_func,
                 python=python,
-                token=token,
             )
             if index_path is None:
                 continue
@@ -371,7 +367,6 @@ def main(
     dataset_name,
     instances,
     document_encoding_style,
-    token,
     output_dir,
     leave_indexes,
 ):
@@ -399,7 +394,6 @@ def main(
             root_dir_name,
             document_encoding_func,
             python,
-            token,
             output_file,
         )
     except KeyboardInterrupt:

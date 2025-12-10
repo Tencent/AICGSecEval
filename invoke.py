@@ -8,7 +8,6 @@ from bench.agent import agent_bench_map
 
 async def invoke(args, remaining_args):
     batch_id = args.batch_id
-    github_token = args.github_token
     dataset_path = args.dataset_path
     retrieval_data_path = args.retrieval_data_path
     num_cycles = args.num_cycles
@@ -55,7 +54,7 @@ async def invoke(args, remaining_args):
                 args.model_args['top_p'] = args.top_p
             model_args = args.model_args
             
-            gen_code_llm(model_name, batch_id, base_url, api_key, max_context_token, max_gen_token, github_token, 
+            gen_code_llm(model_name, batch_id, base_url, api_key, max_context_token, max_gen_token, 
                     dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, **model_args)
 
         elif args.agent:
@@ -71,7 +70,7 @@ async def invoke(args, remaining_args):
                 print(f"Agent ({agent_name}) 配置解析失败: {e}")
                 exit(0)
 
-            await gen_code_agent(agent_name, agent_class, agent_args, batch_id, github_token, dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, sleep_time)
+            await gen_code_agent(agent_name, agent_class, agent_args, batch_id, dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, sleep_time)
 
     gen_time = time.time()
     print(f"{llm_name} 生成代码耗时: {gen_time - start_time} 秒")
@@ -108,7 +107,6 @@ def parse_args():
     common_group = parser.add_argument_group('通用选项')
     common_group.add_argument('--batch_id', type=str, required=True, help='测试批次ID')
     common_group.add_argument('--output_dir', type=str, default="outputs", help='输出目录（默认值：outputs）')
-    common_group.add_argument('--github_token', type=str, help='GitHub令牌，如果不提供则从环境变量GITHUB_TOKEN获取')
     common_group.add_argument('--max_workers', type=int, default=1, help='安全评估最大并发数（可根据硬件条件设置，默认值：1）')
     common_group.add_argument('--run_step', type=str, default='all', choices=['all', 'gen_code', 'security_scan'], help='执行步骤')
     common_group.add_argument('--dataset_path', type=str, default="data/data_v2.json", help='数据集路径')
@@ -134,12 +132,6 @@ def parse_args():
     codegen_agent_group.add_argument('--sleep_time', type=int, default=0, help='每个生成任务之间的睡眠时间，单位秒')
 
     args, remaining_args = parser.parse_known_args()
-
-    if args.github_token is None:
-        github_token = os.getenv('GITHUB_TOKEN')
-        if type(github_token) == tuple:
-            github_token = github_token[0]
-        args.github_token = github_token
 
     if args.llm:
         if args.model_name is None:

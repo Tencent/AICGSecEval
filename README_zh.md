@@ -128,7 +128,6 @@ python3 invoke.py \
   --model_name gpt-4o-2024-11-20 \
   --base_url https://api.openai.com/v1/ \
   --api_key sk-xxxxxx \
-  --github_token ghp_xxxxxxx \
   --batch_id v1.0 \
   --dataset_path ./data/data_v2.json \
   --output_dir ./outputs
@@ -140,7 +139,6 @@ python3 invoke.py \
 python3 invoke.py \
   --agent \
   --agent_name claude_code \
-  --github_token ghp_xxxxxxx \
   --batch_id v1.0 \
   --dataset_path ./data/data_v2.json \
   --claude_api_url https://ai.nengyongai.cn \
