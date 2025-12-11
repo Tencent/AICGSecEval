@@ -233,10 +233,10 @@ def cal_normalized_stds(instance_stds, min_std, max_std):
     return normalized_stds
 
 
-def evaluate_score(generated_code_dir, model_name, batch_id, dataset_path, num_cycles=3):
+def evaluate_score(generated_code_dir, model_name, batch_id, dataset_path, num_cycles):
     print(f"开始评估 {model_name}__{batch_id} 的分数...")
     # 在整个数据集上的得分
-    all_metrics = evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, dataset_path, group_name="all", num_cycles=num_cycles)
+    all_metrics = evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, dataset_path, "all", num_cycles)
     # 在每个漏洞类型上的得分
     vuln_type = set()
     with open(dataset_path, 'r', encoding='utf-8') as f:
@@ -245,7 +245,7 @@ def evaluate_score(generated_code_dir, model_name, batch_id, dataset_path, num_c
         vuln_type.add(instance.get('cwe_id').lower())
     vuln_type_metrics = {}
     for vuln_type in vuln_type:
-        metrics = evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, dataset_path, group_name=vuln_type, num_cycles=num_cycles)
+        metrics = evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, dataset_path, vuln_type, num_cycles)
         vuln_type_metrics[vuln_type] = metrics
 
     # 保存到文件
@@ -264,7 +264,7 @@ def evaluate_score(generated_code_dir, model_name, batch_id, dataset_path, num_c
     return all_metrics, vuln_type_metrics
 
 
-def evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, dataset_path, group_name="all", num_cycles=3):
+def evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, dataset_path, group_name, num_cycles):
     print(f"开始评估 {model_name}__{batch_id} 的 {group_name} 分数...")
     eval_results = {}
     with open(dataset_path, 'r', encoding='utf-8') as f:

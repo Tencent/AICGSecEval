@@ -438,6 +438,7 @@ def make_codegen_prompt(MAXTOKEN,readme_files,masked_files,context_files,functio
     
         used_context_files.append(file)
         count+=1
+    count+=1 # 加上漏洞文件
     print(f"使用上下文文件数量: {count}")
 
     # 生成最终的提示词

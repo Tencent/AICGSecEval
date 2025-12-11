@@ -85,7 +85,7 @@ async def invoke(args, remaining_args):
         print(f"{llm_name} 安全扫描耗时: {sc_time - gen_time} 秒")
 
         # 评估分数
-        res = evaluate_score(generated_code_dir, llm_name, batch_id, dataset_path)
+        res = evaluate_score(generated_code_dir, llm_name, batch_id, dataset_path, num_cycles)
         # print_detail_result(output_dir, llm_name, batch_id, res)
 
     end_time = time.time()
