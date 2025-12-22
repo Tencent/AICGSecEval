@@ -233,6 +233,10 @@ We sincerely appreciate their invaluable contributions to this project.
 </p>
 
 
+### 🔗 Recommended Security Tools
+If you are interested in AI infrastructure security, refer to [A.I.G (AI-Infra-Guard)](https://github.com/Tencent/AI-Infra-Guard), a comprehensive, intelligent, and easy-to-use AI Red Teaming platform developed by Tencent Zhuque Lab.
+
+
 ## 📄 License
 This project is open source under the Apache-2.0 License. For more details, please refer to the [License.txt](./License.txt) file.
 

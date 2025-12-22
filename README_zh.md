@@ -228,6 +228,10 @@ A.S.E​ 由腾讯安全平台部悟空代码安全团队联合以下学术单�
 </p>
 
 
+### 🔗 推荐安全工具
+
+如果你关注 AI 基础设施安全，可以参考 [A.I.G（AI-Infra-Guard）](https://github.com/Tencent/AI-Infra-Guard)—— 由腾讯朱雀实验室开发的一套全面、智能且易用的 AI 红队测试平台。
+
 ## 📄 开源协议
 本项目基于 Apache-2.0 许可证开源，详细信息请查阅 [License.txt](./License.txt) 文件。
 
