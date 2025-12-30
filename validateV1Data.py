@@ -66,7 +66,7 @@ def validate_single_case(case_data: dict):
         return -1
 
     # 检查 SAST 工具运行后输出 detected_vul_num 是否和元数据中的匹配，且不为 -1
-    sast_data_dir = Path("validate_results") / case_data["instance_id"]+"_sast"
+    sast_data_dir = Path("validate_results") / f"{case_data['instance_id']}_sast"
     if not os.path.exists(sast_data_dir):
         os.makedirs(sast_data_dir)
     input_data = {
