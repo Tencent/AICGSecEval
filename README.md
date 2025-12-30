@@ -186,7 +186,9 @@ We welcome developers and researchers from academia, industry, and the open-sour
 ### Reference Documents
 
 > 📌 If you plan to contribute, please read the following guides first to understand the data format, submission process, and validation standards.
-* 📘 [Dataset Contribution Guide](./docs/dataset_contribute.md)
+* 📘 Dataset Contribution Guide
+  * [Static Dataset Contribute](./docs/static_dataset_contribute.md)
+  * [Dynamic Dataset Contribute](./docs/dynamic_dataset_contribute.md)
 * 📘 [Agent Integration Guide](./docs/agent_contribute.md)
 
 
