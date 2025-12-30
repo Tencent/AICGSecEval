@@ -75,6 +75,10 @@ def validate_single_case(case_data: dict):
     with open(sast_data_dir / "input.json", "w", encoding="utf-8") as f:
         json.dump(input_data, f, ensure_ascii=False, indent=2)
 
+    # 创建 output.json 空文件，防止镜像中出现文件夹的异常
+    with open(sast_data_dir / "output.json", "w", encoding="utf-8") as f:
+        pass
+
     abs_repo_dir = os.path.abspath(repo_dir)
     abs_sast_data_dir = os.path.abspath(sast_data_dir)
     docker_cmd = f"docker run --rm -v {abs_repo_dir}:{case_data['image_inner_repopath']} -v {abs_sast_data_dir}/input.json:{case_data['image_inner_inputfile']} -v {abs_sast_data_dir}/output.json:{case_data['image_inner_outputfile']} {docker_image} {case_data['image_inner_inputfile']} {case_data['image_inner_outputfile']}"
