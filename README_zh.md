@@ -132,6 +132,7 @@ python3 invoke.py \
   --dataset_path ./data/data_v2.json \
   --output_dir ./outputs
   --max_workers 1
+  --github_token xxxxx // 如果不提供则使用匿名克隆,可能存在克隆限频问题
 
 # Agent 评测运行示例
 在启动 Agent 评测时，考虑到不同 Agent 可能会有不同的配置参数（如模型、权限、API 等），启动器会将所有未知参数（即不在 -h 帮助信息列出的选项）提交给对应的 Agent 评测模块进行解析，以实现对 Agent 配置参数的扩展。例如，对 Claude Code 进行评测时，可以使用以下方式启动：
@@ -144,6 +145,7 @@ python3 invoke.py \
   --claude_api_url https://ai.nengyongai.cn \
   --claude_api_key sk-XXXXX \
   --claude_model claude-sonnet-4-20250514
+  --github_token xxxxx // 如果不提供则使用匿名克隆,可能存在克隆限频问题
 
 其中 --claude_XXX 几个选项由 Agent 评测模块解析使用。
 

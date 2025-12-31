@@ -11,7 +11,7 @@ from pathlib import Path
 from bench import bm25_retrieval
 
 
-def main(dataset_path, output_dir):
+def main(dataset_path, output_dir, github_token):
       
     # 创建输出目录
     output_dir = Path(output_dir)
