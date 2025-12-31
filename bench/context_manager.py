@@ -89,7 +89,7 @@ class ContextManager:
                 block.append(f"{i} {line_content}")
         return "\n".join(block)
 
-    def generate_function_summary(self): 
+    def generate_function_summary(self, base_url, openai_key): 
         """
         使用LLM为漏洞代码相关功能生成一句话摘要
             
@@ -98,12 +98,12 @@ class ContextManager:
         """
         logger.info("生成功能摘要...")
 
-        openai_key = os.environ.get("LLM_API_KEY", None)
+
         if openai_key is None:
             raise ValueError(
                 "Must provide an api key. Expected in OPENAI_API_KEY environment variable."
             )
-        openai.base_url = "https://ai.nengyongai.cn/v1/"
+        openai.base_url = base_url
         openai.api_key = openai_key
 
         # 构建提示词
@@ -262,12 +262,12 @@ def get_context_base_info(repo_dir, instance):
         # 策略 2： 返回漏洞代码块（前后扩展多行）
         # return cm.get_vulnerability_block()
 
-def get_function_summary(repo_dir, instance):
+def get_function_summary(repo_dir, instance, base_url, openai_key):
     if "branch_origin" in instance:
         branch_origin = instance["branch_origin"]
     else:
         branch_origin = None
     with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
-        return cm.generate_function_summary()
+        return cm.generate_function_summary(base_url, openai_key)
 
 

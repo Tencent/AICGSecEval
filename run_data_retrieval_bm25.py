@@ -11,7 +11,7 @@ from pathlib import Path
 from bench import bm25_retrieval
 
 
-def main(dataset_path, output_dir, github_token):
+def main(dataset_path, output_dir, github_token, base_url, openai_key):
       
     # 创建输出目录
     output_dir = Path(output_dir)
@@ -33,7 +33,7 @@ def main(dataset_path, output_dir, github_token):
 
     document_encoding_style = "file_name_and_contents"
     # 执行代码索引和搜索
-    bm25_retrieval.main(dataset_name, instances, document_encoding_style, output_dir, False)
+    bm25_retrieval.main(dataset_name, instances, document_encoding_style, output_dir, False, github_token, base_url, openai_key)
 
 
 
@@ -43,8 +43,10 @@ if __name__ == "__main__":
     parser.add_argument('--input_file', type=str, default="data/data_v2.json", required=True, help='输入数据集文件路径')
     parser.add_argument('--output_dir', type=str, default='outputs/data_retrieval_bm25', help='输出结果目录')
     parser.add_argument('--github_token', type=str, default=None, help='GitHub Token，如果不提供则使用匿名克隆,可能存在克隆限频问题')
+    parser.add_argument('--base_url', type=str, default="https://ai.nengyongai.cn/v1/", help='API服务URL')
+    parser.add_argument('--openai_key', type=str, default=None, help='API密钥')
     args = parser.parse_args()
-    main(args.input_file, args.output_dir, args.github_token)
+    main(args.input_file, args.output_dir, args.github_token, args.base_url, args.openai_key)
 
     # 标注的数据集
     # dataset_path = "data/data_v2.json"

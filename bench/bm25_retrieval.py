@@ -278,6 +278,8 @@ def get_index_paths_worker(
     document_encoding_func,
     python,
     github_token,
+    base_url,
+    openai_key,
 ):
     index_path = None
     repo = instance["repo"]
@@ -291,7 +293,7 @@ def get_index_paths_worker(
     instance["repo_dir"] = repo_dir
     # 切换到对应 commit 后，获取上下文查询的输出信息
     instance["context_base_info"] = get_context_base_info(repo_dir, instance)
-    instance["function_summary"] = get_function_summary(repo_dir, instance)
+    instance["function_summary"] = get_function_summary(repo_dir, instance, base_url, openai_key)
     print(f"Got function summary for {repo}/{commit} (instance {instance_id})")
     index_path = make_index(
         repo_dir=repo_dir,
@@ -312,6 +314,8 @@ def get_index_paths(
     python: str,
     output_file: str,
     github_token: str,
+    base_url: str,
+    openai_key: str,
 ) -> dict[str, str]:
     """
     Retrieves the index paths for the given instances using multiple processes.
@@ -337,6 +341,8 @@ def get_index_paths(
                 document_encoding_func=document_encoding_func,
                 python=python,
                 github_token=github_token,
+                base_url=base_url,
+                openai_key=openai_key,
             )
             if index_path is None:
                 continue
@@ -373,6 +379,8 @@ def main(
     output_dir,
     leave_indexes,
     github_token,
+    base_url,
+    openai_key,
 ):
     document_encoding_func = DOCUMENT_ENCODING_FUNCTIONS[document_encoding_style]
 
@@ -400,6 +408,8 @@ def main(
             python,
             output_file,
             github_token,
+            base_url,
+            openai_key,
         )
     except KeyboardInterrupt:
         logger.info(f"Cleaning up {root_dir}")
@@ -419,9 +429,13 @@ def main(
 
     # 将 output_file 和 data_file 合并
     output_data = load_data(output_file)
-    with open(dst_file,"r") as f:
-        content = f.read()
-        dst_data = json.loads(content)
+    
+    if os.path.exists(dst_file):
+        with open(dst_file,"r") as f:
+            content = f.read()
+            dst_data = json.loads(content)
+    else:
+        dst_data = []
     # 以 instance_id 为唯一标识，后出现的覆盖前面的
     merged_dict = {}
     for item in dst_data:
@@ -438,7 +452,7 @@ def main(
     # 清理所有中间数据
     shutil.rmtree(output_dir, ignore_errors=True)
 
-    tmp_lock_file = Path("data/data_v2_context_bm25.jsonl.lock")
+    tmp_lock_file = Path(str(dst_file)+".lock")
     if tmp_lock_file.exists():
         tmp_lock_file.unlink()
 
