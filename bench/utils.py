@@ -204,7 +204,7 @@ def list_files(root_dir, include_tests=False):
     return files
 
 
-def clone_repo(repo, repo_dir, logger):
+def clone_repo(repo, repo_dir, logger, github_token=None):
     """
     Clones a GitHub repository to a specified directory.
 
@@ -212,7 +212,7 @@ def clone_repo(repo, repo_dir, logger):
         repo (str): The GitHub repository to clone.
         repo_dir (str): The root directory to clone the repository to.
         logger (logging.Logger): The logger to use for logging.
-
+        github_token (str): The GitHub token to use for cloning.
     Returns:
         Path: The path to the cloned repository directory.
     """
@@ -224,6 +224,8 @@ def clone_repo(repo, repo_dir, logger):
             repo_url = repo
         else:
             repo_url = f"https://github.com/{repo}.git"
+        if github_token:
+            repo_url = f"https://{github_token}@github.com/{repo}.git"
         logger.info(f"Cloning {repo} (pid={os.getpid()})")
         Repo.clone_from(repo_url, repo_dir)
     return repo_dir

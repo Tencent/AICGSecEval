@@ -39,16 +39,17 @@ def main(dataset_path, output_dir):
 
 if __name__ == "__main__":
     # 解析命令行参数
-    # parser = argparse.ArgumentParser(description='执行代码索引和搜索，存储结果用于后续测试')
-    # parser.add_argument('--input_file', type=str, required=True, help='输入JSON文件路径')
-    # parser.add_argument('--output_dir', type=str, default='results', help='输出结果目录')
-    # args = parser.parse_args()
-    # main(args.input_file, args.output_dir)
+    parser = argparse.ArgumentParser(description='执行代码索引和搜索，存储结果用于后续测试')
+    parser.add_argument('--input_file', type=str, default="data/data_v2.json", required=True, help='输入数据集文件路径')
+    parser.add_argument('--output_dir', type=str, default='outputs/data_retrieval_bm25', help='输出结果目录')
+    parser.add_argument('--github_token', type=str, default=None, help='GitHub Token，如果不提供则使用匿名克隆,可能存在克隆限频问题')
+    args = parser.parse_args()
+    main(args.input_file, args.output_dir, args.github_token)
 
     # 标注的数据集
-    dataset_path = "data/data_v2.json"
-    output_dir = "./outputs/data_retrieval_bm25"
-    main(dataset_path, output_dir)
+    # dataset_path = "data/data_v2.json"
+    # output_dir = "./outputs/data_retrieval_bm25"
+    # main(dataset_path, output_dir)
 
 
 

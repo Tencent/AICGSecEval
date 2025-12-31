@@ -277,6 +277,7 @@ def get_index_paths_worker(
     root_dir_name,
     document_encoding_func,
     python,
+    github_token,
 ):
     index_path = None
     repo = instance["repo"]
@@ -285,7 +286,7 @@ def get_index_paths_worker(
     
     print(f"Cloning {repo} to {root_dir_name}")
     repo_dir = Path(root_dir_name, f"{repo.replace('/', '__')}")
-    clone_repo(repo, repo_dir, logger)
+    clone_repo(repo, repo_dir, logger, github_token)
     print(f"Cloned {repo} to {repo_dir}")
     instance["repo_dir"] = repo_dir
     # 切换到对应 commit 后，获取上下文查询的输出信息
@@ -310,6 +311,7 @@ def get_index_paths(
     document_encoding_func: Any,
     python: str,
     output_file: str,
+    github_token: str,
 ) -> dict[str, str]:
     """
     Retrieves the index paths for the given instances using multiple processes.
@@ -334,6 +336,7 @@ def get_index_paths(
                 root_dir_name=root_dir_name,
                 document_encoding_func=document_encoding_func,
                 python=python,
+                github_token=github_token,
             )
             if index_path is None:
                 continue
@@ -369,6 +372,7 @@ def main(
     document_encoding_style,
     output_dir,
     leave_indexes,
+    github_token,
 ):
     document_encoding_func = DOCUMENT_ENCODING_FUNCTIONS[document_encoding_style]
 
@@ -395,6 +399,7 @@ def main(
             document_encoding_func,
             python,
             output_file,
+            github_token,
         )
     except KeyboardInterrupt:
         logger.info(f"Cleaning up {root_dir}")
