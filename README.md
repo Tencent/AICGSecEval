@@ -132,6 +132,7 @@ python3 invoke.py \
   --dataset_path ./data/data_v2.json \
   --output_dir ./outputs
   --max_workers 1
+  --github_token xxxxx // If not provided, anonymous cloning will be used, which may be subject to clone rate limiting.
 
 # Example: Agent Evaluation
 When running Agent-based evaluations, note that different Agents may require distinct configurations (e.g., model parameters, credentials, or APIs).
@@ -147,6 +148,7 @@ python3 invoke.py \
   --claude_api_url https://ai.nengyongai.cn \
   --claude_api_key sk-XXXXX \
   --claude_model claude-sonnet-4-20250514
+  --github_token xxxxx // If not provided, anonymous cloning will be used, which may be subject to clone rate limiting.
 
 The --claude_XXX options are parsed and used directly by the Agent evaluation module.
 ```
@@ -186,7 +188,9 @@ We welcome developers and researchers from academia, industry, and the open-sour
 ### Reference Documents
 
 > 📌 If you plan to contribute, please read the following guides first to understand the data format, submission process, and validation standards.
-* 📘 [Dataset Contribution Guide](./docs/dataset_contribute.md)
+* 📘 Dataset Contribution Guide
+  * [Static Dataset Contribute](./docs/static_dataset_contribute.md)
+  * [Dynamic Dataset Contribute](./docs/dynamic_dataset_contribute.md)
 * 📘 [Agent Integration Guide](./docs/agent_contribute.md)
 
 
@@ -231,6 +235,10 @@ We sincerely appreciate their invaluable contributions to this project.
 <p align="center">
   <img src="./img/wechat.jpg">
 </p>
+
+
+### 🔗 Recommended Security Tools
+If you are interested in AI infrastructure security, refer to [A.I.G (AI-Infra-Guard)](https://github.com/Tencent/AI-Infra-Guard), a comprehensive, intelligent, and easy-to-use AI Red Teaming platform developed by Tencent Zhuque Lab.
 
 
 ## 📄 License

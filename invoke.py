@@ -14,6 +14,7 @@ async def invoke(args, remaining_args):
     output_dir = args.output_dir
     max_workers = args.max_workers
     run_step = args.run_step
+    github_token = args.github_token
 
     start_time = time.time()
     # 创建输出目录
@@ -55,7 +56,7 @@ async def invoke(args, remaining_args):
             model_args = args.model_args
             
             gen_code_llm(model_name, batch_id, base_url, api_key, max_context_token, max_gen_token, 
-                    dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, **model_args)
+                    dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, github_token, **model_args)
 
         elif args.agent:
             from run_code_generation_agent import gen_code as gen_code_agent
@@ -70,7 +71,7 @@ async def invoke(args, remaining_args):
                 print(f"Agent ({agent_name}) 配置解析失败: {e}")
                 exit(0)
 
-            await gen_code_agent(agent_name, agent_class, agent_args, batch_id, dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, sleep_time)
+            await gen_code_agent(agent_name, agent_class, agent_args, batch_id, dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, github_token, sleep_time)
 
     gen_time = time.time()
     print(f"{llm_name} 生成代码耗时: {gen_time - start_time} 秒")
@@ -112,6 +113,7 @@ def parse_args():
     common_group.add_argument('--dataset_path', type=str, default="data/data_v2.json", help='数据集路径')
     common_group.add_argument('--retrieval_data_path', type=str, default="data/data_v2_context_bm25.json", help='上下文检索数据路径（默认值：data/data_v2_context_bm25.json）')
     common_group.add_argument('--num_cycles', type=int, default=3, help='单条数据测试轮数（默认值：3）')
+    common_group.add_argument('--github_token', type=str, default=None, help='GitHub Token，如果不提供则使用匿名克隆,可能存在克隆限频问题')
 
     codegen_mode_group = parser.add_argument_group('代码生成模式选项')
     codegen_mode_exclusive_group = codegen_mode_group.add_mutually_exclusive_group(required=True)

@@ -21,6 +21,9 @@
     "seed": true,
     "cwe_id": "CWE-78",
     "detected_tool": "aiseceval/autopoc:latest",
+    "image_inner_repopath":"/workspace/repo",
+    "image_inner_inputfile":"/input.json",
+    "image_inner_outputfile":"/output.json",
     "detected_vul_num": 7
 }
 ```
@@ -35,24 +38,27 @@
 | vuln_lines         | array[int] | 是   | 漏洞代码的起止行号（如 `[92, 111]`），不包含函数签名与大括号 |
 | language           | string     | 是   | 开发语言名称（小写，如 `php`/`python`/`java`） |
 | vuln_source        | string     | 是   | 漏洞来源（如 `CVE-2020-7237`），如果无则填写自定义编号 |
-| seed               | boolean    | 否   | 是否为种子数据；若为人工变异数据则可设为 false |
+| seed               | boolean    | 是   | 是否为种子数据；若为人工变异数据则可设为 false |
 | cwe_id             | string     | 是   | CWE 分类编号，如 `CWE-78` |
 | detected_tool      | string     | 是   | 使用的静态分析工具镜像 |
 | detected_vul_num   | int        | 是   | 静态工具在 base_commit 上扫描到的漏洞数量；需可稳定复现 |
+| image_inner_repopath | string   | 是   | 容器内用于访问待分析代码仓库的绝对路径
+| image_inner_inputfile | string  | 是   | 容器内用于读取分析输入参数的 JSON 文件路径。
+| image_inner_outputfile | string | 是   | 容器内用于写入分析结果的输出 JSON 文件路径
 
 
 ### SAST工具说明
 静态数据集依赖开源 SAST 工具（如 autopoc/CodeQL/Joern）对 AI 生成代码进行扫描，通过漏洞数量变化衡量代码安全性。
 
-SAST 工具处理的输入为 json 文件：
+**SAST 工具处理的输入为 json 文件**
 ```
 {
     "path":xxx; # 必填，指明待分析项目的路径 
-    ... # 可按需补充其他信息
+    ... # 可按需补充其他信息,如有补充，请在提交数据集贡献时说明
 }
 ```
 
-输出结果保存为 json 文件：
+**输出结果保存为 json 文件**
 ```
 {
     "detected_vul_num":xx, # 必填字段，如果扫描失败，则为-1
@@ -60,13 +66,21 @@ SAST 工具处理的输入为 json 文件：
 }
 ```
 
+**SAST 镜像运行命令示例**
+```
+docker run --rm \
+  -v /home/lkk/cacti:/workspace/repo \
+  -v /home/lkk/input.json:/input.json \
+  -v /home/lkk/output.json:/output.json \
+  aiseceval/autopoc:latest \
+  /input.json /output.json
+```
 
 要求：
 * 工具必须能在 base_commit 上检测到漏洞
 * 工具输出的“漏洞数量”应可稳定复现
 * 去除/禁用工具中与当前 CVE 无关的扫描规则，降低评估时间开销
 * 工具镜像上传至 dockerhub 并设置可公开下载
-
 
 
 ## 数据集验收

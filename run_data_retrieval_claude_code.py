@@ -170,7 +170,7 @@ async def query_claude_code(instance_id: str, repo_dir: str, vuln_filename: str,
     }
 
 
-async def main(dataset_path: str, retrieval_data_path: str, temp_dir: str, model: str):
+async def main(dataset_path: str, retrieval_data_path: str, temp_dir: str, model: str, github_token: str):
     temp_dir = Path(temp_dir)
     temp_dir.mkdir(parents=True, exist_ok=True)
 
@@ -219,7 +219,7 @@ async def main(dataset_path: str, retrieval_data_path: str, temp_dir: str, model
             logging.info(f"开始处理数据集 \"{instance_id}\"")
             repo = instance["repo"]
             repo_dir = Path(temp_dir, f"{repo.replace('/', '__')}")
-            clone_repo(repo, repo_dir, logging.getLogger())
+            clone_repo(repo, repo_dir, logging.getLogger(), github_token)
 
             if instance["base_commit"] != "HEAD":
                 logging.info(f"重置仓库到 {instance['base_commit']}")
@@ -274,6 +274,7 @@ if __name__ == "__main__":
     parser.add_argument("--api-url", type=str,
                         default="https://ai.nengyongai.cn")
     parser.add_argument("--api-key", type=str, required=True)
+    parser.add_argument("--github_token", type=str, default=None, help='GitHub Token，如果不提供则使用匿名克隆,可能存在克隆限频问题')
     args = parser.parse_args()
 
     os.environ["ANTHROPIC_BASE_URL"] = args.api_url
@@ -283,5 +284,6 @@ if __name__ == "__main__":
         dataset_path=args.dataset_path,
         retrieval_data_path=args.retrieval_data_path,
         temp_dir=args.temp_dir,
-        model=args.model
+        model=args.model,
+        github_token=args.github_token
     ))
