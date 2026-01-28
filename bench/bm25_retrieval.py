@@ -29,32 +29,8 @@ def file_name_and_contents(filename, relative_path):
     return text
 
 
-# def file_name_and_documentation(filename, relative_path):
-#     text = relative_path + "\n"
-#     try:
-#         with open(filename) as f:
-#             node = ast.parse(f.read())
-#         data = ast.get_docstring(node)
-#         if data:
-#             text += f"{data}"
-#         for child_node in ast.walk(node):
-#             if isinstance(
-#                 child_node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)
-#             ):
-#                 data = ast.get_docstring(child_node)
-#                 if data:
-#                     text += f"\n\n{child_node.name}\n{data}"
-#     except Exception as e:
-#         logger.error(e)
-#         logger.error(f"Failed to parse file {str(filename)}. Using simple filecontent.")
-#         with open(filename) as f:
-#             text += f.read()
-#     return text
-
-
 DOCUMENT_ENCODING_FUNCTIONS = {
     "file_name_and_contents": file_name_and_contents,
-    # "file_name_and_documentation": file_name_and_documentation,
 }
 
 
@@ -84,18 +60,6 @@ def make_index(
 ):
     """
     Builds an index for a given set of documents using Pyserini.
-
-    Args:
-        repo_dir (str): The path to the repository directory.
-        root_dir (str): The path to the root directory.
-        query (str): The query to use for retrieval.
-        commit (str): The commit hash to use for retrieval.
-        document_encoding_func (function): The function to use for encoding documents.
-        python (str): The path to the Python executable.
-        instance_id (int): The ID of the current instance.
-
-    Returns:
-        index_path (Path): The path to the built index.
     """
     index_path = Path(root_dir, f"index__{str(instance_id)}", "index")
     if index_path.exists():
@@ -157,19 +121,10 @@ def make_index(
 def get_remaining_instances(instances, output_file):
     """
     Filters a list of instances to exclude those that have already been processed and saved in a file.
-
-    Args:
-        instances (List[Dict]): A list of instances, where each instance is a dictionary with an "instance_id" key.
-        output_file (Path): The path to the file where the processed instances are saved.
-
-    Returns:
-        List[Dict]: A list of instances that have not been processed yet.
     """
-    # 如果输出文件不存在，直接返回所有实例
     if not output_file.exists():
         return instances
     
-    # 读取已处理的实例ID
     instance_ids = set()
     with open(output_file,"r") as f:
         content = f.read()
@@ -178,10 +133,8 @@ def get_remaining_instances(instances, output_file):
     if instance_ids:
         logger.info(f"Found {len(instance_ids)} existing instances in {output_file}. Will skip them.")
     
-    # 过滤出未处理的实例
     res =  [instance for instance in instances if instance["instance_id"] not in instance_ids]
 
-    # 读取 rerun_instances.txt 文件
     if os.path.exists("data/rerun_instances.txt"):
         with open("data/rerun_instances.txt", "r") as f:
             rerun_instance_ids = f.readlines()
@@ -195,19 +148,10 @@ def get_remaining_instances(instances, output_file):
 def search(instance, index_path):
     """
     Searches for relevant documents in the given index for the given instance.
-
-    Args:
-        instance (dict): The instance to search for.
-        index_path (str): The path to the index to search in.
-
-    Returns:
-        dict: A dictionary containing the instance ID and a list of hits, where each hit is a dictionary containing the
-        document ID and its score.
     """
     
     instance_id = instance["instance_id"]
     searcher = LuceneSearcher(index_path.as_posix())
-    # 提取上下文的基础信息
     query = "Functionality Summary: "
     query+=instance["function_summary"]+"\n"
     query+=instance["context_base_info"]
@@ -230,19 +174,12 @@ def search(instance, index_path):
     for hit in hits:
         results["hits"].append({"docid": hit.docid, "score": hit.score})
     results["function_summary"] = instance["function_summary"]
-    
-    # 获取上下文查询的输出信息
     return results
 
 
 def search_indexes(remaining_instance, output_file, all_index_paths):
     """
     Searches the indexes for the given instances and writes the results to the output file.
-
-    Args:
-        remaining_instance (list): A list of instances to search for.
-        output_file (str): The path to the output file to write the results to.
-        all_index_paths (dict): A dictionary mapping instance IDs to the paths of their indexes.
     """
     for instance in tqdm(remaining_instance, desc="Retrieving"):
         instance_id = instance["instance_id"]
@@ -277,6 +214,15 @@ def get_index_paths_worker(
     root_dir_name,
     document_encoding_func,
     python,
+    github_token,
+    base_url,
+    openai_key,
+    context_strategy: str = "file",
+    procc_model: str = None,
+    procc_window: int = 120,
+    procc_max_gen_token: int = 256,
+    procc_temperature: float = 0.2,
+    summary_model: str = None,
 ):
     index_path = None
     repo = instance["repo"]
@@ -285,13 +231,24 @@ def get_index_paths_worker(
     
     print(f"Cloning {repo} to {root_dir_name}")
     repo_dir = Path(root_dir_name, f"{repo.replace('/', '__')}")
-    clone_repo(repo, repo_dir, logger)
+    clone_repo(repo, repo_dir, logger, github_token)
     print(f"Cloned {repo} to {repo_dir}")
     instance["repo_dir"] = repo_dir
-    # 切换到对应 commit 后，获取上下文查询的输出信息
-    instance["context_base_info"] = get_context_base_info(repo_dir, instance)
-    instance["function_summary"] = get_function_summary(repo_dir, instance)
+
+    instance["context_base_info"] = get_context_base_info(
+        repo_dir,
+        instance,
+        context_strategy=context_strategy,
+        base_url=base_url,
+        openai_key=openai_key,
+        procc_model=procc_model,
+        procc_window=procc_window,
+        procc_max_gen_token=procc_max_gen_token,
+        procc_temperature=procc_temperature,
+    )
+    instance["function_summary"] = get_function_summary(repo_dir, instance, base_url, openai_key, model_name=summary_model)
     print(f"Got function summary for {repo}/{commit} (instance {instance_id})")
+
     index_path = make_index(
         repo_dir=repo_dir,
         root_dir=root_dir_name,
@@ -310,21 +267,16 @@ def get_index_paths(
     document_encoding_func: Any,
     python: str,
     output_file: str,
+    github_token: str,
+    base_url: str,
+    openai_key: str,
+    context_strategy: str = "file",
+    procc_model: str = None,
+    procc_window: int = 120,
+    procc_max_gen_token: int = 256,
+    procc_temperature: float = 0.2,
+    summary_model: str = None,
 ) -> dict[str, str]:
-    """
-    Retrieves the index paths for the given instances using multiple processes.
-
-    Args:
-        remaining_instances: A list of instances for which to retrieve the index paths.
-        root_dir_name: The root directory name.
-        document_encoding_func: A function for encoding documents.
-        python: The path to the Python executable.
-        output_file: The output file.
-        num_workers: The number of worker processes to use.
-
-    Returns:
-        A dictionary mapping instance IDs to index paths.
-    """
     all_index_paths = dict()
     error_file = Path("outputs", "bm25_error.log")
     for instance in tqdm(remaining_instances, desc="Indexing"):
@@ -334,6 +286,15 @@ def get_index_paths(
                 root_dir_name=root_dir_name,
                 document_encoding_func=document_encoding_func,
                 python=python,
+                github_token=github_token,
+                base_url=base_url,
+                openai_key=openai_key,
+                context_strategy=context_strategy,
+                procc_model=procc_model,
+                procc_window=procc_window,
+                procc_max_gen_token=procc_max_gen_token,
+                procc_temperature=procc_temperature,
+                summary_model=summary_model,
             )
             if index_path is None:
                 continue
@@ -358,7 +319,7 @@ def load_data(file_path):
         return data
     with open(file_path, 'r', encoding='utf-8') as f:
         for line in f:
-            if line.strip():  # 跳过空行
+            if line.strip():
                 data.append(json.loads(line))
     return data
 
@@ -369,32 +330,49 @@ def main(
     document_encoding_style,
     output_dir,
     leave_indexes,
+    github_token,
+    base_url,
+    openai_key,
+    context_strategy: str = "file",
+    procc_model: str = None,
+    procc_window: int = 120,
+    procc_max_gen_token: int = 256,
+    procc_temperature: float = 0.2,
+    summary_model: str = None,
 ):
     document_encoding_func = DOCUMENT_ENCODING_FUNCTIONS[document_encoding_style]
 
-    # 环境检查
     python = subprocess.run("which python3", shell=True, capture_output=True)
     python = python.stdout.decode("utf-8").strip()
     output_file = Path(
         output_dir, dataset_name, document_encoding_style + ".retrieval.jsonl"
     )
 
-    dst_file = Path("data",dataset_name+"_context_bm25.jsonl")
-    # 断点重连
+    strategy = (context_strategy or "file").lower().strip()
+    suffix = "" if strategy == "file" else f"_{strategy}"
+    dst_file = Path("data", f"{dataset_name}_context_bm25{suffix}.jsonl")
+
     remaining_instances = get_remaining_instances(instances, dst_file)
     root_dir, root_dir_name = get_root_dir(
         dataset_name, output_dir, document_encoding_style
     )
 
-    # 代码索引生成与检索
     try:
-        # code indexing 
         all_index_paths = get_index_paths(
             remaining_instances,
             root_dir_name,
             document_encoding_func,
             python,
             output_file,
+            github_token,
+            base_url,
+            openai_key,
+            context_strategy=context_strategy,
+            procc_model=procc_model,
+            procc_window=procc_window,
+            procc_max_gen_token=procc_max_gen_token,
+            procc_temperature=procc_temperature,
+            summary_model=summary_model,
         )
     except KeyboardInterrupt:
         logger.info(f"Cleaning up {root_dir}")
@@ -405,19 +383,19 @@ def main(
         for dirname in del_dirs:
             shutil.rmtree(dirname, ignore_errors=True)
     logger.info(f"Finished indexing {len(all_index_paths)} instances")
-    # 检索索引
+
     search_indexes(remaining_instances, output_file, all_index_paths)
-    # 获取未检索的索引
-    # missing_ids = get_missing_ids(instances, output_file)
-    # logger.warning(f"Missing indexes for {len(missing_ids)} instances.")
     logger.info(f"Saved retrieval results to {output_file}")
 
-    # 将 output_file 和 data_file 合并
     output_data = load_data(output_file)
-    with open(dst_file,"r") as f:
-        content = f.read()
-        dst_data = json.loads(content)
-    # 以 instance_id 为唯一标识，后出现的覆盖前面的
+    
+    if os.path.exists(dst_file):
+        with open(dst_file,"r") as f:
+            content = f.read()
+            dst_data = json.loads(content)
+    else:
+        dst_data = []
+
     merged_dict = {}
     for item in dst_data:
         if isinstance(item, dict) and "instance_id" in item:
@@ -428,20 +406,9 @@ def main(
     dst_data = list(merged_dict.values())
     with open(dst_file, 'w', encoding='utf-8') as f:
         json.dump(dst_data, f, ensure_ascii=False, indent=2)
-    
 
-    # 清理所有中间数据
     shutil.rmtree(output_dir, ignore_errors=True)
 
-    tmp_lock_file = Path("data/data_v2_context_bm25.jsonl.lock")
+    tmp_lock_file = Path(str(dst_file)+".lock")
     if tmp_lock_file.exists():
         tmp_lock_file.unlink()
-
-    # 仅清理索引，不清理 repo 目录
-    # del_dirs = list(root_dir.glob("repo__*"))
-    # logger.info(f"Cleaning up {root_dir}")
-    # if leave_indexes:
-    #     index_dirs = list(root_dir.glob("index__*"))
-    #     del_dirs += index_dirs
-    # for dirname in del_dirs:
-    #     shutil.rmtree(dirname, ignore_errors=True)
