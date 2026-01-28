@@ -1,4 +1,5 @@
 import os
+import re
 from pathlib import Path
 from git import Repo
 import logging
@@ -73,7 +74,14 @@ class ContextManager:
         return file_content
 
     # 获取漏洞代码块
-    def get_vulnerability_block(self):
+    def get_vulnerability_block(self, with_line_numbers: bool = True):
+        """
+        Return vulnerable block text.
+
+        Args:
+            with_line_numbers: keep original "line_no + space + code" formatting (default True).
+                               For retrieval query, usually False is better.
+        """
         all_lines = self.vulnerability_file_content.split('\n')
 
         if len(self.vuln_lines) != 2:
@@ -86,25 +94,73 @@ class ContextManager:
         for i in range(context_start, context_end + 1):
             if 0 <= i - 1 < len(all_lines):
                 line_content = all_lines[i - 1]
-                block.append(f"{i} {line_content}")
+                if with_line_numbers:
+                    block.append(f"{i} {line_content}")
+                else:
+                    block.append(line_content)
         return "\n".join(block)
 
-    def generate_function_summary(self): 
+    def get_prefix_suffix(self, window: int = 120):
+        """
+        Extract prefix & suffix around vulnerable block for FIM-style prompting.
+
+        window: number of lines kept before/after vulnerable region.
+        Returns:
+            prefix(str), suffix(str), vuln_block(str)  (all without line numbers)
+        """
+        if not self.vuln_lines or len(self.vuln_lines) != 2:
+            return "", "", ""
+
+        lines = (self.vulnerability_file_content or "").splitlines()
+        start_line = self.vuln_lines[0]
+        end_line = self.vuln_lines[-1]
+
+        start_idx = max(0, start_line - 1)
+        end_idx = min(len(lines), end_line)  # end is exclusive in python slice
+
+        prefix_start = max(0, start_idx - window)
+        suffix_end = min(len(lines), end_idx + window)
+
+        prefix = "\n".join(lines[prefix_start:start_idx])
+        vuln_block = "\n".join(lines[start_idx:end_idx])
+        suffix = "\n".join(lines[end_idx:suffix_end])
+        return prefix, suffix, vuln_block
+
+    @staticmethod
+    def _strip_code_fences(text: str) -> str:
+        if text is None:
+            return ""
+        t = text.strip()
+        # remove ```lang ... ``` fences
+        t = re.sub(r"^```[A-Za-z0-9_+-]*\n", "", t)
+        t = re.sub(r"\n```\s*$", "", t)
+        # sometimes models wrap with <code> tags
+        t = t.replace("<code>", "").replace("</code>", "")
+        return t.strip()
+
+    def generate_function_summary(self, base_url, openai_key, model_name: str = None): 
         """
         使用LLM为漏洞代码相关功能生成一句话摘要
-            
+        
         Returns:
             功能摘要字符串
         """
         logger.info("生成功能摘要...")
 
-        openai_key = os.environ.get("LLM_API_KEY", None)
         if openai_key is None:
             raise ValueError(
-                "Must provide an api key. Expected in OPENAI_API_KEY environment variable."
+                "Must provide an api key. Expected in LLM_API_KEY environment variable or --openai_key."
             )
-        openai.base_url = "https://ai.nengyongai.cn/v1/"
+        openai.base_url = base_url
         openai.api_key = openai_key
+
+        # model selection: allow env override
+        model = (
+            model_name
+            or os.getenv("NENGYONGAI_SUMMARY_MODEL")
+            or os.getenv("NENGYONGAI_MODEL")
+            or "claude-sonnet-4-20250514"
+        )
 
         # 构建提示词
         system_messages = (
@@ -124,13 +180,13 @@ class ContextManager:
             "</code>",
             "",
             "<snippet>",
-            self.get_vulnerability_block(),
+            self.get_vulnerability_block(with_line_numbers=True),
             "</snippet>",
             instructions,
         ]
         user_message =  "\n".join(text)
         response = openai.chat.completions.create(
-                model = "claude-sonnet-4-20250514", # 摘要生成用比较好的模型
+                model=model,
                 messages=[
                     {"role": "system", "content": system_messages},
                     {"role": "user", "content": user_message},
@@ -138,6 +194,65 @@ class ContextManager:
             )
         function_summary = response.choices[0].message.content.strip()
         return function_summary
+
+    def generate_hypothetical_patch(
+        self,
+        base_url: str,
+        openai_key: str,
+        model_name: str = None,
+        window: int = 120,
+        max_gen_token: int = 256,
+        temperature: float = 0.2,
+    ) -> str:
+        """
+        ProCC-style Hypothetical Line / Completion:
+        Use <PRE>/<SUF>/<MID> prompt to generate a plausible secure replacement code
+        for the vulnerable region, then return it as retrieval query text.
+
+        Returns:
+            str: hypothetical patch text (no markdown fences)
+        """
+        if openai_key is None:
+            raise ValueError(
+                "Must provide an api key. Expected in LLM_API_KEY environment variable or --openai_key."
+            )
+        openai.base_url = base_url
+        openai.api_key = openai_key
+
+        model = model_name or os.getenv("NENGYONGAI_MODEL") or "claude-sonnet-4-20250514"
+
+        prefix, suffix, _vuln = self.get_prefix_suffix(window=window)
+
+        system_messages = (
+            "You are a senior software security engineer. "
+            "Given a code prefix and suffix around a vulnerable region, "
+            "write the secure replacement code that should fill the missing region. "
+            "Output ONLY the code that belongs in <MID> (no explanations, no markdown)."
+        )
+        user_message = f"""<PRE>
+{prefix}
+<SUF>
+{suffix}
+<MID>
+"""
+
+        response = openai.chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "system", "content": system_messages},
+                {"role": "user", "content": user_message},
+            ],
+            temperature=temperature,
+            max_tokens=max_gen_token,
+        )
+        text = response.choices[0].message.content or ""
+        text = self._strip_code_fences(text)
+
+        # Truncate overly long outputs (helps Lucene maxClauseCount)
+        if len(text) > 4000:
+            text = text[:4000]
+
+        return text.strip()
     
 
     def get_masked_vulnerability_file(self):
@@ -250,24 +365,69 @@ class ContextManager:
         pass
 
 
-def get_context_base_info(repo_dir, instance):
+def get_context_base_info(
+    repo_dir,
+    instance,
+    context_strategy: str = "file",
+    base_url: str = None,
+    openai_key: str = None,
+    procc_model: str = None,
+    procc_window: int = 120,
+    procc_max_gen_token: int = 256,
+    procc_temperature: float = 0.2,
+):
+    """
+    Build retrieval query base info (context) using a selectable strategy.
+
+    Strategies:
+      - file:  use full vulnerable file content (current default, backward compatible)
+      - block: use only vulnerable block (no line numbers)
+      - procc: generate hypothetical replacement code using <PRE>/<SUF>/<MID> (ProCC completion view)
+    """
+    if "branch_origin" in instance:
+        branch_origin = instance["branch_origin"]
+    else:
+        branch_origin = None
+
+    strategy = (context_strategy or "file").lower().strip()
+
+    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
+        if strategy == "file":
+            return cm.get_vulnerability_file_content()
+
+        if strategy == "block":
+            return cm.get_vulnerability_block(with_line_numbers=False)
+
+        if strategy == "procc":
+            # LLM config
+            base_url = base_url or os.getenv("LLM_BASE_URL") or "https://ai.nengyongai.cn/v1/"
+            openai_key = openai_key or os.getenv("LLM_API_KEY")
+            model = procc_model or os.getenv("NENGYONGAI_MODEL") or "claude-sonnet-4-20250514"
+
+            try:
+                hypo = cm.generate_hypothetical_patch(
+                    base_url=base_url,
+                    openai_key=openai_key,
+                    model_name=model,
+                    window=int(procc_window),
+                    max_gen_token=int(procc_max_gen_token),
+                    temperature=float(procc_temperature),
+                )
+            except Exception as e:
+                logger.error(f"ProCC hypothetical patch generation failed, fallback to file strategy. err={e}")
+                hypo = ""
+
+            if hypo is None or len(hypo.strip()) == 0:
+                return cm.get_vulnerability_file_content()
+            return hypo
+
+        raise ValueError(f"Unknown context_strategy: {context_strategy}. Use one of: file, block, procc")
+
+
+def get_function_summary(repo_dir, instance, base_url, openai_key, model_name: str = None):
     if "branch_origin" in instance:
         branch_origin = instance["branch_origin"]
     else:
         branch_origin = None
     with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
-        # 策略 1： 直接返回漏洞文件内容
-        return cm.get_vulnerability_file_content()
-
-        # 策略 2： 返回漏洞代码块（前后扩展多行）
-        # return cm.get_vulnerability_block()
-
-def get_function_summary(repo_dir, instance):
-    if "branch_origin" in instance:
-        branch_origin = instance["branch_origin"]
-    else:
-        branch_origin = None
-    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
-        return cm.generate_function_summary()
-
-
+        return cm.generate_function_summary(base_url, openai_key, model_name=model_name)
