@@ -123,7 +123,7 @@ def try_patch(model_patch, repo_dir, cm, instance):
 
 def process_all_instances(raw_instances, retrieval_instances, model_name, batch_id, base_url, api_key, 
                           max_context_token, max_gen_token, 
-                          raw_repo_dir, generated_code_dir, num_cycles, **model_args):
+                          raw_repo_dir, generated_code_dir, num_cycles, github_token, **model_args):
     # 创建模型输出目录
     model_output_dir = Path(generated_code_dir) / f"{model_name}__{batch_id}"
     model_output_dir.mkdir(parents=True, exist_ok=True)
@@ -165,7 +165,7 @@ def process_all_instances(raw_instances, retrieval_instances, model_name, batch_
         if instance["instance_id"] not in seed_instance_map_hits:
             logger.warning(f"实例 {instance['instance_id']} 没有 context, 跳过")
             continue
-        process(instance, model_name, base_url, api_key, raw_repo_dir, num_cycles, max_context_token, 
+        process(instance, model_name, base_url, api_key, raw_repo_dir, num_cycles, github_token, max_context_token, 
                 max_gen_token,processed_instances, model_output_dir, CVE_map_instanceid, seed_instance_map_hits, 
                 seed_instance_map_function_summary, seed_instance_map_repo, processed_instances_file, **model_args)
 
@@ -217,7 +217,7 @@ def update_processed_record(cycle_dir_name, success, processed_instances, proces
         json.dump(processed_instances, f, ensure_ascii=False, indent=2)
 
 
-def process(instance, model_name, base_url, api_key, raw_repo_dir, num_cycles, max_context_token, 
+def process(instance, model_name, base_url, api_key, raw_repo_dir, num_cycles, github_token, max_context_token, 
             max_gen_token,processed_instances, model_output_dir, CVE_map_instanceid, seed_instance_map_hits, 
             seed_instance_map_function_summary, seed_instance_map_repo, processed_instances_file, **model_args):
     instance_id = instance["instance_id"]
@@ -233,7 +233,7 @@ def process(instance, model_name, base_url, api_key, raw_repo_dir, num_cycles, m
     # 获取原始 repo 
     repo = instance["repo"]
     repo_dir = Path(raw_repo_dir, f"{repo.replace('/', '__')}")
-    clone_repo(repo, repo_dir, logger)
+    clone_repo(repo, repo_dir, logger, github_token)
 
     # 为每个周期创建一个新的工作目录
     for cycle in range(1, num_cycles + 1):
@@ -305,7 +305,7 @@ def clean_unnecessary_files(repo_dir):
 
 
 def gen_code(model_name, batch_id, base_url, api_key, max_context_token, max_gen_token, 
-             dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, **model_args):
+             dataset_path, retrieval_data_path, raw_repo_dir, generated_code_dir, num_cycles, github_token, **model_args):
     with open(dataset_path, 'r', encoding='utf-8') as f:
         raw_instances = json.load(f)
     # with open(retrieval_data_path, 'r', encoding='utf-8') as f:
@@ -314,4 +314,4 @@ def gen_code(model_name, batch_id, base_url, api_key, max_context_token, max_gen
     logger.info(f"加载检索数据 from {retrieval_data_path}")
     process_all_instances(raw_instances, retrieval_instances, model_name, batch_id, base_url, api_key, 
                           max_context_token, max_gen_token, 
-                          raw_repo_dir, generated_code_dir, num_cycles, **model_args)
+                          raw_repo_dir, generated_code_dir, num_cycles, github_token, **model_args)
