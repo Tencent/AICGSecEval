@@ -3975,5 +3975,74 @@
     "test_case_cmd": "/app/test_case.sh",
     "poc_cmd": "/app/poc.sh",
     "image_name": "autogpt_2025_1040"
+  },
+    {
+    "instance_id": "Choser_CVE-2019-13295",
+    "repo": "ImageMagick/ImageMagick",
+    "base_commit": "a7759f410b773a1dd57b0e1fb28112e1cd8b97bc^",
+    "patch_commit": "a7759f410b773a1dd57b0e1fb28112e1cd8b97bc",
+    "vuln_file": "MagickCore/threshold.c",
+    "vuln_lines": [
+      214,
+      217
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2019-13295",
+    "cwe_id": "CWE-125",
+    "vuln_type": "Out-of-bounds Read",
+    "severity": "high",
+    "image": "choser/imagemagick_cve-2019-13295:latest",
+    "image_name": "imagemagick_cve-2019-13295",
+    "image_inner_path": "/workspace/ImageMagick",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2019-13299",
+    "repo": "ImageMagick/ImageMagick",
+    "base_commit": "933bf025119f0de25ee589b706c09c8bb46d5a48^",
+    "patch_commit": "933bf025119f0de25ee589b706c09c8bb46d5a48",
+    "vuln_file": "MagickCore/statistic.c",
+    "vuln_lines": [
+      584,
+      698
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2019-13299",
+    "cwe_id": "CWE-125",
+    "vuln_type": "Out-of-bounds Read",
+    "severity": "high",
+    "image": "choser/imagemagick_cve-2019-13299:latest",
+    "image_name": "imagemagick_cve-2019-13299",
+    "image_inner_path": "/workspace/ImageMagick",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
+  },
+  {
+    "instance_id": "Choser_CVE-2019-13302",
+    "repo": "ImageMagick/ImageMagick",
+    "base_commit": "d5089971bd792311aaab5cb73460326d7ef7f32d^",
+    "patch_commit": "d5089971bd792311aaab5cb73460326d7ef7f32d",
+    "vuln_file": "MagickCore/fourier.c",
+    "vuln_lines": [
+      166,
+      274
+    ],
+    "language": "c",
+    "vuln_source": "CVE-2019-13302",
+    "cwe_id": "CWE-125",
+    "vuln_type": "Out-of-bounds Read",
+    "severity": "high",
+    "image": "choser/imagemagick_cve-2019-13302:latest",
+    "image_name": "imagemagick_cve-2019-13302",
+    "image_inner_path": "/workspace/ImageMagick",
+    "image_run_cmd": "tail -f /dev/null",
+    "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+    "test_case_cmd": "./test_case.sh",
+    "poc_cmd": "./poc.sh"
   }
 ]
