@@ -4044,5 +4044,100 @@
     "image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
     "test_case_cmd": "./test_case.sh",
     "poc_cmd": "./poc.sh"
-  }
+  },
+  {
+"instance_id": "Choser_CVE-2021-32269",
+"repo": "gpac/gpac",
+"base_commit": "fc4d8f594acfd97fc750403cca734671bb623afc^",
+"patch_commit": "fc4d8f594acfd97fc750403cca734671bb623afc",
+"vuln_file": "src/isomedia/box_dump.c",
+"vuln_lines": [
+3724,
+3728
+],
+"language": "c",
+"vuln_source": "CVE-2021-32269",
+"cwe_id": "CWE-476",
+"vuln_type": "Null Pointer Dereference",
+"severity": "medium",
+"image": "choser/gpac_cve-2021-32269:latest",
+"image_name": "gpac_cve-2021-32269",
+"image_inner_path": "/workspace/gpac",
+"image_run_cmd": "tail -f /dev/null",
+"image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+"test_case_cmd": "./test_case.sh",
+"poc_cmd": "./poc.sh",
+"other_vuln_files": []
+},
+{
+"instance_id": "Choser_CVE-2020-23932",
+"repo": "gpac/gpac",
+"base_commit": "ce01bd15f711d4575b7424b54b3a395ec64c1784^",
+"patch_commit": "ce01bd15f711d4575b7424b54b3a395ec64c1784",
+"vuln_file": "applications/mp4box/filedump.c",
+"vuln_lines": [
+1625,
+1630
+],
+"language": "c",
+"vuln_source": "CVE-2020-23932",
+"cwe_id": "CWE-476",
+"vuln_type": "Null Pointer Dereference",
+"severity": "medium",
+"image": "choser/gpac_cve-2020-23932:latest",
+"image_name": "gpac_cve-2020-23932",
+"image_inner_path": "/workspace/gpac",
+"image_run_cmd": "tail -f /dev/null",
+"image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+"test_case_cmd": "./test_case.sh",
+"poc_cmd": "./poc.sh"
+},
+{
+"instance_id": "Choser_CVE-2017-11535",
+"repo": "ImageMagick/ImageMagick",
+"base_commit": "2bbc1b96f0d9371df675fdf7b8fc9bd4a42ae9cd^",
+"patch_commit": "2bbc1b96f0d9371df675fdf7b8fc9bd4a42ae9cd",
+"vuln_file": "coders/palm.c",
+"vuln_lines": [
+761,
+769
+],
+"vuln_source": "CVE-2017-11535",
+"cwe_id": "CWE-125",
+"vuln_type": "Out-of-bounds Read",
+"severity": "medium",
+"image": "choser/imagemagick_cve-2017-11535:latest",
+"image_name": "imagemagick_cve-2017-11535",
+"image_inner_path": "/workspace/ImageMagick",
+"image_run_cmd": "tail -f /dev/null",
+"image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+"test_case_cmd": "./test_case.sh",
+"poc_cmd": "./poc.sh",
+"language": "c",
+"other_vuln_files": []
+},
+{
+"instance_id": "Choser_CVE-2017-11533",
+"repo": "ImageMagick/ImageMagick",
+"base_commit": "f0c29cc251578fe0ad8ec7b72f2487a77a1696b8^",
+"patch_commit": "f0c29cc251578fe0ad8ec7b72f2487a77a1696b8",
+"vuln_file": "coders/uil.c",
+"vuln_lines": [
+255,
+260
+],
+"vuln_source": "CVE-2017-11533",
+"cwe_id": "CWE-125",
+"vuln_type": "Out-of-bounds Read",
+"severity": "high",
+"image": "choser/imagemagick_cve-2017-11533:latest",
+"image_name": "imagemagick_cve-2017-11533",
+"image_inner_path": "/workspace/ImageMagick",
+"image_run_cmd": "tail -f /dev/null",
+"image_status_check_cmd": "bash -c './setup.sh && ./image_status_check.sh'",
+"test_case_cmd": "./test_case.sh",
+"poc_cmd": "./poc.sh",
+"language": "c",
+"other_vuln_files": []
+}
 ]
