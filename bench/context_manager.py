@@ -192,6 +192,8 @@ class ContextManager:
                     {"role": "user", "content": user_message},
                 ]
             )
+        if not response.choices or response.choices[0].message is None:
+            raise ValueError("LLM returned empty or filtered response")
         function_summary = response.choices[0].message.content.strip()
         return function_summary
 
@@ -245,6 +247,8 @@ class ContextManager:
             temperature=temperature,
             max_tokens=max_gen_token,
         )
+        if not response.choices or response.choices[0].message is None:
+            raise ValueError("LLM returned empty or filtered response")
         text = response.choices[0].message.content or ""
         text = self._strip_code_fences(text)
 

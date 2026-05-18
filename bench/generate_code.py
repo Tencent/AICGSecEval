@@ -490,6 +490,8 @@ def call_llm(base_url, openai_key, model_name, system_message, user_message, max
             final_answer += answer_chunk
         return final_answer
     else:
+        if not response.choices or response.choices[0].message is None:
+            raise ValueError("LLM returned empty or filtered response")
         completion = response.choices[0].message.content.strip()
         return completion
 
