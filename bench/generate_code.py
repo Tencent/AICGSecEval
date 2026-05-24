@@ -130,7 +130,7 @@ def bresenham(x0, y0, x1, y1):
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 from transformers import AutoTokenizer
 # 默认tokenizer
-TOKENIZER = AutoTokenizer.from_pretrained("openai-community/openai-gpt", local_files_only=True)
+TOKENIZER = AutoTokenizer.from_pretrained("openai-community/openai-gpt")
 MAX_LENGTH = 98000
 logging.getLogger("transformers").setLevel(logging.ERROR) # 消除警告
 
