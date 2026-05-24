@@ -115,6 +115,28 @@ def extract_diff(response):
         return other_matches[0]
     return response.split("</s>")[0]
 
+def extract_code_fences(text: str) -> str:
+    if text is None:
+        return ""
+    t = text.strip()
+    # 先使用 rfind 找到最后两个 ```，获取其中包裹的代码
+    last_fence = t.rfind("```")
+    if last_fence != -1:
+        prev_fence = t.rfind("```", 0, last_fence)
+        if prev_fence != -1:
+            code = t[prev_fence + 3:last_fence]
+            code = code.strip()
+            first_newline = code.find('\n')
+            if first_newline != -1:
+                first_line = code[:first_newline].strip()
+                # 如果第一行看起来只是语言标记，则去掉
+                if first_line and len(first_line) < 15 and not any(c in first_line for c in ['{', '}', '(', ')', ';', '#', '/', '=', '+', '-', '*', '"', "'"]):
+                    code = code[first_newline + 1:]
+            return code.strip()
+    # 如果不存在 ```，直接将完整回复作为代码
+    t = t.replace("<code>", "").replace("</code>", "")
+    return t.strip()
+
 
 def is_test(name, test_phrases=None):
     if test_phrases is None:

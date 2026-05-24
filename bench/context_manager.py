@@ -167,7 +167,7 @@ class ContextManager:
             "Given a code file and a code snippet, summarize the functionality "
             "of the snippet."
         )
-        code_text = make_code_text({self.vuln_file: self.vulnerability_file_content})
+        code_text = make_code_text({self.vuln_file: self.vulnerability_file_content}, add_line_numbers=True)
 
         instructions = (
             "Please respond with a brief but clear summary that describes the main "

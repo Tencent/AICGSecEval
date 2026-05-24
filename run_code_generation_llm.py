@@ -13,7 +13,7 @@ import shutil
 from bench import generate_code
 from bench.generate_code import make_codegen_prompt
 from bench.context_manager import ContextManager
-from bench.utils import extract_diff, repair_patch, clone_repo
+from bench.utils import clone_repo, extract_code_fences
 
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -32,12 +32,21 @@ def process_instance(instance, model_name, base_url, api_key, max_context_token,
     repo_dir = instance["repo_dir"]
     hits = instance["hits"]
     function_summary = instance["function_summary"]
+    vuln_file = instance["vuln_file"]
     if "branch_origin" in instance:
         branch_origin = instance["branch_origin"]
     else:
         branch_origin = None
     
-    with ContextManager(repo_dir, instance["base_commit"], instance["vuln_file"], instance["vuln_lines"], branch_origin) as cm:
+    with ContextManager(repo_dir, instance["base_commit"], vuln_file, instance["vuln_lines"], branch_origin) as cm:
+        # 获取原始漏洞块及前后文，用于生成代码校验（去重 + 花括号平衡）
+        original_vuln_block = cm.get_vulnerability_block(with_line_numbers=False)
+        all_lines = cm.vulnerability_file_content.split('\n')
+        start_line = instance["vuln_lines"][0]
+        end_line = instance["vuln_lines"][-1]
+        prefix_lines = all_lines[:start_line - 1]
+        suffix_lines = all_lines[end_line:]
+
         # 获取 instance 中的 system_message 和 user_message
         readme_files = cm.get_readme_files()
         # 修改磁盘上的文件
@@ -71,54 +80,56 @@ def process_instance(instance, model_name, base_url, api_key, max_context_token,
         with open(os.path.join(repo_dir, "response.txt"), "w") as f:
             f.write(response)
 
-        model_patch = extract_diff(response)
-        if model_patch is None or len(model_patch)==0:
-            logger.error(f"模型生成补丁为空")
+        generated_code = extract_code_fences(response)
+        if not generated_code:
+            logger.error(f"模型生成代码为空")
             print(response)
             return False
         
-        # 尝试应用补丁
-        success = try_patch(model_patch, repo_dir, cm, instance)
+        # 应用生成代码到 <MASKED> 位置
+        success = generate_code.apply_generated_code(repo_dir, vuln_file, generated_code,
+                                       prefix_lines=prefix_lines, suffix_lines=suffix_lines,
+                                       original_vuln_block=original_vuln_block)
         return success
 
 
-def try_patch(model_patch, repo_dir, cm, instance):
-    # 应用补丁，每次尝试需要重置项目
-    # 第一次尝试
-    success = generate_code.apply_patch(model_patch, repo_dir, generate_code.GIT_APPLY_CMDS[0])
-    if success:
-        return True
+# def try_patch(model_patch, repo_dir, cm, instance):
+#     # 应用补丁，每次尝试需要重置项目
+#     # 第一次尝试
+#     success = generate_code.apply_patch(model_patch, repo_dir, generate_code.GIT_APPLY_CMDS[0])
+#     if success:
+#         return True
 
-    # 如果第一次尝试失败，则重置项目并尝试第二次
-    cm.reset_repo(instance["raw_repo_dir"], repo_dir)
-    success = generate_code.apply_patch(model_patch, repo_dir, generate_code.GIT_APPLY_CMDS[1])
-    if success:
-        return True
+#     # 如果第一次尝试失败，则重置项目并尝试第二次
+#     cm.reset_repo(instance["raw_repo_dir"], repo_dir)
+#     success = generate_code.apply_patch(model_patch, repo_dir, generate_code.GIT_APPLY_CMDS[1])
+#     if success:
+#         return True
 
-    # 如果第二次尝试失败，则重置项目，修复补丁，并尝试第三次
-    cm.reset_repo(instance["raw_repo_dir"], repo_dir)
-    # save raw patch
-    with open(os.path.join(repo_dir, "raw_patch.diff"), "w") as f:
-        f.write(model_patch)
+#     # 如果第二次尝试失败，则重置项目，修复补丁，并尝试第三次
+#     cm.reset_repo(instance["raw_repo_dir"], repo_dir)
+#     # save raw patch
+#     with open(os.path.join(repo_dir, "raw_patch.diff"), "w") as f:
+#         f.write(model_patch)
 
-    logger.info(f"原始应用补丁失败，尝试修复补丁")    
-    repaired_patch = repair_patch(model_patch)
-    if len(repaired_patch)==0:
-        logger.error(f"修复后补丁为空")
-        return False
-    success = generate_code.apply_patch(repaired_patch, repo_dir, generate_code.GIT_APPLY_CMDS[0])
-    if success:
-        return True
+#     logger.info(f"原始应用补丁失败，尝试修复补丁")    
+#     repaired_patch = repair_patch(model_patch)
+#     if len(repaired_patch)==0:
+#         logger.error(f"修复后补丁为空")
+#         return False
+#     success = generate_code.apply_patch(repaired_patch, repo_dir, generate_code.GIT_APPLY_CMDS[0])
+#     if success:
+#         return True
     
-    # 第四次尝试
-    cm.reset_repo(instance["raw_repo_dir"], repo_dir)
-    success = generate_code.apply_patch(repaired_patch, repo_dir, generate_code.GIT_APPLY_CMDS[1])
-    if not success:
-        logger.error(f"修复后应用补丁仍然失败")
-        return False
-    else:
-        logger.info(f"修复后应用补丁成功")
-        return True
+#     # 第四次尝试
+#     cm.reset_repo(instance["raw_repo_dir"], repo_dir)
+#     success = generate_code.apply_patch(repaired_patch, repo_dir, generate_code.GIT_APPLY_CMDS[1])
+#     if not success:
+#         logger.error(f"修复后应用补丁仍然失败")
+#         return False
+#     else:
+#         logger.info(f"修复后应用补丁成功")
+#         return True
 
 
 def process_all_instances(raw_instances, retrieval_instances, model_name, batch_id, base_url, api_key, 
