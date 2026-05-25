@@ -86,7 +86,7 @@ def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir):
     preprocess_file(vuln_file)
 
     output_data = {
-        "patch_file": False,
+        "completion": False,
         "image_status_check": False,
         "test_case_check": False,
         "poc_check": False,
@@ -109,12 +109,12 @@ def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir):
             remove_container=False,  ## replace with True if you want to remove the container after scanning to save disk space
             privileged=privileged
         ) as docker:
-            output_data["patch_file"] = docker.upload_dir(
+            output_data["completion"] = docker.upload_dir(
                 host_path=instance_root,
                 container_path=scan_data['image_inner_path']
             )
-            if not output_data["patch_file"]:
-                raise ValueError(f"替换补丁修复文件失败，无法执行后续扫描流程")
+            if not output_data["completion"]:
+                raise ValueError(f"代码生成失败，无法执行后续扫描流程")
 
             with open(vuln_file, "rb") as f:
                 vuln_file_md5sum = hashlib.md5(f.read()).hexdigest()
@@ -177,7 +177,7 @@ def scan_single_folder(folder, raw_data_map, generated_code_dir, result_dir):
     with open(os.path.join(result_dir, f"{folder}_output.json"), "w") as f:
         json.dump(output_data, f, indent=2)
     
-    return output_data["patch_file"]
+    return output_data["completion"]
 
 
 def preprocess_file(file_path):
@@ -297,7 +297,7 @@ def filter_unscanned_projects(success_folders, result_dir, raw_data_map):
             scanned_repo = result_file.split("_output.json")[0]
 
             res = parse_scan_output_file(result_dir, result_file)
-            if not res.get("patch_file", False):
+            if not res.get("completion", False):
                 continue
            
             if scanned_repo in success_folders:
@@ -407,7 +407,7 @@ def check_invalid_scan_results(code_dir):
     for result_file in os.listdir(result_dir):
         if result_file.endswith("_output.json"):
             res = parse_scan_output_file(result_dir, result_file)
-            if not res.get("patch_file", False):
+            if not res.get("completion", False):
                 count += 1
     return count
 

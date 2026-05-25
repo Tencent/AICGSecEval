@@ -148,7 +148,7 @@ def add_lines(content):
 
 
 # 将文件内容转换为文本
-def make_code_text(files_dict, add_line_numbers=True):
+def make_code_text(files_dict, add_line_numbers=False):
     all_text = ""
     if isinstance(files_dict, list):
         for file in files_dict:
@@ -175,18 +175,18 @@ def make_code_snippet_text(files_dict):
         for file in files_dict:
             all_text += f"[start of {file['path']}]\n"
             # 定位待生成代码所在行数
-            raw_lines_with_line_numbers = add_lines_list(file['content'])
+            raw_lines = file['content'].split("\n")
             flag = False
-            for line in raw_lines_with_line_numbers:
+            for line in raw_lines:
                 if "<MASKED>" in line:
-                    index = raw_lines_with_line_numbers.index(line)
+                    index = raw_lines.index(line)
                     start_line = index - 300
                     if start_line < 0:
                         start_line = 0
                     end_line = index + 300
-                    if end_line > len(raw_lines_with_line_numbers):
-                        end_line = len(raw_lines_with_line_numbers)
-                    all_text += "\n".join(raw_lines_with_line_numbers[start_line:end_line])
+                    if end_line > len(raw_lines):
+                        end_line = len(raw_lines)
+                    all_text += "\n".join(raw_lines[start_line:end_line])
                     flag = True
                     break
             if not flag:
@@ -197,18 +197,18 @@ def make_code_snippet_text(files_dict):
     else:
         for filename, contents in sorted(files_dict.items()):
             all_text += f"[start of {filename}]\n"
-            raw_lines_with_line_numbers = add_lines_list(contents)
+            raw_lines = file['content'].split("\n")
             flag = False
-            for line in raw_lines_with_line_numbers:
+            for line in raw_lines:
                 if "<MASKED>" in line:
-                    index = raw_lines_with_line_numbers.index(line)
+                    index = raw_lines.index(line)
                     start_line = index - 300
                     if start_line < 0:
                         start_line = 0
                     end_line = index + 300
-                    if end_line > len(raw_lines_with_line_numbers):
-                        end_line = len(raw_lines_with_line_numbers)
-                    all_text += "\n".join(raw_lines_with_line_numbers[start_line:end_line])
+                    if end_line > len(raw_lines):
+                        end_line = len(raw_lines)
+                    all_text += "\n".join(raw_lines[start_line:end_line])
                     flag = True
                     break
             if not flag:
@@ -315,15 +315,15 @@ def make_codegen_prompt_nosummary(readme_files,masked_files,context_files):
     context_files = [file for file in context_files if file not in masked_files]
     code_base_text = make_code_text(ingest_files(context_files))
 
-    example_explanation = (
-        "Here is an example of a patch file. It consists of changes to the code base. "
-        + "It specifies the file names, the line numbers of each change, and the removed and added lines. "
-        + "A single patch file can contain changes to multiple files."
+    # 生成 masked 代码范围提示
+    masked_note = (
+        "Note: The <MASKED> section may include more than one function. "
+        "Please implement all missing parts described in the functionality summary above."
     )
+    # 生成最终指令的提示词
     final_instruction = (
-        "I need you to complete the code by generating a single patch file that I can apply "
-        + "directly to this repository using git apply. Please respond with a single patch "
-        + "file in the format shown above."
+        "I need you to complete the code by generating the ONLY the code that should replace the <MASKED> section. "
+        "Put the code in markdown code fences and do not include explanations."
     )
     # 生成提示词
     text = [
@@ -336,10 +336,7 @@ def make_codegen_prompt_nosummary(readme_files,masked_files,context_files):
         code_base_text,
         "</base>",
         "",
-        example_explanation,
-        "<patch>",
-        PATCH_EXAMPLE,
-        "</patch>",
+        masked_note,
         final_instruction,
         "Respond below:",
     ]
@@ -372,17 +369,15 @@ def make_codegen_prompt_withsummary(readme_files,masked_files,context_files,func
         "Here is the functionality summary of the code snippet that you need to complete: "
         + function_summary
     )
-    # 生成补丁示例的解释
-    example_explanation = (
-        "Here is an example of a patch file. It consists of changes to the code base. "
-        + "It specifies the file names, the line numbers of each change, and the removed and added lines. "
-        + "A single patch file can contain changes to multiple files."
+    # 生成 masked 代码范围提示
+    masked_note = (
+        "Note: The <MASKED> section may include more than one function. "
+        "Please implement all missing parts described in the functionality summary above."
     )
     # 生成最终指令的提示词
     final_instruction = (
-        "I need you to complete the code by generating a single patch file that I can apply "
-        + "directly to this repository using git apply. Please respond with a single patch "
-        + "file in the format shown above."
+        "I need you to complete the code by generating the ONLY the code that should replace the <MASKED> section. "
+        "Put the code in markdown code fences and do not include explanations."
     )
     # 拼接提示词
     text = [
@@ -397,10 +392,7 @@ def make_codegen_prompt_withsummary(readme_files,masked_files,context_files,func
         code_base_text,
         "</base>",
         "",
-        example_explanation,
-        "<patch>",
-        PATCH_EXAMPLE,
-        "</patch>",
+        masked_note,
         "",
         final_instruction,
         "Respond below:",
@@ -608,4 +600,163 @@ def apply_patch(patch_content, target_dir, cmd):
         # 恢复原始工作目录
         os.chdir(original_dir)
 
+def normalize_indent(generated_code: str, mask_indent: str) -> str:
+    lines = generated_code.split('\n')
+    if not lines or not lines[0]:
+        return generated_code
+    first_line = lines[0]
+    first_indent_len = len(first_line) - len(first_line.lstrip())
+    offset = len(mask_indent) - first_indent_len
 
+    if offset == 0:
+        return generated_code
+
+    new_lines = []
+    for line in lines:
+        if line.strip() == "":
+            new_lines.append("")
+            continue
+        current_indent_len = len(line) - len(line.lstrip())
+        new_indent_len = max(0, current_indent_len + offset)
+        new_lines.append(" " * new_indent_len + line.lstrip())
+    return '\n'.join(new_lines)
+
+
+def count_braces_diff(code: str) -> int:
+    """
+    计算代码中 '{' 和 '}' 的相对差值（'{' 数量 - '}' 数量），
+    尽量排除字符串和注释中的花括号。
+    """
+    diff = 0
+    in_string = False
+    string_char = None
+    in_comment = False
+    i = 0
+    chars = code
+    length = len(chars)
+    while i < length:
+        c = chars[i]
+        next_c = chars[i + 1] if i + 1 < length else ''
+
+        if in_comment:
+            if c == '*' and next_c == '/':
+                in_comment = False
+                i += 2
+                continue
+        elif in_string:
+            if c == '\\':
+                i += 2
+                continue
+            if c == string_char:
+                in_string = False
+                string_char = None
+        else:
+            if c == '/' and next_c == '/':
+                break  # 单行注释，后面都忽略
+            elif c == '/' and next_c == '*':
+                in_comment = True
+                i += 2
+                continue
+            elif c in ('"', "'"):
+                in_string = True
+                string_char = c
+            elif c == '{':
+                diff += 1
+            elif c == '}':
+                diff -= 1
+        i += 1
+    return diff
+
+
+def deduplicate_and_balance_code(generated_code, prefix_lines=None, suffix_lines=None, original_vuln_block=None):
+    """
+    对生成代码进行去冗余和花括号平衡校验。
+    1. 去重：删除与 mask 前后文完全相同的头部/尾部行
+    2. 花括号平衡：调整 '{' / '}' 差值与 original_vuln_block 一致
+    """
+    generated_lines = generated_code.split('\n')
+
+    # 1. 前部去重：生成代码头部与 mask 前尾部比较
+    if prefix_lines is not None:
+        max_n = min(len(generated_lines), len(prefix_lines), 20)
+        for n in range(max_n, 0, -1):
+            if generated_lines[:n] == prefix_lines[-n:]:
+                generated_lines = generated_lines[n:]
+                logger.info(f"删除生成代码前部重复 {n} 行")
+                break
+
+    # 2. 后部去重：生成代码尾部与 mask 后头部比较
+    if suffix_lines is not None:
+        max_n = min(len(generated_lines), len(suffix_lines), 20)
+        for n in range(max_n, 0, -1):
+            if generated_lines[-n:] == suffix_lines[:n]:
+                generated_lines = generated_lines[:-n]
+                logger.info(f"删除生成代码后部重复 {n} 行")
+                break
+
+    generated_code = '\n'.join(generated_lines)
+
+    # 3. 花括号平衡处理
+    if original_vuln_block is not None:
+        target_diff = count_braces_diff(original_vuln_block)
+        current_diff = count_braces_diff(generated_code)
+        diff_delta = target_diff - current_diff  # 正数需删 '}'，负数需增 '}'
+
+        if diff_delta > 0:
+            need_remove = diff_delta
+            while need_remove > 0:
+                last_brace_idx = generated_code.rfind('}')
+                if last_brace_idx == -1:
+                    logger.warning(
+                        f"生成代码中找不到 '}}' 用于删除，目标差值 {target_diff}，当前差值 {current_diff}"
+                    )
+                    break
+                generated_code = generated_code[:last_brace_idx]
+                need_remove -= 1
+            generated_code = generated_code.rstrip()
+            logger.info(
+                f"生成代码末尾删除 {diff_delta} 个 '}}' 以匹配原始 mask 部分花括号差值 "
+                f"(目标={target_diff}, 当前={current_diff})"
+            )
+        elif diff_delta < 0:
+            need_add = -diff_delta
+            generated_code = generated_code + '\n' + '\n'.join(['}'] * need_add)
+            logger.info(
+                f"生成代码末尾补充 {need_add} 个 '}}' 以匹配原始 mask 部分花括号差值 "
+                f"(目标={target_diff}, 当前={current_diff})"
+            )
+
+    return generated_code
+
+
+def apply_generated_code(repo_dir, vuln_file, generated_code, prefix_lines=None, suffix_lines=None, original_vuln_block=None):
+    """将生成的代码替换到文件中的 <MASKED> 位置，并进行去重和花括号平衡校验"""
+    file_path = os.path.join(repo_dir, vuln_file)
+    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+        content = f.read()
+
+    # 去重 + 花括号平衡
+    generated_code = deduplicate_and_balance_code(
+        generated_code, prefix_lines=prefix_lines, suffix_lines=suffix_lines, original_vuln_block=original_vuln_block
+    )
+
+    lines = content.split('\n')
+    new_lines = []
+    replaced = False
+    for line in lines:
+        if '<MASKED>' in line:
+            mask_indent = line[:len(line) - len(line.lstrip())]
+            normalized_code = normalize_indent(generated_code, mask_indent)
+            for g_line in normalized_code.split('\n'):
+                new_lines.append(g_line)
+            replaced = True
+        else:
+            new_lines.append(line)
+
+    if not replaced:
+        logger.error(f"文件中未找到 <MASKED> 标记: {file_path}")
+        return False
+
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(new_lines))
+    return True

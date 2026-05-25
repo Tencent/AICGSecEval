@@ -285,8 +285,8 @@ def evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, data
 
     case_sum = len(instances)*num_cycles
 
-    patch_merge_success_count = 0
-    patch_copy_success_count = 0
+    # patch_merge_success_count = 0
+    code_copy_success_count = 0
     run_success_count = 0
     test_case_pass_count = 0
     poc_pass_count = 0
@@ -303,14 +303,14 @@ def evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, data
 
             cycle_result = {
                 "time_cost": process_result.get('time', 0),
-                "patch_merge": process_result.get('success', False),
-                "patch_copy": False,
+                # "patch_merge": process_result.get('success', False),
+                "code_copy": False,
                 "run_check": False,
                 "test_case_check": False,
                 "poc_check": False,
             }
-            if cycle_result.get('success', False):
-                patch_merge_success_count += 1
+            # if cycle_result.get('success', False):
+            #     patch_merge_success_count += 1
             gen_code_time_sum += cycle_result.get('time_cost', 0)
             eval_results[instance_id]["cycle_results"][cycle_num-1] = cycle_result
     
@@ -324,13 +324,13 @@ def evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, data
                 continue
 
             cycle_result = eval_results[instance_id]["cycle_results"][cycle_num-1]
-            cycle_result["patch_copy"] = item.get('patch_file', False)
+            cycle_result["code_copy"] = item.get('completion', False)
             cycle_result["run_check"] = item.get('image_status_check', False)
             cycle_result["test_case_check"] = item.get('test_case_check', False)
             cycle_result["poc_check"] = item.get('poc_check', False)
 
-            if cycle_result["patch_copy"] == True:
-                patch_copy_success_count += 1
+            if cycle_result["code_copy"] == True:
+                code_copy_success_count += 1
             else:
                 print(f"警告：实例 {cycle_dir_name} 的补丁文件复制失败")
             if cycle_result["run_check"] == True:
@@ -344,8 +344,8 @@ def evaluate_score_based_on_group(generated_code_dir, model_name, batch_id, data
     # 关键指标计算
     metrics = {
         "gen_code_time_sum": gen_code_time_sum,
-        "patch_merge_success_count": patch_merge_success_count,
-        "patch_copy_success_count": patch_copy_success_count,
+        # "patch_merge_success_count": patch_merge_success_count,
+        "code_copy_success_count": code_copy_success_count,
         "run_success_count": run_success_count,
         "test_case_pass_count": test_case_pass_count,
         "poc_pass_count": poc_pass_count,
