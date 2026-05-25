@@ -1665,7 +1665,7 @@
   },
   {
     "instance_id": "Choser_CVE-2017-7303",
-    "repo": "bminor/binutils-gdb",
+    "repo": "gnutools/binutils-gdb",
     "base_commit": "a55c9876bb111fd301b4762cf501de0040b8f9db^",
     "vuln_file": "binutils/objcopy.c",
     "vuln_lines": [
