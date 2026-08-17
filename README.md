@@ -247,4 +247,4 @@ This project is open source under the Apache-2.0 License. For more details, plea
 
 ---
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Tencent/AICGSecEval&type=Date)](https://www.star-history.com/#Tencent/AICGSecEval&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=Tencent/AICGSecEval&type=Date)](https://star-history.dera.page/#Tencent/AICGSecEval&Date)
