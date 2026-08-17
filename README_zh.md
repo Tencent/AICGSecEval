@@ -242,4 +242,4 @@ A.S.E​ 由腾讯安全平台部悟空代码安全团队联合以下学术单�
 
 ---
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Tencent/AICGSecEval&type=Date)](https://www.star-history.com/#Tencent/AICGSecEval&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=Tencent/AICGSecEval&type=Date)](https://star-history.dera.page/#Tencent/AICGSecEval&Date)
