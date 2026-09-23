@@ -3908,7 +3908,7 @@
   },
   {
     "instance_id": "tsinghua_lunary_ai_lunary_cve_2024_1738",
-    "repo": "lunary-ai/lunary",
+    "repo": "Tenount/backup-lunary",
     "base_commit": "5a73939ae16a13bdb2098738d2b6c3f9d8e3963e",
     "patch_commit": "293d5dea4a9aa984e922461ee955231f2275376e",
     "vuln_file": "packages/backend/src/api/v1/evaluations/index.ts",
@@ -3932,7 +3932,7 @@
   },
   {
     "instance_id": "tsinghua_lunary_cve_2024_4146",
-    "repo": "lunary-ai/lunary",
+    "repo": "Tenount/backup-lunary",
     "base_commit": "371242eaf7ba357a9b37183c13ac2eb9ae0a4c50",
     "patch_commit": "2d7b9c58b2474fb0f04dcdcb7b9d509ae31f377b",
     "vuln_file": "packages/backend/src/utils/authorization.ts",
