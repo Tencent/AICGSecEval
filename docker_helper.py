@@ -27,7 +27,15 @@ class DockerHelperImpl:
 
         try:
             self._docker_container = self._docker_client.containers.run(
-                image=image, command=command, stdout=True, stderr=True, remove=True, detach=True, privileged=self._privileged)
+                image=image, command=command, stdout=True, stderr=True, remove=True, detach=True,
+                privileged=self._privileged,
+                # Task images are published for linux/amd64. Some of them are multi-architecture
+                # manifest LISTS that simply omit arm64: Docker refuses to start those on an arm64
+                # host instead of emulating, while single-architecture amd64 images run under
+                # emulation without complaint. Naming the platform makes both behave the same way,
+                # so the benchmark is runnable on an Apple Silicon machine. On an amd64 host this
+                # is a no-op. Override with ASE_DOCKER_PLATFORM if you publish images elsewhere.
+                platform=os.environ.get("ASE_DOCKER_PLATFORM", "linux/amd64"))
             self._logger.info(
                 f"[{self._trace}] 启动镜像 {self._image} 成功，容器：{self._docker_container.name}（{self._docker_container.id}）")
         except Exception as e:
