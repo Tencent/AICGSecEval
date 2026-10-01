@@ -113,7 +113,11 @@ def parse_args():
     common_group.add_argument('--dataset_path', type=str, default="data/data_v2.json", help='数据集路径')
     common_group.add_argument('--retrieval_data_path', type=str, default="data/data_v2_context_bm25.json", help='上下文检索数据路径（默认值：data/data_v2_context_bm25.json）')
     common_group.add_argument('--num_cycles', type=int, default=3, help='单条数据测试轮数（默认值：3）')
-    common_group.add_argument('--github_token', type=str, default=None, help='GitHub Token，如果不提供则使用匿名克隆,可能存在克隆限频问题')
+    # 默认读取环境变量 GITHUB_TOKEN，避免令牌出现在命令行中：命令行参数可被同机任何进程
+    # 通过 `ps` 读取，并且会被原样记录到运行日志里。
+    # Default to $GITHUB_TOKEN so the token need not appear on the command line, where it is
+    # readable by any local process via `ps` and is captured verbatim into run logs.
+    common_group.add_argument('--github_token', type=str, default=os.environ.get('GITHUB_TOKEN'), help='GitHub Token，如果不提供则使用匿名克隆,可能存在克隆限频问题（默认读取环境变量 GITHUB_TOKEN）')
 
     codegen_mode_group = parser.add_argument_group('代码生成模式选项')
     codegen_mode_exclusive_group = codegen_mode_group.add_mutually_exclusive_group(required=True)
