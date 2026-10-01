@@ -39,7 +39,16 @@ class ClaudeCodeAgentBench(AgentBenchBase):
             disallowed_tools=["Bash(rm*)"],
             model=self._model_name,
             cwd=self.repo_dir,
-            permission_mode="acceptEdits"
+            permission_mode="acceptEdits",
+            # 与运行者本机的用户级配置隔离。若不设置，SDK 会把 ~/.claude 下的设置
+            # （自定义 CLAUDE.md、已全局安装的插件及其钩子等）加载进每一次评测会话，
+            # 评测结果因此取决于谁在跑、机器上装了什么，不同机器之间不可复现。
+            # Isolate from the operator's user-level configuration. Without this the SDK
+            # loads ~/.claude settings into every benchmark session: a personal CLAUDE.md,
+            # any globally installed plugin and its hooks. Results then depend on who runs
+            # the benchmark and what is installed on that machine, and are not reproducible
+            # across machines.
+            setting_sources=[],
         )
 
         self.logger.info(f"Claude Code Agent is starting ...")
