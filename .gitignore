@@ -1,3 +1,6 @@
 __pycache__
 scan_error.*
-outputs
+outputs/
+.venv/
+agent_gencode_error.log
+security_scan_error.log
